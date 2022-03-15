@@ -5,8 +5,14 @@
 #include <fstream>
 #include <string>
 #include <string.h> //To use strtok
+#include <cstring>
 
 using namespace std;
 
-//Include Function file
 
+//Declare fstream
+fstream finp, fout;
+
+
+//Include Function file
+#include "DataBase.cpp"
