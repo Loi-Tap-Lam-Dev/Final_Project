@@ -1,12 +1,12 @@
 #include "lib.h"
 #include "DataBase.cpp"
 
-
-
+using namespace std;
 
 int main() {
-    
     Year* Year_pHead = new Year;
-    return 0;
 
+    //User authentication
+
+    return 0;
 }
