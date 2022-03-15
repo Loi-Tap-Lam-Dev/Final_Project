@@ -6,7 +6,5 @@
 
 int main() {
     
-    Year* Year_pHead = new Year;
-    return 0;
 
 }
