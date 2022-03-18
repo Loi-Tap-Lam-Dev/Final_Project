@@ -71,7 +71,22 @@ struct Year {
              Subject* yearSemesterSubjectHead;  // To Save the Head of the Subject List of Semester
 
              struct Schedule {
-
+                           struct Weekday{
+                                   struct Session {
+                                        struct Room {
+                                            struct Subject {
+                                                struct Class {
+                                                    string ClassName;
+                                                    Class* clNext=nullptr;
+                                                };
+                                                Subject*yearSemesterScheduleWeekdaySessionRoomSubjectHead;
+                                            };
+                                            Room*yearSemesterScheduleWeekdaySessionRoomHead;
+                                        };
+                                       Session*yearSemesterScheduleWeekdaySessionHead;
+                                   };
+                            Weekday*yearSemesterScheduleWeekdayHead;      
+                           };
              };
 
 
