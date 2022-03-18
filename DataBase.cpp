@@ -11,14 +11,14 @@ struct Year {
 
                     string lastName , firstName , gender , dateOfBirth;
 
-                    SV_List* svNext;
+                    SV_List* svNext = nullptr;
             };
         
              SV_List* yearClassSV_ListHead; // To Save The Head Of The SV List of Class
 
              string nameClass;
 
-             Class* clNext;   
+             Class* clNext = nullptr;   
 
     };
 
@@ -32,7 +32,7 @@ struct Year {
 
                      int no , idStudent , GPA , averageMark;
 
-                     SV_List* svNext;
+                     SV_List* svNext = nullptr;
                 
              };
 
@@ -50,7 +50,7 @@ struct Year {
 
                                 int no , idStudent , midTermMark, finalTermMark , otherMark;
 
-                                SV_List* svNext;
+                                SV_List* svNext = nullptr;
 
                              };
 
@@ -58,13 +58,13 @@ struct Year {
 
                              string nameClass;
 
-                             Class* clNext;
+                             Class* clNext = nullptr;
 
                      };
 
                      Class* yearSemesterSubjectClassHead; // To Save the Head of the Class List of Subject
                 
-                     Subject* subNext;
+                     Subject* subNext = nullptr;
 
              };
 
@@ -75,7 +75,7 @@ struct Year {
              };
 
 
-             Semester* sNext;
+             Semester* sNext = nullptr;
 
      };
 
@@ -83,7 +83,7 @@ struct Year {
 
      string nameYear;
 
-     Year* yNext;
+     Year* yNext = nullptr;
 
 };
 
