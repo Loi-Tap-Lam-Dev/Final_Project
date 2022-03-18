@@ -89,5 +89,5 @@ struct Year {
 
 struct Account
 {
-        string nameAccount, passWord;
+        string username, password;
 };
