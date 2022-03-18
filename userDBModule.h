@@ -1,5 +1,5 @@
-// This is a test module, it's not 
-// FULLY developed and checked!
+// This is a test module, it's
+// NOT FULLY developed and checked!
 
 /* ----- USER DATABASE ----- */
 #pragma once
@@ -11,11 +11,11 @@ using namespace std;
 // Base class
 class User {
     public:
-        int userID, 
-            courseEnrolled[5] = {0, 0, 0, 0, 0};
-        string username;
+        int userID, socialID;
+        string username, gender, dateOfBirth;
 
         User *p_nextEntry;
+
     protected:
         int password;
 
@@ -28,6 +28,10 @@ class User {
 // Two simple user models
 // Could and will add more operations for each model later
 class Student: public User {
+    public:
+        int courseEnrolled[5] = {0, 0, 0, 0, 0},
+            midtermMark, finalMark, otherMark, GPA, averageMark;
+
     private:
         bool adminAuthority = false;
 };
