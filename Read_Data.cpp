@@ -1,4 +1,3 @@
-@ -1,22 +1,40 @@
 #include "lib.h"
 
 //Read file
