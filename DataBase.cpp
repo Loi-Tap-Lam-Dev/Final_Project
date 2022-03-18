@@ -91,4 +91,5 @@ struct Year {
 struct Account
 {
         string nameAccount, passWord;
+        Account* accNext = nullptr;
 };
