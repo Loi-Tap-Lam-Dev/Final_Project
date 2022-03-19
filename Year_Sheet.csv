@@ -1,3 +1,18 @@
-2019,19clc01,19clc02,19clc03,19clc04
-2020,20apcs1,20apcs2,20clc04,20clc05,20clc06
-2021,21vp1,21vp2,21clc05,21clc06,21clc07,21clc08
+School_Year
+    Year,2021
+    Class_room
+        Class,21CLC01
+            SV_list
+                SV,01,21127000, 056103213165, Nguyen, Bao, male, 99/99/1999
+                SV,02,21127001, 065465165165, Cao, Quoc, male ,55/55/1555
+                SV,03,21127002, 054416598461, Nguyen, Tuan, male ,66/66/1666
+        Class,21CLC02
+            SV_list
+                SV,04, 21127003, 056103214165, Nguyen1, Bao1, female, 199/199/1999
+                SV,05, 21127004, 065465195165, Cao1, Quoc1, female, 155/155/1555
+                SV,06, 21127005, 054416598461, Nguyen1, Tuan1, female, 166/166/1666
+        Class,21CLC03
+            SV_list
+                SV,07, 21127006, 056803214165, Nguyen2, Bao2, maleXfemale, 199/199/1999
+                SV,08, 21127007, 065865195165, Cao2, Quoc2, maleXfemale, 155/155/1555
+                SV,09, 21127008, 054816598461, Nguyen2, Tuan2, maleXfemale, 166/166/1666

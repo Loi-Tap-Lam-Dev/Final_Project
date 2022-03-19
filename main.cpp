@@ -2,18 +2,23 @@
 #include "Read_Data.cpp"
 int main() {
     
-    Year* yearHead = new Year;
+    Year* yearHead = nullptr;
 
     readFileYear(yearHead);
 
-    for (Year* year_Cur = yearHead; year_Cur -> yNext != nullptr; year_Cur = year_Cur -> yNext)
+    cout<<yearHead -> nameYear<<": ";
+    cout<<endl<<"   ";
+    for (Year::Class* year_Class_Cur = yearHead -> yearCLassHead; year_Class_Cur -> clNext != nullptr; year_Class_Cur = year_Class_Cur -> clNext)
     {
-        cout<<"Year: "<<year_Cur -> nameYear<<". Class: ";
-        for (Year::Class* class_Cur = year_Cur -> yearCLassHead; class_Cur != nullptr; class_Cur = class_Cur ->clNext)
-        {
-            cout<<class_Cur -> nameClass<<" ";
-        }
-        cout<<endl;
+        cout<<year_Class_Cur -> nameClass<<" ";
+        cout<<endl<<"       ";
+            for (Year::Class::SV_List* year_Class_Sv_Cur = year_Class_Cur -> yearClassSV_ListHead;
+                year_Class_Sv_Cur -> svNext != nullptr; year_Class_Sv_Cur = year_Class_Sv_Cur -> svNext)
+                {
+                    cout<<year_Class_Sv_Cur -> no<<" "<<year_Class_Sv_Cur -> idStudent<<" "<<year_Class_Sv_Cur -> socialID<<" "<<year_Class_Sv_Cur -> firstName<<" "<<
+                    year_Class_Sv_Cur -> lastName<<" "<< year_Class_Sv_Cur -> gender<<" "<<year_Class_Sv_Cur -> dateOfBirth<<endl<<"        ";
+                }
+        cout<<endl<<"   ";
     }
     return 0;
 }
