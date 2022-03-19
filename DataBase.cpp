@@ -1,3 +1,4 @@
+#pragma once
 #include "lib.h"
 
 struct Year {
@@ -10,14 +11,14 @@ struct Year {
 
                     string lastName , firstName , gender , dateOfBirth;
 
-                    SV_List* svNext;
+                    SV_List* svNext = nullptr;
             };
         
              SV_List* yearClassSV_ListHead; // To Save The Head Of The SV List of Class
 
              string nameClass;
 
-             Class* clNext;   
+             Class* clNext = nullptr;   
 
     };
 
@@ -31,7 +32,7 @@ struct Year {
 
                      int no , idStudent , GPA , averageMark;
 
-                     SV_List* svNext;
+                     SV_List* svNext = nullptr;
                 
              };
 
@@ -49,7 +50,7 @@ struct Year {
 
                                 int no , idStudent , midTermMark, finalTermMark , otherMark;
 
-                                SV_List* svNext;
+                                SV_List* svNext = nullptr;
 
                              };
 
@@ -57,24 +58,39 @@ struct Year {
 
                              string nameClass;
 
-                             Class* clNext;
+                             Class* clNext = nullptr;
 
                      };
 
                      Class* yearSemesterSubjectClassHead; // To Save the Head of the Class List of Subject
                 
-                     Subject* subNext;
+                     Subject* subNext = nullptr;
 
              };
 
              Subject* yearSemesterSubjectHead;  // To Save the Head of the Subject List of Semester
 
              struct Schedule {
-
+                           struct Weekday{
+                                   struct Session {
+                                        struct Room {
+                                            struct Subject {
+                                                struct Class {
+                                                    string ClassName;
+                                                    Class* clNext=nullptr;
+                                                };
+                                                Subject*yearSemesterScheduleWeekdaySessionRoomSubjectHead;
+                                            };
+                                            Room*yearSemesterScheduleWeekdaySessionRoomHead;
+                                        };
+                                       Session*yearSemesterScheduleWeekdaySessionHead;
+                                   };
+                            Weekday*yearSemesterScheduleWeekdayHead;      
+                           };
              };
 
 
-             Semester* sNext;
+             Semester* sNext = nullptr;
 
      };
 
@@ -82,7 +98,7 @@ struct Year {
 
      string nameYear;
 
-     Year* yNext;
+     Year* yNext = nullptr;
 
 };
 
