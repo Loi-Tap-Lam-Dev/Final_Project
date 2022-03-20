@@ -8,8 +8,8 @@ class Class {
     public:
         string className;
 
-        Student *p_studentsOfClassListHead;
-        Course *p_nextClass;
+        Student *p_classStudentList;
+        Class *p_nextClass;
 };
 
 class Subject {
@@ -17,5 +17,25 @@ class Subject {
         string startDate, endDate;
         int maxStudents = 50;
 
-        Student *p_studentOfSubjectListHead;
+        Class *p_subjectClassList;
+
+        Student *p_subjectStudentList;
+};
+
+class Semester {
+    public:
+        Student p_semesterStudentList;
+        Subject p_semesterSubjectList;
+
+        Semester *p_nextSemester;
+};
+
+class Year {
+    public:
+        string yearName;
+
+        Class *p_yearClassList;
+        Semester *p_yearSemesterList;
+
+        Year *p_nextYear;
 };
