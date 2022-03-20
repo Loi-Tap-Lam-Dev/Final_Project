@@ -1,3 +1,6 @@
+// TEMPORARY ABANDONED
+// Not sure if this file is useful or not lul
+
 #pragma once
 
 #include "userDBModule.h"
