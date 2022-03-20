@@ -32,7 +32,7 @@ string encryptPasswordInput() {
     SetConsoleMode(inputHandle, consoleMode & ~(ENABLE_ECHO_INPUT | ENABLE_LINE_INPUT));
 
     inputValidation:
-    while (ReadConsoleA(inputHandle, &keyType, 1, &dwReadSize, NULL) && keyType != ENTER) {
+    while (ReadConsole(inputHandle, &keyType, 1, &dwReadSize, NULL) && keyType != ENTER) {
         if (keyType == BACKSPACE && encryptedPassword.length() != 0) {
             encryptedPassword.resize(encryptedPassword.length() - 1);
             cout << "\b \b";
