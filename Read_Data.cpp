@@ -4,10 +4,20 @@ double numbering_Char(string x)
 {
     if (x == "School_Year") return 1;
     else if (x == "Year") return 1.1;
-    else if (x == "Class_room") return 2;
-    else if (x == "Class") return 2.1;
-    else if (x == "SV_list") return 3;
-    else if (x == "SV") return 3.1;
+    else if (x == "Class_list_info") return 2;
+    else if (x == "Class_info") return 2.1;
+    else if (x == "SV_list_info") return 3;
+    else if (x == "SV_info") return 3.1;
+    else if (x == "Semester" ) return 4;
+    else if (x == "Term") return 4.1;
+    else if (x == "SV_list_semester_mark") return 5;
+    else if (x == "SV_list_sem_mark") return 5.1;
+    else if (x == "Subject") return 6;
+    else if (x == "Sub") return 6.1;
+    else if (x == "Class_subject_info") return 7;
+    else if (x == "Class_sub_info") return 7.1;
+    else if (x == "SV_list_subject_mark") return 8;
+    else if (x == "SV_sub_mark") return 8.1;
     return -1;
 }
 
@@ -34,6 +44,16 @@ void readFileYear(Year* &year_Head) {
         //Year::Class::SV_List
         Year::Class::SV_List* year_Class_Sv_Head = nullptr;
         Year::Class::SV_List* year_Class_Sv_Cur = nullptr;
+        //Year::Semester
+        Year::Semester* year_Semester_Head = nullptr;
+        Year::Semester* year_Semester_Cur = nullptr;
+        //Year::Semester::SV_list (Semester)
+        Year::Semester::SV_List* year_Semester_Sv_ListHead = nullptr;
+        Year::Semester::SV_List* year_Semester_Sv_ListCur = nullptr;
+        //Year::Semester::Subject
+        Year::Semester::Subject* year_Semester_SubjectHead = nullptr;
+        Year::Semester::Subject* year_Semester_SubjectCur = nullptr;    
+
 
     //Read data from file
     while ( true )
@@ -91,6 +111,12 @@ void readFileYear(Year* &year_Head) {
                 break;
             }
 
+            //Case: initate Semester
+            case 40:
+            {
+                year_Semester_Head = new Year::Semester;
+                
+            }
             //Year name
             case 11:
             {
