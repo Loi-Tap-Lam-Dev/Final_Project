@@ -24,9 +24,7 @@ School_Year
                 SV_sem_mark,03, 21127002, 3.25, 8.96
                 SV_sem_mark,04, 21127003, 3.73, 9.05
             Subject
-                Sub,Math
-                    Date,18/03/2022,18/06/2022
-                    Maximum,110
+                Sub,Math,18/03/2022,18/06/2022,110
                         Class_subject_info
                             Class_sub_info,21CLC01
                                 SV_list_subject_mark
@@ -50,9 +48,7 @@ School_Year
                                     SV_sub_mark,07, 21127019, 9, 9.5, 1
                                     SV_sub_mark,08, 21127020, 9, 9.5, 1
                                     SV_sub_mark,09, 21127021, 9, 9.5, 1
-                Sub,Physics
-                    Date,18/03/2022,18/06/2022
-                    Maximum,70
+                Sub,Physics,18/03/2022,18/06/2022,70
                         Class_subject_info
                             Class_sub_info,21CLC01
                                 SV_list_subject_mark
@@ -76,9 +72,7 @@ School_Year
                                     SV_sub_mark,07, 21127019, 9, 9.5, 1
                                     SV_sub_mark,08, 21127020, 9, 9.5, 1
                                     SV_sub_mark,09, 21127021, 9, 9.5, 1
-                Sub,Programming
-                    Date,18/03/2022,18/06/2022
-                    Maximum,80
+                Sub,Programming,18/03/2022,18/06/2022,80
                         Class_subject_info
                             Class_sub_info,21CLC01
                                 SV_list_subject_mark

@@ -28,6 +28,8 @@ struct Year {
      
      struct Semester {
 
+             int Term;
+
              struct SV_List {
 
                      int no , idStudent , GPA , averageMark;
@@ -40,8 +42,8 @@ struct Year {
 
              struct Subject {
 
-                     string startDate, endDate;
-
+                     string startDate, endDate, name_Subject;
+                
                      int maximumRegrister;
 
                      struct Class {
