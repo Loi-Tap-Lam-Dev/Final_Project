@@ -28,6 +28,8 @@ struct Year {
      
      struct Semester {
 
+             int Term;
+
              struct SV_List {
 
                      int no , idStudent , GPA , averageMark;
@@ -40,8 +42,8 @@ struct Year {
 
              struct Subject {
 
-                     string startDate, endDate;
-
+                     string startDate, endDate, name_Subject;
+                
                      int maximumRegrister;
 
                      struct Class {
@@ -71,22 +73,7 @@ struct Year {
              Subject* yearSemesterSubjectHead;  // To Save the Head of the Subject List of Semester
 
              struct Schedule {
-                           struct Weekday{
-                                   struct Session {
-                                        struct Room {
-                                            struct Subject {
-                                                struct Class {
-                                                    string ClassName;
-                                                    Class* clNext=nullptr;
-                                                };
-                                                Subject*yearSemesterScheduleWeekdaySessionRoomSubjectHead;
-                                            };
-                                            Room*yearSemesterScheduleWeekdaySessionRoomHead;
-                                        };
-                                       Session*yearSemesterScheduleWeekdaySessionHead;
-                                   };
-                            Weekday*yearSemesterScheduleWeekdayHead;      
-                           };
+
              };
 
 
@@ -106,4 +93,5 @@ struct Year {
 struct Account
 {
         string nameAccount, passWord;
+        Account* accNext = nullptr;
 };
