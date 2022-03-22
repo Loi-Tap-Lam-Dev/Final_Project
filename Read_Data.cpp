@@ -1,5 +1,6 @@
 #include "lib.h"
 
+//I dunno how to name it:V
 double numbering_Char(string x)
 {
     if (x == "School_Year") return 1;
@@ -29,6 +30,7 @@ double numbering_Char(string x)
     return -1;
 }
 
+//Remove Blanket Space
 void remove_All_BlanketSpace(string &s)
 {
     int i = 0;
@@ -157,6 +159,7 @@ void readFileYear(Year* &year_Head) {
 
                 //Save the head of subject list in semester
                 year_Semester_Cur -> yearSemesterSubjectHead = year_Semester_SubjectHead;
+                
                 break;
             }
 
@@ -391,66 +394,4 @@ void readFileYear(Year* &year_Head) {
 
     }
 
-}
-
-void displayFile(Year* yearHead)
-{
-    cout<<"Year "<<yearHead -> nameYear<<": ";
-    cout<<endl<<"  ";
-
-    cout<<"Class info"<<endl<<"     ";
-    for (Year::Class* year_Class_Cur = yearHead -> yearCLassHead; year_Class_Cur -> clNext != nullptr; year_Class_Cur = year_Class_Cur -> clNext)
-    {
-        //Class info
-        cout<<"Class "<<year_Class_Cur -> nameClass;
-        cout<<endl<<"           ";
-            for (Year::Class::SV_List* year_Class_Sv_Cur = year_Class_Cur -> yearClassSV_ListHead;
-                year_Class_Sv_Cur -> svNext != nullptr; year_Class_Sv_Cur = year_Class_Sv_Cur -> svNext)
-                {
-                    cout<<year_Class_Sv_Cur -> no<<" "<<year_Class_Sv_Cur -> idStudent<<" "<<year_Class_Sv_Cur -> socialID<<" "<<year_Class_Sv_Cur -> firstName<<" "<<
-                    year_Class_Sv_Cur -> lastName<<" "<< year_Class_Sv_Cur -> gender<<" "<<year_Class_Sv_Cur -> dateOfBirth<<endl<<"           ";
-                }
-        cout<<endl<<"     ";
-    }
-    cout<<endl<<"  ";
-
-    cout<<"Semester info"<<endl<<"     ";
-    for (Year::Semester* year_Semester_Cur = yearHead -> yearSemesterHead; year_Semester_Cur -> sNext != nullptr; year_Semester_Cur = year_Semester_Cur -> sNext)
-    {
-        //Term
-        cout<<"Term "<<year_Semester_Cur -> Term<<endl<<"       ";
-        
-        //Sv Semester Mark
-        cout<<"Sv Semester Mark "<<endl<<"          ";
-        for (Year::Semester::SV_List* year_Semester_SvListCur = year_Semester_Cur -> yearSemesterSv_ListHead; year_Semester_SvListCur -> svNext != nullptr;
-        year_Semester_SvListCur = year_Semester_SvListCur -> svNext )
-        {
-            cout<<year_Semester_SvListCur -> no<<" "<<year_Semester_SvListCur -> idStudent<<" "<<year_Semester_SvListCur -> GPA<<" "<<year_Semester_SvListCur -> averageMark<<endl<<"          ";
-        }
-        cout<<endl<<"       ";
-
-        cout<<"Subject "<<endl<<"          ";
-        for (Year::Semester::Subject* year_Semester_Subject_Cur = year_Semester_Cur -> yearSemesterSubjectHead;
-        year_Semester_Subject_Cur -> subNext != nullptr; year_Semester_Subject_Cur = year_Semester_Subject_Cur -> subNext)
-        {
-            //Subject
-            cout<<year_Semester_Subject_Cur -> name_Subject<<" - Start date: "<<year_Semester_Subject_Cur -> startDate<<" - End Date: "<<year_Semester_Subject_Cur -> endDate<<" - Maximum: "<<year_Semester_Subject_Cur -> maximumRegrister<<endl<<"          ";
-            
-            //Class
-            for (Year::Semester::Subject::Class* semester_Class = year_Semester_Subject_Cur -> yearSemesterSubjectClassHead; semester_Class -> clNext != nullptr; semester_Class = semester_Class -> clNext)
-            {
-                cout<<"Class: "<<semester_Class -> nameClass<<endl<<"               ";
-
-                for (Year::Semester::Subject::Class::SV_List* Class_Sv_Cur = semester_Class -> yearSemesterSubjectClassSV_ListHead;
-                Class_Sv_Cur -> svNext != nullptr; Class_Sv_Cur = Class_Sv_Cur -> svNext)
-                {
-                    cout<<"No: "<<Class_Sv_Cur -> no<<" - ID: "<<Class_Sv_Cur -> idStudent<<" - Mid: "<<Class_Sv_Cur -> midTermMark<<" - Final: "<<Class_Sv_Cur -> finalTermMark<<" - Other: "<<Class_Sv_Cur -> otherMark<<endl<<"               ";
-                }
-                cout<<endl<<"           ";
-            }
-            cout<<endl<<"          ";
-        }
-        cout<<endl<<"       ";
-    }
-    return ;
 }

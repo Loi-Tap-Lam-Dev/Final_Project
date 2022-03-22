@@ -16,3 +16,6 @@ fstream finp, fout;
 
 //Include Function file
 #include "DataBase.cpp"
+#include "Read_Data.cpp"
+#include "Display_Data.cpp"
+#include "DeLeTe_Data.cpp"
