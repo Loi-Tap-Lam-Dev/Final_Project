@@ -11,7 +11,6 @@ using namespace std;
 
 // --- Declaration --- //
 string encryptPasswordInput();
-bool validateUser();
 
 // --- Definition --- //
 string encryptPasswordInput() {

@@ -9,6 +9,8 @@
 #define View_hpp
 
 #include <stdio.h>
+#include <iostream>
+#include <windows.h>
 #include "lib.h"
 using namespace std;
 
@@ -17,3 +19,4 @@ using namespace std;
 void FORMAT(string s);
 int loginOption();
 void getCredentials(string &username, string &password);
+string encryptPasswordInput();

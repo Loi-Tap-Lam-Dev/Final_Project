@@ -103,7 +103,7 @@ struct Year {
 };
 
 
-struct Account
-{
-        string username, password;
-};
+// struct Account
+// {
+//         string username, password;
+// };

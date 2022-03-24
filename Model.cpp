@@ -5,9 +5,8 @@
 //  Created by Minh Đỗ on 16/03/2022.
 //
 
-#include "Model.hpp"
-
-#include "View.hpp"
+#include "Model.cpp"
+#include "View.cpp"
 
 using namespace std;
 
@@ -16,9 +15,9 @@ bool loginStaff(string username, string password) {
     string id, pass;
     ifstream input("CredentialsSta.txt");
     while (input >> id >> pass) {
-        cout<<id<<" "<<pass;
+        cout<<id<<" "<<pass<<endl;
         if (username == id && password == pass) {
-            cout<<"logged in";
+            cout<<"logged in\n";
             return 1;
         }
         else {
@@ -36,7 +35,7 @@ bool loginStudent(string username, string password) {
     while (input >> id >> pass) {
         cout<<id<<" "<<pass;
         if (username == id && password == pass) {
-            cout<<"logged in";
+            cout<<"logged in\n";
             return 1;
         }
         else {
@@ -44,6 +43,5 @@ bool loginStudent(string username, string password) {
         }
     }
     input.close();
-    return 0;
     return 0;
 }
