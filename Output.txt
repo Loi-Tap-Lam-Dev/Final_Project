@@ -25,76 +25,76 @@ Year 2021:
           4 21127003 3 9
           
        Subject 
-          Math - Start date: 18/03/2022 - End Date: 18/06/2022 - Maximum: 110
+          VTP0001 - Math - Start date: 18/03/2022 - End Date: 18/06/2022 - Maximum: 110
           Class: 21CLC01
-               No: 1 - ID: 21127004 - Mid: 9 - Final: 9 - Other: 1
-               No: 2 - ID: 21127005 - Mid: 9 - Final: 9 - Other: 1
-               No: 3 - ID: 21127006 - Mid: 9 - Final: 9 - Other: 1
-               No: 4 - ID: 21127007 - Mid: 9 - Final: 9 - Other: 1
-               No: 5 - ID: 21127008 - Mid: 9 - Final: 9 - Other: 1
-               No: 6 - ID: 21127009 - Mid: 9 - Final: 9 - Other: 1
-               No: 7 - ID: 21127010 - Mid: 9 - Final: 9 - Other: 1
-               No: 8 - ID: 21127011 - Mid: 9 - Final: 9 - Other: 1
-               No: 9 - ID: 21127012 - Mid: 9 - Final: 9 - Other: 1
+               No: 1 - ID: 21127004 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 2 - ID: 21127005 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 3 - ID: 21127006 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 4 - ID: 21127007 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 5 - ID: 21127008 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 6 - ID: 21127009 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 7 - ID: 21127010 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 8 - ID: 21127011 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 9 - ID: 21127012 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
                
            Class: 21CLC02
-               No: 1 - ID: 21127013 - Mid: 9 - Final: 9 - Other: 1
-               No: 2 - ID: 21127014 - Mid: 9 - Final: 9 - Other: 1
-               No: 3 - ID: 21127015 - Mid: 9 - Final: 9 - Other: 1
-               No: 4 - ID: 21127016 - Mid: 9 - Final: 9 - Other: 1
-               No: 5 - ID: 21127017 - Mid: 9 - Final: 9 - Other: 1
-               No: 6 - ID: 21127018 - Mid: 9 - Final: 9 - Other: 1
-               No: 7 - ID: 21127019 - Mid: 9 - Final: 9 - Other: 1
-               No: 8 - ID: 21127020 - Mid: 9 - Final: 9 - Other: 1
-               No: 9 - ID: 21127021 - Mid: 9 - Final: 9 - Other: 1
+               No: 1 - ID: 21127013 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 2 - ID: 21127014 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 3 - ID: 21127015 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 4 - ID: 21127016 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 5 - ID: 21127017 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 6 - ID: 21127018 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 7 - ID: 21127019 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 8 - ID: 21127020 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 9 - ID: 21127021 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
                
            
-          Physics - Start date: 18/03/2022 - End Date: 18/06/2022 - Maximum: 70
+          PHY0112 - Physics - Start date: 18/03/2022 - End Date: 18/06/2022 - Maximum: 70
           Class: 21CLC01
-               No: 1 - ID: 21127004 - Mid: 9 - Final: 9 - Other: 1
-               No: 2 - ID: 21127005 - Mid: 9 - Final: 9 - Other: 1
-               No: 3 - ID: 21127006 - Mid: 9 - Final: 9 - Other: 1
-               No: 4 - ID: 21127007 - Mid: 9 - Final: 9 - Other: 1
-               No: 5 - ID: 21127008 - Mid: 9 - Final: 9 - Other: 1
-               No: 6 - ID: 21127009 - Mid: 9 - Final: 9 - Other: 1
-               No: 7 - ID: 21127010 - Mid: 9 - Final: 9 - Other: 1
-               No: 8 - ID: 21127011 - Mid: 9 - Final: 9 - Other: 1
-               No: 9 - ID: 21127012 - Mid: 9 - Final: 9 - Other: 1
+               No: 1 - ID: 21127004 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 2 - ID: 21127005 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 3 - ID: 21127006 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 4 - ID: 21127007 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 5 - ID: 21127008 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 6 - ID: 21127009 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 7 - ID: 21127010 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 8 - ID: 21127011 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 9 - ID: 21127012 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
                
            Class: 21CLC02
-               No: 1 - ID: 21127013 - Mid: 9 - Final: 9 - Other: 1
-               No: 2 - ID: 21127014 - Mid: 9 - Final: 9 - Other: 1
-               No: 3 - ID: 21127015 - Mid: 9 - Final: 9 - Other: 1
-               No: 4 - ID: 21127016 - Mid: 9 - Final: 9 - Other: 1
-               No: 5 - ID: 21127017 - Mid: 9 - Final: 9 - Other: 1
-               No: 6 - ID: 21127018 - Mid: 9 - Final: 9 - Other: 1
-               No: 7 - ID: 21127019 - Mid: 9 - Final: 9 - Other: 1
-               No: 8 - ID: 21127020 - Mid: 9 - Final: 9 - Other: 1
-               No: 9 - ID: 21127021 - Mid: 9 - Final: 9 - Other: 1
+               No: 1 - ID: 21127013 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 2 - ID: 21127014 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 3 - ID: 21127015 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 4 - ID: 21127016 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 5 - ID: 21127017 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 6 - ID: 21127018 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 7 - ID: 21127019 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 8 - ID: 21127020 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 9 - ID: 21127021 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
                
            
-          Programming - Start date: 18/03/2022 - End Date: 18/06/2022 - Maximum: 80
+          CSC0001 - Programming - Start date: 18/03/2022 - End Date: 18/06/2022 - Maximum: 80
           Class: 21CLC01
-               No: 1 - ID: 21127004 - Mid: 9 - Final: 9 - Other: 1
-               No: 2 - ID: 21127005 - Mid: 9 - Final: 9 - Other: 1
-               No: 3 - ID: 21127006 - Mid: 9 - Final: 9 - Other: 1
-               No: 4 - ID: 21127007 - Mid: 9 - Final: 9 - Other: 1
-               No: 5 - ID: 21127008 - Mid: 9 - Final: 9 - Other: 1
-               No: 6 - ID: 21127009 - Mid: 9 - Final: 9 - Other: 1
-               No: 7 - ID: 21127010 - Mid: 9 - Final: 9 - Other: 1
-               No: 8 - ID: 21127011 - Mid: 9 - Final: 9 - Other: 1
-               No: 9 - ID: 21127012 - Mid: 9 - Final: 9 - Other: 1
+               No: 1 - ID: 21127004 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 2 - ID: 21127005 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 3 - ID: 21127006 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 4 - ID: 21127007 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 5 - ID: 21127008 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 6 - ID: 21127009 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 7 - ID: 21127010 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 8 - ID: 21127011 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 9 - ID: 21127012 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
                
            Class: 21CLC02
-               No: 1 - ID: 21127013 - Mid: 9 - Final: 9 - Other: 1
-               No: 2 - ID: 21127014 - Mid: 9 - Final: 9 - Other: 1
-               No: 3 - ID: 21127015 - Mid: 9 - Final: 9 - Other: 1
-               No: 4 - ID: 21127016 - Mid: 9 - Final: 9 - Other: 1
-               No: 5 - ID: 21127017 - Mid: 9 - Final: 9 - Other: 1
-               No: 6 - ID: 21127018 - Mid: 9 - Final: 9 - Other: 1
-               No: 7 - ID: 21127019 - Mid: 9 - Final: 9 - Other: 1
-               No: 8 - ID: 21127020 - Mid: 9 - Final: 9 - Other: 1
-               No: 9 - ID: 21127021 - Mid: 9 - Final: 9 - Other: 1
+               No: 1 - ID: 21127013 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 2 - ID: 21127014 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 3 - ID: 21127015 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 4 - ID: 21127016 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 5 - ID: 21127017 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 6 - ID: 21127018 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 7 - ID: 21127019 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 8 - ID: 21127020 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
+               No: 9 - ID: 21127021 - Total: 9 - Mid: 9 - Final: 9 - Other: 1
                
            
           

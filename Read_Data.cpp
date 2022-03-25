@@ -272,6 +272,7 @@ void readFileYear(Year* &year_Head) {
                 }       
 
                 //Assigned
+                year_Semester_SubjectCur -> id_Subject = strtok(NULL,denim);
                 year_Semester_SubjectCur -> name_Subject = strtok(NULL,denim);
                 year_Semester_SubjectCur -> startDate = strtok(NULL,denim);
                 year_Semester_SubjectCur -> endDate = strtok(NULL,denim);
@@ -311,6 +312,7 @@ void readFileYear(Year* &year_Head) {
                 //Get value 
                 char* No = strtok(NULL,denim);
                 char* Student_ID = strtok(NULL,denim);
+                char* Total_Mark = strtok(NULL,denim);
                 char* Mid_Term_Mark = strtok(NULL,denim);
                 char* Final_Term_Mark = strtok(NULL,denim);
                 char* Other_Mark = strtok(NULL,denim);
@@ -318,6 +320,7 @@ void readFileYear(Year* &year_Head) {
                 //Assigned
                 year_Semester_Subject_Class_Sv_ListCur -> no = atoi(No);
                 year_Semester_Subject_Class_Sv_ListCur -> idStudent = atoi(Student_ID);
+                year_Semester_Subject_Class_Sv_ListCur -> totalMark = atoi(Total_Mark);
                 year_Semester_Subject_Class_Sv_ListCur -> midTermMark = atoi(Mid_Term_Mark);
                 year_Semester_Subject_Class_Sv_ListCur -> finalTermMark = atoi(Final_Term_Mark );
                 year_Semester_Subject_Class_Sv_ListCur -> otherMark = atoi(Other_Mark);

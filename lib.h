@@ -6,6 +6,7 @@
 #include <string>
 #include <string.h> //To use strtok
 #include <cstring>
+#include <stdlib.h> // To clear screen
 
 using namespace std;
 
@@ -19,3 +20,4 @@ fstream finp, fout;
 #include "Read_Data.cpp"
 #include "Display_Data.cpp"
 #include "DeLeTe_Data.cpp"
+#include "Menu.cpp"

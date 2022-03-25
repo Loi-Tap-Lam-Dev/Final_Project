@@ -1,6 +1,17 @@
 #include "lib.h"
+
 int main() {
 
+//Changeable data
+    //Declare 
+    School_Year* sYear_Head = nullptr;
+
+    //Menu
+    Menu_School_Year(sYear_Head);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Cant Reset Data
     //Declare the apocalypse   
     Year* yearHead = nullptr;
 

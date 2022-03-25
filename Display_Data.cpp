@@ -111,7 +111,7 @@ void displayFile(Year* yearHead)
         year_Semester_Subject_Cur -> subNext != nullptr; year_Semester_Subject_Cur = year_Semester_Subject_Cur -> subNext)
         {
             //Subject
-            fout<<year_Semester_Subject_Cur -> name_Subject<<" - Start date: "<<year_Semester_Subject_Cur -> startDate<<" - End Date: "<<year_Semester_Subject_Cur -> endDate<<" - Maximum: "<<year_Semester_Subject_Cur -> maximumRegrister<<endl<<"          ";
+            fout<<year_Semester_Subject_Cur -> id_Subject<<" - "<<year_Semester_Subject_Cur -> name_Subject<<" - Start date: "<<year_Semester_Subject_Cur -> startDate<<" - End Date: "<<year_Semester_Subject_Cur -> endDate<<" - Maximum: "<<year_Semester_Subject_Cur -> maximumRegrister<<endl<<"          ";
             
             //Class
             for (Year::Semester::Subject::Class* semester_Class = year_Semester_Subject_Cur -> yearSemesterSubjectClassHead; semester_Class -> clNext != nullptr; semester_Class = semester_Class -> clNext)
@@ -121,7 +121,7 @@ void displayFile(Year* yearHead)
                 for (Year::Semester::Subject::Class::SV_List* Class_Sv_Cur = semester_Class -> yearSemesterSubjectClassSV_ListHead;
                 Class_Sv_Cur -> svNext != nullptr; Class_Sv_Cur = Class_Sv_Cur -> svNext)
                 {
-                    fout<<"No: "<<Class_Sv_Cur -> no<<" - ID: "<<Class_Sv_Cur -> idStudent<<" - Mid: "<<Class_Sv_Cur -> midTermMark<<" - Final: "<<Class_Sv_Cur -> finalTermMark<<" - Other: "<<Class_Sv_Cur -> otherMark<<endl<<"               ";
+                    fout<<"No: "<<Class_Sv_Cur -> no<<" - ID: "<<Class_Sv_Cur -> idStudent<<" - Total: "<<Class_Sv_Cur -> finalTermMark<<" - Mid: "<<Class_Sv_Cur -> midTermMark<<" - Final: "<<Class_Sv_Cur -> finalTermMark<<" - Other: "<<Class_Sv_Cur -> otherMark<<endl<<"               ";
                 }
                 fout<<endl<<"           ";
             }

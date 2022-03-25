@@ -1,6 +1,8 @@
 #pragma once
 #include "lib.h"
 
+
+//Database to store longtime data, cant be reset only updated
 struct Year {
 
     struct Class {
@@ -42,7 +44,8 @@ struct Year {
 
              struct Subject {
 
-                     string startDate, endDate, name_Subject;
+                     string name_Subject, id_Subject;
+                     string startDate, endDate;
                 
                      int maximumRegrister;
 
@@ -50,7 +53,7 @@ struct Year {
 
                              struct SV_List {
 
-                                int no , idStudent , midTermMark, finalTermMark , otherMark;
+                                int no , idStudent , midTermMark, finalTermMark , otherMark, totalMark;
 
                                 SV_List* svNext = nullptr;
 
@@ -89,9 +92,38 @@ struct Year {
 
 };
 
-
+//Account
 struct Account
 {
         string nameAccount, passWord;
         Account* accNext = nullptr;
+};
+
+//Database for short term data aka can be reset
+struct School_Year {
+
+        string year;
+
+    struct Year_Class {
+
+            struct SV_List {
+
+                    int no , idStudent , socialID;
+
+                    string lastName , firstName , gender , dateOfBirth;
+
+                    SV_List* Next = nullptr;
+            };
+        
+             SV_List* yearClassSV_ListHead = nullptr; // To Save The Head Of The SV List of Class
+
+             string nameClass;
+
+             Year_Class* Next = nullptr;   
+
+    };
+
+     Year_Class* yearCLassHead = nullptr; // To Save the  = nullptr of the Class List of Year
+
+     School_Year* Next = nullptr;
 };
