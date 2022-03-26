@@ -5,6 +5,8 @@
 //  Created by Minh Đỗ on 16/03/2022.
 //
 
+#pragma once
+
 #include "viewLogin.hpp"
 
 using namespace std;
@@ -47,11 +49,13 @@ string encryptPasswordInput() {
 
 void FORMAT(string s) {
     cout<<"\t\t\t*********************\n\n";
-    cout<<"\t\t\t\t\t"<<s<<"\n\n";
+    cout<<"\t\t\t\t"<<s<<"\n\n";
     cout<<"\t\t\t*********************\n\n";
 }
 
 int loginOption() {
+    cin.clear();
+    cin.ignore(1000, '\n');
     FORMAT("LOGIN");
     int choice;
     cout<<"1. Staff\n";
@@ -63,12 +67,9 @@ int loginOption() {
 }
 
 void getCredentials(string &username, string &password) {
-    FORMAT("LOGIN");
+    // FORMAT("LOGIN");
     cout<<"Username: ";
     cin>>username;
     cout<<"Password: ";
     password = encryptPasswordInput();
 }
-
-
-

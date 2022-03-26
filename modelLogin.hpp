@@ -9,7 +9,9 @@
 #define Model_hpp
 
 #include <stdio.h>
+
 #include "lib.h"
+
 using namespace std;
 
 #endif /* Model_hpp */
@@ -19,8 +21,5 @@ struct Account {
     bool verify;
 };
 
-bool loginStaff(string username, string password);
-bool loginStudent(string account, string password);
-
-
-
+bool loginStaff(string, string);
+bool loginStudent(string, string);
