@@ -7,8 +7,8 @@
 // - I use these to run the program on VS Code
 // - This is bad and unnecessary, don't be like me
 //
-// #include "View.cpp"
-// #include "Model.cpp"
+#include "View.cpp"
+#include "Model.cpp"
 
 using namespace std;
 
