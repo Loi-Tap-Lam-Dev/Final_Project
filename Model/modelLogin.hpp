@@ -10,7 +10,6 @@
 
 #include <stdio.h>
 
-#include "lib.h"
 
 using namespace std;
 

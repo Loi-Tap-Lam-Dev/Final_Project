@@ -11,7 +11,9 @@
 #include <stdio.h>
 #include <iostream>
 #include <windows.h>
-#include "lib.h"
+
+#include "..\lib.h"
+
 using namespace std;
 
 #endif /* View_hpp */

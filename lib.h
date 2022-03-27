@@ -15,8 +15,15 @@ using namespace std;
 fstream finp, fout;
 
 //Include Function file
-#include "DataBase.cpp"
+#include "View\DataBase.h"
 #include "Read_Data.cpp"
 #include "Display_Data.cpp"
 #include "DeLeTe_Data.cpp"
 #include "Menu.cpp"
+#include "Model\modelLogin.hpp"
+// TGHuy:
+// - I use these to run the program on VS Code
+// - This is bad and unnecessary, don't be like me
+//
+#include "View\viewLogin.h"
+#include "Model.cpp"

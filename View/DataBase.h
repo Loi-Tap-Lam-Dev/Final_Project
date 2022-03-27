@@ -1,6 +1,3 @@
-#pragma once
-#include "lib.h"
-
 
 //Database to store longtime data, cant be reset only updated
 struct Year {

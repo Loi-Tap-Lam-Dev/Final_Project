@@ -1,19 +1,6 @@
 #include "lib.h"
-#include "DataBase.cpp"
-#include "viewLogin.hpp"
-#include "modelLogin.hpp"
-
-// TGHuy:
-// - I use these to run the program on VS Code
-// - This is bad and unnecessary, don't be like me
-//
-#include "View.cpp"
-#include "Model.cpp"
-
-using namespace std;
 
 int main() {
-    Year* Year_pHead = new Year;
     
     ios_base::sync_with_stdio();
     cin.tie(NULL); cout.tie(NULL);
@@ -29,6 +16,7 @@ beginAuthentication:
             if (loginStaff(account.username, account.password)==1) {
                 cout<<"Success!";
                 //proceed
+
             }
             else {
                 cout<<"\nLogin failed, please check your credentials and try again!\n";
@@ -61,36 +49,20 @@ beginAuthentication:
             goto beginAuthentication;
     }
 
-//Changeable data - (●'◡'●)
-
+// Changeable data - (●'◡'●)
     //Declare 
-    School_Year* sYear_Head = nullptr;
+                    School_Year* sYear_Head = nullptr;
 
-    //Menu
-    Menu_School_Year(sYear_Head);
+                    //Menu
+                    Menu_School_Year(sYear_Head);
 
-    while (sYear_Head != nullptr)
-    {
-        School_Year* temp = sYear_Head ;
-        sYear_Head = sYear_Head -> Next;
+                    while (sYear_Head != nullptr)
+                    {
+                        School_Year* temp = sYear_Head ;
+                        sYear_Head = sYear_Head -> Next;
 
-        delete temp;
-    }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// //Cant Reset Data
-//     //Declare the apocalypse   
-//     Year* yearHead = nullptr;
-
-//     //Read \- O v O -/
-//     readFileYear(yearHead);
-
-//     //Dizzplay
-//     //displayScreen(yearHead); // U can use if u want to see in the terminal
-//     displayFile(yearHead); //Otherwise display in file is much better
-
-//     //Delete, avoid mém mo ri lít kinh
-//     Delete_Data(yearHead);
+                        delete temp;
+                    }
     
     return 0;
 }
