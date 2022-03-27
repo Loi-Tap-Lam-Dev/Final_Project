@@ -2,11 +2,10 @@
 #include "DataBase.cpp"
 
 
-
-
+// Wellcum to our Kingdumb - (づ￣ 3￣)づ
 int main() {
     
-    Year* Year_pHead = new Year;
+    
     return 0;
 
 }
