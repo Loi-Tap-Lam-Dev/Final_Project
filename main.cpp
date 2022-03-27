@@ -2,7 +2,8 @@
 
 int main() {
 
-//Changeable data
+//Changeable data - (●'◡'●)
+
     //Declare 
     School_Year* sYear_Head = nullptr;
 
