@@ -1,6 +1,8 @@
 #pragma once
 #include "lib.h"
 
+
+//Database to store longtime data, cant be reset only updated
 struct Year {
 
     struct Class {
@@ -14,7 +16,7 @@ struct Year {
                     SV_List* svNext = nullptr;
             };
         
-             SV_List* yearClassSV_ListHead; // To Save The Head Of The SV List of Class
+             SV_List* yearClassSV_ListHead = nullptr; // To Save The Head Of The SV List of Class
 
              string nameClass;
 
@@ -22,7 +24,7 @@ struct Year {
 
     };
 
-     Class* yearCLassHead; // To Save the Head of the Class List of Year
+     Class* yearCLassHead = nullptr; // To Save the  = nullptr of the Class List of Year
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      
@@ -38,11 +40,12 @@ struct Year {
                 
              };
 
-             SV_List* yearSemesterSv_ListHead; // To Save the Head of the SV List of the Semester
+             SV_List* yearSemesterSv_ListHead = nullptr; // To Save the Head of the SV List of the Semester
 
              struct Subject {
 
-                     string startDate, endDate, name_Subject;
+                     string name_Subject, id_Subject;
+                     string startDate, endDate;
                 
                      int maximumRegrister;
 
@@ -50,13 +53,13 @@ struct Year {
 
                              struct SV_List {
 
-                                int no , idStudent , midTermMark, finalTermMark , otherMark;
+                                int no , idStudent , midTermMark, finalTermMark , otherMark, totalMark;
 
                                 SV_List* svNext = nullptr;
 
                              };
 
-                             SV_List* yearSemesterSubjectClassSV_ListHead; // To Save the Head of the SV List of Class
+                             SV_List* yearSemesterSubjectClassSV_ListHead = nullptr; // To Save the Head of the SV List of Class
 
                              string nameClass;
 
@@ -64,13 +67,13 @@ struct Year {
 
                      };
 
-                     Class* yearSemesterSubjectClassHead; // To Save the Head of the Class List of Subject
+                     Class* yearSemesterSubjectClassHead = nullptr; // To Save the Head of the Class List of Subject
                 
                      Subject* subNext = nullptr;
 
              };
 
-             Subject* yearSemesterSubjectHead;  // To Save the Head of the Subject List of Semester
+             Subject* yearSemesterSubjectHead = nullptr;  // To Save the Head of the Subject List of Semester
 
              struct Schedule {
 
@@ -81,7 +84,7 @@ struct Year {
 
      };
 
-     Semester* yearSemesterHead; // To Save the Head of the Semester List of Year
+     Semester* yearSemesterHead = nullptr; // To Save the Head of the Semester List of Year
 
      string nameYear;
 
@@ -89,9 +92,38 @@ struct Year {
 
 };
 
-
+//Account
 struct Account
 {
         string nameAccount, passWord;
         Account* accNext = nullptr;
+};
+
+//Database for short term data aka can be reset
+struct School_Year {
+
+        string year;
+
+    struct Year_Class {
+
+            struct SV_List {
+
+                    int no , idStudent , socialID;
+
+                    string lastName , firstName , gender , dateOfBirth;
+
+                    SV_List* Next = nullptr;
+            };
+        
+             SV_List* yearClassSV_ListHead = nullptr; // To Save The Head Of The SV List of Class
+
+             string nameClass;
+
+             Year_Class* Next = nullptr;   
+
+    };
+
+     Year_Class* yearCLassHead = nullptr; // To Save the  = nullptr of the Class List of Year
+
+     School_Year* Next = nullptr;
 };

@@ -1,0 +1,98 @@
+School_Year
+    Year,2021
+    Class_list_info
+        Class_info,21CLC01
+            SV_list_info
+                SV_info,01, 21127000, 056103213165, Nguyen, Bao, male, 99/99/1999
+                SV_info,02, 21127001, 065465165165, Cao, Quoc, male, 55/55/1555
+                SV_info,03, 21127002, 054416598461, Nguyen, Tuan, male, 66/66/1666
+        Class_info,21CLC02
+            SV_list_info
+                SV_info,04, 21127003, 056103214165, Nguyen1, Bao1, female, 19/199/1999
+                SV_info,05, 21127004, 065465195165, Cao1, Quoc1, female, 155/155/1555
+                SV_info,06, 21127005, 054416598461, Nguyen1, Tuan1, female, 166/166/1666
+        Class_info,21CLC03
+            SV_list_info
+                SV_info,07, 21127006, 056803214165, Nguyen2, Bao2, maleXfemale, 199/199/1999
+                SV_info,08, 21127007, 065865195165, Cao2, Quoc2, maleXfemale, 155/155/1555
+                SV_info,09, 21127008, 054816598461, Nguyen2, Tuan2, maleXfemale, 166/166/1666
+    Semester
+        Term,1
+            SV_list_semester_mark
+                SV_sem_mark,01, 21127000, 3.00, 9.00
+                SV_sem_mark,02, 21127001, 3.63, 8.23
+                SV_sem_mark,03, 21127002, 3.25, 8.96
+                SV_sem_mark,04, 21127003, 3.73, 9.05
+            Subject
+                Sub,VTP0001,Math,18/03/2022,18/06/2022,110
+                        Class_subject_info
+                            Class_sub_info,21CLC01
+                                SV_list_subject_mark
+                                    SV_sub_mark,01, 21127004,9, 9, 9.5, 1
+                                    SV_sub_mark,02, 21127005,9, 9, 9.5, 1
+                                    SV_sub_mark,03, 21127006,9, 9, 9.5, 1
+                                    SV_sub_mark,04, 21127007,9, 9, 9.5, 1
+                                    SV_sub_mark,05, 21127008,9, 9, 9.5, 1
+                                    SV_sub_mark,06, 21127009,9, 9, 9.5, 1
+                                    SV_sub_mark,07, 21127010,9, 9, 9.5, 1
+                                    SV_sub_mark,08, 21127011,9, 9, 9.5, 1
+                                    SV_sub_mark,09, 21127012,9, 9, 9.5, 1
+                            Class_sub_info,21CLC02
+                                SV_list_subject_mark
+                                    SV_sub_mark,01, 21127013,9, 9, 9.5, 1
+                                    SV_sub_mark,02, 21127014,9, 9, 9.5, 1
+                                    SV_sub_mark,03, 21127015,9, 9, 9.5, 1
+                                    SV_sub_mark,04, 21127016,9, 9, 9.5, 1
+                                    SV_sub_mark,05, 21127017,9, 9, 9.5, 1
+                                    SV_sub_mark,06, 21127018,9, 9, 9.5, 1
+                                    SV_sub_mark,07, 21127019,9, 9, 9.5, 1
+                                    SV_sub_mark,08, 21127020,9, 9, 9.5, 1
+                                    SV_sub_mark,09, 21127021,9, 9, 9.5, 1
+                Sub,PHY0112,Physics,18/03/2022,18/06/2022,70
+                        Class_subject_info
+                            Class_sub_info,21CLC01
+                                SV_list_subject_mark
+                                    SV_sub_mark,01, 21127004,9, 9, 9.5, 1
+                                    SV_sub_mark,02, 21127005,9, 9, 9.5, 1
+                                    SV_sub_mark,03, 21127006,9, 9, 9.5, 1
+                                    SV_sub_mark,04, 21127007,9, 9, 9.5, 1
+                                    SV_sub_mark,05, 21127008,9, 9, 9.5, 1
+                                    SV_sub_mark,06, 21127009,9, 9, 9.5, 1
+                                    SV_sub_mark,07, 21127010,9, 9, 9.5, 1
+                                    SV_sub_mark,08, 21127011,9, 9, 9.5, 1
+                                    SV_sub_mark,09, 21127012,9, 9, 9.5, 1
+                            Class_sub_info,21CLC02
+                                SV_list_subject_mark
+                                    SV_sub_mark,01, 21127013,9, 9, 9.5, 1
+                                    SV_sub_mark,02, 21127014,9, 9, 9.5, 1
+                                    SV_sub_mark,03, 21127015,9, 9, 9.5, 1
+                                    SV_sub_mark,04, 21127016,9, 9, 9.5, 1
+                                    SV_sub_mark,05, 21127017,9, 9, 9.5, 1
+                                    SV_sub_mark,06, 21127018,9, 9, 9.5, 1
+                                    SV_sub_mark,07, 21127019,9, 9, 9.5, 1
+                                    SV_sub_mark,08, 21127020,9, 9, 9.5, 1
+                                    SV_sub_mark,09, 21127021,9, 9, 9.5, 1
+                Sub,CSC0001,Programming,18/03/2022,18/06/2022,80
+                        Class_subject_info
+                            Class_sub_info,21CLC01
+                                SV_list_subject_mark
+                                    SV_sub_mark,01, 21127004,9, 9, 9.5, 1
+                                    SV_sub_mark,02, 21127005,9, 9, 9.5, 1
+                                    SV_sub_mark,03, 21127006,9, 9, 9.5, 1
+                                    SV_sub_mark,04, 21127007,9, 9, 9.5, 1
+                                    SV_sub_mark,05, 21127008,9, 9, 9.5, 1
+                                    SV_sub_mark,06, 21127009,9, 9, 9.5, 1
+                                    SV_sub_mark,07, 21127010,9, 9, 9.5, 1
+                                    SV_sub_mark,08, 21127011,9, 9, 9.5, 1
+                                    SV_sub_mark,09, 21127012,9, 9, 9.5, 1
+                            Class_sub_info,21CLC02
+                                SV_list_subject_mark
+                                    SV_sub_mark,01, 21127013,9, 9, 9.5, 1
+                                    SV_sub_mark,02, 21127014,9, 9, 9.5, 1
+                                    SV_sub_mark,03, 21127015,9, 9, 9.5, 1
+                                    SV_sub_mark,04, 21127016,9, 9, 9.5, 1
+                                    SV_sub_mark,05, 21127017,9, 9, 9.5, 1
+                                    SV_sub_mark,06, 21127018,9, 9, 9.5, 1
+                                    SV_sub_mark,07, 21127019,9, 9, 9.5, 1
+                                    SV_sub_mark,08, 21127020,9, 9, 9.5, 1
+                                    SV_sub_mark,09, 21127021,9, 9, 9.5, 1
