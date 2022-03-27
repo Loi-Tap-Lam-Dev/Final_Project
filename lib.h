@@ -4,16 +4,15 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <string.h> //To use strtok
+#include <string.h>     // To use strtok
+#include <windows.h>    // Change console settings
 #include <cstring>
-#include <stdlib.h> // To clear screen
+#include <stdlib.h>     // To clear screen
 
 using namespace std;
 
-
 //Declare fstream
 fstream finp, fout;
-
 
 //Include Function file
 #include "DataBase.cpp"

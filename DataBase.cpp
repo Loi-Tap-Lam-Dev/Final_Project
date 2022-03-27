@@ -93,11 +93,11 @@ struct Year {
 };
 
 //Account
-struct Account
-{
-        string nameAccount, passWord;
-        Account* accNext = nullptr;
-};
+// struct Account
+// {
+//         string nameAccount, passWord;
+//         Account* accNext = nullptr;
+// };
 
 //Database for short term data aka can be reset
 struct School_Year {
