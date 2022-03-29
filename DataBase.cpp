@@ -102,7 +102,7 @@ struct Account
 //Database for short term data aka can be reset
 struct School_Year {
 
-        string year;
+    string year;
 
     struct Year_Class {
 
