@@ -10,7 +10,6 @@
 
 #include <stdio.h>
 
-
 using namespace std;
 
 #endif /* Model_hpp */
@@ -22,3 +21,8 @@ struct Account {
 
 bool loginStaff(string, string);
 bool loginStudent(string, string);
+
+bool requestPassword(string, string);
+
+void changePassword_Staff(string, string);
+// void changePassword_Student(string, string);

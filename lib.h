@@ -21,9 +21,10 @@ fstream finp, fout;
 #include "DeLeTe_Data.cpp"
 #include "Menu.cpp"
 #include "Model\modelLogin.hpp"
+
 // TGHuy:
 // - I use these to run the program on VS Code
 // - This is bad and unnecessary, don't be like me
 //
 #include "View\viewLogin.h"
-#include "Model.cpp"
+#include "Model.h"
