@@ -93,6 +93,7 @@ void Show_Classes_Table(string user_School_Year,School_Year::Year_Class* Classes
 //View Classes - ᕦ(ò_óˇ)ᕤ
 void View_Classes(string user_School_Year,School_Year::Year_Class* Classes_Head)
 {
+    //Show Classes Table
     if (!Check_Classes(Classes_Head)) 
         {
             cout<<"Nothing being added"<<endl;
@@ -103,7 +104,7 @@ void View_Classes(string user_School_Year,School_Year::Year_Class* Classes_Head)
                 {
                     Show_Classes_Table(user_School_Year,Classes_Head);
                 }
-    
+    system("pasue");
 }
 
 //Create Classes - (ﾉ*ФωФ)ﾉ
@@ -183,6 +184,9 @@ void Create_Classes(School_Year* &Year_Cur, School_Year::Year_Class* &Classes_He
 //This contain Menu Classes of SChool-Year
 void View_Year(School_Year* sYear_Head)
 {
+    //Use a checking var to ignore line
+    bool Check_Ignore = false;
+
     Showing_School_Year:
     //At first check if empty or not - ✔
     if (!Check_School_Year(sYear_Head)) 
@@ -197,6 +201,8 @@ void View_Year(School_Year* sYear_Head)
 
     //Next step
         string user_choosed_Year = "";
+        
+        if (!Check_Ignore) cin.ignore();
     do
     {
         //Menu of User choice about School-Year they want to view
@@ -204,7 +210,6 @@ void View_Year(School_Year* sYear_Head)
             cout<<"Noted: If you dont want to choose any year pls Enter 'N' "<<endl;
             cout<<"Enter answer: ";
 
-            cin.ignore();
             getline(cin,user_choosed_Year);
 
         if (user_choosed_Year == "N") return;
@@ -216,7 +221,7 @@ void View_Year(School_Year* sYear_Head)
             
             //Enter any key to continue and go back to  "Showing_School_Year"
             system("pause");
-
+            Check_Ignore = true;
             goto Showing_School_Year;
         }
 
