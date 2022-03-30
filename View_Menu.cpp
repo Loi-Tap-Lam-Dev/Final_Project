@@ -103,8 +103,9 @@ void View_Classes(string user_School_Year,School_Year::Year_Class* Classes_Head)
             else 
                 {
                     Show_Classes_Table(user_School_Year,Classes_Head);
+
                 }
-    system("pasue");
+    system("pause");
 }
 
 //Create Classes - (ﾉ*ФωФ)ﾉ
@@ -182,7 +183,7 @@ void Create_Classes(School_Year* &Year_Cur, School_Year::Year_Class* &Classes_He
 
 //View Year - ╰(*°▽°*)╯ 
 //This contain Menu Classes of SChool-Year
-void View_Year(School_Year* sYear_Head)
+void View_Year(School_Year* &sYear_Head)
 {
     //Use a checking var to ignore line
     bool Check_Ignore = false;
@@ -214,7 +215,7 @@ void View_Year(School_Year* sYear_Head)
 
         if (user_choosed_Year == "N") return;
 
-        //Check if the user choosed Year is existed
+        //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
         if (Check_Year_Duplicated(sYear_Head,user_choosed_Year)) 
         {
             cout<<"Your input school-year: "<<user_choosed_Year<<" is Incorrect. Please try again."<<endl;
@@ -238,7 +239,8 @@ void View_Year(School_Year* sYear_Head)
 
     //Menu for classes in specific school-year - 📲
     int user_Choose = 0;
-    School_Year::Year_Class* Classes_Head = nullptr; // To view or create. First is Declare
+    School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year); // To locate the school year user is choosing
+    School_Year::Year_Class* Classes_Head = sYear_Cur-> yearCLassHead; // To view or create. First is Declare
 
     while (user_Choose != 3)
     {
@@ -248,7 +250,7 @@ void View_Year(School_Year* sYear_Head)
         Show_Year_Table(sYear_Head);
 
         //Classes table
-        if (Classes_Head != nullptr)
+        if (Classes_Head != nullptr )
         {
             Show_Classes_Table(user_choosed_Year,Classes_Head);
         }

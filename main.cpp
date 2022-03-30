@@ -13,6 +13,18 @@ int main() {
     while (sYear_Head != nullptr)
     {
         School_Year* temp = sYear_Head ;
+
+        School_Year::Year_Class* Classes_Head = temp -> yearCLassHead;
+
+            while (Classes_Head != nullptr)
+            {
+                School_Year::Year_Class* temp_Classes = Classes_Head;
+
+                Classes_Head = Classes_Head -> Next;
+
+                delete temp_Classes;
+            }
+
         sYear_Head = sYear_Head -> Next;
 
         delete temp;
