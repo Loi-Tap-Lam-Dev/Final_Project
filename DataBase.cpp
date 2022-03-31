@@ -112,6 +112,8 @@ struct School_Year {
 
                     string lastName , firstName , gender , dateOfBirth;
 
+                    SV_List* Prev = nullptr;
+
                     SV_List* Next = nullptr;
             };
         
@@ -119,11 +121,15 @@ struct School_Year {
 
              string nameClass;
 
+             Year_Class* Prev = nullptr;
+
              Year_Class* Next = nullptr;   
 
     };
 
      Year_Class* yearCLassHead = nullptr; // To Save the  = nullptr of the Class List of Year
+
+     School_Year* Prev = nullptr;
 
      School_Year* Next = nullptr;
 };

@@ -3,6 +3,13 @@
 //Noted task havent finished: 
 //Noted: Try to make orderd linked list
 
+//Check Sv_List empty - ┌( ಠ_ಠ)┘
+bool Check_Sv_List(School_Year::Year_Class::SV_List* Sv_Head)
+{
+    if (Sv_Head == nullptr) return false;
+    return true;
+}
+
 //Check classes empty - ┌( ಠ_ಠ)┘
 bool Check_Classes(School_Year::Year_Class* Classes_Head)
 {
@@ -41,6 +48,25 @@ bool Check_Classes_Duplicated(School_Year::Year_Class* Classes_Cur, string x)
     return true;
 }
 
+//Check Sv Dup
+bool Check_Sv_Duplicated(School_Year::Year_Class::SV_List* Sv_Cur,School_Year::Year_Class::SV_List* Temp_Sv)
+{
+    //Because u have create the Next node before , u need to use Sv_cur -> Next instead of Sv 
+    while (Sv_Cur -> Next != nullptr)
+    {
+        if (Sv_Cur -> no == Temp_Sv -> no) return false; //Check no
+
+        if (Sv_Cur -> idStudent == Temp_Sv -> idStudent) return false; //Check Id_SV
+
+        if (Sv_Cur -> socialID == Temp_Sv ->socialID) return false; //Check Social ID
+
+        //Only need to check 3 of this because every data remain is allowed to be duplicated
+
+        Sv_Cur = Sv_Cur -> Next;
+    }
+    return true;
+}
+
 //Find the year with the same naem of user choosed - ヾ(⌐■_■)ノ♪
 School_Year* find_School_Year(School_Year* sYear_Cur,string user_choosed_Year)
 {
@@ -49,6 +75,17 @@ School_Year* find_School_Year(School_Year* sYear_Cur,string user_choosed_Year)
         if (sYear_Cur -> year == user_choosed_Year) return sYear_Cur;
         
         sYear_Cur = sYear_Cur -> Next;
+    }
+}
+
+//Find the classes with the same name of user choosed - ヾ(⌐■_■)ノ♪
+School_Year::Year_Class* find_Classes(School_Year::Year_Class* Classes_Cur,string user_choosed_Class)
+{
+    while (Classes_Cur!= nullptr)
+    {
+        if (Classes_Cur -> nameClass == user_choosed_Class) return Classes_Cur;
+        
+        Classes_Cur= Classes_Cur-> Next;
     }
 }
 
@@ -90,10 +127,159 @@ void Show_Classes_Table(string user_School_Year,School_Year::Year_Class* Classes
         cout<<endl<<endl;
 }
 
-//View Classes - ᕦ(ò_óˇ)ᕤ
-void View_Classes(string user_School_Year,School_Year::Year_Class* Classes_Head)
+//Show SV_list table - （︶^︶）
+void Show_Sv_Table(string user_Class,School_Year::Year_Class::SV_List* Sv_Head)
 {
+     //Show the Classes from chosen school year - 👌
+        system("CLS");
+        cout<<"| Classes\t|"<<user_Class<<"\t|"<<endl;
+        cout<<"| Sv\t";
+        
+        School_Year::Year_Class::SV_List* Sv_Cur = Sv_Head;
+
+        while (Sv_Cur != nullptr) 
+        {
+            cout<<"| "<<Sv_Cur -> no<<"\t| "<<Sv_Cur ->idStudent<<"\t| "<<Sv_Cur ->firstName<<"\t| "<<Sv_Cur ->lastName<<"\t| "<<Sv_Cur ->gender<<"\t| "<<Sv_Cur ->dateOfBirth<<"\t| "<<Sv_Cur ->socialID<<"\t| "<<endl;
+            
+            cout<<"    \t";
+            Sv_Cur = Sv_Cur -> Next;
+        }
+
+        cout<<endl<<endl;
+}
+
+//View Student List
+void View_Sv_List(string user_Class, School_Year::Year_Class::SV_List* Sv_Head )
+{
+    //Show SV Table
+    if (!Check_Sv_List(Sv_Head)) 
+        {
+            cout<<"Nothing being added"<<endl;
+            system("Pause");
+            return ;
+        }
+            else 
+                {
+                   Show_Sv_Table(user_Class,Sv_Head);
+                }
+    system("pause");
+}
+
+//Create Student List
+void Create_Sv_List(School_Year::Year_Class* &Class_Cur, School_Year::Year_Class::SV_List* &Sv_Head)
+{
+    //Declared
+    string user_input = "";
+    School_Year::Year_Class::SV_List* Sv_Cur = Sv_Head;
+
+    //Check if Sv_Head empty for create new at first
+    if (Sv_Head == nullptr) 
+            {
+                //Input
+                cout<<"Your Class: "<<Class_Cur -> nameClass<<endl;
+                
+                //Declare for the element of SV list contain
+                int no = 0 , idStudent , socialID;
+                string lastName , firstName , gender , dateOfBirth;
+
+                //Also create new node for the Sv_head
+                Sv_Head = new School_Year::Year_Class::SV_List;
+
+                Sv_Head -> no = no + 1 ; // Because this is the top of the list so it will be no = 1
+
+                cout<<"ID Student: "; 
+                    cin>>idStudent;
+                cout<<"First Name: ";
+                    cin.ignore(); // To get line
+                    getline(cin,firstName);
+                cout<<"Last Name: ";
+
+                    getline(cin,lastName);
+                cout<<"Gender (Male/Female/Other): ";
+                    
+                    getline(cin,gender);
+                cout<<"Date of Birh: ";
+                    
+                    getline(cin,dateOfBirth);
+                cout<<"Social ID: ";
+                    cin>>socialID;
+
+                //Assigned those value into the list
+                Sv_Head -> idStudent = idStudent;
+                Sv_Head -> firstName = firstName;
+                Sv_Head -> lastName = lastName;
+                Sv_Head -> gender = gender;
+                Sv_Head -> dateOfBirth = dateOfBirth;
+                Sv_Head -> socialID = socialID;
+
+                //Dont forget to save the head of the Sv_list
+                Class_Cur -> yearClassSV_ListHead = Sv_Head;
+
+                return;
+            }        
+    
+    //Check if Next SV_List is havent existed
+            while (Sv_Cur -> Next != nullptr) Sv_Cur = Sv_Cur -> Next;
+
+            //Create Next Classes and dont forget do store the Prev
+            Sv_Cur -> Next = new School_Year::Year_Class::SV_List;
+            Sv_Cur -> Next -> Prev = Sv_Cur;
+            Sv_Cur = Sv_Cur -> Next;
+
+    //Check if value is being duplicated or not?
+    do
+    {
+        //Input
+        cout<<"Your Class: "<<Class_Cur -> nameClass<<endl;
+        
+        //Declare for the element of SV list contain
+        int no = 0 , idStudent , socialID;
+        string lastName , firstName , gender , dateOfBirth;
+
+        no = Sv_Cur -> Prev -> no + 1; // The No will be automatically count by the Node you add 
+
+         cout<<"ID Student: "; 
+            cin>>idStudent;
+        cout<<"First Name: ";
+            cin.ignore(); // To get line
+            getline(cin,firstName);
+        cout<<"Last Name: ";
+            getline(cin,lastName);
+        cout<<"Gender (Male/Female/Other): ";
+            
+            getline(cin,gender);
+        cout<<"Date of Birh: ";
+            
+            getline(cin,dateOfBirth);
+        cout<<"Social ID: ";
+            cin>>socialID;
+
+        //Assigned those value into the list
+        Sv_Cur -> no = no;
+        Sv_Cur -> idStudent = idStudent;
+        Sv_Cur -> firstName = firstName;
+        Sv_Cur -> lastName = lastName;
+        Sv_Cur -> gender = gender;
+        Sv_Cur -> dateOfBirth = dateOfBirth;
+        Sv_Cur -> socialID = socialID;
+
+        //Print out remind user to enter value again
+        if (!Check_Sv_Duplicated(Sv_Head,Sv_Cur)) cout<<"Your data has been duplicated. Pls retry."<<endl<<endl;
+   
+    } while ( !Check_Sv_Duplicated(Sv_Head,Sv_Cur) );
+    
+
+    return ;
+}
+
+//View Classes - ᕦ(ò_óˇ)ᕤ
+void View_Classes(string user_School_Year,School_Year::Year_Class* &Classes_Head)
+{
+    //Use a checking var to ignore line
+    bool Check_Ignore = false;
+
     //Show Classes Table
+    Showing_Classes:
     if (!Check_Classes(Classes_Head)) 
         {
             cout<<"Nothing being added"<<endl;
@@ -103,9 +289,105 @@ void View_Classes(string user_School_Year,School_Year::Year_Class* Classes_Head)
             else 
                 {
                     Show_Classes_Table(user_School_Year,Classes_Head);
-
                 }
+    //Next step
+        string user_Choosed_Class = "";
+        
+        if (!Check_Ignore) cin.ignore();
+    do
+    {
+        //Menu of User choice about School-Year they want to view
+            cout<<"Which Class you want to view info. Ex: 21clc01"<<endl;
+            cout<<"Note: If you dont want to choose any class pls Enter 'N' "<<endl;
+            cout<<"Enter answer: ";
+
+            getline(cin,user_Choosed_Class);
+
+        if (user_Choosed_Class == "N") return;
+
+        //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
+        if (Check_Classes_Duplicated(Classes_Head,user_Choosed_Class)) 
+        {
+            cout<<"Your input Classes: "<<user_Choosed_Class<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            Check_Ignore = true;
+            goto Showing_Classes;
+        }
+
+    } while (Check_Classes_Duplicated(Classes_Head,user_Choosed_Class));
+    
+    //Menu for student list in specific classes - 📲
+    int user_Choose = 0;
+    School_Year::Year_Class* Classes_Cur = find_Classes(Classes_Head,user_Choosed_Class); // To locate the classes user is choosing
+    School_Year::Year_Class::SV_List* Sv_Head = Classes_Cur -> yearClassSV_ListHead; //To view or create. 
+
+    while (user_Choose != 3)
+    {
+        cout<<endl<<endl;
+
+        //Classes Table
+        Show_Classes_Table(user_School_Year,Classes_Head);
+
+        //Sv_List
+        if (Sv_Head != nullptr)
+        {
+            Show_Sv_Table(user_Choosed_Class, Sv_Head);
+        }
+
+        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
+        cout<<"             1: View Info Student In Class: "<<user_Choosed_Class<<endl;
+        cout<<"             2: Create Sv_List For: "<<user_Choosed_Class<<endl;
+        cout<<"             3: Back"<<endl;
+        cout<<"             Your choice: "; 
+
+        cin>>user_Choose;
+
+        cout<<endl;
+
+        //Switch user_Choose
+            switch (user_Choose)
+            {
+            
+            //View Sv_List 
+                case 1:
+                {
+                    //Declare
+                    School_Year::Year_Class* Classes_Cur = find_Classes(Classes_Head,user_Choosed_Class);
+
+                    //Functions View_SV_List
+                    View_Sv_List(user_Choosed_Class, Classes_Cur -> yearClassSV_ListHead);
+
+                    continue;
+
+                    break;
+                }
+
+                //Create Classes
+                case 2:
+                {
+                    //Declare
+                    School_Year::Year_Class* Classes_Cur = find_Classes(Classes_Head,user_Choosed_Class);
+
+                    //Functions Create_SV_List
+                    Create_Sv_List(Classes_Cur,Sv_Head);
+                    
+                    continue;
+
+                    break;
+                }
+            
+            default:
+
+                break;
+            }
+    }
+    cout<<"Ending Menu Student List..."<<endl;
     system("pause");
+    
+    //End of this funcs
+    return;
 }
 
 //Create Classes - (ﾉ*ФωФ)ﾉ
@@ -172,8 +454,9 @@ void Create_Classes(School_Year* &Year_Cur, School_Year::Year_Class* &Classes_He
             //Check if Next Classes is havent existed
             while (Classes_Cur -> Next != nullptr) Classes_Cur = Classes_Cur -> Next;
 
-            //Create Next Classes
+            //Create Next Classes and dont forget do store the Prev
             Classes_Cur -> Next = new School_Year::Year_Class;
+            Classes_Cur -> Next -> Prev = Classes_Cur;
             Classes_Cur = Classes_Cur -> Next;
             
             Classes_Cur -> nameClass = contain;
@@ -208,7 +491,7 @@ void View_Year(School_Year* &sYear_Head)
     {
         //Menu of User choice about School-Year they want to view
             cout<<"Which School-Year you want to view info. Ex: 2021-2022"<<endl;
-            cout<<"Noted: If you dont want to choose any year pls Enter 'N' "<<endl;
+            cout<<"Note: If you dont want to choose any year pls Enter 'N' "<<endl;
             cout<<"Enter answer: ";
 
             getline(cin,user_choosed_Year);
@@ -240,7 +523,7 @@ void View_Year(School_Year* &sYear_Head)
     //Menu for classes in specific school-year - 📲
     int user_Choose = 0;
     School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year); // To locate the school year user is choosing
-    School_Year::Year_Class* Classes_Head = sYear_Cur-> yearCLassHead; // To view or create. First is Declare
+    School_Year::Year_Class* Classes_Head = sYear_Cur -> yearCLassHead; // To view or create. First is Declare
 
     while (user_Choose != 3)
     {
@@ -338,39 +621,40 @@ void Create_Year(School_Year* &sYear_Head)
                 return;
             }
 
-            //Check if Next year is havent existed
+        //Check if value is being duplicated or not?
+        char* contain = "";
+        cin.ignore();
+        do
+        {
+            //Input
+            cout<<"Enter School-Year (Ex: 2020-2021) : ";
+            // cin.ignore();
+            getline(cin,user_input);
+            
+            //Convert string -> char*
+            char* input = new char [user_input.size()];
+            strcpy( input,user_input.c_str() );
+
+            //Strtok
+            const char* denim = "-";
+            contain = strtok(input,denim);
+
+            //Print out remind user to enter value again
+            if (!Check_Year_Duplicated(sYear_Head,contain)) cout<<"Your data has been duplicated. Pls retry"<<endl<<endl;
+
+        } while ( !Check_Year_Duplicated(sYear_Head,contain) );
+
+        //Check if Next year is havent existed
             while (sYear_Cur -> Next != nullptr) sYear_Cur = sYear_Cur -> Next;
             
-            //Create Next Year
+            //Create Next Year and dont forget save the Prev
             sYear_Cur -> Next = new School_Year;
+            sYear_Cur -> Next -> Prev = sYear_Cur;
             sYear_Cur = sYear_Cur -> Next;
+        
+        sYear_Cur -> year = contain;
 
-            //Check if value is being duplicated or not?
-            char* contain = "";
-            cin.ignore();
-            do
-            {
-                //Input
-                cout<<"Enter School-Year (Ex: 2020-2021) : ";
-                // cin.ignore();
-                getline(cin,user_input);
-                
-                //Convert string -> char*
-                char* input = new char [user_input.size()];
-                strcpy( input,user_input.c_str() );
-
-                //Strtok
-                const char* denim = "-";
-                contain = strtok(input,denim);
-
-                //Print out remind user to enter value again
-                if (!Check_Year_Duplicated(sYear_Head,contain)) cout<<"Your data has been duplicated. Pls retry"<<endl<<endl;
-
-            } while ( !Check_Year_Duplicated(sYear_Head,contain) );
-            
-            sYear_Cur -> year = contain;
-
-            return;
+        return;
 }
 
 //Menu School Year - ✍(◔◡◔)
