@@ -8,9 +8,12 @@
 #include <cstring>
 #include <stdlib.h> // To clear screen
 
+#include <chrono> // Setting for delay the time
+#include <thread> // Setting for delay the time
+
 using namespace std;
-
-
+using namespace std::this_thread; // sleep_for, sleep_until
+using namespace std::chrono;    // nanoseconds, system_clock, seconds
 //Declare fstream
 fstream finp, fout;
 

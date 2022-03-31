@@ -165,8 +165,8 @@ void View_Sv_List(string user_Class, School_Year::Year_Class::SV_List* Sv_Head )
     system("pause");
 }
 
-//Create Student List
-void Create_Sv_List(School_Year::Year_Class* &Class_Cur, School_Year::Year_Class::SV_List* &Sv_Head)
+//Create Student List Manual
+void Create_Sv_List_Manual(School_Year::Year_Class* &Class_Cur, School_Year::Year_Class::SV_List* &Sv_Head)
 {
     //Declared
     string user_input = "";
@@ -272,6 +272,103 @@ void Create_Sv_List(School_Year::Year_Class* &Class_Cur, School_Year::Year_Class
     return ;
 }
 
+//Create_Sv_List Import
+void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Year_Class::SV_List* &Sv_Head)
+{
+    //Declared
+    School_Year::Year_Class::SV_List* Sv_Cur = nullptr;
+
+    int no = 0 , idStudent , socialID;
+    string lastName , firstName , gender , dateOfBirth;
+
+    fstream  finp;
+
+    finp.open("Student_Info.csv", ios::in);
+
+    if (!finp.is_open())
+        {
+            cout<<"The file is empty, Please import the data"<<endl;
+            return;
+        }
+    //Check if Sv_Head empty for create new at first
+    
+    while ( !finp.eof() )
+    {
+        if (Sv_Head == nullptr)
+        {
+            Sv_Head = new School_Year::Year_Class::SV_List;
+
+            string line_input = "";
+            getline(finp, line_input);
+
+            //Convert str -> char*;
+            char* input = new char [ line_input.size() ];
+            strcpy(input,line_input.c_str());
+
+            //Set denim
+            const char* denim = ",";
+
+            no = atoi( strtok(input,denim) );
+            idStudent = atoi( strtok(NULL,denim) );
+            firstName = strtok(NULL,denim);
+            lastName = strtok(NULL,denim);
+            gender = strtok(NULL,denim);
+            dateOfBirth = strtok(NULL,denim);
+            socialID = atoi( strtok(NULL,denim) );
+
+            Sv_Head -> no = no;
+            Sv_Head -> idStudent = idStudent;
+            Sv_Head -> firstName = firstName;
+            Sv_Head -> lastName = lastName;
+            Sv_Head -> gender = gender;
+            Sv_Head -> dateOfBirth = dateOfBirth;
+            Sv_Head -> socialID = socialID;
+
+            Class_Cur -> yearClassSV_ListHead = Sv_Head;
+
+            //Set up for the next income
+            Sv_Cur = Sv_Head;
+            
+            continue;
+        }
+
+        //Get Data
+        string line_input = "";
+        getline(finp, line_input);
+
+        //Convert str -> char*;
+        char* input = new char [ line_input.size() ];
+        strcpy(input,line_input.c_str());
+
+        //Set denim
+        const char* denim = ",";
+
+        //Create new node
+        Sv_Cur -> Next = new School_Year::Year_Class::SV_List;
+        Sv_Cur = Sv_Cur -> Next;
+
+        no = atoi( strtok(input,denim) );
+        idStudent = atoi( strtok(NULL,denim) );
+        firstName = strtok(NULL,denim);
+        lastName = strtok(NULL,denim);
+        gender = strtok(NULL,denim);
+        dateOfBirth = strtok(NULL,denim);
+        socialID = atoi( strtok(NULL,denim) );
+
+        Sv_Cur -> no = no;
+        Sv_Cur -> idStudent = idStudent;
+        Sv_Cur -> firstName = firstName;
+        Sv_Cur -> lastName = lastName;
+        Sv_Cur -> gender = gender;
+        Sv_Cur -> dateOfBirth = dateOfBirth;
+        Sv_Cur -> socialID = socialID;
+    }
+    
+    finp.close();
+
+    return ;
+}
+
 //View Classes - ᕦ(ò_óˇ)ᕤ
 void View_Classes(string user_School_Year,School_Year::Year_Class* &Classes_Head)
 {
@@ -367,11 +464,45 @@ void View_Classes(string user_School_Year,School_Year::Year_Class* &Classes_Head
                 //Create Classes
                 case 2:
                 {
-                    //Declare
-                    School_Year::Year_Class* Classes_Cur = find_Classes(Classes_Head,user_Choosed_Class);
+                    //Ask user whether he want to import a csv or manual
+                    int user_Prefer = 0;
+                    cout<<"\t Which one do you prefer: Manual (1) or Quick Import a CSV File (2)"<<endl;
+                    cout<<"Your answer: ";
+                    cin>>user_Prefer;
 
-                    //Functions Create_SV_List
-                    Create_Sv_List(Classes_Cur,Sv_Head);
+                    switch (user_Prefer)
+                        {
+                        case 1:
+                        {
+                            //Declare
+                            School_Year::Year_Class* Classes_Cur = find_Classes(Classes_Head,user_Choosed_Class);
+
+                            //Functions Create_SV_List
+                            Create_Sv_List_Manual (Classes_Cur,Sv_Head);
+
+                            break;
+                        }
+                        
+                        case 2:
+                        {
+                            //Notice and rule
+                            cout<<"To import a CSV there is a rule: No , ID_Student , First Name , Last Name , Gender , Date of Birth , Social ID"<<endl;
+                            sleep_until( system_clock::now() + seconds(1) );
+                            cout<<"Notice: If u havent Import in Student_Info.csv, now it's your time! then continue"<<endl;
+
+                            system("pause");
+                            //Declare
+                            School_Year::Year_Class* Classes_Cur = find_Classes(Classes_Head,user_Choosed_Class);
+
+                            //Functions Create_SV_List
+                            Create_Sv_List_Import (Classes_Cur,Sv_Head);
+
+                            break;
+                        }
+                        
+                        default:
+                            break;
+                        }
                     
                     continue;
 
@@ -476,6 +607,7 @@ void View_Year(School_Year* &sYear_Head)
     if (!Check_School_Year(sYear_Head)) 
         {
             cout<<"Nothing being added"<<endl;
+            system("pause");
             return ;
         }
             else 
