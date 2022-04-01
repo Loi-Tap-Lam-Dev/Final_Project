@@ -67,6 +67,18 @@ bool Check_Sv_Duplicated(School_Year::Year_Class::SV_List* Sv_Cur,School_Year::Y
     return true;
 }
 
+//Check Semester
+bool Check_Semester_Duplicated(School_Year::Semester* Semester_Cur, int temp)
+{
+    while (Semester_Cur != nullptr)
+    {
+        if (Semester_Cur -> Term == temp) return false;
+
+        Semester_Cur = Semester_Cur -> Next;
+    }
+    return true;
+}
+
 //Find the year with the same naem of user choosed - ヾ(⌐■_■)ノ♪
 School_Year* find_School_Year(School_Year* sYear_Cur,string user_choosed_Year)
 {
@@ -144,6 +156,26 @@ void Show_Sv_Table(string user_Class,School_Year::Year_Class::SV_List* Sv_Head)
             cout<<"    \t";
             Sv_Cur = Sv_Cur -> Next;
         }
+
+        cout<<endl<<endl;
+}
+
+//Show Semester
+void Show_Semester_Table(string user_School_Year,School_Year::Semester* Semester_Head)
+{
+     //Show the table full of School_Year - 👌
+        system("CLS");
+        cout<<"School_Year:    | "<<atoi(user_School_Year.c_str())<<"-"<<atoi(user_School_Year.c_str()) + 1<<"\t|"<<endl;
+        cout<<"Semester:        | ";
+        
+        School_Year::Semester* Semester_Cur = Semester_Head;
+
+            while (Semester_Cur != nullptr)
+            {
+                cout<<Semester_Cur -> Term<<"\t| ";
+
+                Semester_Cur = Semester_Cur -> Next;
+            } 
 
         cout<<endl<<endl;
 }
@@ -595,6 +627,89 @@ void Create_Classes(School_Year* &Year_Cur, School_Year::Year_Class* &Classes_He
             return;
 }
 
+//View_Semester
+void View_Semester(string user_School_Year,School_Year::Semester* &Semester_Head)
+{
+    //Use a checking var to ignore line
+    bool Check_Ignore = false;
+
+    //Show Semster Table
+    if (Semester_Head == nullptr) 
+        {
+            cout<<"Nothing being added"<<endl;
+            system("Pause");
+            return ;
+        }
+            else 
+                {
+                    Show_Semester_Table(user_School_Year,Semester_Head);
+                }
+    system("pause");
+}
+
+//Create Semester
+void Create_Semester(School_Year* &Year_Cur, School_Year::Semester* &Semester_Head)
+{
+    //Declare
+    int user_input = 0;
+    School_Year::Semester* Semester_Cur = Semester_Head;
+
+    //Case head == null
+    if (Semester_Head == nullptr)
+    {
+        //Input
+        do
+        {
+            cout<<"Remember, there are only 3 semster per School Year."<<endl;
+            cout<<"Enter term (1/2/3): ";
+            cin>>user_input;
+
+            cout<<endl;
+            if (!Check_Semester_Duplicated(Semester_Head,user_input)) 
+            cout<<"Your data has been duplicated. Pls retry."<<endl<<endl;
+
+        } while (!Check_Semester_Duplicated(Semester_Head,user_input));
+
+        Semester_Head = new School_Year::Semester;
+        Semester_Head -> Term = user_input;
+
+        Year_Cur -> yearSemesterHead = Semester_Head;
+
+        return;
+    }
+
+
+    while (Semester_Cur -> Next != nullptr) Semester_Cur = Semester_Cur -> Next;
+
+    //Input
+        do
+        {
+            cout<<"Remember, there are only 3 semster per School Year."<<endl;
+            cout<<"Enter term (1/2/3): ";
+            cin>>user_input;
+
+            cout<<endl;
+            if (!Check_Semester_Duplicated(Semester_Head,user_input)) 
+            cout<<"Your data has been duplicated. Pls retry."<<endl<<endl;
+
+        } while (!Check_Semester_Duplicated(Semester_Head,user_input));
+
+    //One school year only contain 3 semester
+     if (Semester_Cur -> Term == 3) 
+        {
+            cout<<"There enough 3 semester in this school year. Thanks";
+            system("pause");
+            return;
+        }
+
+    Semester_Cur -> Next = new School_Year::Semester;
+    Semester_Cur = Semester_Cur -> Next;
+    Semester_Cur -> Term = user_input;
+
+    return;
+}
+
+
 //View Year - ╰(*°▽°*)╯ 
 //This contain Menu Classes of SChool-Year
 void View_Year(School_Year* &sYear_Head)
@@ -656,8 +771,9 @@ void View_Year(School_Year* &sYear_Head)
     int user_Choose = 0;
     School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year); // To locate the school year user is choosing
     School_Year::Year_Class* Classes_Head = sYear_Cur -> yearCLassHead; // To view or create. First is Declare
+    School_Year::Semester* Semester_Head = sYear_Cur -> yearSemesterHead; //To view or create. First is Declare
 
-    while (user_Choose != 3)
+    while (user_Choose != 5)
     {
         cout<<endl<<endl;
 
@@ -665,15 +781,23 @@ void View_Year(School_Year* &sYear_Head)
         Show_Year_Table(sYear_Head);
 
         //Classes table
-        if (Classes_Head != nullptr )
+        if (Classes_Head != nullptr && user_Choose == 2)
         {
             Show_Classes_Table(user_choosed_Year,Classes_Head);
+        }
+        
+        //Semester table
+        if (Semester_Head != nullptr && user_Choose == 4)
+        {
+            Show_Semester_Table(user_choosed_Year,Semester_Head);
         }
 
         cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
         cout<<"             1: View Info Classes in School-Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
         cout<<"             2: Create 1st Year Classes For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
-        cout<<"             3: Back"<<endl;
+        cout<<"             3: View Info Specific Semesters in School-Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             4: Create Semesters For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             5: Back"<<endl;
         cout<<"             Your choice: "; 
 
         cin>>user_Choose;
@@ -705,6 +829,32 @@ void View_Year(School_Year* &sYear_Head)
 
                     //Functions Create_Classes
                     Create_Classes(sYear_Cur,Classes_Head);
+                    
+                    continue;
+
+                    break;
+                }
+
+                case 3:
+                {
+                    //Declare
+                    School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year);
+
+                    //Functions View_Semester
+                    View_Semester(user_choosed_Year,Semester_Head);
+
+                    continue;
+
+                    break;
+                }
+
+                case 4:
+                {
+                    //Declare
+                    School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year);
+
+                    //Functions Create Semester
+                    Create_Semester(sYear_Cur,Semester_Head);
                     
                     continue;
 
