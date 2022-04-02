@@ -24,3 +24,4 @@ fstream finp, fout;
 #include "View_Data.cpp"
 #include "DeLeTe_Data.cpp"
 #include "View_Menu.cpp"
+#include "Print_Data.cpp"

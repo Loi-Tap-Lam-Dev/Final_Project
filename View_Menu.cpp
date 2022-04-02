@@ -1,6 +1,6 @@
 #include "lib.h"
 
-//Noted task havent finished: 
+//Noted task havent finished: Adjust, Delete one element in the list
 //Noted: Try to make orderd linked list
 
 //Check Sv_List empty - ┌( ಠ_ಠ)┘
@@ -139,7 +139,7 @@ void Show_Classes_Table(string user_School_Year,School_Year::Year_Class* Classes
         cout<<endl<<endl;
 }
 
-//Show SV_list table - （︶^︶）
+//Show SV_list table - 
 void Show_Sv_Table(string user_Class,School_Year::Year_Class::SV_List* Sv_Head)
 {
      //Show the Classes from chosen school year - 👌
@@ -627,6 +627,143 @@ void Create_Classes(School_Year* &Year_Cur, School_Year::Year_Class* &Classes_He
             return;
 }
 
+//Delete Classes
+void Delete_Classes(School_Year* sYear_Cur,School_Year::Year_Class* &Classes_Head)
+{
+    if (Classes_Head == nullptr)
+    {
+        cout<<"There are nothing to be deleted. Please Create One.";
+        system("pause");
+        return;
+    }
+
+    bool Check_Ignore = false;
+    string user_Choose_Class = "";
+        
+        if (!Check_Ignore) cin.ignore();
+    do
+    {
+        //Menu of User choice about School-Year they want to view
+            cout<<"Which Class you want to Delete. Ex: 21clc09"<<endl;
+            cout<<"Note: If you dont want to choose any class pls Enter 'N' "<<endl;
+            cout<<"Enter answer: ";
+
+            getline(cin,user_Choose_Class);
+
+        if (user_Choose_Class == "N") return;
+
+        //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
+        if (Check_Classes_Duplicated(Classes_Head,user_Choose_Class)) 
+        {
+            cout<<"Your input Class: "<<user_Choose_Class<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            Check_Ignore = true;
+        }
+
+    } while (Check_Classes_Duplicated(Classes_Head,user_Choose_Class));
+
+    School_Year::Year_Class* Class_Cur = find_Classes(Classes_Head,user_Choose_Class);
+
+    if (Class_Cur == Classes_Head)
+    {
+        if (Class_Cur -> Next == nullptr)
+            {
+                Classes_Head = nullptr;
+                sYear_Cur -> yearCLassHead = Classes_Head;
+                system("pause");
+                return;
+            }
+
+        Classes_Head = Classes_Head -> Next;
+        sYear_Cur -> yearCLassHead = Classes_Head;
+        system("pause");
+        return;
+    }
+
+    School_Year::Year_Class* Temp_Class = Class_Cur;
+
+    Class_Cur ->  Prev -> Next = Temp_Class -> Next;
+
+    delete Temp_Class;
+
+    system("pause");
+    return;
+}
+
+//Adjust Classes
+void Adjust_Classes(School_Year* sYear_Cur,School_Year::Year_Class* &Classes_Head)
+{
+    if (Classes_Head == nullptr)
+    {
+        cout<<"There are nothing to be adjusted. Please Create One.";
+        system("pause");
+        return;
+    }
+
+    bool Check_Ignore = false;
+    string user_Choose_Class = "";
+        
+        if (!Check_Ignore) cin.ignore();
+    do
+    {
+        //Menu of User choice about School-Year they want to view
+            cout<<"Which Class you want to Adjust. Ex: 21clc09 "<<endl;
+            cout<<"Note: If you dont want to choose any class pls Enter 'N' "<<endl;
+            cout<<"Enter answer: ";
+
+            getline(cin,user_Choose_Class);
+
+        if (user_Choose_Class == "N") return;
+
+        //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
+        if (Check_Classes_Duplicated(Classes_Head,user_Choose_Class)) 
+        {
+            cout<<"Your input class: "<<user_Choose_Class<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            cout<<"\n";
+            Check_Ignore = true;
+        }
+    } while (Check_Classes_Duplicated(Classes_Head,user_Choose_Class));
+
+    cout<<"/n";
+    School_Year::Year_Class* Class_Cur = find_Classes(Classes_Head,user_Choose_Class);
+
+    do
+    {
+        //Menu of User choice about School-Year they want to view
+            cout<<"What do you want to change from "<<user_Choose_Class<<" to ?. Ex: 21clc09 -> 21clc10";
+            cout<<"Note: If you dont want to change pls Enter 'N' "<<endl;
+            cout<<"Enter answer: ";
+
+            getline(cin,user_Choose_Class);
+
+        if (user_Choose_Class == "N") return;
+
+        //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
+        if (!Check_Classes_Duplicated(Classes_Head,user_Choose_Class)) 
+        {
+            cout<<"Your input Class: "<<user_Choose_Class<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            cout<<"\n";
+            Check_Ignore = true;
+        }
+    } while (!Check_Classes_Duplicated(Classes_Head,user_Choose_Class));
+
+    Class_Cur -> nameClass = user_Choose_Class;
+
+    cout<<"\n";
+    cout<<"Change Success";
+
+    system("pause");
+    return;
+}
+
 //View_Semester
 void View_Semester(string user_School_Year,School_Year::Semester* &Semester_Head)
 {
@@ -709,7 +846,6 @@ void Create_Semester(School_Year* &Year_Cur, School_Year::Semester* &Semester_He
     return;
 }
 
-
 //View Year - ╰(*°▽°*)╯ 
 //This contain Menu Classes of SChool-Year
 void View_Year(School_Year* &sYear_Head)
@@ -745,6 +881,14 @@ void View_Year(School_Year* &sYear_Head)
 
         if (user_choosed_Year == "N") return;
 
+        //Declare
+        const char* denim = "-"; //Use strtok - 👍
+        char* temp = new char [user_choosed_Year.size()];
+
+        // But it neeeded to convert string -> char* - 🔑
+        strcpy(temp,user_choosed_Year.c_str());
+        user_choosed_Year = strtok(temp, denim);
+
         //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
         if (Check_Year_Duplicated(sYear_Head,user_choosed_Year)) 
         {
@@ -759,13 +903,6 @@ void View_Year(School_Year* &sYear_Head)
     } while (Check_Year_Duplicated(sYear_Head,user_choosed_Year));
     
 
-        //Use strtok - 👍
-        const char* denim = "-";
-        char* temp = new char [user_choosed_Year.size()];
-
-        // But it neeeded to convert string -> char* - 🔑
-        strcpy(temp,user_choosed_Year.c_str());
-        user_choosed_Year = strtok(temp, denim);
 
     //Menu for classes in specific school-year - 📲
     int user_Choose = 0;
@@ -773,7 +910,7 @@ void View_Year(School_Year* &sYear_Head)
     School_Year::Year_Class* Classes_Head = sYear_Cur -> yearCLassHead; // To view or create. First is Declare
     School_Year::Semester* Semester_Head = sYear_Cur -> yearSemesterHead; //To view or create. First is Declare
 
-    while (user_Choose != 5)
+    while (user_Choose != 7)
     {
         cout<<endl<<endl;
 
@@ -781,7 +918,7 @@ void View_Year(School_Year* &sYear_Head)
         Show_Year_Table(sYear_Head);
 
         //Classes table
-        if (Classes_Head != nullptr && user_Choose == 2)
+        if (Classes_Head != nullptr && (user_Choose == 2 || user_Choose == 3 || user_Choose == 4) )
         {
             Show_Classes_Table(user_choosed_Year,Classes_Head);
         }
@@ -795,9 +932,11 @@ void View_Year(School_Year* &sYear_Head)
         cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
         cout<<"             1: View Info Classes in School-Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
         cout<<"             2: Create 1st Year Classes For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
-        cout<<"             3: View Info Specific Semesters in School-Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
-        cout<<"             4: Create Semesters For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
-        cout<<"             5: Back"<<endl;
+        cout<<"             3: Adjust A Class In School - Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             4: Delete A Class In School - Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             5: View Info Specific Semesters in School-Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             6: Create Semesters For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             7: Back"<<endl;
         cout<<"             Your choice: "; 
 
         cin>>user_Choose;
@@ -834,8 +973,37 @@ void View_Year(School_Year* &sYear_Head)
 
                     break;
                 }
-
+                
+                //Adjust
                 case 3:
+                {
+                    //Declare
+                    School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year);
+
+                    //Functions Adjust_Classes
+                    Adjust_Classes(sYear_Cur,Classes_Head);
+
+                    continue;
+
+                    break;
+                }
+
+                //Delete
+                case 4:
+                {
+                    //Declare
+                    School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year);
+
+                    //Functions Delete_Classes
+                    Delete_Classes(sYear_Cur,Classes_Head);
+
+                    continue;
+
+                    break;
+                }
+
+                //View Semester
+                case 5:
                 {
                     //Declare
                     School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year);
@@ -848,7 +1016,8 @@ void View_Year(School_Year* &sYear_Head)
                     break;
                 }
 
-                case 4:
+                //Create Semester
+                case 6:
                 {
                     //Declare
                     School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year);
@@ -939,12 +1108,172 @@ void Create_Year(School_Year* &sYear_Head)
         return;
 }
 
+//Adjust Year
+void Adjust_Year(School_Year* &sYear_Head)
+{
+    if (sYear_Head == nullptr)
+    {   
+        cout<<"There are nothing to be adjusted. Please Create One.";
+        system("pause");
+        return;
+    }
+
+    bool Check_Ignore = false;
+    string user_choosed_Year = "";
+        
+        if (!Check_Ignore) cin.ignore();
+    do
+    {
+        //Menu of User choice about School-Year they want to view
+            cout<<"Which School-Year you want to Adjust. Ex: 2021-2022 or 2021"<<endl;
+            cout<<"Note: If you dont want to choose any year pls Enter 'N' "<<endl;
+            cout<<"Enter answer: ";
+
+            getline(cin,user_choosed_Year);
+
+        if (user_choosed_Year == "N") return;
+
+        //Declare
+        const char* denim = "-"; //Use strtok - 👍
+        char* temp = new char [user_choosed_Year.size()];
+
+        // But it neeeded to convert string -> char* - 🔑
+        strcpy(temp,user_choosed_Year.c_str());
+        user_choosed_Year = strtok(temp, denim);
+
+        //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
+        if (Check_Year_Duplicated(sYear_Head,user_choosed_Year)) 
+        {
+            cout<<"Your input school-year: "<<user_choosed_Year<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            cout<<"\n";
+            Check_Ignore = true;
+        }
+    } while (Check_Year_Duplicated(sYear_Head,user_choosed_Year));
+
+    cout<<"\n";
+    School_Year* Year_Cur = find_School_Year(sYear_Head,user_choosed_Year);
+
+    do
+    {
+        //Menu of User choice about School-Year they want to view
+            cout<<"What do you want to change from "<<atoi((Year_Cur -> year).c_str()) << " - " << atoi((Year_Cur -> year).c_str()) + 1  <<" to ?. Ex: 2021-2022 -> 2022-2023"<<endl;
+            cout<<"Note: If you dont want to change pls Enter 'N' "<<endl;
+            cout<<"Enter answer: ";
+
+            getline(cin,user_choosed_Year);
+
+        if (user_choosed_Year == "N") return;
+
+        //Declare
+        const char* denim = "-"; //Use strtok - 👍
+        char* temp = new char [user_choosed_Year.size()];
+
+        // But it neeeded to convert string -> char* - 🔑
+        strcpy(temp,user_choosed_Year.c_str());
+        user_choosed_Year = strtok(temp, denim);
+
+        //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
+        if (!Check_Year_Duplicated(sYear_Head,user_choosed_Year)) 
+        {
+            cout<<"Your input school-year: "<<user_choosed_Year<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            cout<<"\n";
+            Check_Ignore = true;
+        }
+    } while (!Check_Year_Duplicated(sYear_Head,user_choosed_Year));
+
+    //Assigned
+    Year_Cur -> year = user_choosed_Year;
+
+    cout<<"\n";
+    cout<<"Change Success";
+
+    system("pause");
+    return;
+}
+
+//Delete a Year
+void Delete_Year(School_Year* &sYear_Head)
+{
+    if (sYear_Head == nullptr)
+    {   
+        cout<<"There are nothing to be deleted. Please Create One.";
+        system("pause");
+        return;
+    }
+
+    bool Check_Ignore = false;
+    string user_choosed_Year = "";
+        
+        if (!Check_Ignore) cin.ignore();
+    do
+    {
+        //Menu of User choice about School-Year they want to view
+            cout<<"Which School-Year you want to Delete. Ex: 2021-2022 or 2021"<<endl;
+            cout<<"Note: If you dont want to choose any year pls Enter 'N' "<<endl;
+            cout<<"Enter answer: ";
+
+            getline(cin,user_choosed_Year);
+
+        if (user_choosed_Year == "N") return;
+
+        //Declare
+        const char* denim = "-"; //Use strtok - 👍
+        char* temp = new char [user_choosed_Year.size()];
+
+        // But it neeeded to convert string -> char* - 🔑
+        strcpy(temp,user_choosed_Year.c_str());
+        user_choosed_Year = strtok(temp, denim);
+
+        //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
+        if (Check_Year_Duplicated(sYear_Head,user_choosed_Year)) 
+        {
+            cout<<"Your input school-year: "<<user_choosed_Year<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            Check_Ignore = true;
+        }
+
+    } while (Check_Year_Duplicated(sYear_Head,user_choosed_Year));
+
+
+    School_Year* Year_Cur = find_School_Year(sYear_Head,user_choosed_Year);
+
+    if (Year_Cur == sYear_Head && Year_Cur -> Next == nullptr)
+    {
+        sYear_Head = nullptr;
+        system("pause");
+        return;
+    }
+    else if (Year_Cur == sYear_Head && Year_Cur -> Next != nullptr) 
+        {
+            sYear_Head = sYear_Head -> Next;
+            system("pause");
+            return;
+        }
+
+    School_Year* Temp_Year = Year_Cur;
+
+    Year_Cur -> Prev -> Next = Temp_Year -> Next;
+
+    delete Temp_Year;
+
+    system("pause");
+    return;
+}
+
 //Menu School Year - ✍(◔◡◔)
 void Menu_School_Year(School_Year* &sYear_Head)
 {
     //First we need to clear screen and ask user which one they want to choose
     int user_Choose = 0;
-    while (user_Choose != 3)
+    while (user_Choose != 5)
     {
         system("CLS");
         if (sYear_Head != nullptr)
@@ -952,9 +1281,11 @@ void Menu_School_Year(School_Year* &sYear_Head)
             Show_Year_Table(sYear_Head);
         }
         cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
-        cout<<"             1: View A School - Year"<<endl;
+        cout<<"             1: View info of a School - Year"<<endl;
         cout<<"             2: Create New School - Year"<<endl;
-        cout<<"             3: Back"<<endl;
+        cout<<"             3: Adjust A School - Year"<<endl;
+        cout<<"             4: Delete A School - Year"<<endl;
+        cout<<"             5: Back"<<endl;
         cout<<"             Your choice: "; 
         cin>>user_Choose;
         cout<<endl;
@@ -982,6 +1313,23 @@ void Menu_School_Year(School_Year* &sYear_Head)
                 break;
             }
             
+            case 3:
+            {
+                Adjust_Year(sYear_Head);
+
+                continue;
+
+                break;
+            }
+
+            case 4:
+            {
+                Delete_Year(sYear_Head);
+
+                continue;
+
+                break;
+            }
             default:
                 system("pause");
                 break;

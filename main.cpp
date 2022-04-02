@@ -19,6 +19,17 @@ int main() {
             {
                 School_Year::Year_Class* temp_Classes = Classes_Head;
 
+                School_Year::Year_Class::SV_List* SV_Head = temp_Classes -> yearClassSV_ListHead;
+
+                    while (SV_Head != nullptr)
+                    {
+                        School_Year::Year_Class::SV_List* temp_SV = SV_Head;
+
+                        SV_Head = SV_Head -> Next;
+
+                        delete temp_SV;
+                    }
+
                 Classes_Head = Classes_Head -> Next;
 
                 delete temp_Classes;
@@ -37,12 +48,15 @@ int main() {
 //     //Read \- O v O -/
 //     readFileYear(yearHead);
 
-//     //Dizzplay
-//     //displayScreen(yearHead); // U can use if u want to see in the terminal
-//     displayFile(yearHead); //Otherwise display in file is much better
+//    // outInfor(yearHead);
 
-//     //Delete, avoid mém mo ri lít kinh
-//     Delete_Data(yearHead);
+//     // //Dizzplay
+    
+//     displayScreen(yearHead); // U can use if u want to see in the terminal
+//     // displayFile(yearHead); //Otherwise display in file is much better
+
+//     // //Delete, avoid mém mo ri lít kinh
+//     // Delete_Data(yearHead);
     
     return 0;
 }
