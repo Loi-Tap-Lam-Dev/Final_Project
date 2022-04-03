@@ -10,6 +10,10 @@ int main() {
 beginAuthentication:
     system("cls");
     int choice = loginOption();
+
+    cin.clear();
+    cin.ignore(1000, '\n');
+
     switch(choice) {
         case 1: {
             getCredentials(account.username, account.password);
@@ -21,6 +25,23 @@ beginAuthentication:
                 Sleep(2000);
                 goto beginAuthentication;
             }
+            
+            // Test the change password function
+            string newPass, retypePass;
+            cout << "\nEnter new password: ";
+            cin >> newPass;
+            cout << "Retype: ";
+            cin >> retypePass;
+
+            while (!requestPassword(newPass, retypePass)) {
+                cout << "Please re-enter!\n";
+                cout << "Enter new password: ";
+                cin >> newPass;
+                cout << "Retype: ";
+                cin >> retypePass;
+            }
+
+            changePassword(account.username, newPass, 1);
 
             break;
         }
@@ -35,11 +56,28 @@ beginAuthentication:
                 goto beginAuthentication;
             }
 
+            // Test the change password function
+            string newPass, retypePass;
+            cout << "\nEnter new password: ";
+            cin >> newPass;
+            cout << "Retype: ";
+            cin >> retypePass;
+
+            while (!requestPassword(newPass, retypePass)) {
+                cout << "Please re-enter!\n";
+                cout << "Enter new password: ";
+                cin >> newPass;
+                cout << "Retype: ";
+                cin >> retypePass;
+            }
+
+            changePassword(account.username, newPass, 2);
+
             break;
         }
         case 3: {
             cout<<"Thank you!\n";
-            exit(1);
+            return 0;
 
             break;
         }
@@ -49,30 +87,12 @@ beginAuthentication:
             goto beginAuthentication;
         }
     }
-    
-    // This is where the cin bug begins,
-    // or my computer is as dumb as me
-    int a;
-    cin.clear();
-    cin.ignore(1000, '\n');
-    cout << "adwaawd:\n";
-    cin >> a;
-    cout << a;
 
-    // Changeable data - (●'◡'●)
-    //Declare 
-    // School_Year* sYear_Head = nullptr;
-
-    // //Menu
-    // Menu_School_Year(sYear_Head);
-
-    // while (sYear_Head != nullptr)
-    // {
-    //     School_Year* temp = sYear_Head ;
-    //     sYear_Head = sYear_Head -> Next;
-
-    //     delete temp;
-    // }
+    // Attempting to fix console echo
+    // int lmao;
+    // cout << "I am bugging lol you shall suffer: ";
+    // cin >> yeeLmao;
+    // cout << "Yee the Bug: " << yeeLmao << endl;;
     
     return 0;
 }

@@ -5,6 +5,10 @@
 //  Created by Minh Đỗ on 16/03/2022.
 //
 
+// PROPOSAL:
+// We should consider moving the user data to a binary file
+// Tho if we decide not to care about security, let's not bother lol I'm lazy too
+
 #pragma once
 
 #include <iostream>
@@ -46,31 +50,55 @@ bool loginStudent(string username, string password) {
 
 bool requestPassword(string newPassword, string retypePassword) {
     if (newPassword == retypePassword) return true;
-
     return false;
 }
 
-// NOT FINISHED! There are bugs and stuff
-void changePassword_Staff(string username, string password) {
-    string id, pass;
+void changePassword(string username, string newPassword, int mode) {
+    fstream fileMain, fileTemp;
 
-    fstream fileIn, fileOut;
-    fileIn.open("CredentialsSta.txt", ios::in);
-    fileOut.open("CredentialsSta.txt", ios::out);
+    try {
+        if (mode == 1)
+            fileMain.open("CredentialsSta.txt");
+        else if (mode == 2)
+            fileMain.open("CredentialsStu.txt");
+        else throw mode;
+    }
+    catch (int mode) {
+        cout << "CHANGE REQUEST FAILED\n";
+        cout << "Mode of " << mode << " does not exist!\n";
+        cout << "Available modes: 1 - Staff | 2 - Student\n";
+        
+        return;
+    }
+    
+    fileTemp.open("TempAccountData.txt", ios::out);
+    
+    string id, currentPassword;
 
-    while (fileIn >> id >> pass) {
-        fileOut << id << " " << password << endl;
-        cout << "eeeeeeeeeeeeeee\n";
-
+    // Copy all the contents to a temporary file
+    // and update the new password
+    while (fileMain >> id >> currentPassword) {
         if (username == id) {
-            fileOut << username << " " << password;
+            fileTemp << id << " " << newPassword << endl;
+            continue;
         }
+
+        fileTemp << id << " " << currentPassword << endl;
     }
 
-    fileIn.close();
-    fileOut.close();
+    fileMain.clear();
+    fileMain.seekp(0, ios::beg);
+    
+    // Change open mode of fileTemp
+    // There could be a better way, but I don't know,
+    // I ain't a professional
+    fileTemp.close();
+    fileTemp.open("TempAccountData.txt", ios::in);
+
+    // Rewrite all data of current file
+    while (fileTemp >> id >> currentPassword)
+        fileMain << id << " " << currentPassword << endl;
+
+    fileMain.close();
+    fileTemp.close();
 }
-
-// void changePassword_Student(string, string) {
-
-// }

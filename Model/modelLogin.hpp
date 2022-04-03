@@ -24,5 +24,4 @@ bool loginStudent(string, string);
 
 bool requestPassword(string, string);
 
-void changePassword_Staff(string, string);
-// void changePassword_Student(string, string);
+void changePassword(string, string, int);
