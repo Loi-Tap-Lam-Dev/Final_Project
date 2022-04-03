@@ -23,5 +23,8 @@ bool loginStaff(string, string);
 bool loginStudent(string, string);
 
 bool requestPassword(string, string);
+bool checkAvailability(string);
 
 void changePassword(string, string, int);
+void appendAccount(string, string);
+void registerAccount();

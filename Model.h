@@ -53,6 +53,23 @@ bool requestPassword(string newPassword, string retypePassword) {
     return false;
 }
 
+bool checkAvailability(string username) {
+    string takenID;
+
+    fstream readName;
+    readName.open("CredentialsSta.txt", ios::in);
+
+    while (readName >> takenID) {
+        if (takenID == username) {
+            readName.close();
+            return false;
+        }
+    }
+
+    readName.close();
+    return true;
+}
+
 void changePassword(string username, string newPassword, int mode) {
     fstream fileMain, fileTemp;
 
@@ -101,4 +118,14 @@ void changePassword(string username, string newPassword, int mode) {
 
     fileMain.close();
     fileTemp.close();
+}
+
+void appendAccount(string newUsername, string newPassword) {
+    if (!checkAvailability(newUsername, newPassword)) return;
+
+    fstream updateFile;
+    updateFile.open("CredentialsSta.txt");
+
+    updateFile.seekp(0, ios::end);
+    updateFile << newUsername << " " << newPassword << endl;
 }

@@ -44,13 +44,6 @@ beginAuthentication:
 
             changePassword(account.username, newPass, 1);
 
-            // Attempting to fix console echo
-            // EDIT: It's fixed! YAY!
-            int yeeLmao;
-            cout << "I am bugging lol you shall suffer: ";
-            cin >> yeeLmao;
-            cout << "Yee the Bug: " << yeeLmao << endl;
-
             break;
         }
         case 2: {
