@@ -42,8 +42,12 @@ string encryptPasswordInput() {
         cout << "*";
     }
 
+    cout << endl;
+
     if (encryptedPassword.length() == 0)
         goto inputValidation;
+
+    SetConsoleMode(inputHandle, consoleMode);       // Reset console mode after finish masking
 
     return encryptedPassword;
 }
@@ -70,6 +74,6 @@ void getCredentials(string &username, string &password) {
     cout<<"Username: ";
     cin>>username;
     cout<<"Password: ";
-    cin>>password;
-    // password = encryptPasswordInput();
+    // cin>>password;
+    password = encryptPasswordInput();
 }

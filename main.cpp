@@ -25,23 +25,31 @@ beginAuthentication:
                 Sleep(2000);
                 goto beginAuthentication;
             }
+
             
             // Test the change password function
             string newPass, retypePass;
             cout << "\nEnter new password: ";
-            cin >> newPass;
+            newPass = encryptPasswordInput();
             cout << "Retype: ";
-            cin >> retypePass;
+            retypePass = encryptPasswordInput();
 
             while (!requestPassword(newPass, retypePass)) {
                 cout << "Please re-enter!\n";
                 cout << "Enter new password: ";
-                cin >> newPass;
+                newPass = encryptPasswordInput();
                 cout << "Retype: ";
-                cin >> retypePass;
+                retypePass = encryptPasswordInput();
             }
 
             changePassword(account.username, newPass, 1);
+
+            // Attempting to fix console echo
+            // EDIT: It's fixed! YAY!
+            int yeeLmao;
+            cout << "I am bugging lol you shall suffer: ";
+            cin >> yeeLmao;
+            cout << "Yee the Bug: " << yeeLmao << endl;
 
             break;
         }
@@ -59,16 +67,16 @@ beginAuthentication:
             // Test the change password function
             string newPass, retypePass;
             cout << "\nEnter new password: ";
-            cin >> newPass;
+            newPass = encryptPasswordInput();
             cout << "Retype: ";
-            cin >> retypePass;
+            retypePass = encryptPasswordInput();
 
             while (!requestPassword(newPass, retypePass)) {
                 cout << "Please re-enter!\n";
                 cout << "Enter new password: ";
-                cin >> newPass;
+                newPass = encryptPasswordInput();
                 cout << "Retype: ";
-                cin >> retypePass;
+                retypePass = encryptPasswordInput();
             }
 
             changePassword(account.username, newPass, 2);
@@ -88,11 +96,6 @@ beginAuthentication:
         }
     }
 
-    // Attempting to fix console echo
-    // int lmao;
-    // cout << "I am bugging lol you shall suffer: ";
-    // cin >> yeeLmao;
-    // cout << "Yee the Bug: " << yeeLmao << endl;;
     
     return 0;
 }
