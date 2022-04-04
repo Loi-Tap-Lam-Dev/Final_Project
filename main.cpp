@@ -35,7 +35,11 @@ beginAuthentication:
                     //Menu
                     Menu_School_Year(sYear_Head);
 
+<<<<<<< Updated upstream
                     Delete_Data_New(sYear_Head);    
+=======
+                    
+>>>>>>> Stashed changes
             }
             else {
                 cout<<"\nLogin failed, please check your credentials and try again!\n";
