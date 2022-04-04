@@ -35,13 +35,7 @@ beginAuthentication:
                     //Menu
                     Menu_School_Year(sYear_Head);
 
-                    while (sYear_Head != nullptr)
-                    {
-                        School_Year* temp = sYear_Head ;
-                        sYear_Head = sYear_Head -> Next;
-
-                        delete temp;
-                    }
+                    Delete_Data_New(sYear_Head);    
             }
             else {
                 cout<<"\nLogin failed, please check your credentials and try again!\n";
@@ -61,5 +55,6 @@ beginAuthentication:
             goto beginAuthentication;
     }
     
+
     return 0;
 }

@@ -19,7 +19,7 @@ fstream finp, fout;
 #include "Read_Data.cpp"
 #include "View_Data.cpp"
 #include "DeLeTe_Data.cpp"
-#include "Menu.cpp"
+#include "View_Menu.cpp"
 #include "Model\modelLogin.hpp"
 // TGHuy:
 // - I use these to run the program on VS Code
