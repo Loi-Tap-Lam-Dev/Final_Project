@@ -18,7 +18,14 @@ beginAuthentication:
         case 1: {
             getCredentials(account.username, account.password);
             if (loginStaff(account.username, account.password)==1) {
-                cout<<"Success!\n";
+                cout<<"Success!";
+                //proceed
+                // School_Year* sYear_Head = nullptr;
+
+                //     //Menu
+                //     Menu_School_Year(sYear_Head);
+
+                //     Delete_Data_New(sYear_Head);   
             }
             else {
                 cout<<"\nLogin failed, please check your credentials and try again!\n";
@@ -49,6 +56,7 @@ beginAuthentication:
             getCredentials(account.username, account.password);
             if(loginStudent(account.username, account.password)==1) {
                 cout<<"Success!";
+                //proceed 
             }
             else {
                 cout<<"\nLogin failed, please check your credentials and try again!\n";
@@ -88,7 +96,7 @@ beginAuthentication:
         }
     }
 
-    appendAccount("1123", "test", 1);
-    
+    appendAccount("1124443", "test", 1);
+
     return 0;
 }

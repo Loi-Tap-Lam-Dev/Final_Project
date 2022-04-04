@@ -95,3 +95,40 @@ void Delete_Data(Year* &yearHead)
     cout<<"Delete Success";
     return ;
 }
+
+
+
+void Delete_Data_New(School_Year* sYear_Head)
+{
+    //Delete All Data
+    while (sYear_Head != nullptr)
+    {
+        School_Year* temp = sYear_Head ;
+
+        School_Year::Year_Class* Classes_Head = temp -> yearCLassHead;
+
+            while (Classes_Head != nullptr)
+            {
+                School_Year::Year_Class* temp_Classes = Classes_Head;
+
+                School_Year::Year_Class::SV_List* SV_Head = temp_Classes -> yearClassSV_ListHead;
+
+                    while (SV_Head != nullptr)
+                    {
+                        School_Year::Year_Class::SV_List* temp_SV = SV_Head;
+
+                        SV_Head = SV_Head -> Next;
+
+                        delete temp_SV;
+                    }
+
+                Classes_Head = Classes_Head -> Next;
+
+                delete temp_Classes;
+            }
+
+        sYear_Head = sYear_Head -> Next;
+
+        delete temp;
+    }
+}
