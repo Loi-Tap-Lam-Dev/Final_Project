@@ -25,7 +25,6 @@ beginAuthentication:
                 Sleep(2000);
                 goto beginAuthentication;
             }
-
             
             // Test the change password function
             string newPass, retypePass;
@@ -89,6 +88,7 @@ beginAuthentication:
         }
     }
 
+    appendAccount("1123", "test", 1);
     
     return 0;
 }

@@ -120,11 +120,24 @@ void changePassword(string username, string newPassword, int mode) {
     fileTemp.close();
 }
 
-void appendAccount(string newUsername, string newPassword) {
-    if (!checkAvailability(newUsername, newPassword)) return;
+void appendAccount(string newUsername, string newPassword, int mode) {
+    if (!checkAvailability(newUsername)) return;
 
     fstream updateFile;
-    updateFile.open("CredentialsSta.txt");
+    try {
+        if (mode == 1)
+            updateFile.open("CredentialsSta.txt");
+        else if (mode == 2)
+            updateFile.open("CredentialsStu.txt");
+        else throw mode;
+    }
+    catch (int mode) {
+        cout << "REGISTER REQUEST FAILED\n";
+        cout << "Mode of " << mode << " does not exist!\n";
+        cout << "Available modes: 1 - Staff | 2 - Student\n";
+        
+        return;
+    }
 
     updateFile.seekp(0, ios::end);
     updateFile << newUsername << " " << newPassword << endl;
