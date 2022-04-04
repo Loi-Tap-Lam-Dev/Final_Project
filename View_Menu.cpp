@@ -331,7 +331,8 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
 
     fstream  finp;
 
-    finp.open("Student_Info.csv", ios::in);
+
+    finp.open("CSV_File/Student_Info.csv", ios::in);
 
     if (!finp.is_open())
         {
