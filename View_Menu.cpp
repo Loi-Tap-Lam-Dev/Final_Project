@@ -1,6 +1,6 @@
 #include "lib.h"
 
-//Noted task havent finished: Adjust, Delete one element in the list
+//Noted task havent finished: Still need Check line 1401 functions delete year and Delete Data. Test more case about delete element
 //Noted: Try to make orderd linked list
 
 //Check Sv_List empty - ┌( ಠ_ಠ)┘
@@ -48,7 +48,25 @@ bool Check_Classes_Duplicated(School_Year::Year_Class* Classes_Cur, string x)
     return true;
 }
 
-//Check Sv Dup 
+//Check Sv Dup in Input scene
+bool Check_Sv_Duplicated_Input(School_Year::Year_Class::SV_List* Sv_Cur,School_Year::Year_Class::SV_List* Temp_Sv)
+{
+    while (Sv_Cur -> Next != nullptr)
+    {
+        if (Sv_Cur -> no == Temp_Sv -> no) return false; //Check no
+
+        if (Sv_Cur -> idStudent == Temp_Sv -> idStudent) return false; //Check Id_SV
+
+        if (Sv_Cur -> socialID == Temp_Sv ->socialID) return false; //Check Social ID
+
+        //Only need to check 3 of this because every data remain is allowed to be duplicated
+
+        Sv_Cur = Sv_Cur -> Next;
+    }
+    return true;
+}
+
+//Check Sv Dup in Input scene
 bool Check_Sv_Duplicated(School_Year::Year_Class::SV_List* Sv_Cur,School_Year::Year_Class::SV_List* Temp_Sv)
 {
     while (Sv_Cur != nullptr)
@@ -160,14 +178,15 @@ void Show_Sv_Table(string user_Class,School_Year::Year_Class::SV_List* Sv_Head)
 {
      //Show the Classes from chosen school year - 👌
         system("CLS");
-        cout<<"| Classes\t|"<<user_Class<<"\t|"<<endl;
-        cout<<"| Sv\t";
+        cout<<"| Classes\t|"<<user_Class<<"\t\t|"<<endl<<endl;
+        cout<<"    \t| No\t| Student ID\t\t| First Name\t| Last Name\t\t| Gender\t| DateOfBirth\t\t| Social ID\t\t|"<<endl;
+        cout<<"    \t";
         
         School_Year::Year_Class::SV_List* Sv_Cur = Sv_Head;
 
         while (Sv_Cur != nullptr) 
         {
-            cout<<"| "<<Sv_Cur -> no<<"\t| "<<Sv_Cur ->idStudent<<"\t| "<<Sv_Cur ->firstName<<"\t| "<<Sv_Cur ->lastName<<"\t| "<<Sv_Cur ->gender<<"\t| "<<Sv_Cur ->dateOfBirth<<"\t| "<<Sv_Cur ->socialID<<"\t| "<<endl;
+            cout<<"| "<<Sv_Cur -> no<<"\t| "<<Sv_Cur ->idStudent<<"\t\t| "<<Sv_Cur ->firstName<<"\t\t| "<<Sv_Cur ->lastName<<"\t\t| "<<Sv_Cur ->gender<<"\t\t| "<<Sv_Cur ->dateOfBirth<<"\t\t| "<<Sv_Cur ->socialID<<"\t\t| "<<endl;
             
             cout<<"    \t";
             Sv_Cur = Sv_Cur -> Next;
@@ -312,9 +331,9 @@ void Create_Sv_List_Manual(School_Year::Year_Class* &Class_Cur, School_Year::Yea
         Sv_Cur -> socialID = socialID;
 
         //Print out remind user to enter value again
-        if (!Check_Sv_Duplicated(Sv_Head,Sv_Cur)) cout<<"Your data has been duplicated. Pls retry."<<endl<<endl;
+        if (!Check_Sv_Duplicated_Input(Sv_Head,Sv_Cur)) cout<<"Your data has been duplicated. Pls retry."<<endl<<endl;
    
-    } while ( !Check_Sv_Duplicated(Sv_Head,Sv_Cur) );
+    } while ( !Check_Sv_Duplicated_Input(Sv_Head,Sv_Cur) );
     
 
     return ;
@@ -914,6 +933,8 @@ void View_Semester(string user_School_Year,School_Year::Semester* &Semester_Head
                     Show_Semester_Table(user_School_Year,Semester_Head);
                 }
     system("pause");
+
+
 }
 
 //Create Semester
@@ -1376,6 +1397,9 @@ void Delete_Year(School_Year* &sYear_Head)
 
 
     School_Year* Year_Cur = find_School_Year(sYear_Head,user_choosed_Year);
+
+    //Save for tommorrow
+    Delete_Element_Of_Year(Year_Cur);
 
     if (Year_Cur == sYear_Head && Year_Cur -> Next == nullptr)
     {
