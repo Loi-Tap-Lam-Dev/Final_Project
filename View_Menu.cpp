@@ -857,7 +857,7 @@ void Adjust_Classes(School_Year* sYear_Cur,School_Year::Year_Class* &Classes_Hea
         }
     } while (Check_Classes_Duplicated(Classes_Head,user_Choose_Class));
 
-    cout<<"/n";
+    cout<<"\n";
     School_Year::Year_Class* Class_Cur = find_Classes(Classes_Head,user_Choose_Class);
 
     do

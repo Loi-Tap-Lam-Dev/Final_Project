@@ -31,4 +31,4 @@ fstream finp, fout;
 // - This is bad and unnecessary, don't be like me
 //
 #include "View\viewLogin.h"
-#include "Model.cpp"
+#include "Model\Model.h"
