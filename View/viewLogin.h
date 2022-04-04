@@ -11,6 +11,7 @@
 
 using namespace std;
 
+// FUNCTION CURRENTLY DYING
 string encryptPasswordInput() {
     // A function that messes around with the Windows console
     // Made possible with the help of Google and that random guy
@@ -41,8 +42,12 @@ string encryptPasswordInput() {
         cout << "*";
     }
 
+    cout << endl;
+
     if (encryptedPassword.length() == 0)
         goto inputValidation;
+
+    SetConsoleMode(inputHandle, consoleMode);       // Reset console mode after finish masking
 
     return encryptedPassword;
 }
@@ -54,8 +59,6 @@ void FORMAT(string s) {
 }
 
 int loginOption() {
-    cin.clear();
-    cin.ignore(1000, '\n');
     FORMAT("LOGIN");
     int choice;
     cout<<"1. Staff\n";
@@ -71,5 +74,6 @@ void getCredentials(string &username, string &password) {
     cout<<"Username: ";
     cin>>username;
     cout<<"Password: ";
+    // cin>>password;
     password = encryptPasswordInput();
 }

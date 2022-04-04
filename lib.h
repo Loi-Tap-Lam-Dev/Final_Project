@@ -5,7 +5,7 @@
 #include <fstream>
 #include <string>
 #include <string.h>     // To use strtok
-#include <windows.h>    // Change console settings
+#include <windows.h>    // Change console settings, evil library, use with caution!
 #include <cstring>
 #include <stdlib.h>     // To clear screen
 
@@ -26,9 +26,6 @@ fstream finp, fout;
 #include "DeLeTe_Data.cpp"
 #include "View_Menu.cpp"
 #include "Model\modelLogin.hpp"
-// TGHuy:
-// - I use these to run the program on VS Code
-// - This is bad and unnecessary, don't be like me
-//
+
 #include "View\viewLogin.h"
 #include "Model\Model.h"
