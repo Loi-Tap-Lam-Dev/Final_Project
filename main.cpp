@@ -30,6 +30,18 @@ beginAuthentication:
             if(loginStudent(account.username, account.password)==1) {
                 cout<<"Success!";
                 //proceed
+                    School_Year* sYear_Head = nullptr;
+
+                    //Menu
+                    Menu_School_Year(sYear_Head);
+
+                    while (sYear_Head != nullptr)
+                    {
+                        School_Year* temp = sYear_Head ;
+                        sYear_Head = sYear_Head -> Next;
+
+                        delete temp;
+                    }
             }
             else {
                 cout<<"\nLogin failed, please check your credentials and try again!\n";
@@ -48,21 +60,6 @@ beginAuthentication:
             Sleep(2000);
             goto beginAuthentication;
     }
-
-// Changeable data - (●'◡'●)
-    //Declare 
-                    School_Year* sYear_Head = nullptr;
-
-                    //Menu
-                    Menu_School_Year(sYear_Head);
-
-                    while (sYear_Head != nullptr)
-                    {
-                        School_Year* temp = sYear_Head ;
-                        sYear_Head = sYear_Head -> Next;
-
-                        delete temp;
-                    }
     
     return 0;
 }
