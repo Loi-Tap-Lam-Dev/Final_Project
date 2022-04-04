@@ -48,11 +48,10 @@ bool Check_Classes_Duplicated(School_Year::Year_Class* Classes_Cur, string x)
     return true;
 }
 
-//Check Sv Dup
+//Check Sv Dup 
 bool Check_Sv_Duplicated(School_Year::Year_Class::SV_List* Sv_Cur,School_Year::Year_Class::SV_List* Temp_Sv)
 {
-    //Because u have create the Next node before , u need to use Sv_cur -> Next instead of Sv 
-    while (Sv_Cur -> Next != nullptr)
+    while (Sv_Cur != nullptr)
     {
         if (Sv_Cur -> no == Temp_Sv -> no) return false; //Check no
 
@@ -98,6 +97,23 @@ School_Year::Year_Class* find_Classes(School_Year::Year_Class* Classes_Cur,strin
         if (Classes_Cur -> nameClass == user_choosed_Class) return Classes_Cur;
         
         Classes_Cur= Classes_Cur-> Next;
+    }
+}
+
+//Find Sv due to No, Id, Social ID
+School_Year::Year_Class::SV_List* find_Student(School_Year::Year_Class::SV_List* Sv_Cur,School_Year::Year_Class::SV_List* Temp_Sv)
+{
+    while (Sv_Cur != nullptr)
+    {
+        if (Sv_Cur -> no == Temp_Sv -> no) return Sv_Cur; //Check no
+
+        if (Sv_Cur -> idStudent == Temp_Sv -> idStudent) return Sv_Cur; //Check Id_SV
+
+        if (Sv_Cur -> socialID == Temp_Sv ->socialID) return Sv_Cur; //Check Social ID
+
+        //Only need to check 3 of this because every data remain is allowed to be duplicated
+
+        Sv_Cur = Sv_Cur -> Next;
     }
 }
 
@@ -401,6 +417,103 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
     return ;
 }
 
+//Delete SV_list
+void Delete_Sv_List(School_Year::Year_Class* &Class_Cur, School_Year::Year_Class::SV_List* &Sv_Head)
+{
+    if (Sv_Head == nullptr)
+    {
+        cout<<"There are nothing to be deleted. Please Create One.";
+        system("pause");
+        return;
+    }
+
+    Show_Sv_Table(Class_Cur -> nameClass, Sv_Head);
+
+    int user_Choose_Student ;
+    cin.ignore();
+    School_Year::Year_Class::SV_List* Temp_Sv = nullptr;
+    do
+    {
+        Temp_Sv = new School_Year::Year_Class::SV_List;
+        
+        cout<<"You want to delete your student due to: "<<endl;
+        cout<<"     1: No"<<endl;
+        cout<<"     2: ID Student"<<endl;
+        cout<<"     3: Social ID"<<endl;
+        cout<<"     4: Back"<<endl;
+        cout<<"     Your Choice: ";
+        
+        cin>>user_Choose_Student;
+
+        switch (user_Choose_Student)
+        {
+        
+        case 1:
+        {
+            cout<<"\n Enter No: ";
+            cin>>Temp_Sv -> no;
+
+            break;
+        }
+        
+        case 2:
+        {
+            cout<<"\n Enter Student ID: ";
+            cin>>Temp_Sv -> idStudent;
+            
+            break;
+        }
+
+        case 3:
+        {
+            cout<<"\n Enter Social ID: ";
+            cin>>Temp_Sv -> socialID;
+        }
+        default:
+            return;
+            break;
+        }
+
+        if (Check_Sv_Duplicated(Sv_Head,Temp_Sv)) 
+        {
+            cout<<"There arent any student match with your info. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+        }
+    } while (Check_Sv_Duplicated(Sv_Head,Temp_Sv));
+    
+    School_Year::Year_Class::SV_List* Sv_Cur = find_Student(Sv_Head,Temp_Sv);
+
+    if (Sv_Cur == Sv_Head)
+    {
+        if (Sv_Head -> Next == nullptr)
+        {
+            Sv_Head = nullptr;
+            Class_Cur -> yearClassSV_ListHead = Sv_Head;
+            
+            system("pause");
+            return;
+        }
+
+        Sv_Head = Sv_Head -> Next;
+        Sv_Head -> Prev = nullptr;  
+        Class_Cur -> yearClassSV_ListHead = Sv_Head;
+
+            system("pause");
+            return;
+    }
+
+    Temp_Sv = Sv_Cur;
+
+    Sv_Cur -> Prev -> Next = Temp_Sv -> Next;
+
+    delete Temp_Sv;
+
+    system("pause");
+    return;
+}
+
 //View Classes - ᕦ(ò_óˇ)ᕤ
 void View_Classes(string user_School_Year,School_Year::Year_Class* &Classes_Head)
 {
@@ -452,7 +565,7 @@ void View_Classes(string user_School_Year,School_Year::Year_Class* &Classes_Head
     School_Year::Year_Class* Classes_Cur = find_Classes(Classes_Head,user_Choosed_Class); // To locate the classes user is choosing
     School_Year::Year_Class::SV_List* Sv_Head = Classes_Cur -> yearClassSV_ListHead; //To view or create. 
 
-    while (user_Choose != 3)
+    while (user_Choose != 5)
     {
         cout<<endl<<endl;
 
@@ -467,8 +580,10 @@ void View_Classes(string user_School_Year,School_Year::Year_Class* &Classes_Head
 
         cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
         cout<<"             1: View Info Student In Class: "<<user_Choosed_Class<<endl;
-        cout<<"             2: Create Sv_List For: "<<user_Choosed_Class<<endl;
-        cout<<"             3: Back"<<endl;
+        cout<<"             2: Create Student List For: "<<user_Choosed_Class<<endl;
+        cout<<"             3: Adjust Student List In: "<<user_Choosed_Class<<endl;
+        cout<<"             4: Delete Student In: "<<user_Choosed_Class<<endl;
+        cout<<"             5: Back"<<endl;
         cout<<"             Your choice: "; 
 
         cin>>user_Choose;
@@ -541,6 +656,19 @@ void View_Classes(string user_School_Year,School_Year::Year_Class* &Classes_Head
                     break;
                 }
             
+             case 4:
+                {
+                    //Declare
+                    School_Year::Year_Class* Classes_Cur = find_Classes(Classes_Head,user_Choosed_Class);
+
+                    //Functions Delete_SV_List
+                    Delete_Sv_List (Classes_Cur,Sv_Head);
+
+                    continue;
+                    
+                    break;
+                }
+
             default:
 
                 break;
@@ -693,7 +821,7 @@ void Delete_Classes(School_Year* sYear_Cur,School_Year::Year_Class* &Classes_Hea
 }
 
 //Adjust Classes
-void Adjust_Classes(School_Year* sYear_Cur,School_Year::Year_Class* &Classes_Head)
+void Adjust_Classes(School_Year* sYear_Cur,School_Year::Year_Class* &Classes_Head)     
 {
     if (Classes_Head == nullptr)
     {
@@ -742,6 +870,10 @@ void Adjust_Classes(School_Year* sYear_Cur,School_Year::Year_Class* &Classes_Hea
             getline(cin,user_Choose_Class);
 
         if (user_Choose_Class == "N") return;
+
+        //Check if the data is corrected
+        if (user_Choose_Class.substr(0,2) != sYear_Cur -> year . substr(2,2)) return ;
+
 
         //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
         if (!Check_Classes_Duplicated(Classes_Head,user_Choose_Class)) 
@@ -1254,6 +1386,7 @@ void Delete_Year(School_Year* &sYear_Head)
     else if (Year_Cur == sYear_Head && Year_Cur -> Next != nullptr) 
         {
             sYear_Head = sYear_Head -> Next;
+            sYear_Head -> Prev = nullptr;
             system("pause");
             return;
         }
