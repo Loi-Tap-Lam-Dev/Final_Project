@@ -134,10 +134,11 @@ struct School_Year {
     struct Semester {
 
              int Term;
+             string start_Date, end_Date;
 
              struct Student_listMark {
 
-                     int no , idStudent , GPA , averageMark;
+                     int no , idStudent , totalCredit, GPA , averageMark;
 
                      Student_listMark* Prev = nullptr;
                      Student_listMark* Next = nullptr;
@@ -150,37 +151,30 @@ struct School_Year {
 
                      string name_Subject, id_Subject;
                      string startDate, endDate;
+                     string teacher_Name;
+                     string day_Of_Session_1, day_Of_Session_2; // Mon/Tue/Wed
+                     string at_Time_1, at_Time_2; //S1(7:30) S2(9:30) S3(13:30) S4(15:30)
                 
-                     int maximumRegrister;
+                     int maximumRegrister = 50, number_Of_Credit;
 
-                     struct Subject_Class {
 
-                             struct Sub_Student_listMark {
+                      struct Student_listMark {
 
-                                int no , idStudent , midTermMark, finalTermMark , otherMark, totalMark;
+                        int no , idStudent , midTermMark, finalTermMark , otherMark, totalMark;
 
-                                Sub_Student_listMark* Prev = nullptr;
-                                Sub_Student_listMark* Next = nullptr;
+                        Student_listMark* Prev = nullptr;
+                        Student_listMark* Next = nullptr;
 
-                             };
+                       };
 
-                             Sub_Student_listMark* yearSemesterSubjectClassSub_Student_listMarkHead = nullptr; // To Save the Head of the SV List of Subject_Class
+                     Student_listMark* yearSemesterSubStudent_ListHead = nullptr;
 
-                             string nameClass;
-
-                             Subject_Class* Prev = nullptr;
-                             Subject_Class* Next = nullptr;
-
-                     };
-
-                     Subject_Class* yearSemesterSubjectClassHead = nullptr; // To Save the Head of the Class List of Subject
-                
                      Subject* Prev = nullptr;
                      Subject*  Next = nullptr;
 
-             };
+                };
 
-             Subject* yearSemesterSubjectHead = nullptr;  // To Save the Head of the Subject List of Semester
+                Subject* yearSemesterSubjectHead = nullptr;  // To Save the Head of the Subject List of Semester
 
                 Semester* Prev = nullptr;
                 Semester* Next = nullptr;

@@ -3,42 +3,16 @@
 int main() {
 
 //Changeable data - (●'◡'●)
+
     //Declare 
     School_Year* sYear_Head = nullptr;
 
     //Menu
     Menu_School_Year(sYear_Head);
 
-    while (sYear_Head != nullptr)
-    {
-        School_Year* temp = sYear_Head ;
-
-        School_Year::Year_Class* Classes_Head = temp -> yearCLassHead;
-
-            while (Classes_Head != nullptr)
-            {
-                School_Year::Year_Class* temp_Classes = Classes_Head;
-
-                School_Year::Year_Class::SV_List* SV_Head = temp_Classes -> yearClassSV_ListHead;
-
-                    while (SV_Head != nullptr)
-                    {
-                        School_Year::Year_Class::SV_List* temp_SV = SV_Head;
-
-                        SV_Head = SV_Head -> Next;
-
-                        delete temp_SV;
-                    }
-
-                Classes_Head = Classes_Head -> Next;
-
-                delete temp_Classes;
-            }
-
-        sYear_Head = sYear_Head -> Next;
-
-        delete temp;
-    }
+    //Delete
+    Delete_School_Year(sYear_Head);
+    
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // //Cant Reset Data

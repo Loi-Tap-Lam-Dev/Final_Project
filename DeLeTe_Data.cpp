@@ -1,99 +1,61 @@
 #include "lib.h"
 
-void Delete_Data(Year* &yearHead)
+void Delete_School_Year(School_Year* sYear_Head)
 {
-    //Delete Year
-    Year* year_Cur = yearHead;
-        while (year_Cur  != nullptr)
-        {
-            Year* year_Temp = year_Cur;
+    while (sYear_Head != nullptr)
+    {
+        School_Year* temp = sYear_Head ;
 
-            //Delete Year_CLass_Info
-            Year::Class* year_Class_Cur = year_Cur -> yearCLassHead;
-                while (year_Class_Cur != nullptr)
-                {
-                    Year::Class* Class_Temmp = year_Class_Cur;
+        //Delete year Class
+        School_Year::Year_Class* Classes_Head = temp -> yearCLassHead;
 
-                    //Delete Year_Class_SV_Info
-                    Year::Class::SV_List* year_Class_SV_Cur = year_Class_Cur -> yearClassSV_ListHead;
-                        while (year_Class_SV_Cur  != nullptr)
-                        {
-                            Year::Class::SV_List* SV_Temp = year_Class_SV_Cur;
+            while (Classes_Head != nullptr)
+            {
+                School_Year::Year_Class* temp_Classes = Classes_Head;
 
-                            year_Class_SV_Cur = year_Class_SV_Cur -> svNext;
+                School_Year::Year_Class::SV_List* SV_Head = temp_Classes -> yearClassSV_ListHead;
 
-                            delete SV_Temp;
-                        }
+                    while (SV_Head != nullptr)
+                    {
+                        School_Year::Year_Class::SV_List* temp_SV = SV_Head;
 
-                    year_Class_Cur = year_Class_Cur -> clNext;
+                        SV_Head = SV_Head -> Next;
 
-                    delete Class_Temmp;
-                }
+                        delete temp_SV;
+                    }
 
-            //Delete Year_Semester
-            Year::Semester* Semester_Cur = year_Cur -> yearSemesterHead;
-                while(Semester_Cur != nullptr)
-                {
-                    Year::Semester* Semester_Temp = Semester_Cur;
+                Classes_Head = Classes_Head -> Next;
 
-                    //Sv_Whole_Semester MArk
-                    Year::Semester::SV_List* Semester_SV = Semester_Cur -> yearSemesterSv_ListHead;
-                        while (Semester_SV != nullptr)
-                        {
-                            Year::Semester::SV_List* SV_Temp = Semester_SV;
+                delete temp_Classes;
+            }
 
-                            Semester_SV = Semester_SV -> svNext;
+        //Delete year Semester
+        School_Year::Semester* Semester_Head = temp -> yearSemesterHead;
 
-                            delete SV_Temp;
-                        }
+            while ( Semester_Head != nullptr)
+            {
+                School_Year::Semester* Temp_Semester = Semester_Head;
 
-                    //Subject
-                    Year::Semester::Subject* Semester_Subject_Cur = Semester_Cur -> yearSemesterSubjectHead;
-                        while (Semester_Subject_Cur != nullptr)
-                        {
-                            Year::Semester::Subject* Subject_Temp = Semester_Subject_Cur;
+                School_Year::Semester::Subject* Subject_Head = Temp_Semester -> yearSemesterSubjectHead;
 
-                            //Subject_Class
-                            Year::Semester::Subject::Class* Sub_Class = Semester_Subject_Cur -> yearSemesterSubjectClassHead;
-                                while (Sub_Class != nullptr)
-                                {
-                                    Year::Semester::Subject::Class* Class_Temp = Sub_Class;
+                    while ( Subject_Head != nullptr)
+                    {
+                        School_Year::Semester::Subject* Temp_Sub = Subject_Head;
 
-                                    //Class_Sv_Mark
-                                    Year::Semester::Subject::Class::SV_List* Class_Sv = Sub_Class -> yearSemesterSubjectClassSV_ListHead;
-                                    while (Class_Sv != nullptr)
-                                    {
-                                        Year::Semester::Subject::Class::SV_List* SV_Temp = Class_Sv;
+                        Subject_Head = Subject_Head -> Next;
 
-                                        Class_Sv = Class_Sv -> svNext;
+                        delete Temp_Sub;
+                    }
 
-                                        delete SV_Temp;
-                                    }
+                Semester_Head = Semester_Head -> Next;
 
-                                    Sub_Class = Sub_Class -> clNext;
-                                    delete Class_Temp;
-                                }
+                delete Temp_Semester;
+            }    
 
-                            Semester_Subject_Cur = Semester_Subject_Cur -> subNext;
+        sYear_Head = sYear_Head -> Next;
 
-                            delete Subject_Temp;
-
-                        }
-
-                    Semester_Cur = Semester_Cur -> sNext;
-
-                    delete Semester_Temp;
-                }
-
-
-            year_Cur = year_Cur -> yNext;
-            
-            delete year_Temp;
-
-        }
-    
-    cout<<"Delete Success";
-    return ;
+        delete temp;
+    }
 }
 
 //Delete List of student mark
@@ -110,48 +72,16 @@ void Delete_Element_Of_Student_listMark(School_Year::Semester::Student_listMark*
 }
 
 //Delete Element of Subject_Class_Student_Mark
-void Delete_Element_Of_Sub_StudentList(School_Year::Semester::Subject::Subject_Class::Sub_Student_listMark* &ClassStudent_Cur, int type)
+void Delete_Element_Of_StudentList(School_Year::Semester::Subject::Student_listMark* &ClassStudent_Cur, int type)
 {
     while (ClassStudent_Cur != nullptr)
     {
-        School_Year::Semester::Subject::Subject_Class::Sub_Student_listMark* ClassStudent_Temp = ClassStudent_Cur;
+        School_Year::Semester::Subject::Student_listMark* ClassStudent_Temp = ClassStudent_Cur;
 
             ClassStudent_Cur = ClassStudent_Cur -> Next;
 
         delete ClassStudent_Temp;
     }
-    return;
-}
-
-//Delete Element of Subject_Class
-void Delete_Element_Of_Subject_Class(School_Year::Semester::Subject::Subject_Class* &SubjectClass_Cur, int type)
-{
-    if (type == 1)
-    {
-        while (SubjectClass_Cur != nullptr)
-        {
-            School_Year::Semester::Subject::Subject_Class::Sub_Student_listMark* Sub_Student_Cur = SubjectClass_Cur -> yearSemesterSubjectClassSub_Student_listMarkHead;
-
-                if (Sub_Student_Cur != nullptr) Delete_Element_Of_Sub_StudentList(Sub_Student_Cur,1);
-            
-                SubjectClass_Cur -> yearSemesterSubjectClassSub_Student_listMarkHead = nullptr;
-
-            School_Year::Semester::Subject::Subject_Class* Subclass_temp = SubjectClass_Cur;
-
-                SubjectClass_Cur = SubjectClass_Cur -> Next;
-
-            delete Subclass_temp;
-        }
-
-        return;
-    }
-
-    School_Year::Semester::Subject::Subject_Class::Sub_Student_listMark* Sub_Student_Cur = SubjectClass_Cur -> yearSemesterSubjectClassSub_Student_listMarkHead;
-
-            if (Sub_Student_Cur != nullptr) Delete_Element_Of_Sub_StudentList(Sub_Student_Cur,1);
-            
-            SubjectClass_Cur -> yearSemesterSubjectClassSub_Student_listMarkHead = nullptr;
-
     return;
 }
 
@@ -162,27 +92,27 @@ void Delete_Element_Of_Subject(School_Year::Semester::Subject* &semSubject_Cur, 
     {
         while (semSubject_Cur != nullptr)
         {
-            School_Year::Semester::Subject::Subject_Class* subClass_Cur = semSubject_Cur -> yearSemesterSubjectClassHead;
+            School_Year::Semester::Subject::Student_listMark* StudentCur = semSubject_Cur -> yearSemesterSubStudent_ListHead;
 
-                if (subClass_Cur != nullptr) Delete_Element_Of_Subject_Class(subClass_Cur,1);
+                if (StudentCur != nullptr) Delete_Element_Of_StudentList(StudentCur,1);
 
-                semSubject_Cur -> yearSemesterSubjectClassHead = nullptr;
+                semSubject_Cur -> yearSemesterSubStudent_ListHead = nullptr;
 
             School_Year::Semester::Subject* Subject_Temp = semSubject_Cur;
 
                 semSubject_Cur = semSubject_Cur -> Next;
 
-            delete Subject_Temp;
+                delete Subject_Temp;
         }
 
         return;
     }
 
-    School_Year::Semester::Subject::Subject_Class* subClass_Cur = semSubject_Cur -> yearSemesterSubjectClassHead;
+    School_Year::Semester::Subject::Student_listMark* StudentCur = semSubject_Cur -> yearSemesterSubStudent_ListHead;
 
-        if (subClass_Cur != nullptr) Delete_Element_Of_Subject_Class(subClass_Cur,1);
+                if (StudentCur != nullptr) Delete_Element_Of_StudentList(StudentCur,1);
 
-        semSubject_Cur -> yearSemesterSubjectClassHead = nullptr;
+                semSubject_Cur -> yearSemesterSubStudent_ListHead = nullptr;
 
     return;
 }
@@ -263,7 +193,7 @@ void Delete_Element_Of_YearClass(School_Year::Year_Class* &yClass_Cur, int type)
 
                 yClass_Cur = yClass_Cur -> Next;
 
-            delete  yClass_Temp;
+                delete  yClass_Temp;
 
         }
 
