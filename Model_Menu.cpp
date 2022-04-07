@@ -275,7 +275,7 @@ void Show_Semester_Table(string user_School_Year,School_Year::Semester* Semester
 {
      //Show the table full of School_Year - 👌
         system("CLS");
-        cout<<"School_Year:    | "<<atoi(user_School_Year.c_str())<<"-"<<atoi(user_School_Year.c_str()) + 1<<"\t|"<<endl;
+        cout<<"| School_Year:    | "<<atoi(user_School_Year.c_str())<<"-"<<atoi(user_School_Year.c_str()) + 1<<"\t|"<<endl<<endl;
         cout<<"   | Semester   | Start Date\t| End Date\t|"<<endl;
         cout<<"   | ";
         School_Year::Semester* Semester_Cur = Semester_Head;
