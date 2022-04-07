@@ -1,6 +1,6 @@
 #include "lib.h"
 
-//Noted task havent finished: Adjust, Delete one element in the list
+//Noted task havent finished: Still need Check line 1401 functions delete year and Delete Data. Test more case about delete element
 //Noted: Try to make orderd linked list
 
 //Check Sv_List empty - ┌( ಠ_ಠ)┘
@@ -48,7 +48,25 @@ bool Check_Classes_Duplicated(School_Year::Year_Class* Classes_Cur, string x)
     return true;
 }
 
-//Check Sv Dup 
+//Check Sv Dup in Input scene
+bool Check_Sv_Duplicated_Input(School_Year::Year_Class::SV_List* Sv_Cur,School_Year::Year_Class::SV_List* Temp_Sv)
+{
+    while (Sv_Cur -> Next != nullptr)
+    {
+        if (Sv_Cur -> no == Temp_Sv -> no) return false; //Check no
+
+        if (Sv_Cur -> idStudent == Temp_Sv -> idStudent) return false; //Check Id_SV
+
+        if (Sv_Cur -> socialID == Temp_Sv ->socialID) return false; //Check Social ID
+
+        //Only need to check 3 of this because every data remain is allowed to be duplicated
+
+        Sv_Cur = Sv_Cur -> Next;
+    }
+    return true;
+}
+
+//Check Sv Dup in Input scene
 bool Check_Sv_Duplicated(School_Year::Year_Class::SV_List* Sv_Cur,School_Year::Year_Class::SV_List* Temp_Sv)
 {
     while (Sv_Cur != nullptr)
@@ -74,6 +92,49 @@ bool Check_Semester_Duplicated(School_Year::Semester* Semester_Cur, int temp)
         if (Semester_Cur -> Term == temp) return false;
 
         Semester_Cur = Semester_Cur -> Next;
+    }
+    return true;
+}
+
+bool Check_Subject_Duplicated_Input(School_Year::Semester::Subject* Subject_Head,School_Year::Semester::Subject* Subject_Cur)
+{
+    while (Subject_Head -> Next != nullptr)
+    {
+        if (Subject_Head -> id_Subject == Subject_Cur -> id_Subject) return false;
+
+        if (Subject_Head -> name_Subject == Subject_Cur -> name_Subject) return false;
+
+        if (Subject_Head -> day_Of_Session_1  == Subject_Cur -> day_Of_Session_1 ) 
+            {
+                if (Subject_Head -> at_Time_1  == Subject_Cur -> at_Time_1 )  return false;
+            }
+
+        if (Subject_Head -> day_Of_Session_2  == Subject_Cur -> day_Of_Session_2 ) 
+            {
+                if (Subject_Head -> at_Time_2  == Subject_Cur -> at_Time_2 )  return false;
+            }
+    }
+    return true;
+}
+
+//Check Subject Duplicated
+bool Check_Subject_Duplicated(School_Year::Semester::Subject* Subject_Head,School_Year::Semester::Subject* Subject_Cur)
+{
+    while (Subject_Head != nullptr)
+    {
+        if (Subject_Head -> id_Subject == Subject_Cur -> id_Subject) return false;
+
+        if (Subject_Head -> name_Subject == Subject_Cur -> name_Subject) return false;
+
+        if (Subject_Head -> day_Of_Session_1  == Subject_Cur -> day_Of_Session_1 ) 
+            {
+                if (Subject_Head -> at_Time_1  == Subject_Cur -> at_Time_1 )  return false;
+            }
+
+        if (Subject_Head -> day_Of_Session_2  == Subject_Cur -> day_Of_Session_2 ) 
+            {
+                if (Subject_Head -> at_Time_2  == Subject_Cur -> at_Time_2 )  return false;
+            }
     }
     return true;
 }
@@ -114,6 +175,38 @@ School_Year::Year_Class::SV_List* find_Student(School_Year::Year_Class::SV_List*
         //Only need to check 3 of this because every data remain is allowed to be duplicated
 
         Sv_Cur = Sv_Cur -> Next;
+    }
+}
+
+//Find Semester
+School_Year::Semester* find_Semester(School_Year::Semester* Semester_Cur, int temp)
+{
+    while (Semester_Cur != nullptr)
+    {
+        if (Semester_Cur -> Term == temp) return Semester_Cur;
+
+        Semester_Cur = Semester_Cur -> Next;
+    }
+}
+
+//Find Subject
+School_Year::Semester::Subject* find_Subject(School_Year::Semester::Subject* Subject_Head,School_Year::Semester::Subject* Subject_Cur)
+{
+    while (Subject_Head != nullptr)
+    {
+        if (Subject_Head -> id_Subject == Subject_Cur -> id_Subject) return Subject_Head;
+
+        if (Subject_Head -> name_Subject == Subject_Cur -> name_Subject) return Subject_Head;
+
+        if (Subject_Head -> day_Of_Session_1  == Subject_Cur -> day_Of_Session_1 ) 
+            {
+                if (Subject_Head -> at_Time_1  == Subject_Cur -> at_Time_1 )  return Subject_Head;
+            }
+
+        if (Subject_Head -> day_Of_Session_2  == Subject_Cur -> day_Of_Session_2 ) 
+            {
+                if (Subject_Head -> at_Time_2  == Subject_Cur -> at_Time_2 )  return Subject_Head;
+            }
     }
 }
 
@@ -160,14 +253,15 @@ void Show_Sv_Table(string user_Class,School_Year::Year_Class::SV_List* Sv_Head)
 {
      //Show the Classes from chosen school year - 👌
         system("CLS");
-        cout<<"| Classes\t|"<<user_Class<<"\t|"<<endl;
-        cout<<"| Sv\t";
+        cout<<"| Classes\t|"<<user_Class<<"\t\t|"<<endl<<endl;
+        cout<<"    \t| No\t| Student ID\t\t| First Name\t| Last Name\t\t| Gender\t| DateOfBirth\t\t| Social ID\t\t|"<<endl;
+        cout<<"    \t";
         
         School_Year::Year_Class::SV_List* Sv_Cur = Sv_Head;
 
         while (Sv_Cur != nullptr) 
         {
-            cout<<"| "<<Sv_Cur -> no<<"\t| "<<Sv_Cur ->idStudent<<"\t| "<<Sv_Cur ->firstName<<"\t| "<<Sv_Cur ->lastName<<"\t| "<<Sv_Cur ->gender<<"\t| "<<Sv_Cur ->dateOfBirth<<"\t| "<<Sv_Cur ->socialID<<"\t| "<<endl;
+            cout<<"| "<<Sv_Cur -> no<<"\t| "<<Sv_Cur ->idStudent<<"\t\t| "<<Sv_Cur ->firstName<<"\t\t| "<<Sv_Cur ->lastName<<"\t\t| "<<Sv_Cur ->gender<<"\t\t| "<<Sv_Cur ->dateOfBirth<<"\t\t| "<<Sv_Cur ->socialID<<"\t\t| "<<endl;
             
             cout<<"    \t";
             Sv_Cur = Sv_Cur -> Next;
@@ -182,18 +276,73 @@ void Show_Semester_Table(string user_School_Year,School_Year::Semester* Semester
      //Show the table full of School_Year - 👌
         system("CLS");
         cout<<"School_Year:    | "<<atoi(user_School_Year.c_str())<<"-"<<atoi(user_School_Year.c_str()) + 1<<"\t|"<<endl;
-        cout<<"Semester:        | ";
-        
+        cout<<"   | Semester   | Start Date\t| End Date\t|"<<endl;
+        cout<<"   | ";
         School_Year::Semester* Semester_Cur = Semester_Head;
 
             while (Semester_Cur != nullptr)
             {
-                cout<<Semester_Cur -> Term<<"\t| ";
+                switch (Semester_Cur -> Term)
+                {
+               
+                case 1:
+                {
+                    cout<<Semester_Cur -> Term<<" (Fall)\t| "<<Semester_Cur -> start_Date<<"\t| "<<Semester_Cur -> end_Date<<"\t|";
+                    break;
+                }
+
+                case 2:
+                {
+                    cout<<Semester_Cur -> Term<<" (Summer)\t| "<<Semester_Cur -> start_Date<<"\t| "<<Semester_Cur -> end_Date<<"\t|";
+                    break;
+                }
+                
+                default:
+                    cout<<Semester_Cur -> Term<<" (Autumn)\t| "<<Semester_Cur -> start_Date<<"\t| "<<Semester_Cur -> end_Date<<"\t|";
+                    break;
+                }
+                
+                if (Semester_Cur -> Next != nullptr)
+                {
+                    cout<<endl;
+                    cout<<"   | ";
+                }
 
                 Semester_Cur = Semester_Cur -> Next;
             } 
 
         cout<<endl<<endl;
+}
+
+//Show Subject Table
+void Show_Subject_Table(string user_Semester,School_Year::Semester::Subject* Subject_Head)
+{
+    system("CLS");
+    cout<<"| Semester\t|"<<user_Semester<<"\t|"<<endl<<endl;
+    cout<<"      \t| Course ID\t| Course Name\t| Teacher Name\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student\t|"<<endl;
+    cout<<"      \t";
+    
+    while (Subject_Head != nullptr)
+    {
+        cout<<"| "<<Subject_Head -> id_Subject<<"\t\t| "<<Subject_Head -> name_Subject<<"\t\t| "<<Subject_Head -> teacher_Name<<"\t| "<<Subject_Head -> startDate<<"\t| "<<Subject_Head -> endDate<<"\t| "<<Subject_Head -> day_Of_Session_1<<"\t\t| ";
+
+        if (Subject_Head -> at_Time_1 == "S3" ) cout<<"13:30 - 15:29\t| ";
+        if (Subject_Head -> at_Time_1 == "S4" ) cout<<"15:30 - 17:29\t| ";
+        if (Subject_Head -> at_Time_1 == "S1" ) cout<<"7:30 - 9:29\t| ";
+        if (Subject_Head -> at_Time_1 == "S2" ) cout<<"9:30 - 11:29\t| ";
+
+        cout<<Subject_Head -> day_Of_Session_2<<"\t\t| ";
+
+        if (Subject_Head -> at_Time_2 == "S3" ) cout<<"13:30 - 15:29\t| ";
+        if (Subject_Head -> at_Time_2 == "S4" ) cout<<"15:30 - 17:29\t| ";
+        if (Subject_Head -> at_Time_2 == "S1" ) cout<<"7:30 - 9:29\t| ";
+        if (Subject_Head -> at_Time_2 == "S2" ) cout<<"9:30 - 11:29\t| ";
+
+        cout<<Subject_Head -> number_Of_Credit<<"\t\t| "<<Subject_Head -> maximumRegrister<<"\t\t|"<<endl;
+        cout<<"      \t";
+
+        Subject_Head = Subject_Head -> Next;
+    }
 }
 
 //View Student List
@@ -312,9 +461,9 @@ void Create_Sv_List_Manual(School_Year::Year_Class* &Class_Cur, School_Year::Yea
         Sv_Cur -> socialID = socialID;
 
         //Print out remind user to enter value again
-        if (!Check_Sv_Duplicated(Sv_Head,Sv_Cur)) cout<<"Your data has been duplicated. Pls retry."<<endl<<endl;
+        if (!Check_Sv_Duplicated_Input(Sv_Head,Sv_Cur)) cout<<"Your data has been duplicated. Pls retry."<<endl<<endl;
    
-    } while ( !Check_Sv_Duplicated(Sv_Head,Sv_Cur) );
+    } while ( !Check_Sv_Duplicated_Input(Sv_Head,Sv_Cur) );
     
 
     return ;
@@ -324,7 +473,7 @@ void Create_Sv_List_Manual(School_Year::Year_Class* &Class_Cur, School_Year::Yea
 void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Year_Class::SV_List* &Sv_Head)
 {
     //Declared
-    School_Year::Year_Class::SV_List* Sv_Cur = nullptr;
+    School_Year::Year_Class::SV_List* Sv_Cur = Sv_Head;
 
     int no = 0 , idStudent , socialID;
     string lastName , firstName , gender , dateOfBirth;
@@ -393,6 +542,7 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
         const char* denim = ",";
 
         //Create new node
+        while (Sv_Cur -> Next != nullptr) Sv_Cur = Sv_Cur -> Next;
         Sv_Cur -> Next = new School_Year::Year_Class::SV_List;
         Sv_Cur = Sv_Cur -> Next;
 
@@ -757,7 +907,7 @@ void Create_Classes(School_Year* &Year_Cur, School_Year::Year_Class* &Classes_He
 }
 
 //Delete Classes
-void Delete_Classes(School_Year* sYear_Cur,School_Year::Year_Class* &Classes_Head)
+void Delete_Classes(School_Year* &sYear_Cur,School_Year::Year_Class* &Classes_Head)
 {
     if (Classes_Head == nullptr)
     {
@@ -795,6 +945,9 @@ void Delete_Classes(School_Year* sYear_Cur,School_Year::Year_Class* &Classes_Hea
 
     School_Year::Year_Class* Class_Cur = find_Classes(Classes_Head,user_Choose_Class);
 
+    //Delete all element
+    Delete_Element_Of_YearClass(Class_Cur,2);
+
     if (Class_Cur == Classes_Head)
     {
         if (Class_Cur -> Next == nullptr)
@@ -822,7 +975,7 @@ void Delete_Classes(School_Year* sYear_Cur,School_Year::Year_Class* &Classes_Hea
 }
 
 //Adjust Classes
-void Adjust_Classes(School_Year* sYear_Cur,School_Year::Year_Class* &Classes_Head)     
+void Adjust_Classes(School_Year* &sYear_Cur,School_Year::Year_Class* &Classes_Head)     
 {
     if (Classes_Head == nullptr)
     {
@@ -897,6 +1050,322 @@ void Adjust_Classes(School_Year* sYear_Cur,School_Year::Year_Class* &Classes_Hea
     return;
 }
 
+//View Course
+void View_Course(string user_Semester, School_Year::Semester::Subject* Subject_Head)
+{
+    //Show SV Table
+    if (Subject_Head == nullptr) 
+        {
+            cout<<"Nothing being added"<<endl;
+            system("Pause");
+            return ;
+        }
+            else 
+                {
+                   Show_Subject_Table(user_Semester,Subject_Head);
+                }
+    system("pause");
+}
+
+//Create Course Manual
+void Create_Course_Manual(School_Year::Semester* &ySemester_Cur, School_Year::Semester::Subject* &Subject_Head)
+{
+    //Declare
+    School_Year::Semester::Subject* Subject_Cur = Subject_Head;
+
+    if (Subject_Head == nullptr)
+        {
+            cout<<"Your Semster: "<<ySemester_Cur -> Term<<endl;
+
+            //Declare
+            string name_Subject, id_Subject;
+            string startDate, endDate;
+            string teacher_Name;
+            string day_Of_Session_1, day_Of_Session_2; // Mon/Tue/Wed
+            string at_Time_1, at_Time_2; //S1(7:30) S2(9:30) S3(13:30) S4(15:30)
+    
+            int maximumRegrister, number_Of_Credit;
+
+            //Enter Data
+            cout<<"Course ID: ";
+                cin.ignore();
+            getline(cin,id_Subject);
+
+            cout<<"Course Name: ";
+            getline(cin,name_Subject);
+
+            cout<<"Teacher Name: ";
+            getline(cin,teacher_Name);
+
+            cout<<"Start Date: ";
+            getline(cin,startDate);
+
+            cout<<"End Date: ";
+            getline(cin,endDate);
+
+            Input_SessionHead:
+            cout<<"Day of Session 1 (Mon/Tue/Wed/..): ";
+            getline(cin,day_Of_Session_1);
+
+            cout<<"At what time of Session 1 { S1(7:30) S2(9:30) S3(13:30) S4(15:30) }"<<endl;
+            cout<<"Enter: ";
+            getline(cin,at_Time_1);
+
+            cout<<"Day of Session 2 (Mon/Tue/Wed/..): ";
+            getline(cin,day_Of_Session_2);
+
+            cout<<"At what time of Session 2 { S1(7:30) S2(9:30) S3(13:30) S4(15:30) }"<<endl;
+            cout<<"Enter: ";
+            getline(cin,at_Time_2);
+
+            //Check if duplicated time
+            if (day_Of_Session_1 == day_Of_Session_2 && at_Time_1 == at_Time_2)
+                {
+                    cout<<"Your input time is Incorrect. Please Try Again."<<endl;
+                    system("pause");
+                    cout<<endl;
+                    goto Input_SessionHead;
+                }
+            
+            cout<<"Maximum number of student in this course: ";
+            cin>>maximumRegrister;
+
+            cout<<"Number of credits: ";
+            cin>>number_Of_Credit;
+
+            Subject_Head = new School_Year::Semester::Subject;
+
+            //Assign data
+            Subject_Head -> id_Subject = id_Subject;
+            Subject_Head -> name_Subject = name_Subject;
+            Subject_Head -> teacher_Name = teacher_Name;
+            Subject_Head -> startDate = startDate;
+            Subject_Head -> endDate = endDate;
+            Subject_Head -> day_Of_Session_1 = day_Of_Session_1;
+            Subject_Head -> at_Time_1 = at_Time_1;
+            Subject_Head -> day_Of_Session_2 = day_Of_Session_2;
+            Subject_Head -> at_Time_2 = at_Time_2;
+            Subject_Head -> maximumRegrister = maximumRegrister;
+            Subject_Head -> number_Of_Credit = number_Of_Credit;
+
+            ySemester_Cur -> yearSemesterSubjectHead = Subject_Head;
+
+            return;
+        }
+
+     //Check if Next SV_List is havent existed
+            while (Subject_Cur -> Next != nullptr) Subject_Cur = Subject_Cur -> Next;
+
+            //Create Next Classes and dont forget do store the Prev
+            Subject_Cur -> Next = new School_Year::Semester::Subject;
+            Subject_Cur -> Next -> Prev = Subject_Cur;
+            Subject_Cur = Subject_Cur -> Next;
+
+    //Check if value is being duplicated or not?
+    do
+    {
+        cout<<"Your Semster: "<<ySemester_Cur -> Term<<endl;
+
+            //Declare
+            string name_Subject, id_Subject;
+            string startDate, endDate;
+            string teacher_Name;
+            string day_Of_Session_1, day_Of_Session_2; // Mon/Tue/Wed
+            string at_Time_1, at_Time_2; //S1(7:30) S2(9:30) S3(13:30) S4(15:30)
+    
+            int maximumRegrister, number_Of_Credit;
+
+
+            //Enter Data
+            cout<<"Course ID: ";
+                cin.ignore();
+            getline(cin,id_Subject);
+
+            cout<<"Course Name: ";
+            getline(cin,name_Subject);
+
+            cout<<"Teacher Name: ";
+            getline(cin,teacher_Name);
+
+            cout<<"Start Date: ";
+            getline(cin,startDate);
+
+            cout<<"End Date: ";
+            getline(cin,endDate);
+
+            Input_SessionCur:
+
+            cout<<"Day of Session 1 (Mon/Tue/Wed/..): ";
+            getline(cin,day_Of_Session_1);
+
+            cout<<"At what time of Session 1 { S1(7:30) S2(9:30) S3(13:30) S4(15:30) }"<<endl;
+            cout<<"Enter: ";
+            getline(cin,at_Time_1);
+
+            cout<<"Day of Session 2 (Mon/Tue/Wed/..): ";
+            getline(cin,day_Of_Session_2);
+
+            cout<<"At what time of Session 2 { S1(7:30) S2(9:30) S3(13:30) S4(15:30) }"<<endl;
+            cout<<"Enter: ";
+            getline(cin,at_Time_2);
+
+            //Check if duplicated time
+            if (day_Of_Session_1 == day_Of_Session_2 && at_Time_1 == at_Time_2)
+                {
+                    cout<<"Your input time is Incorrect. Please Try Again."<<endl;
+                    system("pause");
+                    cout<<endl;
+                    goto Input_SessionCur;
+                }
+            
+            cout<<"Maximum number of student in this course: ";
+            cin>>maximumRegrister;
+
+            cout<<"Number of credits: ";
+            cin>>number_Of_Credit;
+
+            //Assign data
+            Subject_Cur -> id_Subject = id_Subject;
+            Subject_Cur -> name_Subject = name_Subject;
+            Subject_Cur -> teacher_Name = teacher_Name;
+            Subject_Head -> startDate = startDate;
+            Subject_Head -> endDate = endDate;
+            Subject_Cur -> day_Of_Session_1 = day_Of_Session_1;
+            Subject_Cur -> at_Time_1 = at_Time_1;
+            Subject_Cur -> day_Of_Session_2 = day_Of_Session_2;
+            Subject_Cur -> at_Time_2 = at_Time_2;
+            Subject_Cur -> maximumRegrister = maximumRegrister;
+            Subject_Cur -> number_Of_Credit = number_Of_Credit;
+
+
+        //Print out remind user to enter value again
+        if (!Check_Subject_Duplicated_Input(Subject_Head,Subject_Cur)) cout<<"Your data has been duplicated. Pls retry."<<endl<<endl;
+   
+    } while ( !Check_Subject_Duplicated_Input(Subject_Head,Subject_Cur) );
+
+    return;
+
+}
+
+//Create Course Import
+void Create_Course_Import(School_Year::Semester* &ySemester_Cur, School_Year::Semester::Subject* &Subject_Head)
+{
+    //Declared
+    School_Year::Semester::Subject* Subject_Cur = Subject_Head;
+
+    string name_Subject, id_Subject;
+    string startDate, endDate;
+    string teacher_Name;
+    string day_Of_Session_1, day_Of_Session_2; // Mon/Tue/Wed
+    string at_Time_1, at_Time_2; //S1(7:30) S2(9:30) S3(13:30) S4(15:30)
+
+    int maximumRegrister = 50, number_Of_Credit;
+
+    fstream  finp;
+
+    finp.open("Course_Info.csv", ios::in);
+
+    if (!finp.is_open())
+        {
+            cout<<"The file is empty, Please import the data"<<endl;
+            return;
+        }
+    while (!finp.eof())
+    {
+        if (Subject_Head == nullptr)
+        {
+            Subject_Head = new School_Year::Semester::Subject;
+
+            string line_input = "";
+            getline(finp, line_input);
+
+            //Convert str -> char*;
+            char* input = new char [ line_input.size() ];
+            strcpy(input,line_input.c_str());
+
+            //Set denim
+            const char* denim = ",";
+
+            //Get Data
+            id_Subject = strtok(input,denim);
+            name_Subject = strtok(NULL,denim);
+            teacher_Name = strtok(NULL,denim);
+            startDate = strtok(NULL,denim);
+            endDate = strtok(NULL,denim);
+            day_Of_Session_1 = strtok(NULL,denim);
+            at_Time_1 = strtok(NULL,denim);
+            day_Of_Session_2 = strtok(NULL,denim);
+            at_Time_2 = strtok(NULL,denim);
+            maximumRegrister = atoi( strtok(NULL,denim) );
+            number_Of_Credit = atoi( strtok(NULL,denim) );
+
+            //Assign
+            Subject_Head -> id_Subject =  id_Subject;
+            Subject_Head -> name_Subject = name_Subject;
+            Subject_Head -> teacher_Name = teacher_Name;
+            Subject_Head -> startDate = startDate;
+            Subject_Head -> endDate = endDate;
+            Subject_Head -> day_Of_Session_1 = day_Of_Session_1;
+            Subject_Head -> at_Time_1 = at_Time_1;
+            Subject_Head -> day_Of_Session_2 = day_Of_Session_2;
+            Subject_Head -> at_Time_2 = at_Time_2;
+            Subject_Head -> maximumRegrister = maximumRegrister;
+            Subject_Head ->  number_Of_Credit = number_Of_Credit;
+
+            //Head
+            ySemester_Cur -> yearSemesterSubjectHead = Subject_Head;
+
+            continue; 
+        }
+
+        //Get Data
+        string line_input = "";
+        getline(finp, line_input);
+
+        //Convert str -> char*;
+        char* input = new char [ line_input.size() ];
+        strcpy(input,line_input.c_str());
+
+        //Set denim
+        const char* denim = ",";
+
+        //Create new node
+        while (Subject_Cur -> Next != nullptr) Subject_Cur = Subject_Cur -> Next;
+        Subject_Cur -> Next = new School_Year::Semester::Subject;
+        Subject_Cur = Subject_Cur -> Next;
+
+        //Get Data
+        id_Subject = strtok(input,denim);
+        name_Subject = strtok(NULL,denim);
+        teacher_Name = strtok(NULL,denim);
+        startDate = strtok(NULL,denim);
+        endDate = strtok(NULL,denim);
+        day_Of_Session_1 = strtok(NULL,denim);
+        at_Time_1 = strtok(NULL,denim);
+        day_Of_Session_2 = strtok(NULL,denim);
+        at_Time_2 = strtok(NULL,denim);
+        maximumRegrister = atoi( strtok(NULL,denim) );
+        number_Of_Credit = atoi( strtok(NULL,denim) );
+
+        //Assign
+        Subject_Cur -> id_Subject =  id_Subject;
+        Subject_Cur -> name_Subject = name_Subject;
+        Subject_Cur -> teacher_Name = teacher_Name;
+        Subject_Cur -> startDate = startDate;
+        Subject_Cur -> endDate = endDate;
+        Subject_Cur -> day_Of_Session_1 = day_Of_Session_1;
+        Subject_Cur -> at_Time_1 = at_Time_1;
+        Subject_Cur -> day_Of_Session_2 = day_Of_Session_2;
+        Subject_Cur -> at_Time_2 = at_Time_2;
+        Subject_Cur -> maximumRegrister = maximumRegrister;
+        Subject_Cur ->  number_Of_Credit = number_Of_Credit;
+    }
+
+    finp.close();
+
+    return;
+}
+
 //View_Semester
 void View_Semester(string user_School_Year,School_Year::Semester* &Semester_Head)
 {
@@ -904,6 +1373,7 @@ void View_Semester(string user_School_Year,School_Year::Semester* &Semester_Head
     bool Check_Ignore = false;
 
     //Show Semster Table
+    Showing_Semester:
     if (Semester_Head == nullptr) 
         {
             cout<<"Nothing being added"<<endl;
@@ -914,7 +1384,138 @@ void View_Semester(string user_School_Year,School_Year::Semester* &Semester_Head
                 {
                     Show_Semester_Table(user_School_Year,Semester_Head);
                 }
+        
+        string user_Choose_Temp ="";
+        int user_Choose_Semester;
+        if (!Check_Ignore) cin.ignore();
+    do
+    {
+            cout<<"Which Semester you want to view info. Ex: 1/2/3"<<endl;
+            cout<<"Note: If you dont want to choose any class pls Enter 'N' "<<endl;
+            cout<<"Enter answer: ";
+
+            getline(cin,user_Choose_Temp);
+
+        if (user_Choose_Temp == "N") return;
+
+        user_Choose_Semester = atoi ( user_Choose_Temp .c_str());
+
+        //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
+        if (Check_Semester_Duplicated(Semester_Head,user_Choose_Semester)) 
+        {
+            cout<<"Your input Semester: "<<user_Choose_Semester<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            Check_Ignore = true;
+            goto Showing_Semester;
+        }
+    } while (Check_Semester_Duplicated(Semester_Head,user_Choose_Semester));
+    
+    //Menu Course
+    int user_Choose =  0;
+    School_Year::Semester* Semester_Cur = find_Semester(Semester_Head,user_Choose_Semester);
+    School_Year::Semester::Subject* Course_Head = Semester_Cur -> yearSemesterSubjectHead;
+
+    while (user_Choose != 5)
+    {
+        cout<<endl<<endl;
+
+        //Semester Table
+        Show_Semester_Table(user_School_Year,Semester_Head);
+
+        if (Course_Head != nullptr)
+        {
+            Show_Subject_Table(to_string(user_Choose_Semester),Course_Head);
+        }
+
+        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
+        cout<<"             1: View Info Course In Semester: "<<user_Choose_Semester<<endl;
+        cout<<"             2: Create Course List For Semester: "<<user_Choose_Semester<<endl;
+        cout<<"             3: Adjust Course List In Semester: "<<user_Choose_Semester<<endl;
+        cout<<"             4: Delete Course In Semester: "<<user_Choose_Semester<<endl;
+        cout<<"             5: Back"<<endl;
+        cout<<"             Your choice: "; 
+
+        cin>>user_Choose;
+
+        cout<<endl;
+
+        //Switch user choose
+        switch (user_Choose)
+        {
+        //View Course
+            case 1:
+            {
+                //Declare
+                    School_Year::Semester* Semester_Cur = find_Semester(Semester_Head,user_Choose_Semester);
+
+                    //Functions View_SV_List
+                    View_Course(to_string(user_Choose_Semester), Semester_Cur -> yearSemesterSubjectHead);
+
+
+                continue;
+
+                break;
+            }
+
+        //Create Course
+            case 2:
+            {
+                //Ask user whether he want to import a csv or manual
+                    int user_Prefer = 0;
+                    cout<<"\t Which one do you prefer: Manual (1) or Quick Import a CSV File (2)"<<endl;
+                    cout<<"Your answer: ";
+                    cin>>user_Prefer;
+
+                    switch (user_Prefer)
+                        {
+                        case 1:
+                        {
+                            //Declare
+                            School_Year::Semester* Semester_Cur = find_Semester(Semester_Head,user_Choose_Semester);
+
+                            //Functions Create_SV_List
+                            Create_Course_Manual (Semester_Cur,Course_Head);
+
+                            break;
+                        }
+                        
+                        case 2:
+                        {
+                            //Notice and rule
+                            cout<<"To import a CSV there is a rule: Course Id, Course Name, Teacher Name, Number of credits, Maximum student, Day of week (Mon/Tue/..), At time (S1/S2/S3...)"<<endl;
+                            sleep_until( system_clock::now() + seconds(1) );
+                            cout<<"Notice: If u havent Import in Course_Info.csv, now it's your time! then continue"<<endl;
+
+                            system("pause");
+
+                            //Declare
+                            School_Year::Semester* Semester_Cur = find_Semester(Semester_Head,user_Choose_Semester);
+
+                            //Functions Create_SV_List
+                            Create_Course_Import (Semester_Cur,Course_Head);
+
+                            break;
+                        }
+                        
+                        default:
+                            break;
+                        }
+                    
+                    continue;
+
+                    break;
+
+            }
+        
+        default:
+            break;
+        }
+    }
+    cout<<"Ending Menu Semester"<<endl;
     system("pause");
+
 }
 
 //Create Semester
@@ -942,6 +1543,12 @@ void Create_Semester(School_Year* &Year_Cur, School_Year::Semester* &Semester_He
 
         Semester_Head = new School_Year::Semester;
         Semester_Head -> Term = user_input;
+
+        cin.ignore();
+        cout<<"Enter Start Date For This Semester: "; 
+        getline(cin,Semester_Head -> start_Date);
+        cout<<"Enter End Date For This Semester: "; 
+        getline(cin,Semester_Head -> end_Date);
 
         Year_Cur -> yearSemesterHead = Semester_Head;
 
@@ -975,6 +1582,13 @@ void Create_Semester(School_Year* &Year_Cur, School_Year::Semester* &Semester_He
     Semester_Cur -> Next = new School_Year::Semester;
     Semester_Cur = Semester_Cur -> Next;
     Semester_Cur -> Term = user_input;
+
+    //Adding Start date, End Date
+    cin.ignore();
+    cout<<"Enter Start Date For This Semester: "; 
+    getline(cin,Semester_Cur -> start_Date);
+    cout<<"Enter End Date For This Semester: "; 
+    getline(cin,Semester_Cur -> end_Date);
 
     return;
 }
@@ -1057,7 +1671,7 @@ void View_Year(School_Year* &sYear_Head)
         }
         
         //Semester table
-        if (Semester_Head != nullptr && user_Choose == 4)
+        if (Semester_Head != nullptr && user_Choose == 5 || user_Choose == 6 || user_Choose == 7 || user_Choose == 8)
         {
             Show_Semester_Table(user_choosed_Year,Semester_Head);
         }
@@ -1377,6 +1991,9 @@ void Delete_Year(School_Year* &sYear_Head)
 
 
     School_Year* Year_Cur = find_School_Year(sYear_Head,user_choosed_Year);
+
+    //Save for tommorrow
+    Delete_Element_Of_Year(Year_Cur);
 
     if (Year_Cur == sYear_Head && Year_Cur -> Next == nullptr)
     {
