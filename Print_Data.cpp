@@ -33,10 +33,12 @@ void outInfor(Year* yearHead)
     OutData.open("Year_Semester.csv",ios::out);
     OutData<<"Semester info"<<endl;
     for(Year::Semester*year_Semester_Cur=yearHead->yearSemesterHead;year_Semester_Cur->sNext!=nullptr;year_Semester_Cur=year_Semester_Cur->sNext)
-    {
-        OutData<<"Term "<<year_Semester_Cur->Term<<endl;
-        OutData<<"Sv Semester Mark "<<endl;
+    { 
         string tmp=""",""";
+        OutData<<"Term "+tmp;
+        OutData<<year_Semester_Cur->Term <<endl;
+        OutData<<"Sv Semester Mark "<<endl;
+        
         for (Year::Semester::SV_List* year_Semester_SvListCur = year_Semester_Cur -> yearSemesterSv_ListHead; year_Semester_SvListCur -> svNext != nullptr;year_Semester_SvListCur = year_Semester_SvListCur -> svNext )
         {
             OutData<<to_string(year_Semester_SvListCur->no)+tmp+to_string(year_Semester_SvListCur->idStudent)+tmp+to_string(year_Semester_SvListCur->GPA)+tmp+to_string(year_Semester_SvListCur->averageMark)<<endl;

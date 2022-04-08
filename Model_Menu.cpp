@@ -319,7 +319,7 @@ void Show_Subject_Table(string user_Semester,School_Year::Semester::Subject* Sub
 {
     system("CLS");
     cout<<"| Semester\t|"<<user_Semester<<"\t|"<<endl<<endl;
-    cout<<"      \t| Course ID\t| Course Name\t| Teacher Name\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student\t|"<<endl;
+    cout<<"      \t| Course ID\t| Course Name\t| Teacher Name\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Maximum Student\t| Number of credits\t|"<<endl;
     cout<<"      \t";
     
     while (Subject_Head != nullptr)
@@ -338,7 +338,7 @@ void Show_Subject_Table(string user_Semester,School_Year::Semester::Subject* Sub
         if (Subject_Head -> at_Time_2 == "S1" ) cout<<"7:30 - 9:29\t| ";
         if (Subject_Head -> at_Time_2 == "S2" ) cout<<"9:30 - 11:29\t| ";
 
-        cout<<Subject_Head -> number_Of_Credit<<"\t\t| "<<Subject_Head -> maximumRegrister<<"\t\t|"<<endl;
+        cout<<Subject_Head -> number_Of_Credit<<"\t\t\t| "<<Subject_Head -> maximumRegrister<<"\t\t|"<<endl;
         cout<<"      \t";
 
         Subject_Head = Subject_Head -> Next;

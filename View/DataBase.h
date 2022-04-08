@@ -154,7 +154,6 @@ struct School_Year {
                 
                      int maximumRegrister = 50, number_Of_Credit;
 
-
                       struct Student_listMark {
 
                         int no , idStudent , midTermMark, finalTermMark , otherMark, totalMark;
