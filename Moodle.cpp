@@ -4,33 +4,33 @@ int main() {
 
 //Changeable data - (●'◡'●)
 
-    //Declare 
-    School_Year* sYear_Head = nullptr;
+    // //Declare 
+    // School_Year* sYear_Head = nullptr;
 
-    //Menu
-    Menu_School_Year(sYear_Head);
+    // //Menu
+    // Menu_School_Year(sYear_Head);
 
-    //Delete
-    Delete_School_Year(sYear_Head);
+    // //Delete
+    // Delete_School_Year(sYear_Head);
     
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // //Cant Reset Data
-//     //Declare the apocalypse   
-//     Year* yearHead = nullptr;
+    //Declare the apocalypse   
+    Year* yearHead = nullptr;
 
-//     //Read \- O v O -/
-//     readFileYear(yearHead);
+    //Read \- O v O -/
+    readFileYear(yearHead);
 
-//    // outInfor(yearHead);
+    outInfor(yearHead);
 
-//     // //Dizzplay
+    // //Dizzplay
     
-//     displayScreen(yearHead); // U can use if u want to see in the terminal
-//     // displayFile(yearHead); //Otherwise display in file is much better
+    displayScreen(yearHead); // U can use if u want to see in the terminal
+    // displayFile(yearHead); //Otherwise display in file is much better
 
-//     // //Delete, avoid mém mo ri lít kinh
-//     // Delete_Data(yearHead);
+    // //Delete, avoid mém mo ri lít kinh
+    // Delete_Data(yearHead);
     
     return 0;
 }
