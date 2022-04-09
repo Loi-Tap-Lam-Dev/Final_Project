@@ -1,6 +1,6 @@
 #include "lib.h"
 
-//Noted task havent finished: Still need Check line 1401 functions delete year and Delete Data. Test more case about delete element
+//Noted task havent finished: Adjust SvList, ADjust/Delete Semsetr
 //Noted: Try to make orderd linked list
 
 //Check Sv_List empty - ┌( ಠ_ಠ)┘
@@ -96,6 +96,7 @@ bool Check_Semester_Duplicated(School_Year::Semester* Semester_Cur, int temp)
     return true;
 }
 
+//Check Subject Input
 bool Check_Subject_Duplicated_Input(School_Year::Semester::Subject* Subject_Head,School_Year::Semester::Subject* Subject_Cur)
 {
     while (Subject_Head -> Next != nullptr)
@@ -113,6 +114,7 @@ bool Check_Subject_Duplicated_Input(School_Year::Semester::Subject* Subject_Head
             {
                 if (Subject_Head -> at_Time_2  == Subject_Cur -> at_Time_2 )  return false;
             }
+        Subject_Head = Subject_Head -> Next;
     }
     return true;
 }
@@ -122,6 +124,8 @@ bool Check_Subject_Duplicated(School_Year::Semester::Subject* Subject_Head,Schoo
 {
     while (Subject_Head != nullptr)
     {
+        if (Subject_Cur == Subject_Head ) goto Next;
+
         if (Subject_Head -> id_Subject == Subject_Cur -> id_Subject) return false;
 
         if (Subject_Head -> name_Subject == Subject_Cur -> name_Subject) return false;
@@ -135,6 +139,9 @@ bool Check_Subject_Duplicated(School_Year::Semester::Subject* Subject_Head,Schoo
             {
                 if (Subject_Head -> at_Time_2  == Subject_Cur -> at_Time_2 )  return false;
             }
+
+        Next:
+        Subject_Head = Subject_Head -> Next;
     }
     return true;
 }
@@ -275,7 +282,7 @@ void Show_Semester_Table(string user_School_Year,School_Year::Semester* Semester
 {
      //Show the table full of School_Year - 👌
         system("CLS");
-        cout<<"School_Year:    | "<<atoi(user_School_Year.c_str())<<"-"<<atoi(user_School_Year.c_str()) + 1<<"\t|"<<endl;
+        cout<<"| School_Year:    | "<<atoi(user_School_Year.c_str())<<"-"<<atoi(user_School_Year.c_str()) + 1<<"\t|"<<endl;
         cout<<"   | Semester   | Start Date\t| End Date\t|"<<endl;
         cout<<"   | ";
         School_Year::Semester* Semester_Cur = Semester_Head;
@@ -319,12 +326,19 @@ void Show_Subject_Table(string user_Semester,School_Year::Semester::Subject* Sub
 {
     system("CLS");
     cout<<"| Semester\t|"<<user_Semester<<"\t|"<<endl<<endl;
-    cout<<"      \t| Course ID\t| Course Name\t| Teacher Name\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student\t|"<<endl;
-    cout<<"      \t";
+    cout<<"\t| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student|"<<endl;
+    cout<<"\t";
     
     while (Subject_Head != nullptr)
     {
-        cout<<"| "<<Subject_Head -> id_Subject<<"\t\t| "<<Subject_Head -> name_Subject<<"\t\t| "<<Subject_Head -> teacher_Name<<"\t| "<<Subject_Head -> startDate<<"\t| "<<Subject_Head -> endDate<<"\t| "<<Subject_Head -> day_Of_Session_1<<"\t\t| ";
+        cout<<"| "<<Subject_Head -> id_Subject<<"\t\t| "<<Subject_Head -> name_Subject<<"\t\t| ";
+
+        //Teacher Name
+        if ((Subject_Head -> teacher_Name).size() > 14) cout<<Subject_Head -> teacher_Name<<"\t| ";
+        else cout<<Subject_Head -> teacher_Name<<"\t\t| ";
+        
+        //Start date, Endate
+        cout<<Subject_Head -> startDate<<"\t| "<<Subject_Head -> endDate<<"\t| "<<Subject_Head -> day_Of_Session_1<<"\t\t| ";
 
         if (Subject_Head -> at_Time_1 == "S3" ) cout<<"13:30 - 15:29\t| ";
         if (Subject_Head -> at_Time_1 == "S4" ) cout<<"15:30 - 17:29\t| ";
@@ -338,11 +352,58 @@ void Show_Subject_Table(string user_Semester,School_Year::Semester::Subject* Sub
         if (Subject_Head -> at_Time_2 == "S1" ) cout<<"7:30 - 9:29\t| ";
         if (Subject_Head -> at_Time_2 == "S2" ) cout<<"9:30 - 11:29\t| ";
 
-        cout<<Subject_Head -> number_Of_Credit<<"\t\t| "<<Subject_Head -> maximumRegrister<<"\t\t|"<<endl;
-        cout<<"      \t";
+        cout<<Subject_Head -> number_Of_Credit<<"\t\t\t| "<<Subject_Head -> maximumRegrister<<" \t\t|"<<endl;
+        cout<<"\t";
 
         Subject_Head = Subject_Head -> Next;
     }
+
+    cout<<endl; 
+}
+
+//Show Specific Subject
+void Show_Specific_Subject_Table(string user_Semester,School_Year::Semester::Subject* Subject_Head,School_Year::Semester::Subject* Subject_Cur)
+{
+    system("CLS");
+    cout<<"You Are Choosing: "<<endl<<endl;
+    cout<<"      \t| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student|"<<endl;
+    cout<<"      \t";
+    
+    while (Subject_Head != nullptr)
+    {
+        if (Subject_Head != Subject_Cur) 
+        {
+            Subject_Head = Subject_Head -> Next;
+            continue;
+        }
+
+        cout<<"| "<<Subject_Head -> id_Subject<<"\t\t| "<<Subject_Head -> name_Subject<<"\t\t| ";
+
+        //Teacher Name
+        if ((Subject_Head -> teacher_Name).size() > 14) cout<<Subject_Head -> teacher_Name<<"\t| ";
+        else cout<<Subject_Head -> teacher_Name<<"\t\t| ";
+        
+        //Start date, Endate
+        cout<<Subject_Head -> startDate<<"\t| "<<Subject_Head -> endDate<<"\t| "<<Subject_Head -> day_Of_Session_1<<"\t\t| ";
+
+        if (Subject_Head -> at_Time_1 == "S3" ) cout<<"13:30 - 15:29\t| ";
+        if (Subject_Head -> at_Time_1 == "S4" ) cout<<"15:30 - 17:29\t| ";
+        if (Subject_Head -> at_Time_1 == "S1" ) cout<<"7:30 - 9:29\t| ";
+        if (Subject_Head -> at_Time_1 == "S2" ) cout<<"9:30 - 11:29\t| ";
+
+        cout<<Subject_Head -> day_Of_Session_2<<"\t\t| ";
+
+        if (Subject_Head -> at_Time_2 == "S3" ) cout<<"13:30 - 15:29\t| ";
+        if (Subject_Head -> at_Time_2 == "S4" ) cout<<"15:30 - 17:29\t| ";
+        if (Subject_Head -> at_Time_2 == "S1" ) cout<<"7:30 - 9:29\t| ";
+        if (Subject_Head -> at_Time_2 == "S2" ) cout<<"9:30 - 11:29\t| ";
+
+        cout<<Subject_Head -> number_Of_Credit<<"\t\t\t| "<<Subject_Head -> maximumRegrister<<" \t\t|"<<endl;
+        cout<<"\t";
+        cout<<endl; 
+
+        return;
+    } 
 }
 
 //View Student List
@@ -566,6 +627,8 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
 
     return ;
 }
+
+//Adjust Sv List
 
 //Delete SV_list
 void Delete_Sv_List(School_Year::Year_Class* &Class_Cur, School_Year::Year_Class::SV_List* &Sv_Head)
@@ -1249,9 +1312,7 @@ void Create_Course_Manual(School_Year::Semester* &ySemester_Cur, School_Year::Se
 //Create Course Import
 void Create_Course_Import(School_Year::Semester* &ySemester_Cur, School_Year::Semester::Subject* &Subject_Head)
 {
-    //Declared
-    School_Year::Semester::Subject* Subject_Cur = Subject_Head;
-
+    //Declare
     string name_Subject, id_Subject;
     string startDate, endDate;
     string teacher_Name;
@@ -1271,6 +1332,9 @@ void Create_Course_Import(School_Year::Semester* &ySemester_Cur, School_Year::Se
         }
     while (!finp.eof())
     {
+         //Declared
+        School_Year::Semester::Subject* Subject_Cur = Subject_Head;
+
         if (Subject_Head == nullptr)
         {
             Subject_Head = new School_Year::Semester::Subject;
@@ -1363,6 +1427,425 @@ void Create_Course_Import(School_Year::Semester* &ySemester_Cur, School_Year::Se
     finp.close();
 
     return;
+}
+
+//Adjust Course 
+void Adjust_Course(School_Year::Semester* ySemester_Cur, School_Year::Semester::Subject* &Subject_Head)
+{
+    if (ySemester_Cur == nullptr)
+    {
+        cout<<"There are nothing to be adjusted. Please Create One";
+        system("pause");
+        return;
+    }
+
+    Show_Subject_Table(to_string(ySemester_Cur -> Term), Subject_Head);
+    bool Check_Ignore = false;
+    string user_Choose_Course = "";
+    School_Year::Semester::Subject* Subject_Temp = new School_Year::Semester::Subject;
+        
+        cin.ignore();
+    do
+    {
+        //Menu of User choice about School-Year they want to view
+            cout<<"Which Course you want to Adjust. Ex: PHY0001 "<<endl;
+            cout<<"Note: If you dont want to choose any Course pls Enter 'N' "<<endl;
+            cout<<"Enter Course ID: ";
+
+            getline(cin,user_Choose_Course);
+
+
+        if (user_Choose_Course == "N") return;
+
+        Subject_Temp -> id_Subject = user_Choose_Course;
+
+        //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
+        if (Check_Subject_Duplicated(Subject_Head,Subject_Temp)) 
+        {
+            cout<<"Your input Course: "<<Subject_Temp -> id_Subject<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            cout<<"\n";
+        }
+    } while (Check_Subject_Duplicated(Subject_Head,Subject_Temp));
+
+
+    cout<<"\n";
+    School_Year::Semester::Subject* Subject_ToFind = new School_Year::Semester::Subject;
+    Subject_ToFind -> id_Subject = user_Choose_Course;
+
+    School_Year::Semester::Subject* Subject_Cur = find_Subject(Subject_Head,Subject_ToFind);
+
+    //Delete 
+    delete Subject_ToFind;
+
+    //Declare
+    string temp = "Y";
+
+    do
+    {
+        //Show table
+        Show_Specific_Subject_Table(to_string(ySemester_Cur -> Term),Subject_Head,Subject_Cur);
+
+        int user_Choice; 
+        cout<<"What do you want to change?"<<endl;
+        cout<<"     1: Course ID."<<endl;
+        cout<<"     2: Course Name."<<endl;
+        cout<<"     3: Teacher Name."<<endl;
+        cout<<"     4: Start Date."<<endl;
+        cout<<"     5: End Date."<<endl;
+        cout<<"     6: Day Of Session 1."<<endl;
+        cout<<"     7: Time of Day's Session 1."<<endl;
+        cout<<"     8: Day Of Session 2."<<endl;
+        cout<<"     9: Time of Day's Session 2."<<endl;
+        cout<<"     10: Number of Credits."<<endl;
+        cout<<"     11: Maximum Student Number."<<endl;
+        cout<<"     12: Back."<<endl;
+        cout<<"     Your answer: ";
+        cin>>user_Choice;
+        
+        cout<<"\n";
+
+            cin.ignore();
+            Subject_ToFind = new School_Year::Semester::Subject;
+
+        switch (user_Choice)
+        {
+            case 1:
+            {
+                cout<<"What do you want to change Course ID, from "<<Subject_Cur -> id_Subject<<" to?"<<endl;
+                cout<<"Enter Course ID: ";
+                getline(cin,Subject_ToFind -> id_Subject);
+
+                if (!Check_Subject_Duplicated(Subject_Head,Subject_ToFind))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+                        break;
+                    }
+
+                Subject_Cur -> id_Subject = Subject_ToFind -> id_Subject;
+
+                break;
+            }
+            
+            case 2:
+            {
+                cout<<"What do you want to change Course Name, from "<<Subject_Cur -> name_Subject<<" to?"<<endl;
+                cout<<"Enter Course Name: ";
+                getline(cin,Subject_ToFind -> name_Subject);
+
+                if (!Check_Subject_Duplicated(Subject_Head,Subject_ToFind))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+                        break;
+                    }
+
+                Subject_Cur -> name_Subject = Subject_ToFind -> name_Subject ;
+
+                break;
+            }
+
+            case 3:
+            {
+                cout<<"What do you want to change Teacher Name, from "<<Subject_Cur -> teacher_Name<<" to?"<<endl;
+                cout<<"Enter Teacher Name: ";
+                getline(cin,Subject_ToFind -> teacher_Name);
+
+                if (!Check_Subject_Duplicated(Subject_Head,Subject_ToFind))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+                        break;
+                    }
+
+                Subject_Cur -> teacher_Name = Subject_ToFind -> teacher_Name ;
+
+                break;
+            }
+
+            case 4:
+            {
+                cout<<"What do you want to change Start Date Of Course, from "<<Subject_Cur -> startDate<<" to?"<<endl;
+                cout<<"Enter Start Date Of Course: ";
+                getline(cin,Subject_ToFind -> startDate);
+
+
+                if (!Check_Subject_Duplicated(Subject_Head,Subject_ToFind))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+                        break;
+                    }
+
+                Subject_Cur -> startDate = Subject_ToFind -> startDate ;
+
+                break;
+            }
+
+            case 5:
+            {
+                cout<<"What do you want to change End Date Of Course, from "<<Subject_Cur -> endDate<<" to?"<<endl;
+                cout<<"Enter End Date Of Course: ";
+                getline(cin,Subject_ToFind -> endDate);
+
+                if (!Check_Subject_Duplicated(Subject_Head,Subject_ToFind))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+                        break;
+                    }
+
+                Subject_Cur -> endDate = Subject_ToFind -> endDate ;
+
+                break;
+            }
+
+            case 6:
+            {
+                cout<<"What do you want to change Day of Session 1 in week, from "<<Subject_Cur -> day_Of_Session_1<<" to?"<<endl;
+                cout<<"Enter Day of Session 1 in week: ";
+                getline(cin,Subject_ToFind -> day_Of_Session_1);
+
+                if (!Check_Subject_Duplicated(Subject_Head,Subject_ToFind))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+                        break;
+                    }
+
+                Subject_Cur -> day_Of_Session_1 = Subject_ToFind -> day_Of_Session_1 ;
+
+                break;
+            }
+
+            case 7:
+            {
+                cout<<"What do you want to change Time of Session 1, from "<<Subject_Cur -> at_Time_1<<" to?"<<endl;
+                cout<<"Enter Time of Session 1: ";
+                getline(cin,Subject_ToFind -> at_Time_1);
+
+                if (!Check_Subject_Duplicated(Subject_Head,Subject_ToFind))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+                        break;
+                    }
+
+                Subject_Cur -> at_Time_1 = Subject_ToFind -> at_Time_1 ;
+
+                break;
+            }
+
+            case 8:
+            {
+                cout<<"What do you want to change Day of Session 2 in week, from "<<Subject_Cur -> day_Of_Session_2<<" to?"<<endl;
+                cout<<"Enter Day of Session 2 in week: ";
+                getline(cin,Subject_ToFind -> day_Of_Session_2);
+
+                if (!Check_Subject_Duplicated(Subject_Head,Subject_ToFind))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+                        break;
+                    }
+
+                Subject_Cur -> day_Of_Session_2 = Subject_ToFind -> day_Of_Session_2 ;
+
+                break;
+            }
+
+            case 9:
+            {
+                cout<<"What do you want to change Time of Session 2, from "<<Subject_Cur -> at_Time_2<<" to?"<<endl;
+                cout<<"Enter Time of Session 2: ";
+                getline(cin,Subject_ToFind -> at_Time_2);
+
+                if (!Check_Subject_Duplicated(Subject_Head,Subject_ToFind))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+                        break;
+                    }
+
+                Subject_Cur -> at_Time_2 = Subject_ToFind -> at_Time_2 ;
+
+                break;
+            }
+
+            case 10:
+            {
+                cout<<"What do you want to change Number Of Credit, from "<<Subject_Cur -> number_Of_Credit<<" to?"<<endl;
+                cout<<"Enter Number Of Credit: ";
+                cin>>Subject_ToFind -> number_Of_Credit;
+                cin.ignore();
+
+                if (!Check_Subject_Duplicated(Subject_Head,Subject_ToFind))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+                        break;
+                    }
+
+
+                Subject_Cur -> number_Of_Credit = Subject_ToFind -> number_Of_Credit ;
+
+                break;
+            }
+
+            case 11:
+            {
+                cout<<"What do you want to change Maximum Student Registration, from "<<Subject_Cur -> maximumRegrister<<" to?"<<endl;
+                cout<<"Enter Maximum Student Registration: ";
+                cin>>Subject_ToFind -> maximumRegrister;
+                cin.ignore();
+
+                if (!Check_Subject_Duplicated(Subject_Head,Subject_ToFind))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+                        break;
+                    }
+
+                Subject_Cur -> maximumRegrister = Subject_ToFind -> maximumRegrister ;
+
+                break;
+            }
+
+            default:
+                {
+                    system("pause");
+                    return;
+                    break;
+                }
+        }
+
+        
+        if (Check_Subject_Duplicated(Subject_Head,Subject_ToFind))
+        {
+            cout<<endl;
+            cout<<"Continue To Change Info Of This Course?"<<endl;
+            cout<<"Enter (Y/N): "; 
+            getline(cin,temp);
+        }
+
+    } while (!Check_Subject_Duplicated(Subject_Head, Subject_ToFind) && temp == "Y");
+    
+
+    cout<<"\n";
+    cout<<"Change Success";
+
+    system("pause");
+    return;
+}
+
+//Delete Course
+void Delete_Course(School_Year::Semester* &ySemester_Cur, School_Year::Semester::Subject* &Subject_Head)
+{
+    if (Subject_Head == nullptr)
+    {
+        cout<<"There are nothing to be deleted. Please Create One.";
+        system("pause");
+        return;
+    }
+
+    Show_Subject_Table(to_string(ySemester_Cur -> Term), Subject_Head);
+    string user_Choose_Course = "";
+    School_Year::Semester::Subject* Subject_Temp = new School_Year::Semester::Subject;
+        
+    cin.ignore();
+    do
+    {
+        //Menu of User choice about School-Year they want to view
+            cout<<"Which Course you want to Delete, Enter Course ID. Ex: PHY0001 "<<endl;
+            cout<<"Note: If you dont want to choose any Course pls Enter 'N' "<<endl;
+            cout<<"Enter Course ID: ";
+
+            getline(cin,user_Choose_Course);
+
+
+        if (user_Choose_Course == "N") return;
+
+        Subject_Temp -> id_Subject = user_Choose_Course;
+
+        //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
+        if (Check_Subject_Duplicated(Subject_Head,Subject_Temp)) 
+        {
+            cout<<"Your input Course: "<<Subject_Temp -> id_Subject<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            cout<<"\n";
+        }
+    } while (Check_Subject_Duplicated(Subject_Head,Subject_Temp));
+
+    School_Year::Semester::Subject* Subject_Cur = find_Subject(Subject_Head,Subject_Temp);
+
+    //Delete all element
+    Delete_Element_Of_Subject(Subject_Cur,2);
+
+    if (Subject_Cur == Subject_Head)
+    {
+        if (Subject_Cur -> Next == nullptr)
+            {
+                Subject_Head = nullptr;
+                ySemester_Cur -> yearSemesterSubjectHead = Subject_Head;
+
+                system("pause");
+                return;
+            }
+
+        Subject_Head = Subject_Head -> Next;
+        ySemester_Cur -> yearSemesterSubjectHead = Subject_Head;
+
+        system("pause");
+        return;
+    }
+
+    School_Year::Semester::Subject* Temp_Sub = Subject_Cur;
+
+    Subject_Cur ->  Prev -> Next = Temp_Sub -> Next;
+
+    delete Temp_Sub;
+
+    system("pause");
+    return;
+
 }
 
 //View_Semester
@@ -1508,6 +1991,34 @@ void View_Semester(string user_School_Year,School_Year::Semester* &Semester_Head
 
             }
         
+        case 3:
+        {
+
+            //Declare
+            School_Year::Semester* Semester_Cur = find_Semester(Semester_Head,user_Choose_Semester);
+
+            //Functions Adjust Course
+            Adjust_Course(Semester_Cur,Course_Head);
+
+            continue;
+
+            break;
+        }
+
+        case 4:
+        {
+
+            //Declare
+            School_Year::Semester* Semester_Cur = find_Semester(Semester_Head,user_Choose_Semester);
+
+            //Functions Delete Course
+            Delete_Course(Semester_Cur,Course_Head);
+
+            continue;
+
+            break;
+        }
+
         default:
             break;
         }
@@ -1592,6 +2103,9 @@ void Create_Semester(School_Year* &Year_Cur, School_Year::Semester* &Semester_He
     return;
 }
 
+//Adjust Semster
+
+//Delete Semster
 //View Year - ╰(*°▽°*)╯ 
 //This contain Menu Classes of SChool-Year
 void View_Year(School_Year* &sYear_Head)
