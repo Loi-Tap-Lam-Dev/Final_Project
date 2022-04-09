@@ -3,6 +3,21 @@
 //Noted task havent finished: Adjust SvList, ADjust/Delete Semsetr
 //Noted: Try to make orderd linked list
 
+//Check is there enough 3 term of Semester
+int Check_Num_Semester(School_Year::Semester* Semester_Head)
+{
+    int count = 0;
+
+    while (Semester_Head != nullptr)
+    {
+        count ++;
+        Semester_Head = Semester_Head -> Next;
+        
+    }
+    
+    return count;
+}
+
 //Check Sv_List empty - ┌( ಠ_ಠ)┘
 bool Check_Sv_List(School_Year::Year_Class::SV_List* Sv_Head)
 {
@@ -294,18 +309,18 @@ void Show_Semester_Table(string user_School_Year,School_Year::Semester* Semester
                
                 case 1:
                 {
-                    cout<<Semester_Cur -> Term<<" (Fall)\t| "<<Semester_Cur -> start_Date<<"\t| "<<Semester_Cur -> end_Date<<"\t|";
+                    cout<<Semester_Cur -> Term<<" (Fall)\t| "<<Semester_Cur -> start_Date<<"\t\t| "<<Semester_Cur -> end_Date<<"\t\t|";
                     break;
                 }
 
                 case 2:
                 {
-                    cout<<Semester_Cur -> Term<<" (Summer)\t| "<<Semester_Cur -> start_Date<<"\t| "<<Semester_Cur -> end_Date<<"\t|";
+                    cout<<Semester_Cur -> Term<<" (Summer)\t| "<<Semester_Cur -> start_Date<<"\t\t| "<<Semester_Cur -> end_Date<<"\t\t|";
                     break;
                 }
                 
                 default:
-                    cout<<Semester_Cur -> Term<<" (Autumn)\t| "<<Semester_Cur -> start_Date<<"\t| "<<Semester_Cur -> end_Date<<"\t|";
+                    cout<<Semester_Cur -> Term<<" (Autumn)\t| "<<Semester_Cur -> start_Date<<"\t\t| "<<Semester_Cur -> end_Date<<"\t\t|";
                     break;
                 }
                 
@@ -1768,7 +1783,7 @@ void Adjust_Course(School_Year::Semester* ySemester_Cur, School_Year::Semester::
     
 
     cout<<"\n";
-    cout<<"Change Success";
+    cout<<"Change Success"<<endl;
 
     system("pause");
     return;
@@ -2041,11 +2056,18 @@ void Create_Semester(School_Year* &Year_Cur, School_Year::Semester* &Semester_He
         //Input
         do
         {
-            cout<<"Remember, there are only 3 semster per School Year."<<endl;
+            cout<<"Remember, there are only 3 semster per School Year. If you want to back, Enter 0"<<endl;
             cout<<"Enter term (1/2/3): ";
             cin>>user_input;
 
             cout<<endl;
+
+            if (user_input == 0) 
+            {
+                system("pause");
+                return;
+            }
+
             if (!Check_Semester_Duplicated(Semester_Head,user_input)) 
             cout<<"Your data has been duplicated. Pls retry."<<endl<<endl;
 
@@ -2082,7 +2104,7 @@ void Create_Semester(School_Year* &Year_Cur, School_Year::Semester* &Semester_He
         } while (!Check_Semester_Duplicated(Semester_Head,user_input));
 
     //One school year only contain 3 semester
-     if (Semester_Cur -> Term == 3) 
+     if (Check_Num_Semester(Semester_Head) == 3) 
         {
             cout<<"There enough 3 semester in this school year. Thanks";
             system("pause");
@@ -2090,6 +2112,7 @@ void Create_Semester(School_Year* &Year_Cur, School_Year::Semester* &Semester_He
         }
 
     Semester_Cur -> Next = new School_Year::Semester;
+    Semester_Cur -> Next -> Prev = Semester_Cur;
     Semester_Cur = Semester_Cur -> Next;
     Semester_Cur -> Term = user_input;
 
@@ -2104,8 +2127,172 @@ void Create_Semester(School_Year* &Year_Cur, School_Year::Semester* &Semester_He
 }
 
 //Adjust Semster
+void Adjust_Semester(School_Year* Year_Cur, School_Year::Semester* &Semester_Head)
+{
+    if (Semester_Head == nullptr)
+    {
+        cout<<"There are nothing to be adjusted. Please Create One.";
+        system("pause");
+        return;
+    }
+
+    Show_Semester_Table(Year_Cur -> year, Semester_Head);
+
+    string user_Choose_Semester = "";
+    cin.ignore();
+    do
+    {
+        cout<<"Which Semester you want to Adjust. Ex: 1/2/3 "<<endl;
+        cout<<"Note: If you dont want to choose any Term pls Enter 'N' "<<endl;
+        cout<<"Enter answer: "; 
+        getline(cin,user_Choose_Semester);
+
+        if (user_Choose_Semester == "N") return;
+
+        if (Check_Semester_Duplicated( Semester_Head,stoi(user_Choose_Semester) )) 
+        {
+            cout<<"Your input Semester: "<<user_Choose_Semester<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            cout<<"\n";
+        }
+
+    } while (Check_Semester_Duplicated( Semester_Head,stoi(user_Choose_Semester) ));
+
+    cout<<endl;
+    School_Year::Semester* Semester_Cur = find_Semester(Semester_Head,stoi(user_Choose_Semester));
+
+    do
+    {
+        Changes_Term:
+        Show_Semester_Table(Year_Cur -> year, Semester_Head);
+        
+        cout<<"What do you want to change from "<<user_Choose_Semester<<" to ?. Ex: Semester 1 -> Semester 2"<<endl;
+        cout<<"Note: There are only 3 semester from 1 -> 3. If you dont want to change pls Enter 'N' "<<endl;
+        cout<<"Enter answer: ";
+
+        getline(cin,user_Choose_Semester);
+
+        if (user_Choose_Semester == "N") return;
+
+        if (stoi(user_Choose_Semester) < 1 || stoi(user_Choose_Semester) > 3 ) 
+        {
+            cout<<"Your input Semester: "<<user_Choose_Semester<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            cout<<"\n";
+            goto Changes_Term;
+        }
+
+        if (!Check_Semester_Duplicated(Semester_Head,stoi(user_Choose_Semester) )) 
+        {
+            cout<<"Your input Semester: "<<user_Choose_Semester<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            cout<<"\n";
+        }
+    } while (!Check_Semester_Duplicated(Semester_Head,stoi(user_Choose_Semester)));
+    
+    Semester_Cur -> Term = stoi(user_Choose_Semester);
+
+    string user_Answer;
+    cout<<"Wanna change Start Date, End Date of new Term? Enter (Y/N): ";
+    getline(cin,user_Answer);
+    
+    if (user_Answer == "N") 
+    {
+        cout<<"\n";
+        cout<<"Change Success"<<endl;
+
+        system("pause");
+        return;
+    }
+
+    cout<<"\nEnter Start Date: ";
+    getline(cin,Semester_Cur -> start_Date);
+    cout<<"\nEnter End Date: ";
+    getline(cin,Semester_Cur -> end_Date);
+
+    cout<<"\n";
+    cout<<"Change Success"<<endl;
+
+    system("pause");
+    return;
+}
 
 //Delete Semster
+void Delete_Semester(School_Year* &sYear_Cur, School_Year::Semester* &Semester_Head)
+{
+    if (Semester_Head == nullptr)
+    {
+        cout<<"There are nothing to be deleted. Please Create One.";
+        system("pause");
+        return;
+    }
+
+    Show_Semester_Table(sYear_Cur -> year, Semester_Head);
+    
+    string user_Choose_Semester = "";
+        
+        cin.ignore();
+    do
+    {
+        //Menu of User choice about School-Year they want to view
+            cout<<"Which Semester you want to Delete. Ex: 1/2/3"<<endl;
+            cout<<"Note: If you dont want to choose any Semester pls Enter 'N' "<<endl;
+            cout<<"Enter answer: ";
+
+            getline(cin,user_Choose_Semester);
+
+        if (user_Choose_Semester == "N") return;
+
+        //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
+        if (Check_Semester_Duplicated(Semester_Head,stoi(user_Choose_Semester))) 
+        {
+            cout<<"Your input Semester: "<<user_Choose_Semester<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            cout<<endl;
+        }
+
+    } while (Check_Semester_Duplicated(Semester_Head,stoi(user_Choose_Semester)));
+
+    School_Year::Semester* Semester_Cur = find_Semester(Semester_Head,stoi(user_Choose_Semester));
+
+    //Delete all element
+    Delete_Element_Of_Semester(Semester_Cur,2);
+
+    if (Semester_Cur == Semester_Head)
+    {
+        if (Semester_Cur -> Next == nullptr)
+            {
+                Semester_Head = nullptr;
+                sYear_Cur -> yearSemesterHead = Semester_Head;
+                system("pause");
+                return;
+            }
+
+        Semester_Head = Semester_Head -> Next;
+        sYear_Cur -> yearSemesterHead = Semester_Head;
+        system("pause");
+        return;
+    }
+
+    School_Year::Semester* Temp_Semester = Semester_Cur;
+
+    Semester_Cur ->  Prev -> Next = Temp_Semester -> Next;
+
+    delete Temp_Semester;
+
+    system("pause");
+
+    return;
+}
+
 //View Year - ╰(*°▽°*)╯ 
 //This contain Menu Classes of SChool-Year
 void View_Year(School_Year* &sYear_Head)
@@ -2170,7 +2357,7 @@ void View_Year(School_Year* &sYear_Head)
     School_Year::Year_Class* Classes_Head = sYear_Cur -> yearCLassHead; // To view or create. First is Declare
     School_Year::Semester* Semester_Head = sYear_Cur -> yearSemesterHead; //To view or create. First is Declare
 
-    while (user_Choose != 7)
+    while (user_Choose != 9)
     {
         cout<<endl<<endl;
 
@@ -2178,13 +2365,13 @@ void View_Year(School_Year* &sYear_Head)
         Show_Year_Table(sYear_Head);
 
         //Classes table
-        if (Classes_Head != nullptr && (user_Choose == 2 || user_Choose == 3 || user_Choose == 4) )
+        if (Classes_Head != nullptr && (user_Choose == 1 || user_Choose == 2 || user_Choose == 3 || user_Choose == 4) )
         {
             Show_Classes_Table(user_choosed_Year,Classes_Head);
         }
         
         //Semester table
-        if (Semester_Head != nullptr && user_Choose == 5 || user_Choose == 6 || user_Choose == 7 || user_Choose == 8)
+        if (Semester_Head != nullptr && (user_Choose == 5 || user_Choose == 6 || user_Choose == 7 || user_Choose == 8) )
         {
             Show_Semester_Table(user_choosed_Year,Semester_Head);
         }
@@ -2196,7 +2383,9 @@ void View_Year(School_Year* &sYear_Head)
         cout<<"             4: Delete A Class In School - Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
         cout<<"             5: View Info Specific Semesters in School-Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
         cout<<"             6: Create Semesters For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
-        cout<<"             7: Back"<<endl;
+        cout<<"             7: Adjust Semester For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             8: Delete Semester For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             9: Back"<<endl;
         cout<<"             Your choice: "; 
 
         cin>>user_Choose;
@@ -2290,6 +2479,34 @@ void View_Year(School_Year* &sYear_Head)
                     break;
                 }
                 
+                //Adjust Semester
+                case 7:
+                {
+                    //Declare
+                    School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year);
+
+                    //Functions Adjust Semester
+                    Adjust_Semester(sYear_Cur,Semester_Head);
+                    
+                    continue;
+
+                    break;
+                }
+
+                //Delete Semester
+                case 8:
+                {
+                    //Declare
+                    School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year);
+
+                    //Functions Adjust Semester
+                    Delete_Semester(sYear_Cur,Semester_Head);
+                    
+                    continue;
+
+                    break;
+                }
+
                 default:
 
                     break;
