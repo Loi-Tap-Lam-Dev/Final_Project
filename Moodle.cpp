@@ -16,21 +16,21 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // //Cant Reset Data
-//     //Declare the apocalypse   
-//     Year* yearHead = nullptr;
+    //Declare the apocalypse   
+    //Year* yearHead = nullptr;
 
-//     //Read \- O v O -/
-//     readFileYear(yearHead);
+    //Read \- O v O -/
+    //readFileYear(yearHead);
 
-//    // outInfor(yearHead);
+    //outInfor(yearHead);
 
-//     // //Dizzplay
+    // //Dizzplay
     
-//     displayScreen(yearHead); // U can use if u want to see in the terminal
-//     // displayFile(yearHead); //Otherwise display in file is much better
+    //displayScreen(yearHead); // U can use if u want to see in the terminal
+    // displayFile(yearHead); //Otherwise display in file is much better
 
-//     // //Delete, avoid mém mo ri lít kinh
-//     // Delete_Data(yearHead);
+    // //Delete, avoid mém mo ri lít kinh
+    // Delete_Data(yearHead);
     
     return 0;
 }
