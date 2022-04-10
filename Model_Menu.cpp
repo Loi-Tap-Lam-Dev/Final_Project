@@ -619,6 +619,7 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
         //Create new node
         while (Sv_Cur -> Next != nullptr) Sv_Cur = Sv_Cur -> Next;
         Sv_Cur -> Next = new School_Year::Year_Class::SV_List;
+        Sv_Cur -> Next -> Prev = Sv_Cur;
         Sv_Cur = Sv_Cur -> Next;
 
         no = atoi( strtok(input,denim) );
@@ -644,6 +645,258 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
 }
 
 //Adjust Sv List
+void Adjust_Sv_List(School_Year::Year_Class* Class_Cur, School_Year::Year_Class::SV_List* &Sv_Head)
+{
+    if (Sv_Head == nullptr)
+    {
+        cout<<"There are nothing to be adjusted. Please Create One.";
+        system("pause");
+        return;
+    }
+
+    Show_Sv_Table(Class_Cur -> nameClass, Sv_Head);
+
+    int user_Choose_Student ;
+    string temp = "Y";
+    cin.ignore();
+    School_Year::Year_Class::SV_List* Temp_Sv = nullptr;
+    do
+    {
+        delete Temp_Sv;
+        Temp_Sv = new School_Year::Year_Class::SV_List;
+        
+        cout<<"You want to adjust your student due to: "<<endl;
+        cout<<"     1: No"<<endl;
+        cout<<"     2: ID Student"<<endl;
+        cout<<"     3: Social ID"<<endl;
+        cout<<"     4: Back"<<endl;
+        cout<<"     Your Choice: ";
+        
+        cin>>user_Choose_Student;
+
+        switch (user_Choose_Student)
+        {
+        
+        case 1:
+        {
+            cout<<"\n Enter No: ";
+            cin>>Temp_Sv -> no;
+
+            break;
+        }
+        
+        case 2:
+        {
+            cout<<"\n Enter Student ID: ";
+            cin>>Temp_Sv -> idStudent;
+            
+            break;
+        }
+
+        case 3:
+        {
+            cout<<"\n Enter Social ID: ";
+            cin>>Temp_Sv -> socialID;
+        }
+        default:
+            return;
+            break;
+        }
+
+        if (Check_Sv_Duplicated(Sv_Head,Temp_Sv)) 
+        {
+            cout<<"There arent any student match with your info. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+        }
+    } while (Check_Sv_Duplicated(Sv_Head,Temp_Sv));
+
+    School_Year::Year_Class::SV_List* Sv_Cur = find_Student(Sv_Head,Temp_Sv);
+
+    cout<<endl;
+    cin.ignore();
+    do
+    {
+        Show_Sv_Table(Class_Cur -> nameClass, Sv_Head);
+
+        int user_Choice; 
+        cout<<"What do you want to change?"<<endl;
+        cout<<"     1: Student ID."<<endl;
+        cout<<"     2: Social ID."<<endl;
+        cout<<"     3: First Name."<<endl;
+        cout<<"     4: Last Name."<<endl;
+        cout<<"     5: Gender."<<endl;
+        cout<<"     6: Date of Birth."<<endl;
+        cout<<"     7: Back."<<endl;
+        cout<<"     Your answer: ";
+        cin>>user_Choice;
+
+
+        cin.ignore();
+            Temp_Sv = new School_Year::Year_Class::SV_List;
+        switch (user_Choice)
+        {
+            case 1:
+            {
+                cout<<"What do you want to change Student ID, from "<<Sv_Cur -> idStudent<<" to?"<<endl;
+                cout<<"Enter Student ID: ";
+                cin>>Temp_Sv -> idStudent;
+                cin.ignore();
+
+                if (!Check_Sv_Duplicated (Sv_Head,Temp_Sv))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+
+                        break;
+                    }
+
+                Sv_Cur -> idStudent = Temp_Sv -> idStudent;
+
+                break;
+            }
+            
+            case 3:
+            {
+                cout<<"What do you want to change First Name, from "<<Sv_Cur -> firstName<<" to?"<<endl;
+                cout<<"Enter First Name: ";
+                getline(cin,Temp_Sv -> firstName);
+
+                if (!Check_Sv_Duplicated (Sv_Head,Temp_Sv))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+
+                        break;
+                    }
+
+                Sv_Cur -> firstName = Temp_Sv -> firstName ;
+
+                break;
+            }
+
+            case 4:
+            {
+                cout<<"What do you want to change Last Name, from "<<Sv_Cur -> lastName<<" to?"<<endl;
+                cout<<"Enter Last Name: ";
+                getline(cin,Temp_Sv -> lastName);
+
+                if (!Check_Sv_Duplicated (Sv_Head,Temp_Sv))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+
+                        break;
+                    }
+
+                Sv_Cur -> lastName = Temp_Sv -> lastName ;
+
+                break;
+            }
+
+            case 5:
+            {
+                cout<<"What do you want to change Gender, from "<<Sv_Cur -> gender<<" to?"<<endl;
+                cout<<"Enter Gender: ";
+                getline(cin,Temp_Sv -> gender);
+
+                if (!Check_Sv_Duplicated (Sv_Head,Temp_Sv))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+
+                        break;
+                    }
+
+                Sv_Cur-> gender = Temp_Sv -> gender ;
+
+                break;
+            }
+
+            case 6:
+            {
+                cout<<"What do you want to change Date Of Birth, from "<<Sv_Cur -> dateOfBirth<<" to?"<<endl;
+                cout<<"Enter Date Of Birth: ";
+                getline(cin,Temp_Sv -> dateOfBirth);
+
+                if (!Check_Sv_Duplicated (Sv_Head,Temp_Sv))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+
+                        break;
+                    }
+
+                Sv_Cur -> dateOfBirth = Temp_Sv -> dateOfBirth ;
+
+                break;
+            }
+
+            case 2:
+            {
+                cout<<"What do you want to change Social ID, from "<<Sv_Cur -> socialID<<" to?"<<endl;
+                cout<<"Enter Day of Session 1 in week: ";
+                cin>>Temp_Sv -> socialID;
+                cin.ignore();
+
+                if (!Check_Sv_Duplicated (Sv_Head,Temp_Sv))
+                    {
+                        cout<<"Your input is Incorrect. Please try again."<<endl;
+                        
+                        //Enter any key to continue and go back to  "Showing_School_Year"
+                        system("pause");
+                        cout<<"\n";
+
+                        break;
+                    }
+
+                Sv_Cur -> socialID = Temp_Sv -> socialID ;
+
+                break;
+            }
+
+            default:
+                {
+                    system("pause");
+                    return;
+                    break;
+                }
+        }
+
+        
+        if (Check_Sv_Duplicated (Sv_Head,Temp_Sv))
+        {
+            cout<<endl;
+            cout<<"Continue To Change Info Of This Course?"<<endl;
+            cout<<"Enter (Y/N): "; 
+            getline(cin,temp);
+        }
+
+    } while (!Check_Sv_Duplicated (Sv_Head, Temp_Sv) && temp == "Y");
+    
+    cout<<"\n";
+    cout<<"Change Success"<<endl;
+
+    system("pause");
+    return;
+
+}
 
 //Delete SV_list
 void Delete_Sv_List(School_Year::Year_Class* &Class_Cur, School_Year::Year_Class::SV_List* &Sv_Head)
@@ -662,6 +915,7 @@ void Delete_Sv_List(School_Year::Year_Class* &Class_Cur, School_Year::Year_Class
     School_Year::Year_Class::SV_List* Temp_Sv = nullptr;
     do
     {
+        delete Temp_Sv;
         Temp_Sv = new School_Year::Year_Class::SV_List;
         
         cout<<"You want to delete your student due to: "<<endl;
@@ -884,6 +1138,19 @@ void View_Classes(string user_School_Year,School_Year::Year_Class* &Classes_Head
                     break;
                 }
             
+            case 3:
+                {
+                    //Declare
+                    School_Year::Year_Class* Classes_Cur = find_Classes(Classes_Head,user_Choosed_Class);
+
+                    //Functions Adjust_SV_List
+                    Adjust_Sv_List (Classes_Cur,Sv_Head);
+
+                    continue;
+                    
+                    break;
+                }
+
              case 4:
                 {
                     //Declare
@@ -1410,6 +1677,7 @@ void Create_Course_Import(School_Year::Semester* &ySemester_Cur, School_Year::Se
         //Create new node
         while (Subject_Cur -> Next != nullptr) Subject_Cur = Subject_Cur -> Next;
         Subject_Cur -> Next = new School_Year::Semester::Subject;
+        Subject_Cur -> Next -> Prev = Subject_Cur;
         Subject_Cur = Subject_Cur -> Next;
 
         //Get Data
@@ -1540,6 +1808,7 @@ void Adjust_Course(School_Year::Semester* ySemester_Cur, School_Year::Semester::
                         //Enter any key to continue and go back to  "Showing_School_Year"
                         system("pause");
                         cout<<"\n";
+
                         break;
                     }
 
@@ -1561,6 +1830,7 @@ void Adjust_Course(School_Year::Semester* ySemester_Cur, School_Year::Semester::
                         //Enter any key to continue and go back to  "Showing_School_Year"
                         system("pause");
                         cout<<"\n";
+
                         break;
                     }
 
@@ -1582,6 +1852,7 @@ void Adjust_Course(School_Year::Semester* ySemester_Cur, School_Year::Semester::
                         //Enter any key to continue and go back to  "Showing_School_Year"
                         system("pause");
                         cout<<"\n";
+
                         break;
                     }
 
@@ -1604,6 +1875,7 @@ void Adjust_Course(School_Year::Semester* ySemester_Cur, School_Year::Semester::
                         //Enter any key to continue and go back to  "Showing_School_Year"
                         system("pause");
                         cout<<"\n";
+
                         break;
                     }
 
@@ -1625,6 +1897,7 @@ void Adjust_Course(School_Year::Semester* ySemester_Cur, School_Year::Semester::
                         //Enter any key to continue and go back to  "Showing_School_Year"
                         system("pause");
                         cout<<"\n";
+
                         break;
                     }
 
@@ -1646,6 +1919,7 @@ void Adjust_Course(School_Year::Semester* ySemester_Cur, School_Year::Semester::
                         //Enter any key to continue and go back to  "Showing_School_Year"
                         system("pause");
                         cout<<"\n";
+
                         break;
                     }
 
@@ -1667,6 +1941,7 @@ void Adjust_Course(School_Year::Semester* ySemester_Cur, School_Year::Semester::
                         //Enter any key to continue and go back to  "Showing_School_Year"
                         system("pause");
                         cout<<"\n";
+
                         break;
                     }
 
@@ -1688,6 +1963,7 @@ void Adjust_Course(School_Year::Semester* ySemester_Cur, School_Year::Semester::
                         //Enter any key to continue and go back to  "Showing_School_Year"
                         system("pause");
                         cout<<"\n";
+
                         break;
                     }
 
@@ -1709,6 +1985,7 @@ void Adjust_Course(School_Year::Semester* ySemester_Cur, School_Year::Semester::
                         //Enter any key to continue and go back to  "Showing_School_Year"
                         system("pause");
                         cout<<"\n";
+
                         break;
                     }
 
@@ -1731,6 +2008,7 @@ void Adjust_Course(School_Year::Semester* ySemester_Cur, School_Year::Semester::
                         //Enter any key to continue and go back to  "Showing_School_Year"
                         system("pause");
                         cout<<"\n";
+
                         break;
                     }
 
@@ -1754,6 +2032,7 @@ void Adjust_Course(School_Year::Semester* ySemester_Cur, School_Year::Semester::
                         //Enter any key to continue and go back to  "Showing_School_Year"
                         system("pause");
                         cout<<"\n";
+
                         break;
                     }
 
