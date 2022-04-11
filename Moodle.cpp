@@ -23,7 +23,7 @@ beginAuthentication:
                 School_Year* sYear_Head = nullptr;
 
                     //Menu
-                    Menu_School_Year(sYear_Head);
+                    Primal_Menu(sYear_Head);
 
                     Delete_School_Year(sYear_Head);   
             }
