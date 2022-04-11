@@ -161,6 +161,7 @@ struct School_Year {
                       struct Student_listMark {
 
                         int no , idStudent , midTermMark, finalTermMark , otherMark, totalMark;
+                        string FullName;
 
                         Student_listMark* Prev = nullptr;
                         Student_listMark* Next = nullptr;

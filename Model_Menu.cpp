@@ -630,7 +630,7 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
         dateOfBirth = strtok(NULL,denim);
         socialID = atoi( strtok(NULL,denim) );
 
-        Sv_Cur -> no = no;
+        Sv_Cur -> no = Sv_Cur -> Prev -> no + 1;
         Sv_Cur -> idStudent = idStudent;
         Sv_Cur -> firstName = firstName;
         Sv_Cur -> lastName = lastName;
@@ -3040,6 +3040,7 @@ void Menu_School_Year(School_Year* &sYear_Head)
         {
             Show_Year_Table(sYear_Head);
         }
+
         cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
         cout<<"             1: View info of a School - Year"<<endl;
         cout<<"             2: Create New School - Year"<<endl;
@@ -3098,6 +3099,86 @@ void Menu_School_Year(School_Year* &sYear_Head)
     }
 
     cout<<"Ending Menu School-Year"<<endl;
+
+    return ;
+}
+
+//Menu ScoreBoard
+void Menu_ScoreBoard(School_Year::Semester::Subject::Student_listMark* &Std_ListMark_Head)
+{
+    //Still On going
+    int user_Choose = 0;
+    while (user_Choose != 3)
+    {
+        system("CLS");
+        
+        
+        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
+        cout<<"             1: View info of a School - Year"<<endl;
+        cout<<"             2: Create New School - Year"<<endl;
+        cout<<"             3: Adjust A School - Year"<<endl;
+        cout<<"             4: Delete A School - Year"<<endl;
+        cout<<"             5: Back"<<endl;
+        cout<<"             Your choice: "; 
+        cin>>user_Choose;
+        cout<<endl;
+
+        //Better use switch
+        switch (user_Choose)
+        {
+        
+        
+
+            default:
+                system("pause");
+                break;
+        }
+
+    }
+
+    cout<<"Ending Menu ScoreBoard"<<endl;
+
+    return ;
+}
+
+//Global Menu
+void Primal_Menu(School_Year* &sYear_Head)
+{
+    int user_Choose = 0;
+    while (user_Choose != 3)
+    {
+        system("CLS");
+        if (sYear_Head != nullptr)
+        {
+            Show_Year_Table(sYear_Head);
+        }
+        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
+        cout<<"             1: Create/Adjust Element Of Moodle"<<endl;
+        cout<<"             2: Import/Export ScoreBoard "<<endl;
+        cout<<"             3: Back"<<endl;
+        cout<<"             Your choice: "; 
+        cin>>user_Choose;
+        cout<<endl;
+
+        //Better use switch
+        switch (user_Choose)
+        {
+            case 1:
+            {
+                Menu_School_Year(sYear_Head);
+                continue;
+                break;
+            }
+
+
+            default:
+                system("pause");
+                break;
+        }
+
+    }
+
+    cout<<"Ending Menu Staff"<<endl;
 
     return ;
 }
