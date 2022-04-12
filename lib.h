@@ -30,3 +30,5 @@ fstream finp, fout;
 #include "Model\Model.h"
 #include "Model_Menu.cpp"
 #include "Print_Data.cpp"
+
+#include "StudentUI.h"
