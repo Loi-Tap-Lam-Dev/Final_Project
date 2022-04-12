@@ -28,7 +28,7 @@ void ReadData(School_Year*&year_Head)
     const char* denim=",";
     char* tmp=strtok(NULL,denim);
     char*stop="";
-    while(true)
+    while(!readYearClass.eof())
     {
         char*class_name=strtok(NULL,denim);
         year_Class_Cur->nameClass=class_name;
@@ -62,7 +62,7 @@ void ReadData(School_Year*&year_Head)
     //Read year_semester
     ifstream readYearSemester;
     readYearSemester.open("Year_Semester.csv",ios::in);
-    getline(readYearClass,s);
+    getline(readYearSemester,s);
     School_Year::Semester*year_Semester_Head=new School_Year::Semester();
     School_Year::Semester*year_Semester_Cur=year_Semester_Head;
     School_Year::Semester::Student_listMark*year_Semester_Sv_Head=new School_Year::Semester::Student_listMark();
@@ -73,7 +73,7 @@ void ReadData(School_Year*&year_Head)
     School_Year::Semester::Subject::Student_listMark*year_Semester_Subject_Student_Cur=year_Semester_Subject_Student_Head;
     char*tmp=strtok(NULL,denim);
     stop="";
-    while(true)
+    while(!readYearSemester.eof())
     {
         char*year_semester=strtok(NULL,denim);
         year_Semester_Cur->Term=year_semester;
@@ -82,6 +82,7 @@ void ReadData(School_Year*&year_Head)
         char*end_date=strtok(NULL,denim);
         year_Semester_Cur->end_Date=end_date;
         char*discard=strtok(NULL,denim);
+        discard=strtok(NULL,denim);
         discard=strtok(NULL,denim);
         discard=strtok(NULL,denim);
         discard=strtok(NULL,denim);
