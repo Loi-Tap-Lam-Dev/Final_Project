@@ -13,7 +13,7 @@ void ReadData(School_Year*&year_Head)
     {
         readYear>>year_Cur->nameYear;
         year_Cur=new School_Year();
-        year_Cur=year_Cur->yNext;
+        year_Cur=year_Cur->Next;
     }
 
 
