@@ -30,6 +30,11 @@ void PrintClassList(School_Year *sYear_Head) {
         cout << endl;
         currentYear = currentYear->Next;
     }
+
+    // New display window
+    cout << "\t\tAvailable operations:\n";
+    cout << "\t\t   1: View student list in class\n";
+    cout << "\t\t   2: Give up and quit\n";
 }
 
 void PrintMenu(School_Year *&sYear_Head)
