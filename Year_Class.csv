@@ -1,16 +1,6 @@
 Class infor 
-Class 21CLC01
-1,21127000,268638317, Bao, Nguyen, male, 99/99/1999
-2,21127001,1040655725, Quoc, Cao, male, 55/55/1555
-3,21127002,-1417976387, Tuan, Nguyen, male, 66/66/1666
-
-Class 21CLC02
-4,21127003,268639317, Bao1, Nguyen1, female, 19/199/1999
-5,21127004,1040685725, Quoc1, Cao1, female, 155/155/1555
-6,21127005,-1417976387, Tuan1, Nguyen1, female, 166/166/1666
-
-Class 21CLC03
-7,21127006,968639317, Bao2, Nguyen2, maleXfemale, 199/199/1999
-8,21127007,1440685725, Quoc2, Cao2, maleXfemale, 155/155/1555
-9,21127008,-1017976387, Tuan2, Nguyen2, maleXfemale, 166/166/1666
+Class 21clc09
+No,Student_ID,SocialID,FirstName,LastName,Gender,Dateofbirth
+1,21127013,352660,Bao,Nguyen,Male,20/03/2003
+2,21127014,3526601,Buoi,Nguyen,Male,20/03/2003
 

@@ -1,14 +1,5 @@
 Semester info
-Term 1
+Term ,Start Date,End Date
+2,2,2
 Sv Semester Mark 
-1,21127000,3,9
-2,21127001,3,8
-3,21127002,3,8
-4,21127003,3,9
-
-Subject 
-NameSubject,Start date,End date,Maximum
-Math,18/03/2022,18/06/2022,110
-Physics,18/03/2022,18/06/2022,70
-Programming,18/03/2022,18/06/2022,80
-
+No ,Id ,Credit ,GPA ,Average Mark 

@@ -10,12 +10,12 @@ int main() {
     //Menu
     Primal_Menu(sYear_Head);
 
+    //Print Data - Check 💨
+    //outInfor(sYear_Head);
+    
     //Delete
     Delete_School_Year(sYear_Head);
 
-    //Print Data
-    //outInfor(sYear_Head);
-    
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // //Cant Reset Data

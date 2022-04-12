@@ -1,6 +1,6 @@
 #include "lib.h"
 
-//Noted task havent finished: Adjust SvList, ADjust/Delete Semsetr
+//Noted task havent finished: line 3267, finish the import/export csv file
 //Noted: Try to make orderd linked list
 
 //Check is there enough 3 term of Semester
@@ -3167,7 +3167,7 @@ void Export_List_of_Student(School_Year* sYear_Head)
     School_Year::Semester* Semester_Head = sYear_Cur -> yearSemesterHead;
 
     //Use a checking var to ignore line
-    bool Check_Ignore = false;
+    Check_Ignore = false;
 
     //Show Semster Table
     Showing_Semester:
@@ -3209,8 +3209,63 @@ void Export_List_of_Student(School_Year* sYear_Head)
         }
     } while (Check_Semester_Duplicated(Semester_Head,user_Choose_Semester));
 
+//ψ(._. )>
     //Find Semester user want
     School_Year::Semester* Semester_Cur = find_Semester(Semester_Head,user_Choose_Semester);
+    //Set up Course head to figure out want course user want
+    School_Year::Semester::Subject* Subject_Head = Semester_Cur -> yearSemesterSubjectHead;
+
+    Showing_Course:
+    if (Subject_Head == nullptr) 
+        {
+            cout<<"Nothing being added"<<endl;
+            system("Pause");
+            return ;
+        }
+            else 
+                {
+                    Show_Subject_Table(to_string(Semester_Cur -> Term), Subject_Head);
+                }
+
+    bool Check_Ignore = false;
+    string user_Choose_Course = "";
+    School_Year::Semester::Subject* Subject_Temp = new School_Year::Semester::Subject;
+        
+       if (!Check_Ignore) cin.ignore();
+    do
+    {
+        //Menu of User choice Course they want to view
+            cout<<"Which Course you want to Adjust. Ex: PHY0001 "<<endl;
+            cout<<"Note: If you dont want to choose any Course pls Enter 'N' "<<endl;
+            cout<<"Enter Course ID: ";
+
+            getline(cin,user_Choose_Course);
+
+
+        if (user_Choose_Course == "N") return;
+
+        Subject_Temp -> id_Subject = user_Choose_Course;
+
+        //Check if the user choosed Subject is existed - True is it not Duplicated which mean the Data is Incorrect
+        if (Check_Subject_Duplicated(Subject_Head,Subject_Temp)) 
+        {
+            cout<<"Your input Course: "<<Subject_Temp -> id_Subject<<" is Incorrect. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+            Check_Ignore = true;
+            goto Showing_Course;
+        }
+    } while (Check_Subject_Duplicated(Subject_Head,Subject_Temp));
+
+    School_Year::Semester::Subject* Subject_Cur = find_Subject(Subject_Head,Subject_Temp);
+
+    if (Subject_Cur -> yearSemesterSubStudent_ListHead == nullptr)
+    {
+        cout<<endl;
+        cout<<"Your List Of Student (No, Id_Student, Full_Name,Mid_Term_Mark, Final_Term_Mark, Other_Mark, Total_Mark) is Empty"<<endl;
+        cout<<"Do You Want to Import a Temporary CSV File of Student List? "<<endl;
+    }
 }
 
 //Menu ScoreBoard

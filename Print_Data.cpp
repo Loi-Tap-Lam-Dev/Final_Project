@@ -7,7 +7,7 @@ void outInfor(School_Year* yearHead)
     //Year
     OutData.open("Year.csv",ios::out);
     OutData<<"Year"<<endl;
-    for(School_Year*yearCur=yearHead;yearCur->Next!=nullptr;yearCur=yearCur->Next)
+    for(School_Year*yearCur=yearHead;yearCur!=nullptr;yearCur=yearCur->Next)
     {
         OutData<<yearCur->year<<endl;
     }
@@ -16,12 +16,12 @@ void outInfor(School_Year* yearHead)
     //Class
     OutData.open("Year_Class.csv",ios::out);
     OutData<<"Class infor "<<endl;
-    for(School_Year::Year_Class*year_Class_Cur=yearHead->yearCLassHead;year_Class_Cur->Next!=nullptr;year_Class_Cur=year_Class_Cur->Next)
+    for(School_Year::Year_Class*year_Class_Cur=yearHead->yearCLassHead;year_Class_Cur!=nullptr;year_Class_Cur=year_Class_Cur->Next)
     {
         OutData<<"Class "<<year_Class_Cur->nameClass<<endl;
         string tmp=""",""";
         OutData<<"No"+tmp+"Student_ID"+tmp+"SocialID"+tmp+"FirstName"+tmp+"LastName"+tmp+"Gender"+tmp+"Dateofbirth"<<endl;
-        for(School_Year::Year_Class::SV_List*year_Class_Sv_Cur=year_Class_Cur->yearClassSV_ListHead;year_Class_Sv_Cur->Next!=nullptr;year_Class_Sv_Cur=year_Class_Sv_Cur->Next)
+        for(School_Year::Year_Class::SV_List*year_Class_Sv_Cur=year_Class_Cur->yearClassSV_ListHead;year_Class_Sv_Cur!=nullptr;year_Class_Sv_Cur=year_Class_Sv_Cur->Next)
         {
             OutData<<to_string(year_Class_Sv_Cur->no)+tmp+to_string(year_Class_Sv_Cur->idStudent)+tmp+to_string(year_Class_Sv_Cur->socialID)+tmp+(year_Class_Sv_Cur->firstName)+tmp+year_Class_Sv_Cur->lastName+tmp+year_Class_Sv_Cur->gender+tmp+year_Class_Sv_Cur->dateOfBirth<<endl;
         }
@@ -33,7 +33,7 @@ void outInfor(School_Year* yearHead)
     OutData<<endl<<endl;
     OutData.open("Year_Semester.csv",ios::out);
     OutData<<"Semester info"<<endl;
-    for(School_Year::Semester*year_Semester_Cur=yearHead->yearSemesterHead;year_Semester_Cur->Next!=nullptr;year_Semester_Cur=year_Semester_Cur->Next)
+    for(School_Year::Semester*year_Semester_Cur=yearHead->yearSemesterHead;year_Semester_Cur!=nullptr;year_Semester_Cur=year_Semester_Cur->Next)
     {
         string tmp=""",""";
         OutData<<"Term "+tmp+"Start Date"+tmp+"End Date"<<endl;
