@@ -1,14 +1,30 @@
 Semester info
-Term 1
-Sv Semester Mark 
-1,21127000,3,9
-2,21127001,3,8
-3,21127002,3,8
-4,21127003,3,9
-
+Term, Start Date, End Date
+1, 20/06/2021, 20/05/2022
+Sv Semester Mark
+No, Id, Credit, GPA, Average Mark 
+1,21127000,3,9.4
+2,21127001,3,8.5
+3,21127002,3,8.8
+4,21127003,3,9.2
+5,21127004,4,9.5
 Subject 
-NameSubject,Start date,End date,Maximum
-Math,18/03/2022,18/06/2022,110
-Physics,18/03/2022,18/06/2022,70
-Programming,18/03/2022,18/06/2022,80
+NameSubject, IDSubject, StartDate, EndDate, TeacherName, Day_of_session_1, Day_of_session_2, Time_1, Time_2, MaxRegister, Number_Credit
+Math, MTH00001, 18/03/2022, 18/06/2022, LY KIM HA, MONDAY, THURSDAY, 13H30, 13H30, 110, 5
+Physics, PHY0003, 18/03/2022, 18/06/2022, TON NU QUYNH TRANG, MONDAY, WEDNESDAY, 9H30, 8H00, 70, 3
+Programming, CSC0005, 18/03/2022, 18/06/2022, DINH BA TIEN, FRIDAY, SATURDAY, 7H30, 15H30, 80, 4
+Term, Start Date, End Date
+2, 20/05/2022, 20/04/2023
+Sv Semester Mark
+No, Id, Credit, GPA, Average Mark 
+1,21127015,3.5,9.4
+2,21127016,3.1,8.5
+3,21127017,3.3,8.8
+4,21127018,4.9,9.2
+5,21127019,4.6,9.5
+Subject 
+NameSubject, IDSubject, StartDate, EndDate, TeacherName, Day_of_session_1, Day_of_session_2, Time_1, Time_2, MaxRegister, Number_Credit
+Math, MTH00001, 18/03/2022, 18/06/2022, LY KIM HA, MONDAY, THURSDAY, 13H30, 13H30, 110, 5
+Physics, PHY0003, 18/03/2022, 18/06/2022, TON NU QUYNH TRANG, MONDAY, WEDNESDAY, 9H30, 8H00, 70, 3
+ProgrammingAdvanced, CSC0005, 18/03/2022, 18/06/2022, DINH BA TIEN, FRIDAY, SATURDAY, 7H30, 15H30, 80, 4
 

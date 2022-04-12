@@ -32,8 +32,15 @@ void ReadData(School_Year*&year_Head)
     {
         char*class_name=strtok(NULL,denim);
         year_Class_Cur->nameClass=class_name;
-        year_Class_Cur->clNext=new School_Year::Year_Class();
+        year_Class_Cur->Next=new School_Year::Year_Class();
         //year_Class_Cur=year_Class_Cur->clNext;
+        char*discard=strtok(NULL,denim);
+        discard=strtok(NULL,denim);
+        discard=strtok(NULL,denim);
+        discard=strtok(NULL,denim);
+        discard=strtok(NULL,denim);
+        discard=strtok(NULL,denim);
+        discard=strtok(NULL,denim);
         while(stop!="Class")
         {
             char*No=strtok(NULL,denim);
@@ -54,9 +61,9 @@ void ReadData(School_Year*&year_Head)
             year_Class_Sv_Cur->gender=Gender;
             year_Class_Sv_Cur->dateOfBirth=Dateofbirth;
 
-            year_Class_Sv_Cur=year_Class_Sv_Cur->svNext;
+            year_Class_Sv_Cur=year_Class_Sv_Cur->Next;
         }
-        year_Class_Cur=year_Class_Cur->clNext;
+        year_Class_Cur=year_Class_Cur->Next;
     }
 
     //Read year_semester
@@ -72,6 +79,8 @@ void ReadData(School_Year*&year_Head)
     School_Year::Semester::Subject::Student_listMark*year_Semester_Subject_Student_Head=new School_Year::Semester::Subject::Student_listMark();
     School_Year::Semester::Subject::Student_listMark*year_Semester_Subject_Student_Cur=year_Semester_Subject_Student_Head;
     char*tmp=strtok(NULL,denim);
+    tmp=strtok(NULL,denim);
+    tmp=strtok(NULL,denim);
     stop="";
     while(!readYearSemester.eof())
     {
