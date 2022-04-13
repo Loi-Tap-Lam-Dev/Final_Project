@@ -66,7 +66,7 @@ beginAuthentication:
         goto beginAuthentication;
     }
     else {
-        PrintMenu(sYear_Head);
+        PrintMainStudentMenu(sYear_Head);
         
         goto beginAuthentication;
     }

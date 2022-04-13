@@ -181,6 +181,8 @@ School_Year::Year_Class* find_Classes(School_Year::Year_Class* Classes_Cur,strin
         
         Classes_Cur= Classes_Cur-> Next;
     }
+
+    return NULL;
 }
 
 //Find Sv due to No, Id, Social ID

@@ -6,7 +6,8 @@
 
 using namespace std;
 
-void PrintClassList(School_Year *sYear_Head) {
+void ClassListMenu(School_Year *sYear_Head) {
+startWindow:
     system("CLS");
 
     cout << "Displaying available classes:\n";
@@ -19,8 +20,8 @@ void PrintClassList(School_Year *sYear_Head) {
     School_Year *currentYear = sYear_Head;
     School_Year::Year_Class *currentClass = currentYear->yearCLassHead;
     
+    cout << "|  ";
     while (currentYear != NULL) {
-
         currentClass = currentYear->yearCLassHead;
         while (currentClass != NULL) {
             cout << currentClass->nameClass << "  |  ";
@@ -32,13 +33,60 @@ void PrintClassList(School_Year *sYear_Head) {
     }
 
     // New display window
+    int choice;
     cout << "\t\tAvailable operations:\n";
     cout << "\t\t   1: View student list in class\n";
-    cout << "\t\t   2: Give up and quit\n";
+    cout << "\t\t   2: Give up and quit\n\n";
+    cout << "Your choice: ";
+    cin >> choice;
+
+    switch (choice) {
+        case 1: 
+            cout << "1\n";
+            string findClass;
+            School_Year::Year_Class *targetClassHead;
+
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "2\n";
+            cout << "Enter class to view from: ";
+            getline(cin, findClass);
+
+            currentYear = sYear_Head;
+            currentClass = currentYear->yearCLassHead;
+
+            while (currentYear != NULL) {
+                cout << "3\n";
+                currentClass = currentYear->yearCLassHead;
+
+                targetClassHead = find_Classes(currentClass, findClass);
+
+                currentYear = currentYear->Next;
+            }
+            cout << "4\n";
+            if (targetClassHead == NULL) {
+                cout << "No class found!\n";
+                system("pause");
+                
+                goto startWindow;
+            }
+
+            Show_Sv_Table(findClass, targetClassHead->yearClassSV_ListHead);
+
+            goto startWindow;
+        
+        case 2: 
+            cout << "Good choice!\n";
+            break;
+        
+        default: 
+            goto startWindow;
+    }
 }
 
-void PrintMenu(School_Year *&sYear_Head)
+void PrintMainStudentMenu(School_Year *&sYear_Head)
 {
+startMainMenu:
     int user_Choose = 0;
     
     system("CLS");
@@ -57,13 +105,18 @@ void PrintMenu(School_Year *&sYear_Head)
 
     //Better use switch
     switch (user_Choose)  {
-        case 1: {
-            PrintClassList(sYear_Head);
-            break;
-        }
+        case 1:
+            ClassListMenu(sYear_Head);
+            goto startMainMenu;
+        
 
-        default:
-            break;
+        case 2: 
+            cout << "Feature not available!\n";
+            goto startMainMenu;
+        
+
+        default: 
+            goto startMainMenu;
     }
 
     system("pause");
