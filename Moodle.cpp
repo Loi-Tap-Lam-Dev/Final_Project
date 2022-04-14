@@ -6,7 +6,7 @@ int main() {
 
     //Declare 
     School_Year* sYear_Head = nullptr;
-
+    ReadData(sYear_Head);
     //Menu
     Primal_Menu(sYear_Head);
 
