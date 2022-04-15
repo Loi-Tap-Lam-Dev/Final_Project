@@ -3227,7 +3227,7 @@ void Export_List_of_Student(School_Year* sYear_Head)
                     Show_Subject_Table(to_string(Semester_Cur -> Term), Subject_Head);
                 }
 
-    bool Check_Ignore = false;
+    Check_Ignore = false;
     string user_Choose_Course = "";
     School_Year::Semester::Subject* Subject_Temp = new School_Year::Semester::Subject;
         
@@ -3262,9 +3262,21 @@ void Export_List_of_Student(School_Year* sYear_Head)
 
     if (Subject_Cur -> yearSemesterSubStudent_ListHead == nullptr)
     {
+        string user_choice;
         cout<<endl;
         cout<<"Your List Of Student (No, Id_Student, Full_Name,Mid_Term_Mark, Final_Term_Mark, Other_Mark, Total_Mark) is Empty"<<endl;
         cout<<"Do You Want to Import a Temporary CSV File of Student List? "<<endl;
+        getline(cin,user_choice);
+
+        if (user_choice == "N" ) 
+        {
+            system("pause");
+            return;
+        }
+        
+        cout<<"Please enter your data in File: Temp_CSV.csv"<<endl;
+        finp.open("Temp_CSV.csv",ios::in);
+
     }
 }
 

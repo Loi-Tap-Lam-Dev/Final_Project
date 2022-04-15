@@ -5,13 +5,13 @@ void ReadData(School_Year*&year_Head)
     //Read year
     ifstream readYear;
     readYear.open("Year.csv",ios::in);
-    School_Year*year_Head=new Year();
+    year_Head=new School_Year();
     School_Year*year_Cur=year_Head;
     string s;
     getline(readYear,s);
     while(!readYear.eof())
     {
-        readYear>>year_Cur->nameYear;
+        readYear>>year_Cur->year;
         year_Cur=new School_Year();
         year_Cur=year_Cur->Next;
     }
@@ -26,8 +26,10 @@ void ReadData(School_Year*&year_Head)
     School_Year::Year_Class::SV_List*year_Class_Sv_Cur=year_Class_Sv_Head;
     getline(readYearClass,s);
     const char* denim=",";
-    char* tmp=strtok(NULL,denim);
-    char*stop="";
+    char* input = new char [s.size()];
+    strcpy(input,s.c_str());
+    char* tmp=strtok(input,denim);
+    char* stop="";
     while(!readYearClass.eof())
     {
         char*class_name=strtok(NULL,denim);
@@ -78,14 +80,14 @@ void ReadData(School_Year*&year_Head)
     School_Year::Semester::Subject*year_Semester_Subject_Cur=year_Semester_Subject_Head;
     School_Year::Semester::Subject::Student_listMark*year_Semester_Subject_Student_Head=new School_Year::Semester::Subject::Student_listMark();
     School_Year::Semester::Subject::Student_listMark*year_Semester_Subject_Student_Cur=year_Semester_Subject_Student_Head;
-    char*tmp=strtok(NULL,denim);
+    tmp=strtok(NULL,denim);
     tmp=strtok(NULL,denim);
     tmp=strtok(NULL,denim);
     stop="";
     while(!readYearSemester.eof())
     {
         char*year_semester=strtok(NULL,denim);
-        year_Semester_Cur->Term=year_semester;
+        year_Semester_Cur->Term= atoi(year_semester) ;
         char*start_date=strtok(NULL,denim);
         year_Semester_Cur->start_Date=start_date;
         char*end_date=strtok(NULL,denim);
@@ -133,8 +135,8 @@ void ReadData(School_Year*&year_Head)
             char*day_of_session_2=strtok(NULL,denim);
             char*time_1=strtok(NULL,denim);
             char*time_2=strtok(NULL,denim);
-            int*maxregister=strtok(NULL,denim);
-            int*number_credit=strtko(NULL,denim);
+            int maxregister=atoi(strtok(NULL,denim));
+            int number_credit=atoi(strtok(NULL,denim));
 
             year_Semester_Subject_Cur->name_Subject=name_sub;
             year_Semester_Subject_Cur->id_Subject=id_sub;
@@ -148,10 +150,11 @@ void ReadData(School_Year*&year_Head)
             year_Semester_Subject_Cur->maximumRegrister=maxregister;
             year_Semester_Subject_Cur->number_Of_Credit=number_credit;
 
-            year_Semester_Subject_Cur=year_Semester_Subject_Cur->subNext;
+            year_Semester_Subject_Cur=year_Semester_Subject_Cur->Next;
             stop=strtok(NULL,denim);
         }
     }
+}
 // //------------------------------------------
 //     //read year_semester_subject_class
 //     ifstream readYearSemesterSubjectClass;
