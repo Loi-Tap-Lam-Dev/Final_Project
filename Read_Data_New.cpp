@@ -3,6 +3,7 @@ void ReadData(School_Year*&year_Head)
 {
     const char* denim=",";
     char*discard;
+    char*input;
 
     
     //Read year
@@ -18,7 +19,7 @@ void ReadData(School_Year*&year_Head)
     while(!readYear.eof())
     {
         getline(readYear,s);
-        char*input=new char[s.size()];
+        input=new char[s.size()];
         strcpy(input,s.c_str());
 
         //take years
@@ -42,16 +43,17 @@ void ReadData(School_Year*&year_Head)
     // strcpy(readYearClass,s.c_str());
     // discard=strtok(NULL,denim);
     getline(readYearClass,s);
-    char*input=new char[s.size()];
+    input=new char[s.size()];
     strcpy(input,s.c_str());
     discard=strtok(input,denim);
 
 
     while(!readYearClass.eof())
     {
-        char *stoptmp="NO";
+        string stoptmp="NO";
         char*class_name=strtok(NULL,denim);
-        year_Class_Cur->nameClass=class_name;
+        string Class_name=string(class_name);
+        year_Class_Cur->nameClass=Class_name;
         year_Class_Cur->Next=new School_Year::Year_Class();
         year_Class_Cur=year_Class_Cur->Next;
         getline(readYearClass,s);
@@ -68,10 +70,10 @@ void ReadData(School_Year*&year_Head)
         while(stoptmp!="Class")
         {
             getline(readYearClass,s);
-            char*input=new char[s.size()];
+            input=new char[s.size()];
             strcpy(input,s.c_str());
 
-            if(strtok(input,denim)!="Class")
+            if(string(strtok(input,denim))!="Class")
             {
             char*No=strtok(input,denim);
             char*Student_ID=strtok(NULL,denim);
@@ -99,7 +101,7 @@ void ReadData(School_Year*&year_Head)
             year_Class_Sv_Cur=year_Class_Sv_Cur->Next;
             }
             else
-            stoptmp=strtok(input,denim);
+            stoptmp=string(strtok(input,denim));
         }
         year_Class_Cur->Next=new School_Year::Year_Class();
         year_Class_Cur=year_Class_Cur->Next;
@@ -136,18 +138,22 @@ void ReadData(School_Year*&year_Head)
     while(!readYearSemester.eof())
     {
         // getline(readYearSemester,s);
-        char *stoptmp1="NO";
-        char *stoptmp2="NO";
+        string stoptmp1="NO";
+        string stoptmp2="NO";
         // getline(readYearSemester,s);
         // input=new char[s.size()];
         // strcpy(input,s.c_str());
 
         char*year_semester=strtok(input,denim);
         year_Semester_Cur->Term= atoi(year_semester) ;
+
         char*start_date=strtok(NULL,denim);
-        year_Semester_Cur->start_Date=start_date;
+        string Start_date=string(start_date);
+        year_Semester_Cur->start_Date=Start_date;
+
         char*end_date=strtok(NULL,denim);
-        year_Semester_Cur->end_Date=end_date;
+        string End_date=string(end_date);
+        year_Semester_Cur->end_Date=End_date;
         getline(readYearSemester,s);
         getline(readYearSemester,s);
         // discard=strtok(NULL,denim);
@@ -161,7 +167,7 @@ void ReadData(School_Year*&year_Head)
             getline(readYearSemester,s);
             // char*input=new char[s.size()];
             // strcpy(readYearSemester,s.c_str());
-            if(strtok(input,denim)!="Subject")
+            if(string(strtok(input,denim))!="Subject")
             {
         char*No=strtok(input,denim);
         char*Id=strtok(NULL,denim);
