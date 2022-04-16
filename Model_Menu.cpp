@@ -430,10 +430,15 @@ void Show_ScoreBoard(School_Year::Semester::Subject::Student_listMark* Score_hea
         system("pause");
         return;
     }
-    cout<<"\t|No\t|Student_ID\t|Mid-Term Mark\t|Final Mark\t|Other Mark\t|Total\t|"<<endl;
+    cout<<"\t|No\t|Student_ID\t|Full_Name\t|Mid-Term Mark\t|Final Mark\t|Other Mark\t|Total\t|"<<endl;
     while (Score_head != nullptr)
     {
-        cout<<"\t|"<<Score_head -> no<<"\t|"<<Score_head -> idStudent<<"\t|"<<Score_head -> midTermMark<<"\t\t|"<<Score_head -> finalTermMark<<"\t\t|"<<Score_head -> otherMark<<"\t\t|"<<Score_head -> totalMark<<"\t\t|";
+        cout<<"\t|"<<Score_head -> no<<"\t|"<<Score_head -> idStudent<<"\t|";
+         
+        if (Score_head -> FullName .size() < 9) cout<<Score_head -> FullName<<"\t\t|";
+        else cout<<Score_head -> FullName<<"\t|";
+
+        cout<<Score_head -> midTermMark<<"\t\t|"<<Score_head -> finalTermMark<<"\t\t|"<<Score_head -> otherMark<<"\t\t|"<<Score_head -> totalMark<<"\t\t|";
         cout<<endl;
         Score_head = Score_head -> Next;
     }
@@ -3123,7 +3128,7 @@ void Menu_School_Year(School_Year* &sYear_Head)
 }
 
 //Import Temp File
-void Read_Data_For_StudentMark(School_Year::Semester::Subject* Subject_Cur,School_Year::Semester::Subject::Student_listMark* Student_Head)
+void Read_Data_For_StudentMark(School_Year::Semester::Subject* &Subject_Cur,School_Year::Semester::Subject::Student_listMark* &Student_Head)
 {
     finp.open("Temp_CSV.csv", ios::in);
     if (!finp.is_open()) 
@@ -3154,6 +3159,7 @@ void Read_Data_For_StudentMark(School_Year::Semester::Subject* Subject_Cur,Schoo
 
                 Student_Head -> no = atoi(strtok(input,denim));
                 Student_Head -> idStudent = atoi(strtok(NULL,denim));
+                Student_Head -> FullName = strtok(NULL,denim);
                 Student_Head -> midTermMark = atoi(strtok(NULL,denim));
                 Student_Head -> finalTermMark = atoi(strtok(NULL,denim));
                 Student_Head -> otherMark = atoi(strtok(NULL,denim));
@@ -3178,12 +3184,14 @@ void Read_Data_For_StudentMark(School_Year::Semester::Subject* Subject_Cur,Schoo
 
         Student_Cur -> no = atoi(strtok(input,denim));
         Student_Cur -> idStudent = atoi(strtok(NULL,denim));
+        Student_Cur -> FullName = strtok(NULL,denim);
         Student_Cur -> midTermMark = atoi(strtok(NULL,denim));
         Student_Cur -> finalTermMark = atoi(strtok(NULL,denim));
         Student_Cur -> otherMark = atoi(strtok(NULL,denim));
         Student_Cur -> totalMark = atoi(strtok(NULL,denim));
     }
-    
+
+    finp.close();
 }
 
 //Export List of Student
@@ -3361,19 +3369,20 @@ void Export_List_of_Student(School_Year* sYear_Head)
         }
 
         cout<<"Please enter your data in File: Temp_CSV.csv"<<endl;
-        Read_Data_For_StudentMark(Subject_Cur,Subject_Cur -> yearSemesterSubStudent_ListHead);
+        School_Year::Semester::Subject::Student_listMark* Score_Head = Subject_Cur -> yearSemesterSubStudent_ListHead;
+        Read_Data_For_StudentMark(Subject_Cur,Score_Head);
         sleep_until(system_clock::now() + seconds(1));
         system("pause");
 
-        if (Subject_Cur -> yearSemesterSubStudent_ListHead != nullptr)
+        if (Score_Head != nullptr)
         {
             cout<<"You Have Success Import a Temporary file. Here is data from your file"<<endl;
-            Show_ScoreBoard(Subject_Cur->yearSemesterSubStudent_ListHead);
-
+            cout<<endl;
+            Show_ScoreBoard(Score_Head);
+            system("pause");
             //Cmt
         }
     }
-    system("pasue");
 }
 
 //Menu ScoreBoard
