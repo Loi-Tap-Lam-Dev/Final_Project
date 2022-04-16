@@ -3251,8 +3251,6 @@ void Export_List_of_Student(School_Year* sYear_Head)
 
     } while (Check_Year_Duplicated(sYear_Head,user_choosed_Year));
 
-    Check_Ignore = true;
-
 //(ヘ･_･)ヘ┳━┳
     //Find year that user want
     School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year);
@@ -3260,7 +3258,7 @@ void Export_List_of_Student(School_Year* sYear_Head)
     School_Year::Semester* Semester_Head = sYear_Cur -> yearSemesterHead;
 
     //Use a checking var to ignore line
-    //Check_Ignore = false;
+    Check_Ignore = false;
 
     //Show Semster Table
     Showing_Semester:
@@ -3783,7 +3781,6 @@ void Adjust_Student_Result(School_Year* sYear_Head)
             cout<<"Which School-Year you want to choose. Ex: 2021-2022"<<endl;
             cout<<"Note: If you dont want to choose any year pls Enter 'N' "<<endl;
             cout<<"Enter answer: ";
-
             getline(cin,user_choosed_Year);
 
         if (user_choosed_Year == "N") return;
