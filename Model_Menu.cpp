@@ -3103,6 +3103,17 @@ void Menu_School_Year(School_Year* &sYear_Head)
     return ;
 }
 
+//Import student mark (temp  file)
+void Import_Mark_CSV(School_Year::Semester::Subject* &Subject_Cur,School_Year::Semester::Subject::Student_listMark* Mark_Head)
+{
+    finp.open("Temp_CSV.csv",ios::in);
+    while (!finp.eof)
+    {
+        string s;
+        
+    }
+}
+
 //Export List of Student
 void Export_List_of_Student(School_Year* sYear_Head)
 {
@@ -3275,8 +3286,10 @@ void Export_List_of_Student(School_Year* sYear_Head)
         }
         
         cout<<"Please enter your data in File: Temp_CSV.csv"<<endl;
-        finp.open("Temp_CSV.csv",ios::in);
-
+        sleep_until( system_clock::now() + seconds(1) );
+        system("pause");
+        School_Year::Semester::Subject::Student_listMark* Mark_Head = nullptr;
+        Import_Mark_CSV(Subject_Cur,Mark_Head);
     }
 }
 
