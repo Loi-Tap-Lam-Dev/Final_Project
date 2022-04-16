@@ -13,9 +13,6 @@ void ReadData(School_Year*&year_Head)
     School_Year*year_Cur=year_head;
     string s;
     getline(readYear,s);
-    // char*input=new char[s.size()];
-    // strcpy(input,s.c_str());
-    // discard=strtok(input,denim);
     while(!readYear.eof())
     {
         getline(readYear,s);
@@ -39,9 +36,7 @@ void ReadData(School_Year*&year_Head)
     School_Year::Year_Class::SV_List*year_Class_Sv_Head=new School_Year::Year_Class::SV_List();
     School_Year::Year_Class::SV_List*year_Class_Sv_Cur=year_Class_Sv_Head;
     getline(readYearClass,s);
-    // char*input=new char[s.size()];
-    // strcpy(readYearClass,s.c_str());
-    // discard=strtok(NULL,denim);
+    
     getline(readYearClass,s);
     input=new char[s.size()];
     strcpy(input,s.c_str());
@@ -57,16 +52,7 @@ void ReadData(School_Year*&year_Head)
         year_Class_Cur->Next=new School_Year::Year_Class();
         year_Class_Cur=year_Class_Cur->Next;
         getline(readYearClass,s);
-        // char*input=new char[s.size()];
-        // strcpy(input,s.c_str());
-
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
+    
         while(stoptmp!="Class")
         {
             getline(readYearClass,s);
@@ -87,7 +73,6 @@ void ReadData(School_Year*&year_Head)
             char*Dateofbirth=strtok(NULL,denim);
             string dateofbirth=string(Dateofbirth);
 
-            //stoptmp=strtok(NULL,denim);
 
             year_Class_Sv_Cur->no=atoi(No);
             year_Class_Sv_Cur->idStudent=atoi(Student_ID);
@@ -111,10 +96,7 @@ void ReadData(School_Year*&year_Head)
     ifstream readYearSemester;
     readYearSemester.open("Year_Semester.csv",ios::in);
     getline(readYearSemester,s);
-    // char*input=new char[s.size()];
-    // strcpy(readYearSemester,s.c_str());
 
-    //discard=strtok(NULL,denim);
     School_Year::Semester*year_Semester_Head=new School_Year::Semester();
     School_Year::Semester*year_Semester_Cur=year_Semester_Head;
     School_Year::Semester::Student_listMark*year_Semester_Sv_Head=new School_Year::Semester::Student_listMark();
@@ -123,26 +105,15 @@ void ReadData(School_Year*&year_Head)
     School_Year::Semester::Subject*year_Semester_Subject_Cur=year_Semester_Subject_Head;
     School_Year::Semester::Subject::Student_listMark*year_Semester_Subject_Student_Head=new School_Year::Semester::Subject::Student_listMark();
     School_Year::Semester::Subject::Student_listMark*year_Semester_Subject_Student_Cur=year_Semester_Subject_Student_Head;
-    // input=new char[s.size()];
-    // strcpy(input,s.c_str());
-
-    // discard=strtok(NULL,denim);
-    // discard=strtok(NULL,denim);
-    // discard=strtok(NULL,denim);
     getline(readYearSemester,s);
-    //char*stoptmp1="No";
-    //char*stoptmp2="No";
     getline(readYearSemester,s);
     input=new char[s.size()];
     strcpy(input,s.c_str());
     while(!readYearSemester.eof())
     {
-        // getline(readYearSemester,s);
+        
         string stoptmp1="NO";
         string stoptmp2="NO";
-        // getline(readYearSemester,s);
-        // input=new char[s.size()];
-        // strcpy(input,s.c_str());
 
         char*year_semester=strtok(input,denim);
         year_Semester_Cur->Term= atoi(year_semester) ;
@@ -156,17 +127,9 @@ void ReadData(School_Year*&year_Head)
         year_Semester_Cur->end_Date=End_date;
         getline(readYearSemester,s);
         getline(readYearSemester,s);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
         while(stoptmp2!="Subject")
         {
             getline(readYearSemester,s);
-            // char*input=new char[s.size()];
-            // strcpy(readYearSemester,s.c_str());
             if(string(strtok(input,denim))!="Subject")
             {
         char*No=strtok(input,denim);
@@ -186,19 +149,6 @@ void ReadData(School_Year*&year_Head)
         stoptmp2="Subject";
         }
         getline(readYearSemester,s);
-        // char*input=new char[s.size()];
-        // strcpy(readYearSemester,s.c_str());
-
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-        // discard=strtok(NULL,denim);
-
         while(stoptmp1!="Term")
         {
             getline(readYearSemester,s);
@@ -257,40 +207,3 @@ void ReadData(School_Year*&year_Head)
         }
     }
 }
-// //------------------------------------------
-//     //read year_semester_subject_class
-//     ifstream readYearSemesterSubjectClass;
-//     readYearSemesterSubjectClass.open("Year_Semester_Subject_Class",ios::in);
-//     School_Year::Semester::Subject::Student_listMark*year_Semester_Subject_Class_Head=new School_Year::Semester::Subject::Student_listMark();
-//     School_Year::Semester::Subject::Student_listMark*year_Semester_Subject_Class_Cur=year_Semester_Subject_Class_Head;
-//     Year::Semester::Subject::Class::SV_List*year_Semester_Subject_Class_Sv_Head=new Year::Semester::Subject::Class::SV_List();
-//     Year::Semester::Subject::Class::SV_List*year_Semester_Subject_Class_Sv_Cur=year_Semester_Subject_Class_Sv_Head;
-//     char*discard=strtok(NULL,denim);
-//     while(true)
-//     {
-//     char*class=strtok(NULL,denim);
-//     year_Semester_Subject_Class_Cur->nameClass=class;
-//     discard=strtok(NULL,denim);
-//     discard=strtok(NULL,denim);
-//     discard=strtok(NULL,denim);
-//     discard=strtok(NULL,denim);
-//     discard=strtok(NULL,denim);
-//     stop="";
-//     while(stop!="Class")
-//     {
-//         char*No=strtok(NULL,denim);
-//         char*Id=strtok(NULL,denim);
-//         char*Mid=strtok(NULL,denim);
-//         char*Final=strtok(NULL,denim);
-//         char*Other=strtok(NULL,denim);
-        
-//         year_Semester_Subject_Class_Sv_Cur->no=No;
-//         year_Semester_Subject_Class_Sv_Cur->idStudent=Id;
-//         year_Semester_Subject_Class_Sv_Cur->midTermMark=Mid;
-//         year_Semester_Subject_Class_Sv_Cur->finalTermMark=Final;
-//         year_Semester_Subject_Class_Sv_Cur->otherMark=Other;
-//         stop=strtok(NULL,denim);
-//     }
-//     year_Semester_Subject_Class_Cur=year_Semester_Subject_Class_Cur->clNext;
-//     }
-// }
