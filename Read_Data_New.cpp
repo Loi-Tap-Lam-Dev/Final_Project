@@ -21,8 +21,7 @@ void ReadData(School_Year*&year_Head)
 
         //take years
         char*year=strtok(input,denim);
-        string Year=string(year);
-        year_Cur->year=Year;
+        year_Cur->year=year;
         year_Cur->Next=new School_Year();
         year_Cur=year_Cur->Next;
     }

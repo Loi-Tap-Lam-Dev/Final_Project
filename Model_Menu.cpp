@@ -1,6 +1,6 @@
 #include "lib.h"
 
-//Noted task havent finished: line 3267, finish the import/export csv file
+//Noted task havent finished: eheck line 3774 test adjust Student Score Board
 //Noted: Try to make orderd linked list
 
 //Check is there enough 3 term of Semester
@@ -161,6 +161,17 @@ bool Check_Subject_Duplicated(School_Year::Semester::Subject* Subject_Head,Schoo
     return true;
 }
 
+//Check ID Student Match With Score Board To Adjust
+bool Check_IdStu_Course_Dup(School_Year::Semester::Subject::Student_listMark* Student_Head, School_Year::Semester::Subject::Student_listMark* Student_Cur)
+{
+    while (Student_Head != nullptr)
+    {
+        if (Student_Cur -> idStudent == Student_Head -> idStudent) return false;
+        Student_Head = Student_Head -> Next;
+    }
+    return true;
+}
+
 //Find the year with the same naem of user choosed - ヾ(⌐■_■)ノ♪
 School_Year* find_School_Year(School_Year* sYear_Cur,string user_choosed_Year)
 {
@@ -232,6 +243,15 @@ School_Year::Semester::Subject* find_Subject(School_Year::Semester::Subject* Sub
     }
 }
 
+// Find Student In Score Board
+School_Year::Semester::Subject::Student_listMark* find_Student_ScoreBoard(School_Year::Semester::Subject::Student_listMark* Score_Head,School_Year::Semester::Subject::Student_listMark* Score_Temp )
+{
+    while (Score_Head != nullptr)
+    {
+        if (Score_Head -> idStudent == Score_Temp -> idStudent) return Score_Head;
+        Score_Head = Score_Head -> Next;
+    }
+}
 //Show School-Year table - <( ‵□′)───C＜─___-)||
 void Show_Year_Table(School_Year* sYear_Head)
 {
@@ -3907,6 +3927,39 @@ void Adjust_Student_Result(School_Year* sYear_Head)
 
     School_Year::Semester::Subject* Subject_Cur = find_Subject(Subject_Head,Subject_Temp);
     
+    School_Year::Semester::Subject::Student_listMark* Score_Head = Subject_Cur -> yearSemesterSubStudent_ListHead;
+
+    if (Score_Head == nullptr)
+    {
+        cout<<"There are nothing to be adjusted. Please Create One.";
+        system("pause");
+        return;
+    }
+
+    Show_ScoreBoard(Score_Head);
+    School_Year::Semester::Subject::Student_listMark* Temp_St = nullptr;
+    string user_Choice;
+     do
+    {
+        delete Temp_St;
+        Temp_St = new School_Year::Semester::Subject::Student_listMark;
+        
+        cout<<"Enter ID Student You Want To Change? (If not Enter 'N'): "<<endl;
+        getline(cin,user_Choice);
+        
+        if (user_Choice == "N") return;
+
+        Temp_St -> idStudent = atoi (user_Choice.c_str());
+
+        if (Check_IdStu_Course_Dup(Score_Head,Temp_St)) 
+        {
+            cout<<"There arent any student match with your info. Please try again."<<endl;
+            
+            //Enter any key to continue and go back to  "Showing_School_Year"
+            system("pause");
+        }
+    } while (Check_IdStu_Course_Dup(Score_Head,Temp_St));
+    ////
 }
 
 //Menu ScoreBoard
