@@ -421,6 +421,25 @@ void Show_Specific_Subject_Table(string user_Semester,School_Year::Semester::Sub
     } 
 }
 
+//Show ScoreBoard
+void Show_ScoreBoard(School_Year::Semester::Subject::Student_listMark* Score_head)
+{
+    if (Score_head == nullptr)
+    {
+        cout<<"Nothing to show. Please Try Again"<<endl;
+        system("pause");
+        return;
+    }
+    cout<<"\t|No\t|Student_ID\t|Mid-Term Mark\t|Final Mark\t|Other Mark\t|Total\t|"<<endl;
+    while (Score_head != nullptr)
+    {
+        cout<<"\t|"<<Score_head -> no<<"\t|"<<Score_head -> idStudent<<"\t|"<<Score_head -> midTermMark<<"\t\t|"<<Score_head -> finalTermMark<<"\t\t|"<<Score_head -> otherMark<<"\t\t|"<<Score_head -> totalMark<<"\t\t|";
+        cout<<endl;
+        Score_head = Score_head -> Next;
+    }
+
+}
+
 //View Student List
 void View_Sv_List(string user_Class, School_Year::Year_Class::SV_List* Sv_Head )
 {
@@ -3103,15 +3122,68 @@ void Menu_School_Year(School_Year* &sYear_Head)
     return ;
 }
 
-//Import student mark (temp  file)
-void Import_Mark_CSV(School_Year::Semester::Subject* &Subject_Cur,School_Year::Semester::Subject::Student_listMark* Mark_Head)
+//Import Temp File
+void Read_Data_For_StudentMark(School_Year::Semester::Subject* Subject_Cur,School_Year::Semester::Subject::Student_listMark* Student_Head)
 {
-    finp.open("Temp_CSV.csv",ios::in);
-    while (!finp.eof)
+    finp.open("Temp_CSV.csv", ios::in);
+    if (!finp.is_open()) 
     {
-        string s;
-        
+        cout<<"Please Check Your Temp_CSV.csv File"<<endl;
+        return;
     }
+    //Skip one line to access dir to data
+    string s;
+    getline(finp,s);
+    
+    //Declare Cur 
+    School_Year::Semester::Subject::Student_listMark* Student_Cur = nullptr;
+
+    while (!finp.eof())
+    {
+        getline(finp,s);
+        if (s == "") break;
+        if (Student_Head == nullptr)
+            {
+                Student_Head = new School_Year::Semester::Subject::Student_listMark;
+
+                char* input = new char [s.size()];
+                strcpy(input,s.c_str());
+
+                const char* denim = ",";
+                int no , idStudent , midTermMark = 0, finalTermMark = 0 , otherMark = 0, totalMark = 0;
+
+                Student_Head -> no = atoi(strtok(input,denim));
+                Student_Head -> idStudent = atoi(strtok(NULL,denim));
+                Student_Head -> midTermMark = atoi(strtok(NULL,denim));
+                Student_Head -> finalTermMark = atoi(strtok(NULL,denim));
+                Student_Head -> otherMark = atoi(strtok(NULL,denim));
+                Student_Head -> totalMark = atoi(strtok(NULL,denim));
+
+                Subject_Cur -> yearSemesterSubStudent_ListHead = Student_Head;
+                Student_Cur = Student_Head;
+                continue;
+
+            }
+        while (Student_Cur -> Next != nullptr) Student_Cur = Student_Cur -> Next;
+
+        Student_Cur -> Next = new School_Year::Semester::Subject::Student_listMark;
+        Student_Cur -> Next -> Prev = Student_Cur;
+        Student_Cur = Student_Cur -> Next;
+
+        char* input = new char [s.size()];
+        strcpy(input,s.c_str());
+
+        const char* denim = ",";
+        int no , idStudent , midTermMark = 0, finalTermMark = 0 , otherMark = 0, totalMark = 0;
+
+        Student_Cur -> no = atoi(strtok(input,denim));
+        Student_Cur -> idStudent = atoi(strtok(NULL,denim));
+        Student_Cur -> midTermMark = atoi(strtok(NULL,denim));
+        Student_Cur -> finalTermMark = atoi(strtok(NULL,denim));
+        Student_Cur -> otherMark = atoi(strtok(NULL,denim));
+        Student_Cur -> totalMark = atoi(strtok(NULL,denim));
+    }
+    
 }
 
 //Export List of Student
@@ -3171,6 +3243,8 @@ void Export_List_of_Student(School_Year* sYear_Head)
 
     } while (Check_Year_Duplicated(sYear_Head,user_choosed_Year));
 
+    Check_Ignore = true;
+
 //(ヘ･_･)ヘ┳━┳
     //Find year that user want
     School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year);
@@ -3178,7 +3252,7 @@ void Export_List_of_Student(School_Year* sYear_Head)
     School_Year::Semester* Semester_Head = sYear_Cur -> yearSemesterHead;
 
     //Use a checking var to ignore line
-    Check_Ignore = false;
+    //Check_Ignore = false;
 
     //Show Semster Table
     Showing_Semester:
@@ -3277,6 +3351,7 @@ void Export_List_of_Student(School_Year* sYear_Head)
         cout<<endl;
         cout<<"Your List Of Student (No, Id_Student, Full_Name,Mid_Term_Mark, Final_Term_Mark, Other_Mark, Total_Mark) is Empty"<<endl;
         cout<<"Do You Want to Import a Temporary CSV File of Student List? "<<endl;
+        cout<<"Enter (Y/N): ";
         getline(cin,user_choice);
 
         if (user_choice == "N" ) 
@@ -3284,13 +3359,21 @@ void Export_List_of_Student(School_Year* sYear_Head)
             system("pause");
             return;
         }
-        
+
         cout<<"Please enter your data in File: Temp_CSV.csv"<<endl;
-        sleep_until( system_clock::now() + seconds(1) );
+        Read_Data_For_StudentMark(Subject_Cur,Subject_Cur -> yearSemesterSubStudent_ListHead);
+        sleep_until(system_clock::now() + seconds(1));
         system("pause");
-        School_Year::Semester::Subject::Student_listMark* Mark_Head = nullptr;
-        Import_Mark_CSV(Subject_Cur,Mark_Head);
+
+        if (Subject_Cur -> yearSemesterSubStudent_ListHead != nullptr)
+        {
+            cout<<"You Have Success Import a Temporary file. Here is data from your file"<<endl;
+            Show_ScoreBoard(Subject_Cur->yearSemesterSubStudent_ListHead);
+
+            //Cmt
+        }
     }
+    system("pasue");
 }
 
 //Menu ScoreBoard
@@ -3368,6 +3451,12 @@ void Primal_Menu(School_Year* &sYear_Head)
                 break;
             }
 
+            case 2:
+            {
+                Export_List_of_Student(sYear_Head);
+                continue;
+                break;
+            }
 
             default:
                 system("pause");
