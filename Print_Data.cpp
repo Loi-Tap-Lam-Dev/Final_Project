@@ -19,7 +19,7 @@ void outInfor(School_Year* yearHead)
     for(School_Year::Year_Class*year_Class_Cur=yearHead->yearCLassHead;year_Class_Cur!=nullptr;year_Class_Cur=year_Class_Cur->Next)
     {
         string tmp=""",""";
-        OutData<<"Class "+tmp<<year_Class_Cur->nameClass<<endl;
+        OutData<<"Class"+tmp+year_Class_Cur->nameClass<<endl;    
         OutData<<"No"+tmp+"Student_ID"+tmp+"SocialID"+tmp+"FirstName"+tmp+"LastName"+tmp+"Gender"+tmp+"Dateofbirth"<<endl;
         for(School_Year::Year_Class::SV_List*year_Class_Sv_Cur=year_Class_Cur->yearClassSV_ListHead;year_Class_Sv_Cur!=nullptr;year_Class_Sv_Cur=year_Class_Sv_Cur->Next)
         {
