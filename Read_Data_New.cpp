@@ -16,6 +16,7 @@ void ReadData(School_Year*&year_Head)
     while(!readYear.eof())
     {
         getline(readYear,s);
+        if (s == "") break;
         input=new char[s.size()];
         strcpy(input,s.c_str());
 
