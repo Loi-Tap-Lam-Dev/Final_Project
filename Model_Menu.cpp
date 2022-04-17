@@ -240,6 +240,8 @@ School_Year::Semester::Subject* find_Subject(School_Year::Semester::Subject* Sub
             {
                 if (Subject_Head -> at_Time_2  == Subject_Cur -> at_Time_2 )  return Subject_Head;
             }
+
+        Subject_Head = Subject_Head -> Next;
     }
 }
 
@@ -252,6 +254,7 @@ School_Year::Semester::Subject::Student_listMark* find_Student_ScoreBoard(School
         Score_Head = Score_Head -> Next;
     }
 }
+
 //Show School-Year table - <( ‵□′)───C＜─___-)||
 void Show_Year_Table(School_Year* sYear_Head)
 {
@@ -458,8 +461,36 @@ void Show_ScoreBoard(School_Year::Semester::Subject::Student_listMark* Score_hea
         if (Score_head -> FullName .size() < 9) cout<<Score_head -> FullName<<"\t\t\t|";
         else cout<<Score_head -> FullName<<"\t|";
 
-        cout<<Score_head -> midTermMark<<"\t\t|"<<Score_head -> finalTermMark<<"\t\t|"<<Score_head -> otherMark<<"\t\t|"<<Score_head -> totalMark<<"\t\t|";
+        cout<<Score_head -> midTermMark<<"\t\t|"<<Score_head -> finalTermMark<<"\t\t|"<<Score_head -> otherMark<<"\t\t|"<<Score_head -> totalMark<<"\t|";
         cout<<endl;
+        Score_head = Score_head -> Next;
+    }
+
+}
+
+//Show Specific Result 
+void Show_Specific_StuResult(School_Year::Semester::Subject::Student_listMark* Score_head,School_Year::Semester::Subject::Student_listMark* Score_Cur)
+{
+    if (Score_head == nullptr)
+    {
+        cout<<"Nothing to show. Please Try Again"<<endl;
+        system("pause");
+        return;
+    }
+    cout<<"\t|No\t|Student_ID\t|Full_Name\t\t|Mid-Term Mark\t|Final Mark\t|Other Mark\t|Total\t|"<<endl;
+    while (Score_head != nullptr)
+    {
+        if (Score_head == Score_Cur)
+        {
+            cout<<"\t|"<<Score_head -> no<<"\t|"<<Score_head -> idStudent<<"\t|";
+         
+            if (Score_head -> FullName .size() < 9) cout<<Score_head -> FullName<<"\t\t\t|";
+            else cout<<Score_head -> FullName<<"\t|";
+
+            cout<<Score_head -> midTermMark<<"\t\t|"<<Score_head -> finalTermMark<<"\t\t|"<<Score_head -> otherMark<<"\t\t|"<<Score_head -> totalMark<<"\t|";
+            cout<<endl;
+            return;
+        }
         Score_head = Score_head -> Next;
     }
 
@@ -3959,6 +3990,77 @@ void Adjust_Student_Result(School_Year* sYear_Head)
             system("pause");
         }
     } while (Check_IdStu_Course_Dup(Score_Head,Temp_St));
+
+    School_Year::Semester::Subject::Student_listMark* Score_Cur = find_Student_ScoreBoard(Score_Head,Temp_St);
+
+    int user_Change;
+    do
+    {
+        Show_Specific_StuResult(Score_Head,Score_Cur);
+
+        cout<<"What do you want to change?"<<endl;
+        cout<<"     1: Mid-Term Mark."<<endl;
+        cout<<"     2: Final-Mark."<<endl;
+        cout<<"     3: Other Mark."<<endl;
+        cout<<"     4: Total."<<endl;
+        cout<<"     5: Back."<<endl;
+        cout<<"     Your Choice: ";
+        cin>>user_Change;
+        
+            delete Temp_St;
+            Temp_St = new School_Year::Semester::Subject::Student_listMark;
+
+            switch (user_Change)
+            {
+                case 1:
+                {   
+                    cout<<"What Do You Want To Change Mid-Term Mark, From "<<Score_Cur -> midTermMark<<" to ?"<<endl;
+                    cout<<"Enter New Mid-Term Mark: ";
+                    cin>>Temp_St -> midTermMark;
+
+                    Score_Cur -> midTermMark = Temp_St -> midTermMark;
+
+                    break;
+                }
+                case 2:
+                {   
+                    cout<<"What Do You Want To Change Final Mark, From "<<Score_Cur -> finalTermMark<<" to ?"<<endl;
+                    cout<<"Enter New Final Mark: ";
+                    cin>>Temp_St -> finalTermMark;
+
+                    Score_Cur -> finalTermMark = Temp_St -> finalTermMark;
+
+                    break;
+                }
+
+                case 3:
+                {   
+                    cout<<"What Do You Want To Change Other Mark, From "<<Score_Cur -> otherMark<<" to ?"<<endl;
+                    cout<<"Enter New Other Mark: ";
+                    cin>>Temp_St -> otherMark;
+
+                    Score_Cur -> otherMark = Temp_St -> otherMark;
+
+                    break;
+                }
+
+                case 4:
+                {
+                    cout<<"What Do You Want To Change Total Mark, From "<<Score_Cur ->totalMark<<" to ?"<<endl;
+                    cout<<"Enter New Total Mark: ";
+                    cin>>Temp_St ->totalMark;
+
+                    Score_Cur ->totalMark = Temp_St ->totalMark;
+                }
+            
+            default:
+                break;
+            }
+    } while (user_Change != 5);
+    
+
+    cout<<"Change Success"<<endl;  
+    system("pause");
     ////
 }
 
@@ -3973,7 +4075,7 @@ void Menu_ScoreBoard(School_Year* sYear_Head)
         return;
     }
     int user_Choose = 0;
-    while (user_Choose != 3)
+    while (user_Choose != 5)
     {
         system("CLS");
         
@@ -4018,6 +4120,12 @@ void Menu_ScoreBoard(School_Year* sYear_Head)
                 break;
             }
 
+            case 4:
+            {
+                //Adjut Student Result
+                Adjust_Student_Result(sYear_Head);
+                continue;
+            }
             default:
                 system("pause");
                 break;
