@@ -631,7 +631,7 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
 
     fstream  finp;
 
-    finp.open("Student_Info.csv", ios::in);
+    finp.open("./CSV_File/Student_Info.csv", ios::in);
 
     if (!finp.is_open())
         {
@@ -1192,7 +1192,7 @@ void View_Classes(string user_School_Year,School_Year::Year_Class* &Classes_Head
                             //Notice and rule
                             cout<<"To import a CSV there is a rule: No , ID_Student , First Name , Last Name , Gender , Date of Birth , Social ID"<<endl;
                             sleep_until( system_clock::now() + seconds(1) );
-                            cout<<"Notice: If u havent Import in Student_Info.csv, now it's your time! then continue"<<endl;
+                            cout<<"Notice: If u havent Import in CSV_File/Student_Info.csv, now it's your time! then continue"<<endl;
 
                             system("pause");
                             //Declare
@@ -1680,7 +1680,7 @@ void Create_Course_Import(School_Year::Semester* &ySemester_Cur, School_Year::Se
 
     fstream  finp;
 
-    finp.open("Course_Info.csv", ios::in);
+    finp.open("./CSV_File/Course_Info.csv", ios::in);
 
     if (!finp.is_open())
         {
@@ -2337,7 +2337,7 @@ void View_Semester(string user_School_Year,School_Year::Semester* &Semester_Head
                             //Notice and rule
                             cout<<"To import a CSV there is a rule: Course Id, Course Name, Teacher Name, Number of credits, Maximum student, Day of week (Mon/Tue/..), At time (S1/S2/S3...)"<<endl;
                             sleep_until( system_clock::now() + seconds(1) );
-                            cout<<"Notice: If u havent Import in Course_Info.csv, now it's your time! then continue"<<endl;
+                            cout<<"Notice: If u havent Import in CSV_File/Course_Info.csv, now it's your time! then continue"<<endl;
 
                             system("pause");
 
@@ -3184,7 +3184,7 @@ void Read_Data_For_StudentMark(School_Year::Semester::Subject* &Subject_Cur,Scho
     finp.open(Name_File, ios::in);
     if (!finp.is_open()) 
     {
-        cout<<"Please Check Your Temp_CSV.csv File"<<endl;
+        cout<<"Please Check Your CSV_File/Temp_CSV.csv File"<<endl;
         return;
     }
     //Skip one line to access dir to data
@@ -3302,6 +3302,7 @@ void Export_List_of_Student(School_Year* &sYear_Head)
 
     } while (Check_Year_Duplicated(sYear_Head,user_choosed_Year));
 
+    Check_Ignore = true;
 //(ヘ･_･)ヘ┳━┳
     //Find year that user want
     School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year);
@@ -3416,8 +3417,8 @@ void Export_List_of_Student(School_Year* &sYear_Head)
             return;
         }
 
-        cout<<"Please enter your data in File: Temp_CSV.csv"<<endl;
-        string Name_File = "Temp_CSV.csv";
+        cout<<"Please enter your data in File: CSV_File/Temp_CSV.csv"<<endl;
+        string Name_File = "./CSV_File/Temp_CSV.csv";
         School_Year::Semester::Subject::Student_listMark* Score_Head = Subject_Cur -> yearSemesterSubStudent_ListHead;
         Read_Data_For_StudentMark(Subject_Cur,Score_Head,Name_File);
         sleep_until(system_clock::now() + seconds(1));
@@ -3432,7 +3433,7 @@ void Export_List_of_Student(School_Year* &sYear_Head)
     }
 
     //Export
-    fout.open("Student_List_For_Teacher.csv",ios::out);
+    fout.open("./CSV_File/Student_List_For_Teacher.csv",ios::out);
     fout<<"No,ID,FullName,Mid,Final,Other,Total"<<endl;
     School_Year::Semester::Subject::Student_listMark* Score_Head = Subject_Cur -> yearSemesterSubStudent_ListHead;
 
@@ -3614,7 +3615,7 @@ void Import_List_of_Student(School_Year* &sYear_Head)
 
     cout<<"Make Sure Enter Data into File 'Student_List_For_Staff.csv' Before Import"<<endl;
     sleep_until(system_clock::now() + seconds(1));
-    string Name_File = "Student_List_For_Staff.csv";
+    string Name_File = "./CSV_File/Student_List_For_Staff.csv";
     School_Year::Semester::Subject::Student_listMark* Score_Head = Subject_Cur -> yearSemesterSubStudent_ListHead;
     Read_Data_For_StudentMark(Subject_Cur,Score_Head,Name_File);
 
@@ -3870,6 +3871,7 @@ void Adjust_Student_Result(School_Year* sYear_Head)
 
     //Show Semster Table
     Showing_Semester:
+
     if (Semester_Head == nullptr) 
         {
             cout<<"Nothing being added"<<endl;

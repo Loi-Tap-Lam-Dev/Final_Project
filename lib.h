@@ -17,11 +17,9 @@ using namespace std::chrono;    // nanoseconds, system_clock, seconds
 //Declare fstream
 fstream finp, fout;
 
-
 //Include Function file
 #include "DataBase.cpp"
 #include "Read_Data_New.cpp"
-#include "View_Data.cpp"
 #include "DeLeTe_Data.cpp"
 #include "Model_Menu.cpp"
 #include "Print_Data.cpp"
