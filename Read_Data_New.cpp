@@ -4,12 +4,12 @@ void ReadData(School_Year*&year_Head)
     const char* denim=",";
     char*discard;
     char*input;
-
+    //check this push
     
     //Read year
     ifstream readYear;
     readYear.open("Year.csv",ios::in);
-    School_Year*year_head=new School_Year();
+    School_Year*year_head=new School_Year;
     School_Year*year_Cur=year_head;
     string s;
     getline(readYear,s);
@@ -23,7 +23,7 @@ void ReadData(School_Year*&year_Head)
         char*year=strtok(input,denim);
         string Year=string(year);
         year_Cur->year=Year;
-        year_Cur->Next=new School_Year();
+        year_Cur->Next=new School_Year;
         year_Cur=year_Cur->Next;
     }
 
@@ -31,9 +31,9 @@ void ReadData(School_Year*&year_Head)
     //Read year_class
     ifstream readYearClass;
     readYearClass.open("Year_Class.csv",ios::in);
-    School_Year::Year_Class*year_Class_Head=new School_Year::Year_Class();
+    School_Year::Year_Class*year_Class_Head=new School_Year::Year_Class;
     School_Year::Year_Class*year_Class_Cur=year_Class_Head;
-    School_Year::Year_Class::SV_List*year_Class_Sv_Head=new School_Year::Year_Class::SV_List();
+    School_Year::Year_Class::SV_List*year_Class_Sv_Head=new School_Year::Year_Class::SV_List;
     School_Year::Year_Class::SV_List*year_Class_Sv_Cur=year_Class_Sv_Head;
     getline(readYearClass,s);
     
@@ -49,7 +49,7 @@ void ReadData(School_Year*&year_Head)
         char*class_name=strtok(NULL,denim);
         string Class_name=string(class_name);
         year_Class_Cur->nameClass=Class_name;
-        year_Class_Cur->Next=new School_Year::Year_Class();
+        year_Class_Cur->Next=new School_Year::Year_Class;
         year_Class_Cur=year_Class_Cur->Next;
         getline(readYearClass,s);
     
@@ -82,13 +82,13 @@ void ReadData(School_Year*&year_Head)
             year_Class_Sv_Cur->gender=gender;
             year_Class_Sv_Cur->dateOfBirth=dateofbirth;
 
-            year_Class_Sv_Cur->Next=new School_Year::Year_Class::SV_List();
+            year_Class_Sv_Cur->Next=new School_Year::Year_Class::SV_List;
             year_Class_Sv_Cur=year_Class_Sv_Cur->Next;
             }
             else
             stoptmp=string(strtok(input,denim));
         }
-        year_Class_Cur->Next=new School_Year::Year_Class();
+        year_Class_Cur->Next=new School_Year::Year_Class;
         year_Class_Cur=year_Class_Cur->Next;
     }
 
@@ -97,13 +97,13 @@ void ReadData(School_Year*&year_Head)
     readYearSemester.open("Year_Semester.csv",ios::in);
     getline(readYearSemester,s);
 
-    School_Year::Semester*year_Semester_Head=new School_Year::Semester();
+    School_Year::Semester*year_Semester_Head=new School_Year::Semester;
     School_Year::Semester*year_Semester_Cur=year_Semester_Head;
-    School_Year::Semester::Student_listMark*year_Semester_Sv_Head=new School_Year::Semester::Student_listMark();
+    School_Year::Semester::Student_listMark*year_Semester_Sv_Head=new School_Year::Semester::Student_listMark;
     School_Year::Semester::Student_listMark*year_Semester_Sv_Cur=year_Semester_Sv_Head;
-    School_Year::Semester::Subject*year_Semester_Subject_Head=new School_Year::Semester::Subject();
+    School_Year::Semester::Subject*year_Semester_Subject_Head=new School_Year::Semester::Subject;
     School_Year::Semester::Subject*year_Semester_Subject_Cur=year_Semester_Subject_Head;
-    School_Year::Semester::Subject::Student_listMark*year_Semester_Subject_Student_Head=new School_Year::Semester::Subject::Student_listMark();
+    School_Year::Semester::Subject::Student_listMark*year_Semester_Subject_Student_Head=new School_Year::Semester::Subject::Student_listMark;
     School_Year::Semester::Subject::Student_listMark*year_Semester_Subject_Student_Cur=year_Semester_Subject_Student_Head;
     getline(readYearSemester,s);
     getline(readYearSemester,s);
@@ -130,6 +130,8 @@ void ReadData(School_Year*&year_Head)
         while(stoptmp2!="Subject")
         {
             getline(readYearSemester,s);
+            input=new char[s.size()];
+            strcpy(input,s.c_str());
             if(string(strtok(input,denim))!="Subject")
             {
         char*No=strtok(input,denim);
@@ -143,6 +145,8 @@ void ReadData(School_Year*&year_Head)
         year_Semester_Sv_Cur->totalCredit=atoi(Credit);
         year_Semester_Sv_Cur->GPA=atoi(GPA);
         year_Semester_Sv_Cur->averageMark=atoi(AverageMark);
+
+        year_Semester_Sv_Cur->Next=new School_Year::Semester::Student_listMark;
         year_Semester_Sv_Cur=year_Semester_Sv_Cur->Next;
             }
         else
@@ -155,7 +159,7 @@ void ReadData(School_Year*&year_Head)
             input=new char[s.size()];
             strcpy(input,s.c_str());
             
-            if(strtok(input,denim)!="Term")
+            if(string(strtok(input,denim))!="Term")
             {
             char*name_sub=strtok(input,denim);
             char*id_sub=strtok(NULL,denim);
@@ -191,7 +195,7 @@ void ReadData(School_Year*&year_Head)
             year_Semester_Subject_Cur->maximumRegrister=atoi(maxregister);
             year_Semester_Subject_Cur->number_Of_Credit=atoi(number_credit);
 
-            year_Semester_Subject_Cur->Next=new School_Year::Semester::Subject();
+            year_Semester_Subject_Cur->Next=new School_Year::Semester::Subject;
             year_Semester_Subject_Cur=year_Semester_Subject_Cur->Next;
             }
             else
@@ -205,5 +209,7 @@ void ReadData(School_Year*&year_Head)
                 strcpy(input,s.c_str());
             }
         }
+        year_Semester_Cur->Next=new School_Year::Semester;
+        year_Semester_Cur=year_Semester_Cur->Next;
     }
 }

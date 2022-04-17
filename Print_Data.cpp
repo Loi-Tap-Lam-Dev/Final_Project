@@ -58,22 +58,3 @@ void outInfor(School_Year* yearHead)
     system("pause");
 }
 
-//     //Semester Subject
-//     OutData.open("Year_Semester_Subject_Class.csv",ios::out);
-//     for (Year::Semester* year_Semester_Cur = yearHead -> yearSemesterHead; year_Semester_Cur -> sNext != nullptr; year_Semester_Cur = year_Semester_Cur -> sNext)
-//         for (Year::Semester::SV_List* year_Semester_SvListCur = year_Semester_Cur -> yearSemesterSv_ListHead; year_Semester_SvListCur -> svNext != nullptr;year_Semester_SvListCur = year_Semester_SvListCur -> svNext )
-//             for (Year::Semester::Subject* year_Semester_Subject_Cur = year_Semester_Cur -> yearSemesterSubjectHead;year_Semester_Subject_Cur -> subNext != nullptr; year_Semester_Subject_Cur = year_Semester_Subject_Cur -> subNext)    
-//                 for (Year::Semester::Subject::Class* semester_Class = year_Semester_Subject_Cur -> yearSemesterSubjectClassHead; semester_Class -> clNext != nullptr; semester_Class = semester_Class -> clNext)
-//                 {
-//                     OutData<<"Class "<<semester_Class->nameClass<<endl;
-//                     string tmp=""",""";
-//                     OutData<<"No"+tmp+"ID"+tmp+"Mid"+tmp+"Final"+tmp+"Other"<<endl;
-//                     for (Year::Semester::Subject::Class::SV_List* Class_Sv_Cur = semester_Class -> yearSemesterSubjectClassSV_ListHead;Class_Sv_Cur -> svNext != nullptr; Class_Sv_Cur = Class_Sv_Cur -> svNext)
-//                     {
-//                         OutData<<to_string(Class_Sv_Cur->no)+tmp+to_string(Class_Sv_Cur->idStudent)+tmp+to_string(Class_Sv_Cur->midTermMark)+tmp+to_string(Class_Sv_Cur->finalTermMark)+tmp+to_string(Class_Sv_Cur->otherMark)<<endl;
-//                     }
-//                 }
-//     OutData.close();
-//     system("pause");
-// }
-
