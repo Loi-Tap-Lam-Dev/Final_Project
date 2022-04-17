@@ -3246,7 +3246,7 @@ void Read_Data_For_StudentMark(School_Year::Semester::Subject* &Subject_Cur,Scho
 }
 
 //Export List of Student To Teacher
-void Export_List_of_Student(School_Year* sYear_Head)
+void Export_List_of_Student(School_Year* &sYear_Head)
 {
 //(ง •_•)ง
     //Ask user to choose school year that he want
@@ -3455,7 +3455,7 @@ void Export_List_of_Student(School_Year* sYear_Head)
 }
 
 //Import List Of Student To Staff
-void Import_List_of_Student(School_Year* sYear_Head)
+void Import_List_of_Student(School_Year* &sYear_Head)
 {
 //(ง •_•)ง
     //Ask user to choose school year that he want
@@ -3996,6 +3996,7 @@ void Adjust_Student_Result(School_Year* sYear_Head)
     int user_Change;
     do
     {
+        system("CLS");
         Show_Specific_StuResult(Score_Head,Score_Cur);
 
         cout<<"What do you want to change?"<<endl;
