@@ -22,7 +22,7 @@ fstream finp, fout;
 //Include Function file
 #include "View\DataBase.h"
 #include "Read_Data.cpp"
-#include "View_Data.cpp"
+#include "Read_Data_New.cpp"
 #include "DeLeTe_Data.cpp"
 #include "Model\modelLogin.hpp"
 
