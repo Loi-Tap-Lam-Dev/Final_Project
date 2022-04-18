@@ -1,17 +1,17 @@
 Semester info
-Term,Start Date,End Date
-1,1,2
-Sv Semester Mark 
-No ,Id ,Credit ,GPA ,Average Mark 
-0,21127013,0,10
-Subject 
-NameSubject,IDSubject,StartDate,EndDate,TeacherName,Day_of_session_1,Day_of_session_2,Time_1,Time_2,MaxRegister,Number_Credit
-Math,123,20/07/2021,21/07/2022,Nguyen Kim Ha,Mon,Tue,S1,S2,50,15
-Term,Start Date,End Date
-2,1,2
-Sv Semester Mark 
-No ,Id ,Credit ,GPA ,Average Mark
-0,21127013,0,10
-Subject 
-NameSubject,IDSubject,StartDate,EndDate,TeacherName,Day_of_session_1,Day_of_session_2,Time_1,Time_2,MaxRegister,Number_Credit
-Math,123,20/07/2021,21/07/2022,Nguyen Kim Ha,Mon,Tue,S1,S2,50,15
+Term, Start Date, End Date
+1,20/06/2021,20/05/2022
+Sv Semester Mark
+No, Id, Credit, GPA, Average Mark 
+1,21127000,3,3.4,9.4
+Subject
+NameSubject, IDSubject, StartDate, EndDate, TeacherName, Day_of_session_1, Day_of_session_2, Time_1, Time_2, MaxRegister, Number_Credit
+Math,MTH00001,18/03/2022,18/06/2022,LY KIM HA,MONDAY,THURSDAY,13H30,13H30,50,5
+Term, Start Date, End Date
+2,20/05/2022,20/04/2023
+Sv Semester Mark
+No, Id, Credit, GPA, Average Mark 
+1,21127000,3,3.4,9.4
+Subject
+NameSubject, IDSubject, StartDate, EndDate, TeacherName, Day_of_session_1, Day_of_session_2, Time_1, Time_2, MaxRegister, Number_Credit
+Math,MTH00001,18/03/2022,18/06/2022,LY KIM HA,MONDAY,THURSDAY,13H30,13H30,50,5

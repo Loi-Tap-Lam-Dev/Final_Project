@@ -1,13 +1,13 @@
-Class infor 
-Class,21CLC1
-No,Student_ID,SocialID,FirstName,LastName,Gender,Dateofbirth
-1,21127013,352660,Bao,Nguyen,Male,20/03/2003
-2,21127014,3526601,Buoi,Nguyen,Male,20/03/2003
-Class,21CLC2
-No,Student_ID,SocialID,FirstName,LastName,Gender,Dateofbirth
-1,21127013,352660,Bao,Nguyen,Male,20/03/2003
-2,21127014,3526601,Buoi,Nguyen,Male,20/03/2003
-Class,21CLC3
-No,Student_ID,SocialID,FirstName,LastName,Gender,Dateofbirth
-1,21127013,352660,Bao,Nguyen,Male,20/03/2003
-2,21127014,3526601,Buoi,Nguyen,Male,20/03/2003
+Class infor
+Class,21CLC01
+No, Student_ID, SocialID, FirstName, LastName, Gender, Dateofbirth
+1,21127000,26868317,Bao,Nguyen,male,99/99/1999
+2,21127001,10406725,Quoc,Cao,male,55/55/1555
+1,21127000,26868317,Bao,Nguyen,male,99/99/1999
+2,21127001,10406725,Quoc,Cao,male,55/55/1555
+Class,21CLC02
+No, Student_ID, SocialID, FirstName, LastName, Gender, Dateofbirth
+1,21127000,26868317,Bao,Nguyen,male,99/99/1999
+2,21127001,10406725,Quoc,Cao,male,55/55/1555
+1,21127000,26868317,Bao,Nguyen,male,99/99/1999
+2,21127001,10406725,Quoc,Cao,male,55/55/1555
