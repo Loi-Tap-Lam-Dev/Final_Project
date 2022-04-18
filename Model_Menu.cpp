@@ -187,7 +187,7 @@ School_Year* find_School_Year(School_Year* sYear_Cur,string user_choosed_Year)
 School_Year::Year_Class* find_Classes(School_Year::Year_Class* Classes_Cur,string user_choosed_Class)
 {
     while (Classes_Cur!= nullptr)
-    {
+    {   
         if (Classes_Cur -> nameClass == user_choosed_Class) return Classes_Cur;
         
         Classes_Cur= Classes_Cur-> Next;
@@ -299,7 +299,7 @@ void Show_Classes_Table(string user_School_Year,School_Year::Year_Class* Classes
 void Show_Sv_Table(string user_Class,School_Year::Year_Class::SV_List* Sv_Head)
 {
      //Show the Classes from chosen school year - 👌
-        system("CLS");
+        // system("CLS");
         cout<<"| Classes\t|"<<user_Class<<"\t\t|"<<endl<<endl;
         cout<<"    \t| No\t| Student ID\t\t| First Name\t| Last Name\t\t| Gender\t| DateOfBirth\t\t| Social ID\t\t|"<<endl;
         cout<<"    \t";

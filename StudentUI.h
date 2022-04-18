@@ -14,6 +14,8 @@ startWindow:
 
     if (sYear_Head == NULL) {
         cout << "No class available!\n";
+        system("pause");
+
         return;
     }
     
@@ -32,6 +34,8 @@ startWindow:
         currentYear = currentYear->Next;
     }
 
+    currentYear = sYear_Head;
+
     // New display window
     int choice;
     cout << "\t\tAvailable operations:\n";
@@ -41,14 +45,12 @@ startWindow:
     cin >> choice;
 
     switch (choice) {
-        case 1: 
-            cout << "1\n";
+        case 1: {
             string findClass;
-            School_Year::Year_Class *targetClassHead;
+            School_Year::Year_Class *targetClassHead = NULL;
 
             cin.clear();
             cin.ignore(1000, '\n');
-            cout << "2\n";
             cout << "Enter class to view from: ";
             getline(cin, findClass);
 
@@ -56,14 +58,15 @@ startWindow:
             currentClass = currentYear->yearCLassHead;
 
             while (currentYear != NULL) {
-                cout << "3\n";
                 currentClass = currentYear->yearCLassHead;
 
                 targetClassHead = find_Classes(currentClass, findClass);
 
+                if (targetClassHead != NULL) break;
+
                 currentYear = currentYear->Next;
             }
-            cout << "4\n";
+
             if (targetClassHead == NULL) {
                 cout << "No class found!\n";
                 system("pause");
@@ -72,16 +75,42 @@ startWindow:
             }
 
             Show_Sv_Table(findClass, targetClassHead->yearClassSV_ListHead);
+            
+            system("pause");
 
             goto startWindow;
+        }
         
-        case 2: 
+        case 2: {
             cout << "Good choice!\n";
+            system("pause");
             break;
+        }
         
         default: 
             goto startWindow;
     }
+}
+
+void CourseListMenu(School_Year *sYear_Head) {
+    if (sYear_Head->yearSemesterHead->yearSemesterSubjectHead == NULL) {
+        cout << "No course available!\n";
+        system("pause");
+
+        return;
+    }
+
+    School_Year *currentYear = sYear_Head;
+
+    cout << "Available courses:\n";
+
+    while (currentYear != NULL) {
+        Show_Subject_Table(to_string(currentYear->yearSemesterHead->Term), currentYear->yearSemesterHead->yearSemesterSubjectHead);
+
+        currentYear = currentYear->Next;
+    }
+
+    currentYear = sYear_Head;
 }
 
 void PrintMainStudentMenu(School_Year *&sYear_Head)
@@ -108,12 +137,15 @@ startMainMenu:
         case 1:
             ClassListMenu(sYear_Head);
             goto startMainMenu;
-        
 
         case 2: 
-            cout << "Feature not available!\n";
+            CourseListMenu(sYear_Head);
+            system("pause");
             goto startMainMenu;
-        
+
+        case 3:
+            cout << "Logging out...\n";
+            break;
 
         default: 
             goto startMainMenu;
