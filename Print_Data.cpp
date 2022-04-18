@@ -33,16 +33,6 @@ void outInfor(School_Year* yearHead)
     OutData<<endl<<endl;
     OutData.open("Year_Semester.csv",ios::out);
     OutData<<"Semester info"<<endl;
-<<<<<<< HEAD
-    for(Year::Semester*year_Semester_Cur=yearHead->yearSemesterHead;year_Semester_Cur->sNext!=nullptr;year_Semester_Cur=year_Semester_Cur->sNext)
-    { 
-        string tmp=""",""";
-        OutData<<"Term "+tmp;
-        OutData<<year_Semester_Cur->Term <<endl;
-        OutData<<"Sv Semester Mark "<<endl;
-        
-        for (Year::Semester::SV_List* year_Semester_SvListCur = year_Semester_Cur -> yearSemesterSv_ListHead; year_Semester_SvListCur -> svNext != nullptr;year_Semester_SvListCur = year_Semester_SvListCur -> svNext )
-=======
     for(School_Year::Semester*year_Semester_Cur=yearHead->yearSemesterHead;year_Semester_Cur!=nullptr;year_Semester_Cur=year_Semester_Cur->Next)
     {
         string tmp=""",""";
@@ -52,7 +42,6 @@ void outInfor(School_Year* yearHead)
         OutData<<"No "+tmp+"Id "+tmp+"Credit "+tmp+"GPA "+tmp+"Average Mark "<<endl;
         tmp=""",""";
         for (School_Year::Semester::Student_listMark* year_Semester_SvListCur = year_Semester_Cur->yearSemesterStudent_listMarkHead; year_Semester_SvListCur -> Next != nullptr;year_Semester_SvListCur = year_Semester_SvListCur->Next )
->>>>>>> Function_2_Create_Course
         {
             OutData<<to_string(year_Semester_SvListCur->no)+tmp+to_string(year_Semester_SvListCur->idStudent)+tmp+to_string(year_Semester_SvListCur->GPA)+tmp+to_string(year_Semester_SvListCur->averageMark)<<endl;
         }
