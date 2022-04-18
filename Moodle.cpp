@@ -8,13 +8,13 @@ int main() {
     School_Year* sYear_Head = nullptr;
 
     //Read Data
-    //ReadData(sYear_Head);
+    ReadData(sYear_Head);
 
     //Menu
     Primal_Menu(sYear_Head);
 
     //Print Data - Check 💨
-    outInfor(sYear_Head);
+    //outInfor(sYear_Head);
     
     //Delete
     Delete_School_Year(sYear_Head);

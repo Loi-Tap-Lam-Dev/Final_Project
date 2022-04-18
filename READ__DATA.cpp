@@ -1,14 +1,12 @@
 #include "lib.h"
 
-void ReadData(School_Year*&year_Head)
+void Readdata(School_Year*&year_Head)
 {
     const char*denim=",";
     char*discard;
     char*input;
     char*inputtmp;
     char*check;
-
-    string Check;
 
     int tmp1=0,tmp2=0,tmp3=0,tmp4=0;
 
@@ -70,12 +68,10 @@ void ReadData(School_Year*&year_Head)
             strcpy(input,s.c_str());
 
             inputtmp=new char[s.size()];
-            strcpy(inputtmp,s.c_str());
+            strcpy(input,s.c_str());
 
             check=strtok(inputtmp,denim);
-            Check=string(check);
-
-            if(Check!="Class")
+            if(check!="Class")
             {
                 tmp2++;
             }
@@ -164,8 +160,7 @@ void ReadData(School_Year*&year_Head)
             strcpy(inputtmp,s.c_str());
 
             check=strtok(inputtmp,denim);
-            Check=string(check);
-            if(Check!="Subject")
+            if(check!="Subject")
             tmp2++;
 
             if(tmp2==1)
@@ -204,8 +199,7 @@ void ReadData(School_Year*&year_Head)
             strcpy(inputtmp,s.c_str());
 
             check=strtok(inputtmp,denim);
-            Check=string(check);
-            if(Check!="Term")
+            if(check!="Term")
             tmp4++;
 
             if(tmp4==1)
