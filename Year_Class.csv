@@ -3,4 +3,11 @@ Class,21CLC1
 No,Student_ID,SocialID,FirstName,LastName,Gender,Dateofbirth
 1,21127013,352660,Bao,Nguyen,Male,20/03/2003
 2,21127014,3526601,Buoi,Nguyen,Male,20/03/2003
-
+Class,21CLC2
+No,Student_ID,SocialID,FirstName,LastName,Gender,Dateofbirth
+1,21127013,352660,Bao,Nguyen,Male,20/03/2003
+2,21127014,3526601,Buoi,Nguyen,Male,20/03/2003
+Class,21CLC3
+No,Student_ID,SocialID,FirstName,LastName,Gender,Dateofbirth
+1,21127013,352660,Bao,Nguyen,Male,20/03/2003
+2,21127014,3526601,Buoi,Nguyen,Male,20/03/2003
