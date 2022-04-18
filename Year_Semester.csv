@@ -1,5 +1,5 @@
 Semester info
-Term ,Start Date,End Date
+Term,Start Date,End Date
 1,1,2
 Sv Semester Mark 
 No ,Id ,Credit ,GPA ,Average Mark 
@@ -7,10 +7,10 @@ No ,Id ,Credit ,GPA ,Average Mark
 Subject 
 NameSubject,IDSubject,StartDate,EndDate,TeacherName,Day_of_session_1,Day_of_session_2,Time_1,Time_2,MaxRegister,Number_Credit
 Math,123,20/07/2021,21/07/2022,Nguyen Kim Ha,Mon,Tue,S1,S2,50,15
-Term ,Start Date,End Date
+Term,Start Date,End Date
 2,1,2
 Sv Semester Mark 
-No ,Id ,Credit ,GPA ,Average Mark 
+No ,Id ,Credit ,GPA ,Average Mark
 0,21127013,0,10
 Subject 
 NameSubject,IDSubject,StartDate,EndDate,TeacherName,Day_of_session_1,Day_of_session_2,Time_1,Time_2,MaxRegister,Number_Credit
