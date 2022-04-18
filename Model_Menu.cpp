@@ -3257,7 +3257,7 @@ void Export_List_of_Student(School_Year* &sYear_Head)
     //At first check if empty or not - ✔
     if (!Check_School_Year(sYear_Head)) 
         {
-            cout<<"Nothing being added"<<endl;
+            cout<<"The School-Year Are Not Being Added. Please Try Again"<<endl;
             system("pause");
             return ;
         }
@@ -3316,7 +3316,7 @@ void Export_List_of_Student(School_Year* &sYear_Head)
     Showing_Semester:
     if (Semester_Head == nullptr) 
         {
-            cout<<"Nothing being added"<<endl;
+            cout<<"The Semester Are Not Being Added. Please Try Again"<<endl;
             system("Pause");
             return ;
         }
@@ -3361,7 +3361,7 @@ void Export_List_of_Student(School_Year* &sYear_Head)
     Showing_Course:
     if (Subject_Head == nullptr) 
         {
-            cout<<"Nothing being added"<<endl;
+            cout<<"The Course Are Not Being Added. Please Try Again"<<endl;
             system("Pause");
             return ;
         }
@@ -3467,7 +3467,7 @@ void Import_List_of_Student(School_Year* &sYear_Head)
     //At first check if empty or not - ✔
     if (!Check_School_Year(sYear_Head)) 
         {
-            cout<<"Nothing being added"<<endl;
+            cout<<"The School-Year Are Not Being Added. Please Try Again"<<endl;
             system("pause");
             return ;
         }
@@ -3527,7 +3527,7 @@ void Import_List_of_Student(School_Year* &sYear_Head)
     Showing_Semester:
     if (Semester_Head == nullptr) 
         {
-            cout<<"Nothing being added"<<endl;
+            cout<<"The Semester Are Not Being Added. Please Try Again"<<endl;
             system("Pause");
             return ;
         }
@@ -3572,7 +3572,7 @@ void Import_List_of_Student(School_Year* &sYear_Head)
     Showing_Course:
     if (Subject_Head == nullptr) 
         {
-            cout<<"Nothing being added"<<endl;
+            cout<<"The Course Are Not Being Added. Please Try Again"<<endl;
             system("Pause");
             return ;
         }
@@ -3643,7 +3643,7 @@ void View_ScoreBoard_A_Course(School_Year* sYear_Head)
     //At first check if empty or not - ✔
     if (!Check_School_Year(sYear_Head)) 
         {
-            cout<<"Nothing being added"<<endl;
+            cout<<"The School-Year Are Not Being Added. Please Try Again"<<endl;
             system("pause");
             return ;
         }
@@ -3703,7 +3703,7 @@ void View_ScoreBoard_A_Course(School_Year* sYear_Head)
     Showing_Semester:
     if (Semester_Head == nullptr) 
         {
-            cout<<"Nothing being added"<<endl;
+            cout<<"The Semester Are Not Being Added. Please Try Again"<<endl;
             system("Pause");
             return ;
         }
@@ -3748,7 +3748,7 @@ void View_ScoreBoard_A_Course(School_Year* sYear_Head)
     Showing_Course:
     if (Subject_Head == nullptr) 
         {
-            cout<<"Nothing being added"<<endl;
+            cout<<"The Course Are Not Being Added. Please Try Again"<<endl;
             system("Pause");
             return ;
         }
@@ -3814,7 +3814,7 @@ void Adjust_Student_Result(School_Year* sYear_Head)
     //At first check if empty or not - ✔
     if (!Check_School_Year(sYear_Head)) 
         {
-            cout<<"Nothing being added"<<endl;
+            cout<<"The School-Year Are Not Being Added. Please Try Again"<<endl;
             system("pause");
             return ;
         }
@@ -3874,7 +3874,7 @@ void Adjust_Student_Result(School_Year* sYear_Head)
 
     if (Semester_Head == nullptr) 
         {
-            cout<<"Nothing being added"<<endl;
+            cout<<"The Semester Are Not Being Added. Please Try Again"<<endl;
             system("Pause");
             return ;
         }
@@ -3919,7 +3919,7 @@ void Adjust_Student_Result(School_Year* sYear_Head)
     Showing_Course:
     if (Subject_Head == nullptr) 
         {
-            cout<<"Nothing being added"<<endl;
+            cout<<"The Course Are Not Being Added. Please Try Again"<<endl;
             system("Pause");
             return ;
         }
