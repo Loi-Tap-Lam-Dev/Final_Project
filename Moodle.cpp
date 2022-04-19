@@ -47,6 +47,9 @@ beginAuthentication:
         }
         case 3: {
             cout<<"Thank you!\n";
+
+            Delete_School_Year(sYear_Head);
+
             return 0;
         }
         default: {
@@ -58,15 +61,12 @@ beginAuthentication:
 
     if (loggedInAsAdmin) {
         // Menu for staff
-        Primal_Menu(sYear_Head);
-        
-        // Should move this function towards the end, when the user exit the program
-        // Delete_School_Year(sYear_Head);
+        Primal_Menu(sYear_Head, account.username);
         
         goto beginAuthentication;
     }
     else {
-        PrintMainStudentMenu(sYear_Head);
+        PrintMainStudentMenu(sYear_Head, account.username);
         
         goto beginAuthentication;
     }

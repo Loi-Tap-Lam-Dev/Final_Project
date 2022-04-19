@@ -93,7 +93,7 @@ startWindow:
 }
 
 void CourseListMenu(School_Year *sYear_Head) {
-    if (sYear_Head->yearSemesterHead->yearSemesterSubjectHead == NULL) {
+    if (sYear_Head == NULL ||  sYear_Head->yearSemesterHead == NULL || sYear_Head->yearSemesterHead->yearSemesterSubjectHead == NULL) {
         cout << "No course available!\n";
         system("pause");
 
@@ -110,10 +110,13 @@ void CourseListMenu(School_Year *sYear_Head) {
         currentYear = currentYear->Next;
     }
 
+    // Course menu will go here
+    // ...
+
     currentYear = sYear_Head;
 }
 
-void PrintMainStudentMenu(School_Year *&sYear_Head)
+void PrintMainStudentMenu(School_Year *&sYear_Head, string loginUsername)
 {
 startMainMenu:
     int user_Choose = 0;
@@ -127,25 +130,51 @@ startMainMenu:
     cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
     cout<<"             1: View class"<<endl;
     cout<<"             2: View courses"<<endl;
-    cout<<"             3: Log out"<<endl;
+    cout<<"             3: Change password"<<endl;
+    cout<<"             4: Log out"<<endl;
     cout<<"             Your choice: "; 
     cin>>user_Choose;
     cout<<endl;
 
     //Better use switch
     switch (user_Choose)  {
-        case 1:
+        case 1: {
             ClassListMenu(sYear_Head);
             goto startMainMenu;
+        }
 
-        case 2: 
+        case 2: {
             CourseListMenu(sYear_Head);
-            system("pause");
-            goto startMainMenu;
 
-        case 3:
+            system("pause");        // Remove this before launch
+            
+            goto startMainMenu;
+        }
+
+        case 3: {
+            string newPass, retypePass;
+            cout << "\nEnter new password: ";
+            newPass = encryptPasswordInput();
+            cout << "Retype: ";
+            retypePass = encryptPasswordInput();
+
+            while (!requestPassword(newPass, retypePass)) {
+                cout << "Please re-enter!\n";
+                cout << "Enter new password: ";
+                newPass = encryptPasswordInput();
+                cout << "Retype new password: ";
+                retypePass = encryptPasswordInput();
+            }
+
+            changePassword(loginUsername, newPass, 2);
+
+            goto startMainMenu;
+        }
+
+        case 4: {
             cout << "Logging out...\n";
             break;
+        }
 
         default: 
             goto startMainMenu;

@@ -4144,10 +4144,10 @@ void Menu_ScoreBoard(School_Year* sYear_Head)
 }
 
 //Global Menu
-void Primal_Menu(School_Year* &sYear_Head)
+void Primal_Menu(School_Year* &sYear_Head, string loginUsername)
 {
     int user_Choose = 0;
-    while (user_Choose != 3)
+    while (user_Choose != 6)
     {
         system("CLS");
         if (sYear_Head != nullptr)
@@ -4157,7 +4157,10 @@ void Primal_Menu(School_Year* &sYear_Head)
         cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
         cout<<"             1: Create/Adjust Element Of Moodle"<<endl;
         cout<<"             2: Import/Export ScoreBoard "<<endl;
-        cout<<"             3: Back"<<endl;
+        cout<<"             3: Change password"<<endl;
+        cout<<"             4: Register a student account"<<endl;
+        cout<<"             5: Register a staff account"<<endl;
+        cout<<"             6: Back"<<endl;
         cout<<"             Your choice: "; 
         cin>>user_Choose;
         cout<<endl;
@@ -4178,6 +4181,73 @@ void Primal_Menu(School_Year* &sYear_Head)
                 Menu_ScoreBoard(sYear_Head);
                 continue;
                 break;
+            }
+
+            case 3: 
+            {
+                string newPass, retypePass;
+                cout << "\nEnter new password: ";
+                newPass = encryptPasswordInput();
+                cout << "Retype new password: ";
+                retypePass = encryptPasswordInput();
+
+                while (!requestPassword(newPass, retypePass)) {
+                    cout << "Please re-enter!\n";
+                    cout << "Enter new password: ";
+                    newPass = encryptPasswordInput();
+                    cout << "Retype new password: ";
+                    retypePass = encryptPasswordInput();
+                }
+
+                changePassword(loginUsername, newPass, 1);
+
+                break;
+            }
+
+            case 4:
+            {
+                string studentUsername, studentPass, studentPassRetype;
+                cout << "Enter student username: ";
+                cin.ignore(1000, '\n');
+                getline(cin, studentUsername);
+                
+                cout << "\nEnter password: ";
+                studentPass = encryptPasswordInput();
+                cout << "Retype password: ";
+                studentPassRetype = encryptPasswordInput();
+
+                while (!requestPassword(studentPass, studentPassRetype)) {
+                    cout << "Please re-enter!\n";
+                    cout << "Enter password: ";
+                    studentPass = encryptPasswordInput();
+                    cout << "Retype password: ";
+                    studentPassRetype = encryptPasswordInput();
+                }
+
+                appendAccount(studentUsername, studentPass, 2);
+            }
+
+            case 5:
+            {
+                string staffUsername, staffPass, staffPassRetype;
+                cout << "Enter staff username: ";
+                cin.ignore(1000, '\n');
+                getline(cin, staffUsername);
+                
+                cout << "\nEnter password: ";
+                staffPass = encryptPasswordInput();
+                cout << "Retype password: ";
+                staffPassRetype = encryptPasswordInput();
+
+                while (!requestPassword(staffPass, staffPassRetype)) {
+                    cout << "Please re-enter!\n";
+                    cout << "Enter password: ";
+                    staffPass = encryptPasswordInput();
+                    cout << "Retype password: ";
+                    staffPassRetype = encryptPasswordInput();
+                }
+
+                appendAccount(staffUsername, staffPass, 1);
             }
 
             default:
