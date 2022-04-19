@@ -53,11 +53,14 @@ bool requestPassword(string newPassword, string retypePassword) {
     return false;
 }
 
-bool checkAvailability(string username) {
+bool checkAvailability(string username, int mode) {
     string takenID;
 
     fstream readName;
-    readName.open("CredentialsSta.txt", ios::in);
+    if (mode == 1)
+        readName.open("CredentialsSta.txt", ios::in);
+    else if (mode == 2)
+        readName.open("CredentialsStu.txt", ios::in);
 
     while (readName >> takenID) {
         if (takenID == username) {
@@ -103,8 +106,11 @@ void changePassword(string username, string newPassword, int mode) {
         fileTemp << id << " " << currentPassword << endl;
     }
 
-    fileMain.clear();
-    fileMain.seekp(0, ios::beg);
+    fileMain.close();
+    if (mode == 1)
+        fileMain.open("CredentialsSta.txt", ios::out);
+    else if (mode == 2)
+        fileMain.open("CredentialsStu.txt", ios::out);
     
     // Change open mode of fileTemp
     // There could be a better way, but I don't know,
@@ -121,7 +127,10 @@ void changePassword(string username, string newPassword, int mode) {
 }
 
 void appendAccount(string newUsername, string newPassword, int mode) {
-    if (!checkAvailability(newUsername)) return;
+    if (!checkAvailability(newUsername, mode)){
+        cout << "Username is already taken!\n";
+        return;
+    }
 
     fstream updateFile;
     try {
@@ -137,6 +146,10 @@ void appendAccount(string newUsername, string newPassword, int mode) {
         cout << "Available modes: 1 - Staff | 2 - Student\n";
         
         return;
+    }
+
+    if (updateFile.fail()) {
+        cout << "File failed!\n";
     }
 
     updateFile.seekp(0, ios::end);
