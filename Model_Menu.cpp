@@ -693,6 +693,7 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
             Sv_Head = new School_Year::Year_Class::SV_List;
 
             string line_input = "";
+            getline(finp, line_input);//Skip 1 line
             getline(finp, line_input);
 
             //Convert str -> char*;
@@ -728,6 +729,7 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
 
         //Get Data
         string line_input = "";
+        getline(finp, line_input); //Skip one line
         getline(finp, line_input);
 
         //Convert str -> char*;
@@ -1743,7 +1745,8 @@ void Create_Course_Import(School_Year::Semester* &ySemester_Cur, School_Year::Se
             Subject_Head = new School_Year::Semester::Subject;
 
             string line_input = "";
-            getline(finp, line_input);
+            getline(finp, line_input); //Skip 1 line
+            getline(finp, line_input); 
 
             //Convert str -> char*;
             char* input = new char [ line_input.size() ];
@@ -1786,7 +1789,8 @@ void Create_Course_Import(School_Year::Semester* &ySemester_Cur, School_Year::Se
 
         //Get Data
         string line_input = "";
-        getline(finp, line_input);
+        getline(finp, line_input); //Skip 1 line
+        getline(finp, line_input); 
 
         //Convert str -> char*;
         char* input = new char [ line_input.size() ];

@@ -9,6 +9,7 @@ int main() {
 
     //Read Data
     //ReadData(sYear_Head);
+    Read_Data_From_File(sYear_Head);
 
     //Menu
     Primal_Menu(sYear_Head);
