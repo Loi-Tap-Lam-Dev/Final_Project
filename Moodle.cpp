@@ -16,6 +16,8 @@ int main() {
     //Print Data - Check 💨
     //outInfor(sYear_Head);
     
+    forStudent_ToView_ScoreBoard_Of_A_Semester(sYear_Head);
+    
     //Delete
     Delete_School_Year(sYear_Head);
 

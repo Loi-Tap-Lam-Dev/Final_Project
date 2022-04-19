@@ -261,7 +261,7 @@ School_Year::Semester::Subject* find_Subject(School_Year::Semester::Subject* Sub
     return nullptr;
 }
 
-// Find Student In Score Board
+//Find Student In Score Board
 School_Year::Semester::Subject::Student_listMark* find_Student_ScoreBoard(School_Year::Semester::Subject::Student_listMark* Score_Head,School_Year::Semester::Subject::Student_listMark* Score_Temp )
 {
     while (Score_Head != nullptr)
@@ -502,7 +502,7 @@ void Show_Specific_StuResult(School_Year::Semester::Subject::Student_listMark* S
         {
             cout<<"\t|"<<Score_head -> no<<"\t|"<<Score_head -> idStudent<<"\t|";
          
-            if (Score_head -> FullName .size() < 9) cout<<Score_head -> FullName<<"\t\t\t|";
+            if (Score_head -> FullName .size() < 9) cout<<Score_head -> FullName<<"\t\t|";
             else cout<<Score_head -> FullName<<"\t|";
 
             cout<<Score_head -> midTermMark<<"\t\t|"<<Score_head -> finalTermMark<<"\t\t|"<<Score_head -> otherMark<<"\t\t|"<<Score_head -> totalMark<<"\t|";
@@ -512,6 +512,34 @@ void Show_Specific_StuResult(School_Year::Semester::Subject::Student_listMark* S
         Score_head = Score_head -> Next;
     }
 
+}
+
+//Show Term Mark Of Specific Student ID
+void Show_Specific_TermMark_Of_Student(School_Year::Semester::Student_listMark* Term_Mark, School_Year::Semester::Student_listMark* Term_Mark_Cur)
+{
+    if (Term_Mark == nullptr)
+    {
+        cout<<"Nothing to show. Please Try Again"<<endl;
+        system("pause");
+        return;
+    }
+    cout<<"\t|No\t|Student_ID\t|Full_Name\t\t|Total_Credit\t|Average_Mark\t|GPA\t|"<<endl;
+    while (Term_Mark!= nullptr)
+    {
+        if (Term_Mark -> idStudent == Term_Mark_Cur -> idStudent)
+        {
+            cout<<"\t|"<<Term_Mark -> no<<"\t|"<<Term_Mark -> idStudent<<"\t|";
+
+            if (Term_Mark -> fullName .size() < 9) cout<<Term_Mark -> fullName<<"\t\t|";
+            else cout<<Term_Mark -> fullName<<"\t|";
+
+            cout<<Term_Mark -> totalCredit<<"\t\t|"<<Term_Mark -> averageMark<<"\t\t|"<<Term_Mark -> GPA<<"\t|";
+
+            return;
+        }
+
+        Term_Mark = Term_Mark -> Next;
+    }
 }
 
 //View Student List
@@ -3196,13 +3224,13 @@ void Menu_School_Year(School_Year* &sYear_Head)
     return ;
 }
 
-//Import Temp File
+//Import CSV File To Staff Storage
 void Read_Data_For_StudentMark(School_Year::Semester::Subject* &Subject_Cur,School_Year::Semester::Subject::Student_listMark* &Student_Head,string Name_File)
 {
     finp.open(Name_File, ios::in);
     if (!finp.is_open()) 
     {
-        cout<<"Please Check Your CSV_File/Temp_CSV.csv File"<<endl;
+        cout<<"Please Check Your "<<Name_File<<" File"<<endl;
         return;
     }
     //Skip one line to access dir to data
@@ -3210,7 +3238,7 @@ void Read_Data_For_StudentMark(School_Year::Semester::Subject* &Subject_Cur,Scho
     getline(finp,s);
     
     //Declare Cur 
-    School_Year::Semester::Subject::Student_listMark* Student_Cur = nullptr;
+    School_Year::Semester::Subject::Student_listMark* Student_Cur = Student_Head;
 
     while (!finp.eof())
     {
@@ -3227,6 +3255,7 @@ void Read_Data_For_StudentMark(School_Year::Semester::Subject* &Subject_Cur,Scho
                 int no , idStudent , midTermMark = 0, finalTermMark = 0 , otherMark = 0, totalMark = 0;
 
                 Student_Head -> no = atoi(strtok(input,denim));
+                Student_Head -> no = 0; //Automatically Update
                 Student_Head -> idStudent = atoi(strtok(NULL,denim));
                 Student_Head -> FullName = strtok(NULL,denim);
                 Student_Head -> midTermMark = atof(strtok(NULL,denim));
@@ -3252,6 +3281,7 @@ void Read_Data_For_StudentMark(School_Year::Semester::Subject* &Subject_Cur,Scho
         int no , idStudent , midTermMark = 0, finalTermMark = 0 , otherMark = 0, totalMark = 0;
 
         Student_Cur -> no = atoi(strtok(input,denim));
+        Student_Cur -> no = Student_Cur -> Prev -> no + 1;
         Student_Cur -> idStudent = atoi(strtok(NULL,denim));
         Student_Cur -> FullName = strtok(NULL,denim);
         Student_Cur -> midTermMark = atof(strtok(NULL,denim));
@@ -3262,7 +3292,7 @@ void Read_Data_For_StudentMark(School_Year::Semester::Subject* &Subject_Cur,Scho
     
     if (Student_Head == nullptr)
     {
-        cout<<"Please Check Your CSV_File/Temp_CSV.csv File"<<endl;
+        cout<<"Please Check Your"<<Name_File<<" File"<<endl;
         return;
     }
     finp.close();
@@ -3641,6 +3671,7 @@ void Import_List_of_Student(School_Year* &sYear_Head)
 
     cout<<"Make Sure Enter Data into File 'Student_List_For_Staff.csv' Before Import."<<endl;
     cout<<"Or If you Want to update the file 'Student_List_For_Staff.csv'. Now is your time."<<endl;
+    
     sleep_until(system_clock::now() + seconds(1));
 
     system("pause");
@@ -4358,4 +4389,188 @@ void Primal_Menu(School_Year* &sYear_Head)
 
 // Student Want to View His Score
 void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
-{}
+{
+    if (sYear_Head == nullptr)
+    {
+        cout<<"The School Staff Hasnt Publish The ScoreBoard Yet. Please Try Again"<<endl;
+        system("pause");
+        return;
+    }
+
+    int user_Choose = 0;
+    while (user_Choose != 3)
+    {
+        system("CLS");
+        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
+        cout<<"             1: View ScoreBoard Of Each Course In A Specific Semester"<<endl;
+        cout<<"             2: View A Overall ScoreBoard In A Specific Semseter "<<endl;
+        cout<<"             3: Back"<<endl;
+        cout<<"             Your choice: "; 
+        cin>>user_Choose;
+        cout<<endl;
+
+        if (user_Choose == 3) break;
+        
+            bool Check_Ignore = false;
+
+            Showing_School_Year:
+            //At first check if empty or not - ✔
+            if (!Check_School_Year(sYear_Head)) 
+                {
+                    cout<<"The School-Year Are Not Being Added. Please Try Again"<<endl;
+                    system("pause");
+                    return ;
+                }
+                    else 
+                        {
+                            Show_Year_Table(sYear_Head);
+                        }
+
+            //Next step
+                string user_choosed_Year = "";
+                
+                if (!Check_Ignore) cin.ignore();
+            do
+            {
+                //Menu of User choice about School-Year they want to view
+                    cout<<"Which School-Year you want to choose. Ex: 2021-2022 or 2021"<<endl;
+                    cout<<"Note: If you dont want to choose any year pls Enter 'N' "<<endl;
+                    cout<<"Enter answer: ";
+
+                    getline(cin,user_choosed_Year);
+
+                if (user_choosed_Year == "N") return;
+
+                //Declare
+                const char* denim = "-"; //Use strtok - 👍
+                char* temp = new char [user_choosed_Year.size()];
+
+                // But it neeeded to convert string -> char* - 🔑
+                strcpy(temp,user_choosed_Year.c_str());
+                user_choosed_Year = strtok(temp, denim);
+
+                //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
+                if (Check_Year_Duplicated(sYear_Head,user_choosed_Year)) 
+                {
+                    cout<<"Your input school-year: "<<user_choosed_Year<<" is Incorrect. Please try again."<<endl;
+                    
+                    //Enter any key to continue and go back to  "Showing_School_Year"
+                    system("pause");
+                    Check_Ignore = true;
+                    goto Showing_School_Year;
+                }
+
+            } while (Check_Year_Duplicated(sYear_Head,user_choosed_Year));
+
+                Check_Ignore = true;
+
+        //(ヘ･_･)ヘ┳━┳
+            //Find year that user want
+            School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year);
+            //Setup Semester head to find semester user want
+            School_Year::Semester* Semester_Head = sYear_Cur -> yearSemesterHead;
+
+            //Use a checking var to ignore line
+            //Check_Ignore = false;
+
+            //Show Semster Table
+            Showing_Semester:
+            if (Semester_Head == nullptr) 
+                {
+                    cout<<"The Semester Are Not Being Added. Please Try Again"<<endl;
+                    system("Pause");
+                    return ;
+                }
+                    else 
+                        {
+                            Show_Semester_Table(user_choosed_Year,Semester_Head);
+                        }
+                
+                string user_Choose_Temp ="";
+                int user_Choose_Semester;
+                if (!Check_Ignore) cin.ignore();
+            do
+            {
+                    cout<<"Which Semester you want to choose. Ex: 1/2/3"<<endl;
+                    cout<<"Note: If you dont want to choose any class pls Enter 'N' "<<endl;
+                    cout<<"Enter answer: ";
+
+                    getline(cin,user_Choose_Temp);
+
+                if (user_Choose_Temp == "N") return;
+
+                user_Choose_Semester = atoi ( user_Choose_Temp .c_str());
+
+                //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
+                if (Check_Semester_Duplicated(Semester_Head,user_Choose_Semester)) 
+                {
+                    cout<<"Your input Semester: "<<user_Choose_Semester<<" is Incorrect. Please try again."<<endl;
+                    
+                    //Enter any key to continue and go back to  "Showing_School_Year"
+                    system("pause");
+                    Check_Ignore = true;
+                    goto Showing_Semester;
+                }
+            } while (Check_Semester_Duplicated(Semester_Head,user_Choose_Semester));
+
+        //ψ(._. )>
+            //Find Semester user want
+            School_Year::Semester* Semester_Cur = find_Semester(Semester_Head,user_Choose_Semester);
+            
+            cout<<endl;
+            cout<<"Enter Your Student ID: ";
+            int Student_ID;
+            cin>>Student_ID;
+
+            cout<<endl;
+            switch (user_Choose)
+            {
+                case 1:
+                {
+                    School_Year::Semester::Subject* Course_Head = Semester_Cur -> yearSemesterSubjectHead;
+                    while (Course_Head != nullptr)
+                    {
+                        cout<<"Course: "<<Course_Head -> name_Subject<<endl;
+
+                            School_Year::Semester::Subject::Student_listMark* Res_Head = Course_Head -> yearSemesterSubStudent_ListHead;
+
+                            School_Year::Semester::Subject::Student_listMark* Res_User_Choose = new  School_Year::Semester::Subject::Student_listMark;
+
+                            Res_User_Choose -> idStudent = Student_ID;
+                            
+                            School_Year::Semester::Subject::Student_listMark* Res_Cur = find_Student_ScoreBoard(Res_Head,Res_User_Choose);
+
+                            Show_Specific_StuResult(Res_Head,Res_Cur);
+
+                            cout<<endl;
+
+                        Course_Head = Course_Head -> Next;
+                    } 
+                    system("pause");
+                    break;
+                }
+            
+                case 2:
+                {
+                    School_Year::Semester::Student_listMark* Res_Term_Mark_Head = Semester_Cur -> yearSemesterStudent_listMarkHead;
+
+                    School_Year::Semester::Student_listMark* Res_Term_Temp = new School_Year::Semester::Student_listMark;
+
+                    Res_Term_Temp -> idStudent = Student_ID;
+
+                    Show_Specific_TermMark_Of_Student(Res_Term_Mark_Head,Res_Term_Temp);
+                    cout<<endl;
+
+                    system("pause");
+                    break;
+                }
+
+                default:
+                    break;
+            }
+    }
+    cout<<endl;
+    cout<<"Ending Menu ViewScoreBoard Student"<<endl;
+
+    return ;
+}
