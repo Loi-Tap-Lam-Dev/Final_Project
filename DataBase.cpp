@@ -46,7 +46,8 @@ struct School_Year {
 
              struct Student_listMark {
 
-                     int no , idStudent , totalCredit = 0, GPA = 0, averageMark = 0;
+                     int no , idStudent , totalCredit = 0;
+                     double GPA = 0, averageMark = 0;
                      string fullName;
                      int count_Course_Attempt = 0; //Dont Print this out (Dung in dong nay)
                      Student_listMark* Prev = nullptr;
@@ -69,7 +70,8 @@ struct School_Year {
 
                       struct Student_listMark {
 
-                        int no , idStudent , midTermMark, finalTermMark , otherMark, totalMark;
+                        int no , idStudent;
+                        double  midTermMark, finalTermMark , otherMark, totalMark;
                         string FullName;
 
                         Student_listMark* Prev = nullptr;

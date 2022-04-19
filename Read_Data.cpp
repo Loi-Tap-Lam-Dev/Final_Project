@@ -41,7 +41,7 @@ void remove_All_BlanketSpace(string &s)
 }
 
 //Read file
-void readFileYear(Year* &year_Head) {
+void readFileYear(School_Year* &year_Head) {
 
     //Open File Year_Sheet
     finp.open("Year_Sheet.csv", ios::in);
