@@ -33,6 +33,8 @@ void Read_Data_From_File(School_Year* &sYear_Head)
             sYear_Cur -> year = Line;   
     }
 
+    year_Input.close();
+
     string Line = "";
     School_Year::Year_Class* Class_Head = nullptr;
     School_Year::Year_Class* Class_Cur = nullptr;
@@ -121,6 +123,8 @@ void Read_Data_From_File(School_Year* &sYear_Head)
 
 
     } while (!Class_Input.eof());
+
+    Class_Input.close();
 
     //Declare
     Line = "";
@@ -236,6 +240,7 @@ void Read_Data_From_File(School_Year* &sYear_Head)
                         Term_Mark_Head -> no = atoi (strtok(Input_Line,denim));
                         Term_Mark_Head -> no = 1;
                         Term_Mark_Head -> idStudent = atoi (strtok(NULL,denim));
+                        Term_Mark_Head -> fullName = strtok(NULL,denim);
                         Term_Mark_Head -> totalCredit = atoi (strtok(NULL,denim));
                         Term_Mark_Head -> GPA = atof(strtok(NULL,denim));
                         Term_Mark_Head -> averageMark = atof(strtok(NULL,denim));
@@ -253,6 +258,7 @@ void Read_Data_From_File(School_Year* &sYear_Head)
                     Term_Mark_Cur -> no = atoi (strtok(Input_Line,denim));
                     Term_Mark_Cur -> no = Term_Mark_Cur -> Prev -> no + 1;
                     Term_Mark_Cur -> idStudent = atoi (strtok(NULL,denim));
+                    Term_Mark_Cur -> fullName = strtok(NULL,denim);
                     Term_Mark_Cur -> totalCredit = atoi (strtok(NULL,denim));
                     Term_Mark_Cur -> GPA = atof(strtok(NULL,denim));
                     Term_Mark_Cur -> averageMark = atof(strtok(NULL,denim));
@@ -334,8 +340,9 @@ void Read_Data_From_File(School_Year* &sYear_Head)
 
     } while (!Semseter_Input.eof());
     
-    year_Input.close();
-    Class_Input.close();
+    // year_Input.close();
+    // Class_Input.close();
     Semseter_Input.close();
+
     return ;
 }
