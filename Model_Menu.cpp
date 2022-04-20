@@ -382,7 +382,7 @@ void Show_Subject_Table(string user_Semester,School_Year::Semester::Subject* Sub
 {
     system("CLS");
     cout<<"| Semester\t|"<<user_Semester<<"\t|"<<endl<<endl;
-    cout<<"\t| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student|"<<endl;
+    cout<<"| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student|"<<endl;
     cout<<"\t";
     
     while (Subject_Head != nullptr)

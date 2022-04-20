@@ -1,17 +1,17 @@
-Semester info
-Term, Start Date, End Date
+Semester For Year,2021
+Semester info,Term, Start Date, End Date
 1,20/06/2021,20/05/2022
-Sv_Semester_Mark
-No, Id, Credit, GPA, Average Mark 
+Sv_Semester_Mark,No,Id,Total Credit,GPA,Average Mark 
 1,21127000,3,3.4,9.4
-Subject
-NameSubject, IDSubject, StartDate, EndDate, TeacherName, Day_of_session_1, Day_of_session_2, Time_1, Time_2, MaxRegister, Number_Credit
-Math,MTH00001,18/03/2022,18/06/2022,LY KIM HA,MONDAY,THURSDAY,13H30,13H30,50,5
-Term, Start Date, End Date
+Subject,NameSubject, IDSubject, StartDate, EndDate, TeacherName, Day_of_session_1, Day_of_session_2, Time_1, Time_2, Number_Credit,MaxRegister
+Math,MTH00001,18/03/2022,18/06/2022,LY KIM HA,MONDAY,S1,THURSDAY,S2,5,70
+Subject_Mark,no,idStudent,Fullname,midTerm,finalTerm,other,total
+1,21127013,Nguyen Phu Minh Bao,9,9,10,9,5
+Semester info,Term, Start Date, End Date
 2,20/05/2022,20/04/2023
-Sv Semester Mark
-No, Id, Credit, GPA, Average Mark 
+Sv_Semester_Mark,No, Id, Credit, GPA, Average Mark 
 1,21127000,3,3.4,9.4
-Subject
-NameSubject, IDSubject, StartDate, EndDate, TeacherName, Day_of_session_1, Day_of_session_2, Time_1, Time_2, MaxRegister, Number_Credit
-Math,MTH00001,18/03/2022,18/06/2022,LY KIM HA,MONDAY,THURSDAY,13H30,13H30,50,5
+Subject,NameSubject, IDSubject, StartDate, EndDate, TeacherName, Day_of_session_1, Day_of_session_2, Time_1, Time_2, Number_Credit,MaxRegister
+Math,MTH00001,18/03/2022,18/06/2022,LY KIM HA,MONDAY,S1,THURSDAY,S2,5,60
+Subject_Mark,no,idStudent,Fullname,midTerm,finalTerm,other,total
+1,21127014,Nguyen Phu Minh Paul,7,5,10,7,5

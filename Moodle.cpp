@@ -17,29 +17,10 @@ int main() {
     //Print Data - Check 💨
     //outInfor(sYear_Head);
     
-    forStudent_ToView_ScoreBoard_Of_A_Semester(sYear_Head);
+    //forStudent_ToView_ScoreBoard_Of_A_Semester(sYear_Head);
     
     //Delete
     Delete_School_Year(sYear_Head);
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// //Cant Reset Data
-    //Declare the apocalypse   
-    //Year* yearHead = nullptr;
-
-    //Read \- O v O -/
-    //readFileYear(yearHead);
-
-    //outInfor(yearHead);
-
-    // //Dizzplay
-    
-    //displayScreen(yearHead); // U can use if u want to see in the terminal
-    // displayFile(yearHead); //Otherwise display in file is much better
-
-    // //Delete, avoid mém mo ri lít kinh
-    // Delete_Data(yearHead);
     
     return 0;
 }
