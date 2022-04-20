@@ -1,5 +1,6 @@
 #include "lib.h"
 
+
 //Delete List of student mark
 void Delete_Element_Of_Student_listMark(School_Year::Semester::Student_listMark* &semStudent_Cur, int type)
 {
@@ -11,7 +12,6 @@ void Delete_Element_Of_Student_listMark(School_Year::Semester::Student_listMark*
 
         delete Student_temp;
     }
-    return ;
 }
 
 //Delete Element of Subject_Class_Student_Mark
@@ -117,7 +117,6 @@ void Delete_Element_Of_Sv_List(School_Year::Year_Class::SV_List* &Sv_Cur, int ty
 
         delete Sv_Temp;
     }
-    return;
 }
 
 //Delete element of year_Class
@@ -229,5 +228,4 @@ void Delete_School_Year(School_Year* sYear_Head)
 
         delete temp;
     }
-    return;
 }
