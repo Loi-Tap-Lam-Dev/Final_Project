@@ -8,11 +8,8 @@ int main() {
     School_Year* sYear_Head = nullptr;
 
     //Read Data
-    //ReadData(sYear_Head);
-    School_Year* Main_sYear = nullptr;
-    Read_Data_From_File(Main_sYear);
-
-    sYear_Head = Main_sYear;
+    Read_Data_From_File(sYear_Head);
+    
     //Menu
     Primal_Menu(sYear_Head);
 
@@ -23,6 +20,7 @@ int main() {
     
     //Delete
     Delete_School_Year(sYear_Head);
-    
+    sYear_Head = nullptr;
+
     return 0;
 }

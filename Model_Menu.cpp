@@ -4342,69 +4342,19 @@ void Menu_ScoreBoard(School_Year* sYear_Head)
     return ;
 }
 
-//Global Menu
-void Primal_Menu(School_Year* &sYear_Head)
-{
-    int user_Choose = 0;
-    while (user_Choose != 3)
-    {
-        system("CLS");
-        if (sYear_Head != nullptr)
-        {
-            Show_Year_Table(sYear_Head);
-        }
-        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
-        cout<<"             1: Create/Adjust Element Of Moodle"<<endl;
-        cout<<"             2: Import/Export ScoreBoard "<<endl;
-        cout<<"             3: Back"<<endl;
-        cout<<"             Your choice: "; 
-        cin>>user_Choose;
-        cout<<endl;
-
-        //Better use switch
-        switch (user_Choose)
-        {
-            case 1:
-            {
-                Menu_School_Year(sYear_Head);
-                continue;
-                break;
-            }
-
-            case 2:
-            {
-                //Export_List_of_Student(sYear_Head);
-                Menu_ScoreBoard(sYear_Head);
-                continue;
-                break;
-            }
-
-            default:
-                system("pause");
-                break;
-        }
-
-    }
-
-    cout<<"Ending Menu Staff"<<endl;
-
-    return ;
-}
-
+//Read data
 void Read_Data_From_File(School_Year* &sYear_Head)
 {
-    ifstream year_Input;
-    year_Input.open("./CSV_File/Year.csv");
-    ifstream Class_Input;
-    Class_Input.open("./CSV_File/Year_Class.csv");
-    ifstream Semseter_Input;
-    Semseter_Input.open("./CSV_File/Year_Semester.csv");
+    finp.open("./CSV_File/Year.csv",ios::in);
+    // fstream Class_Input;
+    // fstream Semseter_Input;
+    // Semseter_Input.open("./CSV_File/Year_Semester.csv",ios::in);
     
-    while (!year_Input.eof())
+    while (!finp.eof())
     {
             string Line;
-            getline(year_Input,Line); //Skip one    
-            getline(year_Input,Line);
+            getline(finp,Line); //Skip one    
+            getline(finp,Line);
 
             School_Year* sYear_Cur = sYear_Head;
 
@@ -4424,7 +4374,7 @@ void Read_Data_From_File(School_Year* &sYear_Head)
             sYear_Cur -> year = Line;   
     }
 
-    year_Input.close();//Close
+    finp.close();//Close
 
     string Line = "";
     School_Year::Year_Class* Class_Head = nullptr;
@@ -4434,9 +4384,11 @@ void Read_Data_From_File(School_Year* &sYear_Head)
     School_Year* sYear_Cur = nullptr;
     bool Check_To_Start_SvList = false;
 
+    finp.open("./CSV_File/Year_Class.csv",ios::in);
+
     do
     {
-        getline(Class_Input,Line);
+        getline(finp,Line);
 
         char* Input_Line = new char [Line.size()];
         const char* denim = ",";
@@ -4513,10 +4465,11 @@ void Read_Data_From_File(School_Year* &sYear_Head)
             }
 
 
-    } while (!Class_Input.eof());
+    } while (!finp.eof());
 
     //Declare
-    Class_Input.close(); // Close
+    finp.close(); // Close
+
     Line = "";
     School_Year::Semester* Semseter_Head = nullptr;
     School_Year::Semester* Semseter_Cur = nullptr;
@@ -4527,6 +4480,7 @@ void Read_Data_From_File(School_Year* &sYear_Head)
     School_Year::Semester::Subject::Student_listMark* Subject_Mark_Head = nullptr;
     School_Year::Semester::Subject::Student_listMark* Subject_Mark_Cur = nullptr;
     
+    finp.open("./CSV_File/Year_Semester.csv",ios::in);
 
     bool Check_Term_info = false;
     bool Check_Term_Mark = false;
@@ -4535,7 +4489,7 @@ void Read_Data_From_File(School_Year* &sYear_Head)
     
     do
     {
-        getline(Semseter_Input,Line);
+        getline(finp,Line);
 
         char* Input_Line = new char [Line.size()];
         const char* denim = ",";
@@ -4726,9 +4680,61 @@ void Read_Data_From_File(School_Year* &sYear_Head)
                     Subject_Mark_Cur -> totalMark = atof (strtok(NULL,denim));
                 }
 
-    } while (!Semseter_Input.eof());
+    } while (!finp.eof());
 
-    Semseter_Input.close();
+    finp.close();
+}
+
+
+//Global Menu
+void Primal_Menu(School_Year* &sYear_Head)
+{
+    int user_Choose = 0;
+
+    //Read_Data_From_File(sYear_Head);
+
+    while (user_Choose != 3)
+    {
+        system("CLS");
+        if (sYear_Head != nullptr)
+        {
+            Show_Year_Table(sYear_Head);
+        }
+        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
+        cout<<"             1: Create/Adjust Element Of Moodle"<<endl;
+        cout<<"             2: Import/Export ScoreBoard "<<endl;
+        cout<<"             3: Back"<<endl;
+        cout<<"             Your choice: "; 
+        cin>>user_Choose;
+        cout<<endl;
+
+        //Better use switch
+        switch (user_Choose)
+        {
+            case 1:
+            {
+                Menu_School_Year(sYear_Head);
+                continue;
+                break;
+            }
+
+            case 2:
+            {
+                //Export_List_of_Student(sYear_Head);
+                Menu_ScoreBoard(sYear_Head);
+                continue;
+                break;
+            }
+
+            default:
+                system("pause");
+                break;
+        }
+
+    }
+
+    cout<<"Ending Menu Staff"<<endl;
+
     return ;
 }
 
