@@ -231,6 +231,7 @@ void Read_Semester(School_Year* &sYear_Head)
                 }
         else if (Check_Term_info)
                 {
+                    Semseter_Cur = Semseter_Head;
                     if (Semseter_Head == nullptr)
                     {
                         Semseter_Head = new School_Year::Semester;
@@ -240,7 +241,6 @@ void Read_Semester(School_Year* &sYear_Head)
                         Semseter_Head -> end_Date = strtok(NULL,denim);
 
                         sYear_Cur -> yearSemesterHead = Semseter_Head;
-                        Semseter_Cur = Semseter_Head;
                         delete [] Input_Line;
                         continue;
                     }
@@ -259,6 +259,7 @@ void Read_Semester(School_Year* &sYear_Head)
                 }
         else if (Check_Term_Mark)
                 {
+                    Term_Mark_Cur = Term_Mark_Head;
                     if (Term_Mark_Head == nullptr)
                     {
                         Term_Mark_Head = new School_Year::Semester::Student_listMark;
@@ -272,7 +273,6 @@ void Read_Semester(School_Year* &sYear_Head)
                         Term_Mark_Head -> averageMark = atof(strtok(NULL,denim));
                     
                         Semseter_Cur -> yearSemesterStudent_listMarkHead = Term_Mark_Head;
-                        Term_Mark_Cur = Term_Mark_Head;
 
                         delete [] Input_Line;
                         continue;
@@ -296,6 +296,7 @@ void Read_Semester(School_Year* &sYear_Head)
                 }
         else if (Check_Subject)
                 {
+                    Subject_Cur = Subject_Head;
                     if (Subject_Head == nullptr)
                     {
                         Subject_Head = new School_Year::Semester::Subject;
@@ -313,7 +314,7 @@ void Read_Semester(School_Year* &sYear_Head)
                         Subject_Head -> maximumRegrister = atoi (strtok(NULL,denim));
                     
                         Semseter_Cur -> yearSemesterSubjectHead = Subject_Head;
-                        Subject_Cur = Subject_Head;
+                        
 
                         delete [] Input_Line;
                         continue;
@@ -341,6 +342,7 @@ void Read_Semester(School_Year* &sYear_Head)
                 }
         else if (Check_Subjet_Mark)
                 {
+                    Subject_Mark_Cur = Subject_Mark_Head;
                     if (Subject_Mark_Head == nullptr)
                     {
                         Subject_Mark_Head = new School_Year::Semester::Subject::Student_listMark;
@@ -355,7 +357,7 @@ void Read_Semester(School_Year* &sYear_Head)
                         Subject_Mark_Head -> totalMark = atof (strtok(NULL,denim));
                     
                         Subject_Cur -> yearSemesterSubStudent_ListHead = Subject_Mark_Head;
-                        Subject_Mark_Cur = Subject_Mark_Head;
+                        
                         delete [] Input_Line;
                         continue;
                     }
