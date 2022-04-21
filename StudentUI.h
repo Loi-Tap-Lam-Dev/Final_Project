@@ -93,6 +93,7 @@ startWindow:
 }
 
 void CourseListMenu(School_Year *sYear_Head) {
+startCourseMenu:
     if (sYear_Head == NULL ||  sYear_Head->yearSemesterHead == NULL || sYear_Head->yearSemesterHead->yearSemesterSubjectHead == NULL) {
         cout << "No course available!\n";
         system("pause");
@@ -102,7 +103,7 @@ void CourseListMenu(School_Year *sYear_Head) {
 
     School_Year *currentYear = sYear_Head;
 
-    cout << "Available courses:\n";
+    cout << "Showing all available courses:\n";
 
     while (currentYear != NULL) {
         Show_Subject_Table(to_string(currentYear->yearSemesterHead->Term), currentYear->yearSemesterHead->yearSemesterSubjectHead);
@@ -110,10 +111,35 @@ void CourseListMenu(School_Year *sYear_Head) {
         currentYear = currentYear->Next;
     }
 
-    // Course menu will go here
-    // ...
-
     currentYear = sYear_Head;
+
+    // Course menu will go here
+    int choice;
+    cout << "\t\tAvailable operations:\n";
+    cout << "\t\t   1: View student list in a course\n";
+    cout << "\t\t   2: View your courses\n";
+    cout << "\t\t   3: View scoreboard\n";
+    cout << "\t\t   4: Give up and quit\n\n";
+    cout << "Your choice: ";
+    cin >> choice;
+
+    switch (choice) {
+        case 1: {
+            
+            system("pause");
+
+            goto startWindow;
+        }
+        
+        case 2: {
+            cout << "Good choice!\n";
+            system("pause");
+            break;
+        }
+        
+        default: 
+            goto startWindow;
+    }
 }
 
 void PrintMainStudentMenu(School_Year *&sYear_Head, string loginUsername)
