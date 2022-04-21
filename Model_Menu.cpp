@@ -3505,6 +3505,11 @@ void Export_List_of_Student(School_Year* &sYear_Head)
 
     cout<<"Export Success"<<endl;
 
+    Subject_Cur -> yearSemesterSubStudent_ListHead = nullptr;
+    Delete_Element_Of_StudentList(Score_Head,2);
+
+    Score_Head = nullptr;
+
     string user_Choice;
     
     cout<<"Continue Export ScoreBoard Of Other Course? Enter (Y/N): ";
@@ -4460,7 +4465,6 @@ void Primal_Menu(School_Year* &sYear_Head, string loginUsername)
 
     return ;
 }
-
 
 // Student Want to View His Score
 void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
