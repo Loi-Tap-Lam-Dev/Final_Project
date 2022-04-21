@@ -39,7 +39,7 @@ void outInfor(School_Year* yearHead)
         OutData<<"Term "+tmp+"Start Date"+tmp+"End Date"<<endl;
         OutData<<to_string(year_Semester_Cur->Term)+tmp+year_Semester_Cur->start_Date+tmp+year_Semester_Cur->end_Date<<endl;
         OutData<<"Sv Semester Mark "<<endl;
-        OutData<<"No "+tmp+"Id "+tmp+"Credit "+tmp+"GPA "+tmp+"Average Mark "<<endl;
+        OutData<<"No "+tmp+"Full name "+tmp+"Id "+tmp+"Credit "+tmp+"GPA "+tmp+"Average Mark "<<endl;
         tmp=""",""";
         for (School_Year::Semester::Student_listMark* year_Semester_SvListCur = year_Semester_Cur->yearSemesterStudent_listMarkHead; year_Semester_SvListCur -> Next != nullptr;year_Semester_SvListCur = year_Semester_SvListCur->Next )
         {
@@ -51,6 +51,10 @@ void outInfor(School_Year* yearHead)
         for (School_Year::Semester::Subject* year_Semester_Subject_Cur = year_Semester_Cur -> yearSemesterSubjectHead;year_Semester_Subject_Cur -> Next != nullptr; year_Semester_Subject_Cur = year_Semester_Subject_Cur -> Next)
         {
             OutData<<year_Semester_Subject_Cur->name_Subject+tmp+year_Semester_Subject_Cur->id_Subject+tmp+year_Semester_Subject_Cur->startDate+tmp+year_Semester_Subject_Cur->endDate+tmp+year_Semester_Subject_Cur->teacher_Name+tmp+year_Semester_Subject_Cur->day_Of_Session_1+tmp+year_Semester_Subject_Cur->day_Of_Session_2+tmp+year_Semester_Subject_Cur->at_Time_1+tmp+year_Semester_Subject_Cur->at_Time_2+tmp+to_string(year_Semester_Subject_Cur->maximumRegrister)+tmp+to_string(year_Semester_Subject_Cur->number_Of_Credit)<<endl;
+            for(School_Year::Semester::Subject::Student_listMark*year_Semester_Subject_SvListCur=year_Semester_Subject_Cur->yearSemesterSubStudent_ListHead;year_Semester_Subject_SvListCur->Next!=nullptr;year_Semester_Subject_SvListCur=year_Semester_Subject_SvListCur->Next)
+            {
+                ///
+            }
         }
     }
     OutData<<endl;

@@ -192,19 +192,17 @@ School_Year* find_School_Year(School_Year* sYear_Cur,string user_choosed_Year)
         
         sYear_Cur = sYear_Cur -> Next;
     }
-    return nullptr;
 }
 
 //Find the classes with the same name of user choosed - ヾ(⌐■_■)ノ♪
 School_Year::Year_Class* find_Classes(School_Year::Year_Class* Classes_Cur,string user_choosed_Class)
 {
     while (Classes_Cur!= nullptr)
-    {   
+    {
         if (Classes_Cur -> nameClass == user_choosed_Class) return Classes_Cur;
         
         Classes_Cur= Classes_Cur-> Next;
     }
-    return nullptr;
 }
 
 //Find Sv due to No, Id, Social ID
@@ -222,7 +220,6 @@ School_Year::Year_Class::SV_List* find_Student(School_Year::Year_Class::SV_List*
 
         Sv_Cur = Sv_Cur -> Next;
     }
-    return nullptr;
 }
 
 //Find Semester
@@ -234,7 +231,6 @@ School_Year::Semester* find_Semester(School_Year::Semester* Semester_Cur, int te
 
         Semester_Cur = Semester_Cur -> Next;
     }
-    return nullptr;
 }
 
 //Find Subject
@@ -258,10 +254,9 @@ School_Year::Semester::Subject* find_Subject(School_Year::Semester::Subject* Sub
 
         Subject_Head = Subject_Head -> Next;
     }
-    return nullptr;
 }
 
-//Find Student In Score Board
+// Find Student In Score Board
 School_Year::Semester::Subject::Student_listMark* find_Student_ScoreBoard(School_Year::Semester::Subject::Student_listMark* Score_Head,School_Year::Semester::Subject::Student_listMark* Score_Temp )
 {
     while (Score_Head != nullptr)
@@ -315,7 +310,7 @@ void Show_Classes_Table(string user_School_Year,School_Year::Year_Class* Classes
 void Show_Sv_Table(string user_Class,School_Year::Year_Class::SV_List* Sv_Head)
 {
      //Show the Classes from chosen school year - 👌
-        // system("CLS");
+        system("CLS");
         cout<<"| Classes\t|"<<user_Class<<"\t\t|"<<endl<<endl;
         cout<<"    \t| No\t| Student ID\t\t| First Name\t| Last Name\t\t| Gender\t| DateOfBirth\t\t| Social ID\t\t|"<<endl;
         cout<<"    \t";
@@ -382,7 +377,7 @@ void Show_Subject_Table(string user_Semester,School_Year::Semester::Subject* Sub
 {
     system("CLS");
     cout<<"| Semester\t|"<<user_Semester<<"\t|"<<endl<<endl;
-    cout<<"| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student|"<<endl;
+    cout<<"\t| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student|"<<endl;
     cout<<"\t";
     
     while (Subject_Head != nullptr)
@@ -502,7 +497,7 @@ void Show_Specific_StuResult(School_Year::Semester::Subject::Student_listMark* S
         {
             cout<<"\t|"<<Score_head -> no<<"\t|"<<Score_head -> idStudent<<"\t|";
          
-            if (Score_head -> FullName .size() < 9) cout<<Score_head -> FullName<<"\t\t|";
+            if (Score_head -> FullName .size() < 9) cout<<Score_head -> FullName<<"\t\t\t|";
             else cout<<Score_head -> FullName<<"\t|";
 
             cout<<Score_head -> midTermMark<<"\t\t|"<<Score_head -> finalTermMark<<"\t\t|"<<Score_head -> otherMark<<"\t\t|"<<Score_head -> totalMark<<"\t|";
@@ -512,34 +507,6 @@ void Show_Specific_StuResult(School_Year::Semester::Subject::Student_listMark* S
         Score_head = Score_head -> Next;
     }
 
-}
-
-//Show Term Mark Of Specific Student ID
-void Show_Specific_TermMark_Of_Student(School_Year::Semester::Student_listMark* Term_Mark, School_Year::Semester::Student_listMark* Term_Mark_Cur)
-{
-    if (Term_Mark == nullptr)
-    {
-        cout<<"Nothing to show. Please Try Again"<<endl;
-        system("pause");
-        return;
-    }
-    cout<<"\t|No\t|Student_ID\t|Full_Name\t\t|Total_Credit\t|Average_Mark\t|GPA\t|"<<endl;
-    while (Term_Mark!= nullptr)
-    {
-        if (Term_Mark -> idStudent == Term_Mark_Cur -> idStudent)
-        {
-            cout<<"\t|"<<Term_Mark -> no<<"\t|"<<Term_Mark -> idStudent<<"\t|";
-
-            if (Term_Mark -> fullName .size() < 9) cout<<Term_Mark -> fullName<<"\t\t|";
-            else cout<<Term_Mark -> fullName<<"\t|";
-
-            cout<<Term_Mark -> totalCredit<<"\t\t|"<<Term_Mark -> averageMark<<"\t\t|"<<Term_Mark -> GPA<<"\t|";
-
-            return;
-        }
-
-        Term_Mark = Term_Mark -> Next;
-    }
 }
 
 //View Student List
@@ -693,7 +660,6 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
             Sv_Head = new School_Year::Year_Class::SV_List;
 
             string line_input = "";
-            getline(finp, line_input);//Skip 1 line
             getline(finp, line_input);
 
             //Convert str -> char*;
@@ -729,7 +695,6 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
 
         //Get Data
         string line_input = "";
-        getline(finp, line_input); //Skip one line
         getline(finp, line_input);
 
         //Convert str -> char*;
@@ -1478,7 +1443,7 @@ void Adjust_Classes(School_Year* &sYear_Cur,School_Year::Year_Class* &Classes_He
         }
     } while (Check_Classes_Duplicated(Classes_Head,user_Choose_Class));
 
-    cout<<"\n";
+    cout<<"/n";
     School_Year::Year_Class* Class_Cur = find_Classes(Classes_Head,user_Choose_Class);
 
     do
@@ -1745,8 +1710,7 @@ void Create_Course_Import(School_Year::Semester* &ySemester_Cur, School_Year::Se
             Subject_Head = new School_Year::Semester::Subject;
 
             string line_input = "";
-            getline(finp, line_input); //Skip 1 line
-            getline(finp, line_input); 
+            getline(finp, line_input);
 
             //Convert str -> char*;
             char* input = new char [ line_input.size() ];
@@ -1789,8 +1753,7 @@ void Create_Course_Import(School_Year::Semester* &ySemester_Cur, School_Year::Se
 
         //Get Data
         string line_input = "";
-        getline(finp, line_input); //Skip 1 line
-        getline(finp, line_input); 
+        getline(finp, line_input);
 
         //Convert str -> char*;
         char* input = new char [ line_input.size() ];
@@ -3228,13 +3191,13 @@ void Menu_School_Year(School_Year* &sYear_Head)
     return ;
 }
 
-//Import CSV File To Staff Storage
+//Import Temp File
 void Read_Data_For_StudentMark(School_Year::Semester::Subject* &Subject_Cur,School_Year::Semester::Subject::Student_listMark* &Student_Head,string Name_File)
 {
     finp.open(Name_File, ios::in);
     if (!finp.is_open()) 
     {
-        cout<<"Please Check Your "<<Name_File<<" File"<<endl;
+        cout<<"Please Check Your CSV_File/Temp_CSV.csv File"<<endl;
         return;
     }
     //Skip one line to access dir to data
@@ -3242,7 +3205,7 @@ void Read_Data_For_StudentMark(School_Year::Semester::Subject* &Subject_Cur,Scho
     getline(finp,s);
     
     //Declare Cur 
-    School_Year::Semester::Subject::Student_listMark* Student_Cur = Student_Head;
+    School_Year::Semester::Subject::Student_listMark* Student_Cur = nullptr;
 
     while (!finp.eof())
     {
@@ -3259,13 +3222,12 @@ void Read_Data_For_StudentMark(School_Year::Semester::Subject* &Subject_Cur,Scho
                 int no , idStudent , midTermMark = 0, finalTermMark = 0 , otherMark = 0, totalMark = 0;
 
                 Student_Head -> no = atoi(strtok(input,denim));
-                Student_Head -> no = 0; //Automatically Update
                 Student_Head -> idStudent = atoi(strtok(NULL,denim));
                 Student_Head -> FullName = strtok(NULL,denim);
-                Student_Head -> midTermMark = atof(strtok(NULL,denim));
-                Student_Head -> finalTermMark = atof(strtok(NULL,denim));
-                Student_Head -> otherMark = atof(strtok(NULL,denim));
-                Student_Head -> totalMark = atof(strtok(NULL,denim));
+                Student_Head -> midTermMark = atoi(strtok(NULL,denim));
+                Student_Head -> finalTermMark = atoi(strtok(NULL,denim));
+                Student_Head -> otherMark = atoi(strtok(NULL,denim));
+                Student_Head -> totalMark = atoi(strtok(NULL,denim));
 
                 Subject_Cur -> yearSemesterSubStudent_ListHead = Student_Head;
                 Student_Cur = Student_Head;
@@ -3285,18 +3247,17 @@ void Read_Data_For_StudentMark(School_Year::Semester::Subject* &Subject_Cur,Scho
         int no , idStudent , midTermMark = 0, finalTermMark = 0 , otherMark = 0, totalMark = 0;
 
         Student_Cur -> no = atoi(strtok(input,denim));
-        Student_Cur -> no = Student_Cur -> Prev -> no + 1;
         Student_Cur -> idStudent = atoi(strtok(NULL,denim));
         Student_Cur -> FullName = strtok(NULL,denim);
-        Student_Cur -> midTermMark = atof(strtok(NULL,denim));
-        Student_Cur -> finalTermMark = atof(strtok(NULL,denim));
-        Student_Cur -> otherMark = atof(strtok(NULL,denim));
-        Student_Cur -> totalMark = atof(strtok(NULL,denim));
+        Student_Cur -> midTermMark = atoi(strtok(NULL,denim));
+        Student_Cur -> finalTermMark = atoi(strtok(NULL,denim));
+        Student_Cur -> otherMark = atoi(strtok(NULL,denim));
+        Student_Cur -> totalMark = atoi(strtok(NULL,denim));
     }
     
     if (Student_Head == nullptr)
     {
-        cout<<"Please Check Your"<<Name_File<<" File"<<endl;
+        cout<<"Please Check Your CSV_File/Temp_CSV.csv File"<<endl;
         return;
     }
     finp.close();
@@ -3384,6 +3345,7 @@ void Export_List_of_Student(School_Year* &sYear_Head)
         
         string user_Choose_Temp ="";
         int user_Choose_Semester;
+        if (!Check_Ignore) cin.ignore();
     do
     {
             cout<<"Which Semester you want to choose. Ex: 1/2/3"<<endl;
@@ -3433,7 +3395,7 @@ void Export_List_of_Student(School_Year* &sYear_Head)
     do
     {
         //Menu of User choice Course they want to view
-            cout<<"Which Course you want to choose. Ex: PHY0001 "<<endl;
+            cout<<"Which Course you want to Adjust. Ex: PHY0001 "<<endl;
             cout<<"Note: If you dont want to choose any Course pls Enter 'N' "<<endl;
             cout<<"Enter Course ID: ";
 
@@ -3463,7 +3425,7 @@ void Export_List_of_Student(School_Year* &sYear_Head)
         string user_choice;
         cout<<endl;
         cout<<"Your Student Hasnt Attemp This Course Yet, So List Of Student (No, Id_Student, Full_Name,Mid_Term_Mark, Final_Term_Mark, Other_Mark, Total_Mark) is Empty"<<endl;
-        cout<<"Do You Want to Import a CSV File of Student List? "<<endl;
+        cout<<"Do You Want to Import a Temporary CSV File of Student List? "<<endl;
         cout<<"Enter (Y/N): ";
         getline(cin,user_choice);
 
@@ -3473,21 +3435,17 @@ void Export_List_of_Student(School_Year* &sYear_Head)
             return;
         }
 
-        cout<<"Please enter your data in File: CSV_File/Staff_Input_JIC.csv"<<endl;
-        cout<<"If u are done. ";
-        system("pause");
-
-        string Name_File = "./CSV_File/Staff_Input_JIC.csv";
+        cout<<"Please enter your data in File: CSV_File/Temp_CSV.csv"<<endl;
+        string Name_File = "./CSV_File/Temp_CSV.csv";
         School_Year::Semester::Subject::Student_listMark* Score_Head = Subject_Cur -> yearSemesterSubStudent_ListHead;
         Read_Data_For_StudentMark(Subject_Cur,Score_Head,Name_File);
         sleep_until(system_clock::now() + seconds(1));
 
         if (Score_Head != nullptr)
         {
-            cout<<"You Have Success Import a Input List of Student file. Here is data from your file"<<endl;
+            cout<<"You Have Success Import a Temporary file. Here is data from your file"<<endl;
             cout<<endl;
             Show_ScoreBoard(Score_Head);
-            cout<<endl;
             //Cmt
         }
     }
@@ -3648,7 +3606,7 @@ void Import_List_of_Student(School_Year* &sYear_Head)
     do
     {
         //Menu of User choice Course they want to view
-            cout<<"Which Course you want to choose. Ex: PHY0001 "<<endl;
+            cout<<"Which Course you want to Adjust. Ex: PHY0001 "<<endl;
             cout<<"Note: If you dont want to choose any Course pls Enter 'N' "<<endl;
             cout<<"Enter Course ID: ";
 
@@ -3673,14 +3631,8 @@ void Import_List_of_Student(School_Year* &sYear_Head)
 
     School_Year::Semester::Subject* Subject_Cur = find_Subject(Subject_Head,Subject_Temp);
 
-    cout<<"Make Sure Enter Data into File 'Student_List_For_Staff.csv' Before Import."<<endl;
-    cout<<"Or If you Want to update the file 'Student_List_For_Staff.csv'. Now is your time."<<endl;
-    
+    cout<<"Make Sure Enter Data into File 'Student_List_For_Staff.csv' Before Import"<<endl;
     sleep_until(system_clock::now() + seconds(1));
-
-    system("pause");
-    cout<<endl;
-
     string Name_File = "./CSV_File/Student_List_For_Staff.csv";
     School_Year::Semester::Subject::Student_listMark* Score_Head = Subject_Cur -> yearSemesterSubStudent_ListHead;
     Read_Data_For_StudentMark(Subject_Cur,Score_Head,Name_File);
@@ -3689,7 +3641,6 @@ void Import_List_of_Student(School_Year* &sYear_Head)
 
     string user_Choice;
     
-    cout<<endl;
     cout<<"Continue Import ScoreBoard Of Other Course? Enter (Y/N): ";
     getline(cin,user_Choice);
     
@@ -3831,7 +3782,7 @@ void View_ScoreBoard_A_Course(School_Year* sYear_Head)
     do
     {
         //Menu of User choice Course they want to view
-            cout<<"Which Course you want to choose. Ex: PHY0001 "<<endl;
+            cout<<"Which Course you want to Adjust. Ex: PHY0001 "<<endl;
             cout<<"Note: If you dont want to choose any Course pls Enter 'N' "<<endl;
             cout<<"Enter Course ID: ";
 
@@ -3861,12 +3812,10 @@ void View_ScoreBoard_A_Course(School_Year* sYear_Head)
     
     string user_Choice;
 
-    cout<<endl;
     cout<<"Continue View ScoreBoard Of Other Course? Enter (Y/N): ";
     getline(cin,user_Choice);
     
     if (user_Choice == "Y") goto Showing_Course;
-    
     system("pause");
     return;
 }
@@ -4004,7 +3953,7 @@ void Adjust_Student_Result(School_Year* sYear_Head)
     do
     {
         //Menu of User choice Course they want to view
-            cout<<"Which Course you want to choose. Ex: PHY0001 "<<endl;
+            cout<<"Which Course you want to Adjust. Ex: PHY0001 "<<endl;
             cout<<"Note: If you dont want to choose any Course pls Enter 'N' "<<endl;
             cout<<"Enter Course ID: ";
 
@@ -4145,7 +4094,7 @@ void Adding_Student_Whole_Term_Result(School_Year::Semester::Subject::Student_li
     {
         Whole_Term_Head = new School_Year::Semester::Student_listMark;
 
-        Whole_Term_Head -> no = 1;
+        Whole_Term_Head -> no = 0;
         Whole_Term_Head -> fullName = Student_Cur -> FullName;
         Whole_Term_Head -> totalCredit = credit;
         Whole_Term_Head -> averageMark = Student_Cur -> totalMark;
@@ -4220,38 +4169,19 @@ void Update_Student_Result_Of_A_Semester(School_Year* sYear_Head)
                 while (Term_Result_Head != nullptr)
                 {
                     Term_Result_Head -> averageMark = Term_Result_Head -> averageMark / Term_Result_Head -> count_Course_Attempt; //
-                    Term_Result_Head -> GPA = Term_Result_Head -> GPA / Term_Result_Head ->totalCredit;
-                        //Evaluate The GPA
-                        if (Term_Result_Head -> GPA >= 9.5) Term_Result_Head -> GPA = 4;
-                        else
-                            if (Term_Result_Head -> GPA >= 8.5 && Term_Result_Head -> GPA <= 9.4) Term_Result_Head -> GPA = 4;
-                            else 
-                                if (Term_Result_Head -> GPA >= 8 && Term_Result_Head -> GPA <= 8.4) Term_Result_Head -> GPA = 3.5;
-                                else 
-                                    if (Term_Result_Head -> GPA >= 7 && Term_Result_Head -> GPA <= 7.9) Term_Result_Head -> GPA = 3;
-                                else 
-                                    if (Term_Result_Head -> GPA >= 6.5 && Term_Result_Head -> GPA <= 6.9) Term_Result_Head -> GPA = 2.5;
-                                else 
-                                    if (Term_Result_Head -> GPA >= 5.5 && Term_Result_Head -> GPA <= 6.4) Term_Result_Head -> GPA = 2;
-                                else 
-                                    if (Term_Result_Head -> GPA >= 5 && Term_Result_Head -> GPA <= 5.4) Term_Result_Head -> GPA = 1.5;
-                                else 
-                                    if (Term_Result_Head -> GPA >= 4 && Term_Result_Head -> GPA <= 4.9) Term_Result_Head -> GPA = 1;
-                                else 
-                                    if ( Term_Result_Head -> GPA < 4) Term_Result_Head -> GPA = 0;
+                    Term_Result_Head -> GPA = Term_Result_Head ->averageMark / Term_Result_Head ->totalCredit;
                     Term_Result_Head = Term_Result_Head -> Next;
                 }
                 
-                // If u want to show
-                // cout<<"Student List Term Mark"<<endl;
-                // Term_Result_Head = Semester_Head -> yearSemesterStudent_listMarkHead;
-                // cout<<"No,Id,Name,Credit,Average,GPA"<<endl;
-                // while (Term_Result_Head != nullptr)
-                // {
-                //     cout<<Term_Result_Head -> no<<" "<<Term_Result_Head -> idStudent<<" "<<Term_Result_Head -> fullName<<" "<<Term_Result_Head -> totalCredit<<" "<<Term_Result_Head -> averageMark<<" "<<Term_Result_Head -> GPA;
-                //     cout<<endl;
-                //     Term_Result_Head = Term_Result_Head -> Next;
-                // }
+                cout<<"Student List Term Mark"<<endl;
+                Term_Result_Head = Semester_Head -> yearSemesterStudent_listMarkHead;
+                cout<<"No,Id,Name,Credit,Average,GPA"<<endl;
+                while (Term_Result_Head != nullptr)
+                {
+                    cout<<Term_Result_Head -> no<<" "<<Term_Result_Head -> idStudent<<" "<<Term_Result_Head -> fullName<<" "<<Term_Result_Head -> totalCredit<<" "<<Term_Result_Head -> averageMark<<" "<<Term_Result_Head -> GPA;
+                    cout<<endl;
+                    Term_Result_Head = Term_Result_Head -> Next;
+                }
 
                 //Move Next
                 Semester_Head = Semester_Head -> Next;
@@ -4335,18 +4265,18 @@ void Menu_ScoreBoard(School_Year* sYear_Head)
 
     }
 
-    //To Finish Menu Need Update Student Res In Each Course To Term Mark
-    Update_Student_Result_Of_A_Semester(sYear_Head);
+    //To Finish Menu Need Update
+    //Update_Student_Result_Of_A_Semester(sYear_Head);
     cout<<"Ending Menu ScoreBoard"<<endl;
 
     return ;
 }
 
 //Global Menu
-void Primal_Menu(School_Year* &sYear_Head, string loginUsername)
+void Primal_Menu(School_Year* &sYear_Head)
 {
     int user_Choose = 0;
-    while (user_Choose != 6)
+    while (user_Choose != 3)
     {
         system("CLS");
         if (sYear_Head != nullptr)
@@ -4356,10 +4286,7 @@ void Primal_Menu(School_Year* &sYear_Head, string loginUsername)
         cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
         cout<<"             1: Create/Adjust Element Of Moodle"<<endl;
         cout<<"             2: Import/Export ScoreBoard "<<endl;
-        cout<<"             3: Change password"<<endl;
-        cout<<"             4: Register a student account"<<endl;
-        cout<<"             5: Register a staff account"<<endl;
-        cout<<"             6: Back"<<endl;
+        cout<<"             3: Back"<<endl;
         cout<<"             Your choice: "; 
         cin>>user_Choose;
         cout<<endl;
@@ -4382,73 +4309,6 @@ void Primal_Menu(School_Year* &sYear_Head, string loginUsername)
                 break;
             }
 
-            case 3: 
-            {
-                string newPass, retypePass;
-                cout << "\nEnter new password: ";
-                newPass = encryptPasswordInput();
-                cout << "Retype new password: ";
-                retypePass = encryptPasswordInput();
-
-                while (!requestPassword(newPass, retypePass)) {
-                    cout << "Please re-enter!\n";
-                    cout << "Enter new password: ";
-                    newPass = encryptPasswordInput();
-                    cout << "Retype new password: ";
-                    retypePass = encryptPasswordInput();
-                }
-
-                changePassword(loginUsername, newPass, 1);
-
-                break;
-            }
-
-            case 4:
-            {
-                string studentUsername, studentPass, studentPassRetype;
-                cout << "Enter student username: ";
-                cin.ignore(1000, '\n');
-                getline(cin, studentUsername);
-                
-                cout << "\nEnter password: ";
-                studentPass = encryptPasswordInput();
-                cout << "Retype password: ";
-                studentPassRetype = encryptPasswordInput();
-
-                while (!requestPassword(studentPass, studentPassRetype)) {
-                    cout << "Please re-enter!\n";
-                    cout << "Enter password: ";
-                    studentPass = encryptPasswordInput();
-                    cout << "Retype password: ";
-                    studentPassRetype = encryptPasswordInput();
-                }
-
-                appendAccount(studentUsername, studentPass, 2);
-            }
-
-            case 5:
-            {
-                string staffUsername, staffPass, staffPassRetype;
-                cout << "Enter staff username: ";
-                cin.ignore(1000, '\n');
-                getline(cin, staffUsername);
-                
-                cout << "\nEnter password: ";
-                staffPass = encryptPasswordInput();
-                cout << "Retype password: ";
-                staffPassRetype = encryptPasswordInput();
-
-                while (!requestPassword(staffPass, staffPassRetype)) {
-                    cout << "Please re-enter!\n";
-                    cout << "Enter password: ";
-                    staffPass = encryptPasswordInput();
-                    cout << "Retype password: ";
-                    staffPassRetype = encryptPasswordInput();
-                }
-
-                appendAccount(staffUsername, staffPass, 1);
-            }
-
             default:
                 system("pause");
                 break;
@@ -4461,191 +4321,6 @@ void Primal_Menu(School_Year* &sYear_Head, string loginUsername)
     return ;
 }
 
-
 // Student Want to View His Score
 void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
-{
-    if (sYear_Head == nullptr)
-    {
-        cout<<"The School Staff Hasnt Publish The ScoreBoard Yet. Please Try Again"<<endl;
-        system("pause");
-        return;
-    }
-
-    int user_Choose = 0;
-    while (user_Choose != 3)
-    {
-        system("CLS");
-        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
-        cout<<"             1: View ScoreBoard Of Each Course In A Specific Semester"<<endl;
-        cout<<"             2: View A Overall ScoreBoard In A Specific Semseter "<<endl;
-        cout<<"             3: Back"<<endl;
-        cout<<"             Your choice: "; 
-        cin>>user_Choose;
-        cout<<endl;
-
-        if (user_Choose == 3) break;
-        
-            bool Check_Ignore = false;
-
-            Showing_School_Year:
-            //At first check if empty or not - ✔
-            if (!Check_School_Year(sYear_Head)) 
-                {
-                    cout<<"The School-Year Are Not Being Added. Please Try Again"<<endl;
-                    system("pause");
-                    return ;
-                }
-                    else 
-                        {
-                            Show_Year_Table(sYear_Head);
-                        }
-
-            //Next step
-                string user_choosed_Year = "";
-                
-                if (!Check_Ignore) cin.ignore();
-            do
-            {
-                //Menu of User choice about School-Year they want to view
-                    cout<<"Which School-Year you want to choose. Ex: 2021-2022 or 2021"<<endl;
-                    cout<<"Note: If you dont want to choose any year pls Enter 'N' "<<endl;
-                    cout<<"Enter answer: ";
-
-                    getline(cin,user_choosed_Year);
-
-                if (user_choosed_Year == "N") return;
-
-                //Declare
-                const char* denim = "-"; //Use strtok - 👍
-                char* temp = new char [user_choosed_Year.size()];
-
-                // But it neeeded to convert string -> char* - 🔑
-                strcpy(temp,user_choosed_Year.c_str());
-                user_choosed_Year = strtok(temp, denim);
-
-                //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
-                if (Check_Year_Duplicated(sYear_Head,user_choosed_Year)) 
-                {
-                    cout<<"Your input school-year: "<<user_choosed_Year<<" is Incorrect. Please try again."<<endl;
-                    
-                    //Enter any key to continue and go back to  "Showing_School_Year"
-                    system("pause");
-                    Check_Ignore = true;
-                    goto Showing_School_Year;
-                }
-
-            } while (Check_Year_Duplicated(sYear_Head,user_choosed_Year));
-
-                Check_Ignore = true;
-
-        //(ヘ･_･)ヘ┳━┳
-            //Find year that user want
-            School_Year* sYear_Cur = find_School_Year(sYear_Head,user_choosed_Year);
-            //Setup Semester head to find semester user want
-            School_Year::Semester* Semester_Head = sYear_Cur -> yearSemesterHead;
-
-            //Use a checking var to ignore line
-            //Check_Ignore = false;
-
-            //Show Semster Table
-            Showing_Semester:
-            if (Semester_Head == nullptr) 
-                {
-                    cout<<"The Semester Are Not Being Added. Please Try Again"<<endl;
-                    system("Pause");
-                    return ;
-                }
-                    else 
-                        {
-                            Show_Semester_Table(user_choosed_Year,Semester_Head);
-                        }
-                
-                string user_Choose_Temp ="";
-                int user_Choose_Semester;
-                if (!Check_Ignore) cin.ignore();
-            do
-            {
-                    cout<<"Which Semester you want to choose. Ex: 1/2/3"<<endl;
-                    cout<<"Note: If you dont want to choose any class pls Enter 'N' "<<endl;
-                    cout<<"Enter answer: ";
-
-                    getline(cin,user_Choose_Temp);
-
-                if (user_Choose_Temp == "N") return;
-
-                user_Choose_Semester = atoi ( user_Choose_Temp .c_str());
-
-                //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
-                if (Check_Semester_Duplicated(Semester_Head,user_Choose_Semester)) 
-                {
-                    cout<<"Your input Semester: "<<user_Choose_Semester<<" is Incorrect. Please try again."<<endl;
-                    
-                    //Enter any key to continue and go back to  "Showing_School_Year"
-                    system("pause");
-                    Check_Ignore = true;
-                    goto Showing_Semester;
-                }
-            } while (Check_Semester_Duplicated(Semester_Head,user_Choose_Semester));
-
-        //ψ(._. )>
-            //Find Semester user want
-            School_Year::Semester* Semester_Cur = find_Semester(Semester_Head,user_Choose_Semester);
-            
-            cout<<endl;
-            cout<<"Enter Your Student ID: ";
-            int Student_ID;
-            cin>>Student_ID;
-
-            cout<<endl;
-            switch (user_Choose)
-            {
-                case 1:
-                {
-                    School_Year::Semester::Subject* Course_Head = Semester_Cur -> yearSemesterSubjectHead;
-                    while (Course_Head != nullptr)
-                    {
-                        cout<<"Course: "<<Course_Head -> name_Subject<<endl;
-
-                            School_Year::Semester::Subject::Student_listMark* Res_Head = Course_Head -> yearSemesterSubStudent_ListHead;
-
-                            School_Year::Semester::Subject::Student_listMark* Res_User_Choose = new  School_Year::Semester::Subject::Student_listMark;
-
-                            Res_User_Choose -> idStudent = Student_ID;
-                            
-                            School_Year::Semester::Subject::Student_listMark* Res_Cur = find_Student_ScoreBoard(Res_Head,Res_User_Choose);
-
-                            Show_Specific_StuResult(Res_Head,Res_Cur);
-
-                            cout<<endl;
-
-                        Course_Head = Course_Head -> Next;
-                    } 
-                    system("pause");
-                    break;
-                }
-            
-                case 2:
-                {
-                    School_Year::Semester::Student_listMark* Res_Term_Mark_Head = Semester_Cur -> yearSemesterStudent_listMarkHead;
-
-                    School_Year::Semester::Student_listMark* Res_Term_Temp = new School_Year::Semester::Student_listMark;
-
-                    Res_Term_Temp -> idStudent = Student_ID;
-
-                    Show_Specific_TermMark_Of_Student(Res_Term_Mark_Head,Res_Term_Temp);
-                    cout<<endl;
-
-                    system("pause");
-                    break;
-                }
-
-                default:
-                    break;
-            }
-    }
-    cout<<endl;
-    cout<<"Ending Menu ViewScoreBoard Student"<<endl;
-
-    return ;
-}
+{}
