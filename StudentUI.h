@@ -94,6 +94,8 @@ startWindow:
 
 void CourseListMenu(School_Year *sYear_Head) {
 startCourseMenu:
+    system("CLS");
+
     if (sYear_Head == NULL ||  sYear_Head->yearSemesterHead == NULL || sYear_Head->yearSemesterHead->yearSemesterSubjectHead == NULL) {
         cout << "No course available!\n";
         system("pause");
@@ -103,7 +105,7 @@ startCourseMenu:
 
     School_Year *currentYear = sYear_Head;
 
-    cout << "Showing all available courses:\n";
+    cout << "Displaying all available courses:\n";
 
     while (currentYear != NULL) {
         Show_Subject_Table(to_string(currentYear->yearSemesterHead->Term), currentYear->yearSemesterHead->yearSemesterSubjectHead);
@@ -125,20 +127,89 @@ startCourseMenu:
 
     switch (choice) {
         case 1: {
+            string findCourseID;
+
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Enter course ID to view from: ";
+            getline(cin, findCourseID);
+
+            // Find the course
+            School_Year::Semester::Subject *findCourse;
+
+            bool courseFound = false;
+            while (currentYear != NULL) {
+                if (currentYear->yearSemesterHead != NULL) {
+                    findCourse = currentYear->yearSemesterHead->yearSemesterSubjectHead;
+
+                    while (findCourse != NULL) {
+                        if (findCourse->id_Subject == findCourseID) {
+                            Show_ScoreBoard(findCourse->yearSemesterSubStudent_ListHead);
+                            courseFound = true;
+
+                            break;
+                        }
+
+                        findCourse = findCourse->Next;
+                    }
+                }
+
+                if (courseFound) break;
+
+                currentYear = currentYear->Next;
+            }
+
+            system("pause");
+
+            goto startCourseMenu;
+        }
+
+        case 3: {
+            string findCourseID;
+
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Enter course ID to view from: ";
+            getline(cin, findCourseID);
+
+            // Find the course
+            School_Year::Semester::Subject *findCourse;
+
+            bool courseFound = false;
+            while (currentYear != NULL) {
+                if (currentYear->yearSemesterHead != NULL) {
+                    findCourse = currentYear->yearSemesterHead->yearSemesterSubjectHead;
+
+                    while (findCourse != NULL) {
+                        if (findCourse->id_Subject == findCourseID) {
+                            Show_ScoreBoard(findCourse->yearSemesterSubStudent_ListHead);
+                            courseFound = true;
+
+                            break;
+                        }
+
+                        findCourse = findCourse->Next;
+                    }
+                }
+
+                if (courseFound) break;
+
+                currentYear = currentYear->Next;
+            }
             
             system("pause");
 
-            goto startWindow;
+            goto startCourseMenu;
         }
         
-        case 2: {
+        case 4: {
             cout << "Good choice!\n";
             system("pause");
             break;
         }
         
         default: 
-            goto startWindow;
+            goto startCourseMenu;
     }
 }
 
@@ -171,9 +242,6 @@ startMainMenu:
 
         case 2: {
             CourseListMenu(sYear_Head);
-
-            system("pause");        // Remove this before launch
-            
             goto startMainMenu;
         }
 
