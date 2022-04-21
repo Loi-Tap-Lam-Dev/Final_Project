@@ -18,10 +18,10 @@ void PrintData(School_Year*yearHead)
     PrintYearClass.open("Year_Class.csv",ios::out);
     for(School_Year*year_cur=yearHead;year_cur!=nullptr;year_cur=year_cur->Next)
     {
-        PrintYearClass<<"Classes For Year"+tmp+to_string(year_cur->year)<<endl;
+        PrintYearClass<<"Classes For Year"+tmp+year_cur->year<<endl;
         for(School_Year::Year_Class*year_class_cur=yearHead->yearCLassHead;year_class_cur!=nullptr;year_class_cur=year_class_cur->Next)
         {
-            PrintYearClass<<"Class"+tmp+to_string(year_class_cur->nameClass)<<endl;
+            PrintYearClass<<"Class"+tmp+year_class_cur->nameClass<<endl;
             PrintYearClass<<"No"+tmp+" Student_ID"+tmp+" SocialID"+tmp+" FirstName"+tmp+" LastName"+tmp+" Gender"+tmp+" Dateofbirth"<<endl;
             for(School_Year::Year_Class::SV_List*year_class_sv_cur=year_class_cur->yearClassSV_ListHead;year_class_sv_cur!=nullptr;year_class_sv_cur=year_class_sv_cur->Next)
             {
@@ -35,7 +35,7 @@ void PrintData(School_Year*yearHead)
     PrintYearSemester.open("Year_Semester.csv",ios::out);
     for(School_Year*year_cur=yearHead;year_cur!=nullptr;year_cur=year_cur->Next)
     {
-        PrintYearSemester<<"Semester For Year"+tmp+to_string(year_cur->year)+tmp<<endl;
+        PrintYearSemester<<"Semester For Year"+tmp+year_cur->year+tmp<<endl;
         for(School_Year::Semester*year_semester_cur=yearHead->yearSemesterHead;year_semester_cur!=nullptr;year_semester_cur=year_semester_cur->Next)
         {
             PrintYearSemester<<"Semester info"+tmp+"Term"+tmp+" Start Date"+tmp+" End Date"+tmp<<endl;
@@ -48,7 +48,7 @@ void PrintData(School_Year*yearHead)
             PrintYearSemester<<"Subject"+tmp+"NameSubject"+tmp+" IDSubject"+tmp+" StartDate"+tmp+" EndDate"+tmp+" TeacherName"+tmp+" Day_of_session_1"+tmp+" Time_Day_1"+tmp+" Day_of_session_2"+tmp+" Time_Day_2"+tmp+" Number_Credit"+tmp+"MaxRegister"+tmp<<endl;
             for(School_Year::Semester::Subject*year_semester_sub_cur=year_semester_cur->yearSemesterSubjectHead;year_semester_sub_cur!=nullptr;year_semester_sub_cur=year_semester_sub_cur->Next)
             {
-                PrintYearSemester<<year_semester_sub_cur->name_Subject+tmp+year_semester_sub_cur->id_Subject+tmp+year_semester_sub_cur->startDate+tmp+year_semester_sub_cur->endDate+tmp+year_semester_sub_cur->teacher_Name+tmp+year_semester_sub_cur->day_Of_Session_1+tmp+year_semester_sub_cur->at_Time_1+tmp+year_semester_sub_cur->day_Of_Session_2+tmp+year_semester_sub_cur->at_Time_2+tmp+year_semester_sub_cur->number_Of_Credit+tmp+year_semester_sub_cur->maximumRegrister+tmp<<endl;
+                PrintYearSemester<<year_semester_sub_cur->name_Subject+tmp+year_semester_sub_cur->id_Subject+tmp+year_semester_sub_cur->startDate+tmp+year_semester_sub_cur->endDate+tmp+year_semester_sub_cur->teacher_Name+tmp+year_semester_sub_cur->day_Of_Session_1+tmp+year_semester_sub_cur->at_Time_1+tmp+year_semester_sub_cur->day_Of_Session_2+tmp+year_semester_sub_cur->at_Time_2+tmp+to_string(year_semester_sub_cur->number_Of_Credit)+tmp+to_string(year_semester_sub_cur->maximumRegrister)+tmp<<endl;
                 PrintYearSemester<<"Subject_Mark"+tmp+"no"+tmp+"idStudent"+tmp+"Fullname"+tmp+"midTerm"+tmp+"finalTerm"+tmp+"other"+tmp+"total"+tmp<<endl;
                 for(School_Year::Semester::Subject::Student_listMark*year_semester_sub_stu_cur=year_semester_sub_cur->yearSemesterSubStudent_ListHead;year_semester_sub_stu_cur!=nullptr;year_semester_sub_stu_cur=year_semester_sub_stu_cur->Next)
                 {
