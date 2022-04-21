@@ -65,7 +65,7 @@ struct School_Year {
                      string day_Of_Session_1, day_Of_Session_2; // Mon/Tue/Wed
                      string at_Time_1, at_Time_2; //S1(7:30) S2(9:30) S3(13:30) S4(15:30)
                 
-                     int maximumRegrister = 50, number_Of_Credit;
+                     int maximumRegrister = 50, number_Of_Credit = 0;
 
 
                       struct Student_listMark {

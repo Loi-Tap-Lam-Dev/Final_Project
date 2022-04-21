@@ -1,5 +1,6 @@
 #include "lib.h"
 
+
 int main() {
 
 //Changeable data - (●'◡'●)
@@ -10,6 +11,7 @@ int main() {
     //Read Data
     //ReadData(sYear_Head);
     Read_Data_From_File(sYear_Head);
+    Read_Semester(sYear_Head);
     
     //Menu
     Primal_Menu(sYear_Head);
