@@ -4403,6 +4403,8 @@ void Primal_Menu(School_Year* &sYear_Head)
             case 3:
             {
                 update_registration_status();
+                continue;
+                break;
             }
             default:
                 system("pause");
