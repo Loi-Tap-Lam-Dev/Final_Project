@@ -6,7 +6,7 @@ void PrintData(School_Year*yearHead)
     string tmp=""",""";
 
     //-----------------
-    PrintYear.open("CSV_File/Year.csv",ios::out);
+    PrintYear.open("./CSV_File/Year.csv",ios::out);
     PrintYear<<"Year"<<endl;
     for(School_Year*year_cur=yearHead;year_cur!=nullptr;year_cur=year_cur->Next)
     {
@@ -18,7 +18,7 @@ void PrintData(School_Year*yearHead)
     PrintYear.close();
 
     //-----------------
-    PrintYearClass.open("CSV_File/Year_Class.csv",ios::out);
+    PrintYearClass.open("./CSV_File/Year_Class.csv",ios::out);
     for(School_Year*year_cur=yearHead;year_cur!=nullptr;year_cur=year_cur->Next)
     {
         PrintYearClass<<"Classes For Year"+tmp+year_cur->year<<endl;
@@ -38,7 +38,7 @@ void PrintData(School_Year*yearHead)
     PrintYearClass.close();
     
     //-----------------
-    PrintYearSemester.open("CSV_File/Year_Semester.csv",ios::out);
+    PrintYearSemester.open("./CSV_File/Year_Semester.csv",ios::out);
     for(School_Year*year_cur=yearHead;year_cur!=nullptr;year_cur=year_cur->Next)
     {
         PrintYearSemester<<"Semester For Year"+tmp+year_cur->year+tmp<<endl;

@@ -163,8 +163,8 @@ void Read_Semester(School_Year* &sYear_Head)
 
         //if (Line == "") break; 
 
-        char* Input_Line = new char [Line.size()];
-        char* To_read = new char [Line.size()];
+        char* Input_Line = new char [1000];
+        char* To_read = new char [1000];
         const char* denim = ",";
 
         strcpy(Input_Line,Line.c_str());
