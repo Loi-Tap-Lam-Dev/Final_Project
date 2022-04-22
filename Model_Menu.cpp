@@ -4418,7 +4418,6 @@ void Primal_Menu(School_Year* &sYear_Head)
     return ;
 }
 
-
 // Student Want to View His Score
 void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
 {
