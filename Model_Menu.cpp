@@ -4,6 +4,16 @@
 //Noted: Try to make orderd linked list
 
 //Check is there enough 3 term of Semester
+
+bool registration_status() {
+    FILE *status;
+    int res_status;
+    status = fopen("Registration Status.txt", "r");
+    fscanf(status, "%d", &res_status);
+    fclose(status);
+    return res_status;
+}
+
 int Check_Num_Semester(School_Year::Semester* Semester_Head)
 {
     int count = 0;
