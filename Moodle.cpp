@@ -1,6 +1,5 @@
 #include "lib.h"
 
-
 int main() {
 
 //Changeable data - (●'◡'●)
