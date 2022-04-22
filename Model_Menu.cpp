@@ -4367,7 +4367,7 @@ void Menu_ScoreBoard(School_Year* sYear_Head)
 void Primal_Menu(School_Year* &sYear_Head)
 {
     int user_Choose = 0;
-    while (user_Choose != 3)
+    while (user_Choose != 4)
     {
         system("CLS");
         if (sYear_Head != nullptr)
