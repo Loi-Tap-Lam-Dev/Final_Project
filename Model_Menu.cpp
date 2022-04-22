@@ -14,6 +14,8 @@ bool registration_status() {
     return res_status;
 }
 
+void update_registration_status();
+
 int Check_Num_Semester(School_Year::Semester* Semester_Head)
 {
     int count = 0;
@@ -4366,7 +4368,8 @@ void Primal_Menu(School_Year* &sYear_Head)
         cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
         cout<<"             1: Create/Adjust Element Of Moodle"<<endl;
         cout<<"             2: Import/Export ScoreBoard "<<endl;
-        cout<<"             3: Back"<<endl;
+        cout<<"             3: Update Registration Status\n";
+        cout<<"             4: Back"<<endl;
         cout<<"             Your choice: "; 
         cin>>user_Choose;
         cout<<endl;
@@ -4388,7 +4391,10 @@ void Primal_Menu(School_Year* &sYear_Head)
                 continue;
                 break;
             }
-
+            case 3:
+            {
+                update_registration_status();
+            }
             default:
                 system("pause");
                 break;
@@ -4588,4 +4594,39 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
     cout<<"Ending Menu ViewScoreBoard Student"<<endl;
 
     return ;
+}
+
+
+void update_registration_status() {
+    FILE *status;
+    int res_status;
+    if(registration_status()) {
+        cout<<"Course Registration is OPEN, do you want to CLOSE it?\n";
+        if(YOrN()==0) {
+            status = fopen("Registration Status.txt", "a");
+            fscanf(status, "%d", &res_status);
+            res_status = 0;
+            fclose(status);
+        }
+        else{
+            cout<<"     Going back.\n";
+            sleep(1000);
+            Primal_Menu(sYear_Head);
+        }
+    }
+    else {
+        cout<<"Course Registration is CLOSED, do you want to OPEN it?\n";
+        if(YOrN()==0) {
+            status = fopen("Registration Status.txt", "a");
+            fscanf(status, "%d", &res_status);
+            res_status = 1;
+            fclose(status);
+        }
+        else
+        {
+            cout<<"     Going back.\n"
+            sleep(1000);
+            Primal_Menu(sYear_Head);
+        }
+    }
 }
