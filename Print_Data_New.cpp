@@ -58,7 +58,7 @@ void PrintData(School_Year*yearHead)
                 PrintYearSemester<<"Subject_Mark"+tmp+"no"+tmp+"idStudent"+tmp+"Fullname"+tmp+"midTerm"+tmp+"finalTerm"+tmp+"other"+tmp+"total"+tmp<<endl;
                 for(School_Year::Semester::Subject::Student_listMark*year_semester_sub_stu_cur=year_semester_sub_cur->yearSemesterSubStudent_ListHead;year_semester_sub_stu_cur!=nullptr;year_semester_sub_stu_cur=year_semester_sub_stu_cur->Next)
                 {
-                    if(year_semester_sub_stu_cur->Next==nullptr)
+                    if(year_cur->Next==nullptr)
                     PrintYearSemester<<to_string(year_semester_sub_stu_cur->no)+tmp+to_string(year_semester_sub_stu_cur->idStudent)+tmp+year_semester_sub_stu_cur->FullName+tmp+to_string(year_semester_sub_stu_cur->midTermMark)+tmp+to_string(year_semester_sub_stu_cur->finalTermMark)+tmp+to_string(year_semester_sub_stu_cur->otherMark)+tmp+to_string(year_semester_sub_stu_cur->totalMark)+tmp;
                     else
                     PrintYearSemester<<to_string(year_semester_sub_stu_cur->no)+tmp+to_string(year_semester_sub_stu_cur->idStudent)+tmp+year_semester_sub_stu_cur->FullName+tmp+to_string(year_semester_sub_stu_cur->midTermMark)+tmp+to_string(year_semester_sub_stu_cur->finalTermMark)+tmp+to_string(year_semester_sub_stu_cur->otherMark)+tmp+to_string(year_semester_sub_stu_cur->totalMark)+tmp<<endl;
