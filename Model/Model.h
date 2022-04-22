@@ -155,3 +155,39 @@ void appendAccount(string newUsername, string newPassword, int mode) {
     updateFile.seekp(0, ios::end);
     updateFile << newUsername << " " << newPassword << endl;
 }
+
+bool LoadStudentProfile(string username, Profile &studentProfile) {
+    fstream studentFile;
+    studentFile.open("./CSV_File/Student_Info.csv", ios::in);
+
+    string fileString;
+    getline(studentFile, fileString);
+
+    while (!studentFile.eof()) {
+        getline(studentFile, fileString);
+
+        //Convert str -> char*;
+        char *input = new char [ fileString.size() ];
+        strcpy(input,fileString.c_str());
+
+        studentProfile.No = atoi(strtok(input, ","));
+
+        studentProfile.studentID = strtok(NULL, ",");
+        studentProfile.firstName = strtok(NULL, ",");
+        studentProfile.lastName = strtok(NULL, ",");
+        studentProfile.gender = strtok(NULL, ",");
+        studentProfile.DoB = strtok(NULL, ",");
+        studentProfile.socialID = strtok(NULL, ",");
+
+        if (studentProfile.studentID == username) {
+            cout << "Data loaded succesfully!\n";
+            studentFile.close();
+
+            return true;
+        }
+    } 
+    
+    studentFile.close();
+
+    return false;
+}

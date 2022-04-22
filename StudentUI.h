@@ -213,7 +213,19 @@ startCourseMenu:
     }
 }
 
-void PrintMainStudentMenu(School_Year *&sYear_Head, string loginUsername)
+void PrintProfile(Profile loginProfile) {
+    cout << "Your profile:\n";
+
+    cout << "Student ID: " << loginProfile.studentID << endl;
+    cout << "Full name: " << loginProfile.firstName << " " << loginProfile.lastName << endl;
+    cout << "Gender: " << loginProfile.gender << endl;
+    cout << "Date of Birth (DoB): " << loginProfile.DoB << endl;
+    cout << "Social ID: " << loginProfile.socialID << endl;
+
+    system("pause");
+}
+
+void PrintMainStudentMenu(School_Year *&sYear_Head, string loginUsername, Profile loginProfile)
 {
 startMainMenu:
     int user_Choose = 0;
@@ -228,7 +240,8 @@ startMainMenu:
     cout<<"             1: View class"<<endl;
     cout<<"             2: View courses"<<endl;
     cout<<"             3: Change password"<<endl;
-    cout<<"             4: Log out"<<endl;
+    cout<<"             4: View profile"<<endl;
+    cout<<"             5: Log out"<<endl;
     cout<<"             Your choice: "; 
     cin>>user_Choose;
     cout<<endl;
@@ -266,6 +279,12 @@ startMainMenu:
         }
 
         case 4: {
+            PrintProfile(loginProfile);
+            
+            goto startMainMenu;
+        }
+
+        case 5: {
             cout << "Logging out...\n";
             break;
         }

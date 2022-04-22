@@ -20,7 +20,7 @@ beginAuthentication:
         case 1: {
             getCredentials(account.username, account.password);
             if (loginStaff(account.username, account.password)==1) {
-                cout<<"Success!";
+                cout<<"Success!\n";
                 loggedInAsAdmin = true;
             }
             else {
@@ -34,7 +34,7 @@ beginAuthentication:
         case 2: {
             getCredentials(account.username, account.password);
             if(loginStudent(account.username, account.password)==1) {
-                cout<<"Success!";
+                cout<<"Success!\n";
                 loggedInAsAdmin = false;
             }
             else {
@@ -66,7 +66,22 @@ beginAuthentication:
         goto beginAuthentication;
     }
     else {
-        PrintMainStudentMenu(sYear_Head, account.username);
+        Profile studentProfile;
+
+        if (!LoadStudentProfile(account.username, studentProfile)) {
+            cout << "Unable to load your data!\n";
+            cout << "The data is either corrupted, or your username is not found!\n";
+
+            Sleep(3000);
+
+            goto beginAuthentication;
+        }
+
+        cout << "Account data succesfully loaded! Please wait a few seconds!\n";
+
+        Sleep(3000);
+
+        PrintMainStudentMenu(sYear_Head, account.username, studentProfile);
         
         goto beginAuthentication;
     }

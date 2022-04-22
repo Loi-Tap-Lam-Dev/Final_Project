@@ -19,6 +19,17 @@ using namespace std::chrono;    // nanoseconds, system_clock, seconds
 //Declare fstream
 fstream finp, fout;
 
+// User profile structure (for students)
+struct Profile {
+    int No;
+    
+    string studentID;
+    string firstName, lastName;
+    string gender;
+    string DoB;
+    string socialID;
+};
+
 //Include Function file
 #include "View\DataBase.h"
 #include "DeLeTe_Data.cpp"
