@@ -28,7 +28,7 @@ void PrintData(School_Year*yearHead)
             PrintYearClass<<"No"+tmp+" Student_ID"+tmp+" SocialID"+tmp+" FirstName"+tmp+" LastName"+tmp+" Gender"+tmp+" Dateofbirth"<<endl;
             for(School_Year::Year_Class::SV_List*year_class_sv_cur=year_class_cur->yearClassSV_ListHead;year_class_sv_cur!=nullptr;year_class_sv_cur=year_class_sv_cur->Next)
             {
-                if(year_cur->Next==nullptr)
+                if(year_cur->Next==nullptr&&year_class_cur->Next==nullptr&&year_class_sv_cur->Next==nullptr)
                 PrintYearClass<<year_class_sv_cur->no<<tmp<<year_class_sv_cur->idStudent<<tmp<<year_class_sv_cur->socialID<<tmp+year_class_sv_cur->firstName+tmp+year_class_sv_cur->lastName+tmp+year_class_sv_cur->gender+tmp+year_class_sv_cur->dateOfBirth;
                 else
                 PrintYearClass<<year_class_sv_cur->no<<tmp<<year_class_sv_cur->idStudent<<tmp<<year_class_sv_cur->socialID<<tmp+year_class_sv_cur->firstName+tmp+year_class_sv_cur->lastName+tmp+year_class_sv_cur->gender+tmp+year_class_sv_cur->dateOfBirth<<endl;
@@ -58,7 +58,7 @@ void PrintData(School_Year*yearHead)
                 PrintYearSemester<<"Subject_Mark"+tmp+"no"+tmp+"idStudent"+tmp+"Fullname"+tmp+"midTerm"+tmp+"finalTerm"+tmp+"other"+tmp+"total"+tmp<<endl;
                 for(School_Year::Semester::Subject::Student_listMark*year_semester_sub_stu_cur=year_semester_sub_cur->yearSemesterSubStudent_ListHead;year_semester_sub_stu_cur!=nullptr;year_semester_sub_stu_cur=year_semester_sub_stu_cur->Next)
                 {
-                    if(year_cur->Next==nullptr)
+                    if(year_cur->Next==nullptr&&year_semester_cur->Next==nullptr&&year_semester_sub_cur->Next==nullptr&&year_semester_sub_stu_cur->Next==nullptr)
                     PrintYearSemester<<year_semester_sub_stu_cur->no<<tmp<<year_semester_sub_stu_cur->idStudent<<tmp+year_semester_sub_stu_cur->FullName+tmp<<year_semester_sub_stu_cur->midTermMark<<tmp<<year_semester_sub_stu_cur->finalTermMark<<tmp<<year_semester_sub_stu_cur->otherMark<<tmp<<year_semester_sub_stu_cur->totalMark<<tmp;
                     else
                     PrintYearSemester<<year_semester_sub_stu_cur->no<<tmp<<year_semester_sub_stu_cur->idStudent<<tmp+year_semester_sub_stu_cur->FullName+tmp<<year_semester_sub_stu_cur->midTermMark<<tmp<<year_semester_sub_stu_cur->finalTermMark<<tmp<<year_semester_sub_stu_cur->otherMark<<tmp<<year_semester_sub_stu_cur->totalMark<<tmp<<endl;
