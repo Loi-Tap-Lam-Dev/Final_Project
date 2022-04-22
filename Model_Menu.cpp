@@ -1476,6 +1476,11 @@ void Adjust_Classes(School_Year* &sYear_Cur,School_Year::Year_Class* &Classes_He
     string user_Choose_Class = "";
         
         if (!Check_Ignore) cin.ignore();
+        
+        if (Classes_Head != nullptr)
+        {
+            Show_Classes_Table(sYear_Cur -> year,Classes_Head);
+        }
     do
     {
         //Menu of User choice about School-Year they want to view
@@ -1499,9 +1504,10 @@ void Adjust_Classes(School_Year* &sYear_Cur,School_Year::Year_Class* &Classes_He
         }
     } while (Check_Classes_Duplicated(Classes_Head,user_Choose_Class));
 
-    cout<<"/n";
+    cout<<"\n";
     School_Year::Year_Class* Class_Cur = find_Classes(Classes_Head,user_Choose_Class);
 
+    string user_Another_Class;
     do
     {
         //Menu of User choice about School-Year they want to view
@@ -1509,27 +1515,27 @@ void Adjust_Classes(School_Year* &sYear_Cur,School_Year::Year_Class* &Classes_He
             cout<<"Note: If you dont want to change pls Enter 'N' "<<endl;
             cout<<"Enter answer: ";
 
-            getline(cin,user_Choose_Class);
+            getline(cin,user_Another_Class);
 
-        if (user_Choose_Class == "N") return;
+        if (user_Another_Class == "N") return;
 
         //Check if the data is corrected
-        if (user_Choose_Class.substr(0,2) != sYear_Cur -> year . substr(2,2)) return ;
+        if (user_Another_Class.substr(0,2) != sYear_Cur -> year . substr(2,2)) return ;
 
 
         //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
-        if (!Check_Classes_Duplicated(Classes_Head,user_Choose_Class)) 
+        if (!Check_Classes_Duplicated(Classes_Head,user_Another_Class)) 
         {
-            cout<<"Your input Class: "<<user_Choose_Class<<" is Incorrect. Please try again."<<endl;
+            cout<<"Your input Class: "<<user_Another_Class<<" is Incorrect. Please try again."<<endl;
             
             //Enter any key to continue and go back to  "Showing_School_Year"
             system("pause");
             cout<<"\n";
             Check_Ignore = true;
         }
-    } while (!Check_Classes_Duplicated(Classes_Head,user_Choose_Class));
+    } while (!Check_Classes_Duplicated(Classes_Head,user_Another_Class));
 
-    Class_Cur -> nameClass = user_Choose_Class;
+    Class_Cur -> nameClass = user_Another_Class;
 
     cout<<"\n";
     cout<<"Change Success";
