@@ -5,6 +5,15 @@
 
 //Check is there enough 3 term of Semester
 
+int YOrN() {
+    cout<<"0. Yes\n";
+    cout<<"1. No\n";
+    cout<<"Press a key to continue\n";
+    int choice;
+    cin>>choice;
+    return choice;
+}
+
 bool registration_status() {
     FILE *status;
     int res_status;
