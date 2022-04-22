@@ -17,8 +17,7 @@ int main() {
     Primal_Menu(sYear_Head);
 
     //Print Data - Check 💨
-    
-    
+        
     //forStudent_ToView_ScoreBoard_Of_A_Semester(sYear_Head);
     
     //Delete

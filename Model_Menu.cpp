@@ -23,7 +23,7 @@ bool registration_status() {
     return res_status;
 }
 
-void update_registration_status();
+void update_registration_status(School_Year* sYear_Head);
 
 int Check_Num_Semester(School_Year::Semester* Semester_Head)
 {
@@ -4402,7 +4402,7 @@ void Primal_Menu(School_Year* &sYear_Head)
             }
             case 3:
             {
-                update_registration_status();
+                update_registration_status(sYear_Head);
                 continue;
                 break;
             }
@@ -4608,7 +4608,7 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
 }
 
 
-void update_registration_status() {
+void update_registration_status(School_Year* sYear_Head) {
     FILE *status;
     int res_status;
     if(registration_status()) {
@@ -4621,7 +4621,7 @@ void update_registration_status() {
         }
         else{
             cout<<"     Going back.\n";
-            sleep(1000);
+            sleep_until(system_clock::now() + seconds(1));
             Primal_Menu(sYear_Head);
         }
     }
@@ -4635,8 +4635,8 @@ void update_registration_status() {
         }
         else
         {
-            cout<<"     Going back.\n"
-            sleep(1000);
+            cout<<"     Going back.\n";
+            sleep_until(system_clock::now() + seconds(1));
             Primal_Menu(sYear_Head);
         }
     }
