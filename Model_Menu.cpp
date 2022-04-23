@@ -4378,7 +4378,7 @@ void Menu_ScoreBoard(School_Year* sYear_Head)
 void Primal_Menu(School_Year* &sYear_Head, string loginUsername)
 {
     int user_Choose = 0;
-    while (user_Choose != 4)
+    while (user_Choose != 6)
     {
         system("CLS");
         if (sYear_Head != nullptr)
@@ -4389,7 +4389,9 @@ void Primal_Menu(School_Year* &sYear_Head, string loginUsername)
         cout<<"             1: Create/Adjust Element Of Moodle"<<endl;
         cout<<"             2: Import/Export ScoreBoard "<<endl;
         cout<<"             3: Update Registration Status\n";
-        cout<<"             4: Back"<<endl;
+        cout<<"             4: Register a student account"<<endl;
+        cout<<"             5: Register a staff account"<<endl;
+        cout<<"             6: Back"<<endl;
         cout<<"             Your choice: "; 
         cin>>user_Choose;
         cout<<endl;
@@ -4417,6 +4419,74 @@ void Primal_Menu(School_Year* &sYear_Head, string loginUsername)
                 continue;
                 break;
             }
+
+            case 4:
+            {
+                string studentUsername, studentPass, studentPassRetype;
+                cout << "Enter student username: ";
+                cin.ignore(1000, '\n');
+                getline(cin, studentUsername);
+                
+                cout << "\nEnter password: ";
+                studentPass = encryptPasswordInput();
+                cout << "Retype password: ";
+                studentPassRetype = encryptPasswordInput();
+
+                while (!requestPassword(studentPass, studentPassRetype)) {
+                    cout << "Please re-enter!\n";
+                    cout << "Enter password: ";
+                    studentPass = encryptPasswordInput();
+                    cout << "Retype password: ";
+                    studentPassRetype = encryptPasswordInput();
+                }
+
+                appendAccount(studentUsername, studentPass, 2);
+
+                cout << "Account has been created! Please finish the profile:\n";
+
+                Profile newProfile;
+
+                cout << "Student ID: ";
+                getline(cin, newProfile.studentID);
+                cout << "First name: ";
+                getline(cin, newProfile.firstName);
+                cout << "Last name: ";
+                getline(cin, newProfile.lastName);
+                cout << "Gender: ";
+                getline(cin, newProfile.gender);
+                cout << "Date of Birth (DoB): ";
+                getline(cin, newProfile.DoB);
+                cout << "Social ID: ";
+                getline(cin, newProfile.socialID);
+
+                AppendStudentProfile(newProfile);
+
+                break;
+            }
+
+            case 5:
+            {
+                string staffUsername, staffPass, staffPassRetype;
+                cout << "Enter staff username: ";
+                cin.ignore(1000, '\n');
+                getline(cin, staffUsername);
+                
+                cout << "\nEnter password: ";
+                staffPass = encryptPasswordInput();
+                cout << "Retype password: ";
+                staffPassRetype = encryptPasswordInput();
+
+                while (!requestPassword(staffPass, staffPassRetype)) {
+                    cout << "Please re-enter!\n";
+                    cout << "Enter password: ";
+                    staffPass = encryptPasswordInput();
+                    cout << "Retype password: ";
+                    staffPassRetype = encryptPasswordInput();
+                }
+
+                appendAccount(staffUsername, staffPass, 1);
+            }
+
             default:
                 system("pause");
                 break;

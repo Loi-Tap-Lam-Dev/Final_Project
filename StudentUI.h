@@ -93,6 +93,9 @@ startWindow:
 }
 
 void CourseListMenu(School_Year *sYear_Head) {
+startCourseMenu:
+    system("CLS");
+
     if (sYear_Head == NULL ||  sYear_Head->yearSemesterHead == NULL || sYear_Head->yearSemesterHead->yearSemesterSubjectHead == NULL) {
         cout << "No course available!\n";
         system("pause");
@@ -102,7 +105,7 @@ void CourseListMenu(School_Year *sYear_Head) {
 
     School_Year *currentYear = sYear_Head;
 
-    cout << "Available courses:\n";
+    cout << "Displaying all available courses:\n";
 
     while (currentYear != NULL) {
         Show_Subject_Table(to_string(currentYear->yearSemesterHead->Term), currentYear->yearSemesterHead->yearSemesterSubjectHead);
@@ -110,13 +113,152 @@ void CourseListMenu(School_Year *sYear_Head) {
         currentYear = currentYear->Next;
     }
 
-    // Course menu will go here
-    // ...
-
     currentYear = sYear_Head;
+
+    // Course menu will go here
+    int choice;
+    cout << "\t\tAvailable operations:\n";
+    cout << "\t\t   1: View student list in a course\n";
+    cout << "\t\t   2: View my courses\n";
+    cout << "\t\t   3: View scoreboard\n";
+    cout << "\t\t   4: Give up and quit\n\n";
+    cout << "Your choice: ";
+    cin >> choice;
+
+    switch (choice) {
+        case 1: {
+            string findCourseID;
+
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Enter course ID to view from: ";
+            getline(cin, findCourseID);
+
+            // Find the course
+            School_Year::Semester::Subject *findCourse;
+
+            bool courseFound = false;
+            while (currentYear != NULL) {
+                if (currentYear->yearSemesterHead != NULL) {
+                    findCourse = currentYear->yearSemesterHead->yearSemesterSubjectHead;
+
+                    while (findCourse != NULL) {
+                        if (findCourse->id_Subject == findCourseID) {
+                            Show_ScoreBoard(findCourse->yearSemesterSubStudent_ListHead);
+                            courseFound = true;
+
+                            break;
+                        }
+
+                        findCourse = findCourse->Next;
+                    }
+                }
+
+                if (courseFound) break;
+
+                currentYear = currentYear->Next;
+            }
+
+            system("pause");
+
+            goto startCourseMenu;
+        }
+
+        case 2: {
+            string findStudentID;
+
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Enter your ID: ";
+            getline(cin, findStudentID);
+
+            // Find the course
+            School_Year::Semester::Subject *findCourse;
+            School_Year::Semester::Subject::Student_listMark *findStudent;
+
+            // Reuses the function Show_Subject_Table from Model_Menu.cpp
+            cout<<"| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student|"<<endl;
+            while (currentYear != NULL) {
+                if (currentYear->yearSemesterHead != NULL) {
+                    findCourse = currentYear->yearSemesterHead->yearSemesterSubjectHead;
+
+                    while (findCourse != NULL) {
+                        findStudent = findCourse->yearSemesterSubStudent_ListHead;
+
+                        while (findStudent != NULL) {
+                            if (findStudent->idStudent == stoi(findStudentID)) {
+                                
+                                cout<<"| "<<findCourse -> id_Subject<<"\t\t| "<<findCourse -> name_Subject<<"\t\t| ";
+
+                                //Teacher Name
+                                if ((findCourse -> teacher_Name).size() > 14) cout<<findCourse -> teacher_Name<<"\t| ";
+                                else cout<<findCourse -> teacher_Name<<"\t\t| ";
+                                
+                                //Start date, Endate
+                                cout<<findCourse -> startDate<<"\t| "<<findCourse -> endDate<<"\t| "<<findCourse -> day_Of_Session_1<<"\t\t| ";
+
+                                if (findCourse -> at_Time_1 == "S3" ) cout<<"13:30 - 15:29\t| ";
+                                if (findCourse -> at_Time_1 == "S4" ) cout<<"15:30 - 17:29\t| ";
+                                if (findCourse -> at_Time_1 == "S1" ) cout<<"7:30 - 9:29\t| ";
+                                if (findCourse -> at_Time_1 == "S2" ) cout<<"9:30 - 11:29\t| ";
+
+                                cout<<findCourse -> day_Of_Session_2<<"\t\t| ";
+
+                                if (findCourse -> at_Time_2 == "S3" ) cout<<"13:30 - 15:29\t| ";
+                                if (findCourse -> at_Time_2 == "S4" ) cout<<"15:30 - 17:29\t| ";
+                                if (findCourse -> at_Time_2 == "S1" ) cout<<"7:30 - 9:29\t| ";
+                                if (findCourse -> at_Time_2 == "S2" ) cout<<"9:30 - 11:29\t| ";
+
+                                cout<<findCourse -> number_Of_Credit<<"\t\t\t| "<<findCourse -> maximumRegrister<<" \t\t|"<<endl;
+                            }
+
+                            findStudent = findStudent->Next;
+                        }
+
+                        findCourse = findCourse->Next;
+                    }
+                }
+
+                currentYear = currentYear->Next;
+            }
+
+            system("pause");
+
+            goto startCourseMenu;
+        }
+
+        case 3: {
+            forStudent_ToView_ScoreBoard_Of_A_Semester(sYear_Head);
+            
+            system("pause");
+
+            goto startCourseMenu;
+        }
+        
+        case 4: {
+            cout << "Good choice!\n";
+            system("pause");
+            break;
+        }
+        
+        default: 
+            goto startCourseMenu;
+    }
 }
 
-void PrintMainStudentMenu(School_Year *&sYear_Head, string loginUsername)
+void PrintProfile(Profile loginProfile) {
+    cout << "Your profile:\n";
+
+    cout << "Student ID: " << loginProfile.studentID << endl;
+    cout << "Full name: " << loginProfile.firstName << " " << loginProfile.lastName << endl;
+    cout << "Gender: " << loginProfile.gender << endl;
+    cout << "Date of Birth (DoB): " << loginProfile.DoB << endl;
+    cout << "Social ID: " << loginProfile.socialID << endl;
+
+    system("pause");
+}
+
+void PrintMainStudentMenu(School_Year *&sYear_Head, string loginUsername, Profile loginProfile)
 {
 startMainMenu:
     int user_Choose = 0;
@@ -131,7 +273,8 @@ startMainMenu:
     cout<<"             1: View class"<<endl;
     cout<<"             2: View courses"<<endl;
     cout<<"             3: Change password"<<endl;
-    cout<<"             4: Log out"<<endl;
+    cout<<"             4: View profile"<<endl;
+    cout<<"             5: Log out"<<endl;
     cout<<"             Your choice: "; 
     cin>>user_Choose;
     cout<<endl;
@@ -145,9 +288,6 @@ startMainMenu:
 
         case 2: {
             CourseListMenu(sYear_Head);
-
-            system("pause");        // Remove this before launch
-            
             goto startMainMenu;
         }
 
@@ -172,6 +312,12 @@ startMainMenu:
         }
 
         case 4: {
+            PrintProfile(loginProfile);
+            
+            goto startMainMenu;
+        }
+
+        case 5: {
             cout << "Logging out...\n";
             break;
         }
