@@ -65,10 +65,6 @@ beginAuthentication:
 
     if (loggedInAsAdmin) {
         
-        //Read data from file
-        Read_Data_From_File(sYear_Head);
-        Read_Semester(sYear_Head);
-
         // Menu for staff
         Primal_Menu(sYear_Head, account.username);
 

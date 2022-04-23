@@ -4312,7 +4312,7 @@ void Menu_ScoreBoard(School_Year* sYear_Head)
     while (user_Choose != 5)
     {
         system("CLS");
-        
+        cout<<endl<<endl;
         cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
         cout<<"             1: Export A List Of Student In a Course To Teacher"<<endl;
         cout<<"             2: Import ScoreBoard Of a Course For Staff"<<endl;
