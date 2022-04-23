@@ -1,10 +1,5 @@
 #include "lib.h"
 
-//Noted task havent finished: eheck line 3774 test adjust Student Score Board
-//Noted: Try to make orderd linked list
-
-//Check is there enough 3 term of Semester
-
 int YOrN() {
     cout<<"0. Yes\n";
     cout<<"1. No\n";
@@ -25,6 +20,7 @@ bool registration_status() {
 
 void update_registration_status(School_Year* sYear_Head, string userLoginname);
 
+//Check is there enough 3 term of Semester
 int Check_Num_Semester(School_Year::Semester* Semester_Head)
 {
     int count = 0;
@@ -336,7 +332,7 @@ void Show_Classes_Table(string user_School_Year,School_Year::Year_Class* Classes
 void Show_Sv_Table(string user_Class,School_Year::Year_Class::SV_List* Sv_Head)
 {
      //Show the Classes from chosen school year - 👌
-        // system("CLS");
+        system("CLS");
         cout<<"| Classes\t|"<<user_Class<<"\t\t|"<<endl<<endl;
         cout<<"    \t| No\t| Student ID\t\t| First Name\t| Last Name\t\t| Gender\t| DateOfBirth\t\t| Social ID\t\t|"<<endl;
         cout<<"    \t";
@@ -345,7 +341,11 @@ void Show_Sv_Table(string user_Class,School_Year::Year_Class::SV_List* Sv_Head)
 
         while (Sv_Cur != nullptr) 
         {
-            cout<<"| "<<Sv_Cur -> no<<"\t| "<<Sv_Cur ->idStudent<<"\t\t| "<<Sv_Cur ->firstName<<"\t\t| "<<Sv_Cur ->lastName<<"\t\t| "<<Sv_Cur ->gender<<"\t\t| "<<Sv_Cur ->dateOfBirth<<"\t\t| "<<Sv_Cur ->socialID<<"\t\t| "<<endl;
+            cout<<"| "<<Sv_Cur -> no<<"\t| "<<Sv_Cur ->idStudent<<"\t\t| "<<Sv_Cur ->firstName<<"\t\t| ";
+
+            if (Sv_Cur -> lastName.size() < 4) cout<<Sv_Cur ->lastName<<"\t\t\t| ";
+            else cout<<Sv_Cur ->lastName<<"\t\t| ";
+            cout<<Sv_Cur ->gender<<"\t\t| "<<Sv_Cur ->dateOfBirth<<"\t\t| "<<Sv_Cur ->socialID<<"\t\t| "<<endl;
             
             cout<<"    \t";
             Sv_Cur = Sv_Cur -> Next;
@@ -403,34 +403,32 @@ void Show_Subject_Table(string user_Semester,School_Year::Semester::Subject* Sub
 {
     system("CLS");
     cout<<"| Semester\t|"<<user_Semester<<"\t|"<<endl<<endl;
-    cout<<"| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student|"<<endl;
-    cout<<"\t";
+    cout<<"| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Credits\t| Max Student   |"<<endl;
     
     while (Subject_Head != nullptr)
     {
-        cout<<"| "<<Subject_Head -> id_Subject<<"\t\t| "<<Subject_Head -> name_Subject<<"\t\t| ";
+        cout<<"| "<<Subject_Head -> id_Subject<<"\t| "<<Subject_Head -> name_Subject<<"\t\t| ";
 
         //Teacher Name
         if ((Subject_Head -> teacher_Name).size() > 14) cout<<Subject_Head -> teacher_Name<<"\t| ";
         else cout<<Subject_Head -> teacher_Name<<"\t\t| ";
         
         //Start date, Endate
-        cout<<Subject_Head -> startDate<<"\t| "<<Subject_Head -> endDate<<"\t| "<<Subject_Head -> day_Of_Session_1<<"\t\t| ";
+        cout<<Subject_Head -> startDate<<"\t| "<<Subject_Head -> endDate<<"\t| "<<Subject_Head -> day_Of_Session_1<<"\t| ";
 
         if (Subject_Head -> at_Time_1 == "S3" ) cout<<"13:30 - 15:29\t| ";
         if (Subject_Head -> at_Time_1 == "S4" ) cout<<"15:30 - 17:29\t| ";
         if (Subject_Head -> at_Time_1 == "S1" ) cout<<"7:30 - 9:29\t| ";
         if (Subject_Head -> at_Time_1 == "S2" ) cout<<"9:30 - 11:29\t| ";
 
-        cout<<Subject_Head -> day_Of_Session_2<<"\t\t| ";
+        cout<<Subject_Head -> day_Of_Session_2<<"\t| ";
 
         if (Subject_Head -> at_Time_2 == "S3" ) cout<<"13:30 - 15:29\t| ";
         if (Subject_Head -> at_Time_2 == "S4" ) cout<<"15:30 - 17:29\t| ";
         if (Subject_Head -> at_Time_2 == "S1" ) cout<<"7:30 - 9:29\t| ";
         if (Subject_Head -> at_Time_2 == "S2" ) cout<<"9:30 - 11:29\t| ";
 
-        cout<<Subject_Head -> number_Of_Credit<<"\t\t\t| "<<Subject_Head -> maximumRegrister<<" \t\t|"<<endl;
-        cout<<"\t";
+        cout<<Subject_Head -> number_Of_Credit<<"\t\t| "<<Subject_Head -> maximumRegrister<<" \t\t|"<<endl;
 
         Subject_Head = Subject_Head -> Next;
     }
@@ -443,8 +441,7 @@ void Show_Specific_Subject_Table(string user_Semester,School_Year::Semester::Sub
 {
     system("CLS");
     cout<<"You Are Choosing: "<<endl<<endl;
-    cout<<"      \t| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student|"<<endl;
-    cout<<"      \t";
+    cout<<"| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Credits\t| Max Student   |"<<endl;
     
     while (Subject_Head != nullptr)
     {
@@ -454,33 +451,32 @@ void Show_Specific_Subject_Table(string user_Semester,School_Year::Semester::Sub
             continue;
         }
 
-        cout<<"| "<<Subject_Head -> id_Subject<<"\t\t| "<<Subject_Head -> name_Subject<<"\t\t| ";
+        cout<<"| "<<Subject_Head -> id_Subject<<"\t| "<<Subject_Head -> name_Subject<<"\t\t| ";
 
         //Teacher Name
         if ((Subject_Head -> teacher_Name).size() > 14) cout<<Subject_Head -> teacher_Name<<"\t| ";
         else cout<<Subject_Head -> teacher_Name<<"\t\t| ";
         
         //Start date, Endate
-        cout<<Subject_Head -> startDate<<"\t| "<<Subject_Head -> endDate<<"\t| "<<Subject_Head -> day_Of_Session_1<<"\t\t| ";
+        cout<<Subject_Head -> startDate<<"\t| "<<Subject_Head -> endDate<<"\t| "<<Subject_Head -> day_Of_Session_1<<"\t| ";
 
         if (Subject_Head -> at_Time_1 == "S3" ) cout<<"13:30 - 15:29\t| ";
         if (Subject_Head -> at_Time_1 == "S4" ) cout<<"15:30 - 17:29\t| ";
         if (Subject_Head -> at_Time_1 == "S1" ) cout<<"7:30 - 9:29\t| ";
         if (Subject_Head -> at_Time_1 == "S2" ) cout<<"9:30 - 11:29\t| ";
 
-        cout<<Subject_Head -> day_Of_Session_2<<"\t\t| ";
+        cout<<Subject_Head -> day_Of_Session_2<<"\t| ";
 
         if (Subject_Head -> at_Time_2 == "S3" ) cout<<"13:30 - 15:29\t| ";
         if (Subject_Head -> at_Time_2 == "S4" ) cout<<"15:30 - 17:29\t| ";
         if (Subject_Head -> at_Time_2 == "S1" ) cout<<"7:30 - 9:29\t| ";
         if (Subject_Head -> at_Time_2 == "S2" ) cout<<"9:30 - 11:29\t| ";
 
-        cout<<Subject_Head -> number_Of_Credit<<"\t\t\t| "<<Subject_Head -> maximumRegrister<<" \t\t|"<<endl;
-        cout<<"\t";
-        cout<<endl; 
+        cout<<Subject_Head -> number_Of_Credit<<"\t\t| "<<Subject_Head -> maximumRegrister<<" \t\t|"<<endl;
 
         return;
     } 
+    cout<<endl;
 }
 
 //Show ScoreBoard
@@ -497,14 +493,15 @@ void Show_ScoreBoard(School_Year::Semester::Subject::Student_listMark* Score_hea
     {
         cout<<"\t|"<<Score_head -> no<<"\t|"<<Score_head -> idStudent<<"\t|";
          
-        if (Score_head -> FullName .size() < 9) cout<<Score_head -> FullName<<"\t\t|";
+        if (Score_head -> FullName .size() < 9) cout<<Score_head -> FullName<<"\t\t\t|";
+        else if (Score_head -> FullName .size() < 14) cout<<Score_head -> FullName<<"\t\t|";
         else cout<<Score_head -> FullName<<"\t|";
 
         cout<<Score_head -> midTermMark<<"\t\t|"<<Score_head -> finalTermMark<<"\t\t|"<<Score_head -> otherMark<<"\t\t|"<<Score_head -> totalMark<<"\t|";
         cout<<endl;
         Score_head = Score_head -> Next;
     }
-
+    cout<<endl;
 }
 
 //Show Specific Result 
@@ -523,7 +520,8 @@ void Show_Specific_StuResult(School_Year::Semester::Subject::Student_listMark* S
         {
             cout<<"\t|"<<Score_head -> no<<"\t|"<<Score_head -> idStudent<<"\t|";
          
-            if (Score_head -> FullName .size() < 9) cout<<Score_head -> FullName<<"\t\t|";
+            if (Score_head -> FullName .size() < 9) cout<<Score_head -> FullName<<"\t\t\t|";
+            else if (Score_head -> FullName .size() < 14) cout<<Score_head -> FullName<<"\t\t|";
             else cout<<Score_head -> FullName<<"\t|";
 
             cout<<Score_head -> midTermMark<<"\t\t|"<<Score_head -> finalTermMark<<"\t\t|"<<Score_head -> otherMark<<"\t\t|"<<Score_head -> totalMark<<"\t|";
@@ -532,7 +530,7 @@ void Show_Specific_StuResult(School_Year::Semester::Subject::Student_listMark* S
         }
         Score_head = Score_head -> Next;
     }
-
+    cout<<endl;
 }
 
 //Show Term Mark Of Specific Student ID
@@ -561,6 +559,7 @@ void Show_Specific_TermMark_Of_Student(School_Year::Semester::Student_listMark* 
 
         Term_Mark = Term_Mark -> Next;
     }
+    cout<<endl;
 }
 
 //View Student List
@@ -1394,7 +1393,7 @@ void Create_Classes(School_Year* &Year_Cur, School_Year::Year_Class* &Classes_He
             return;
 }
 
-//Delete Classes
+//Delete Classes - ε=( o｀ω′)ノ
 void Delete_Classes(School_Year* &sYear_Cur,School_Year::Year_Class* &Classes_Head)
 {
     if (Classes_Head == nullptr)
@@ -3532,10 +3531,11 @@ void Export_List_of_Student(School_Year* &sYear_Head)
 
     cout<<"Export Success"<<endl;
 
+    //Delete after using temp_Csv
     Subject_Cur -> yearSemesterSubStudent_ListHead = nullptr;
     Delete_Element_Of_StudentList(Score_Head,2);
 
-    Score_Head = nullptr;
+    Subject_Cur -> yearSemesterSubStudent_ListHead = nullptr;
 
     string user_Choice;
     
