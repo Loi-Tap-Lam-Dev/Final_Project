@@ -4,7 +4,6 @@ int main() {
     
     //Declare
     School_Year* sYear_Head = nullptr;
-    Account account;
     bool loggedInAsAdmin = false;
 
 beginAuthentication:
@@ -66,7 +65,7 @@ beginAuthentication:
     if (loggedInAsAdmin) {
         
         // Menu for staff
-        Primal_Menu(sYear_Head, account.username);
+        Primal_Menu(sYear_Head);
 
         goto beginAuthentication;
     }

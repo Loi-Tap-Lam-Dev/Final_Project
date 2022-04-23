@@ -28,12 +28,14 @@ struct Profile {
     string socialID;
 };
 
+
 //Include Function file
 #include "View\DataBase.h"
 #include "DeLeTe_Data.cpp"
 #include "Model\modelLogin.hpp"
 
 #include "View\viewLogin.h"
+Account account;
 #include "Model\Model.h"
 #include "Model_Menu.cpp"
 #include "Print_Data.cpp"
