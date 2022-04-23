@@ -46,6 +46,8 @@ beginAuthentication:
         case 3: {
             cout<<"Thank you!\n";
 
+            PrintData(sYear_Head);
+
             Delete_School_Year(sYear_Head);
 
             return 0;
@@ -56,17 +58,15 @@ beginAuthentication:
             goto beginAuthentication;
         }
     }
+    
+    //Read data from file
+    Read_Data_From_File(sYear_Head);
+    Read_Semester(sYear_Head);
 
     if (loggedInAsAdmin) {
-        //Read data from file
-        Read_Data_From_File(sYear_Head);
-        Read_Semester(sYear_Head);
 
         // Menu for staff
         Primal_Menu(sYear_Head, account.username);
-        
-        PrintData(sYear_Head);
-
 
         goto beginAuthentication;
     }
