@@ -85,9 +85,11 @@ beginAuthentication:
         cout << "Account data succesfully loaded! Please wait a few seconds!\n";
 
         Sleep(3000);
-
-        PrintMainStudentMenu(sYear_Head, account.username, studentProfile);
         
+        if(registration_status() == 0){
+        PrintMainStudentMenu(sYear_Head, account.username, studentProfile);
+        }
+        else PrintMainStudentMenu2(sYear_Head, account.username, studentProfile);
         goto beginAuthentication;
     }
 
