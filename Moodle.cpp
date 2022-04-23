@@ -2,15 +2,13 @@
 
 int main() {
     
-    // ios_base::sync_with_stdio();
-    // cin.tie(NULL); cout.tie(NULL);
-    
+    //Declare
     School_Year* sYear_Head = nullptr;
     Account account;
     bool loggedInAsAdmin = false;
 
 beginAuthentication:
-    system("cls");
+    system("CLS");
     int choice = loginOption();
 
     cin.clear();
@@ -60,9 +58,16 @@ beginAuthentication:
     }
 
     if (loggedInAsAdmin) {
+        //Read data from file
+        Read_Data_From_File(sYear_Head);
+        Read_Semester(sYear_Head);
+
         // Menu for staff
         Primal_Menu(sYear_Head, account.username);
         
+        PrintData(sYear_Head);
+
+
         goto beginAuthentication;
     }
     else {
@@ -86,5 +91,7 @@ beginAuthentication:
         goto beginAuthentication;
     }
 
+    //Delete Data
+    Delete_School_Year(sYear_Head);
     return 0;
 }

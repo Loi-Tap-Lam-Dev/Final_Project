@@ -1,9 +1,10 @@
+#pragma once
 #include "lib.h"
 
 void Read_Year(School_Year* &sYear_Head)
 {
     ifstream year_Input;
-    year_Input.open("./CSV_File/Year.csv");
+    year_Input.open("CSV_File/Year.csv");
     while (!year_Input.eof())
     {
             string Line;
@@ -34,7 +35,7 @@ void Read_Year(School_Year* &sYear_Head)
 void Read_Class(School_Year* &sYear_Head)
 {
     ifstream Class_Input;
-    Class_Input.open("./CSV_File/Year_Class.csv");
+    Class_Input.open("CSV_File/Year_Class.csv");
 
     string Line = "";
     School_Year::Year_Class* Class_Head = nullptr;
@@ -43,18 +44,20 @@ void Read_Class(School_Year* &sYear_Head)
     School_Year::Year_Class::SV_List* Sv_Cur = nullptr;
     School_Year* sYear_Cur = nullptr;
     bool Check_To_Start_SvList = false;
-
+    char* Input_Line;
     do
     {
+        if (Class_Input.eof()) break;
         getline(Class_Input,Line);
 
-        char* Input_Line = new char [Line.size()];
+        //if (Input_Line != nullptr)  delete [] Input_Line;
+        Input_Line = new char [10000];
         const char* denim = ",";
 
         strcpy(Input_Line,Line.c_str());
         Input_Line = strtok(Input_Line,denim);
         string s_Line = Input_Line;
-        if (Check_To_Start_SvList) strcpy(Input_Line,Line.c_str());
+        strcpy(Input_Line,Line.c_str());
 
         if (s_Line == "Classes For Year")
         {
@@ -72,7 +75,7 @@ void Read_Class(School_Year* &sYear_Head)
                             Class_Head -> nameClass = strtok(NULL,denim);
                             sYear_Cur -> yearCLassHead = Class_Head;
                             Class_Cur = Class_Head;
-                            delete [] Input_Line;
+                            //delete [] Input_Line;
                             continue;
                         }
                     
@@ -105,7 +108,7 @@ void Read_Class(School_Year* &sYear_Head)
 
                         Class_Cur -> yearClassSV_ListHead = Sv_Head;
                         Sv_Cur = Sv_Head;
-                        delete [] Input_Line;
+                        //delete [] Input_Line;
                         continue;
                     }
                 
@@ -124,7 +127,7 @@ void Read_Class(School_Year* &sYear_Head)
                 Sv_Cur -> dateOfBirth = strtok(NULL,denim);
             }
 
-        delete [] Input_Line;
+        //delete [] Input_Line;
     } while (!Class_Input.eof());
 
     Class_Input.close();
@@ -132,11 +135,10 @@ void Read_Class(School_Year* &sYear_Head)
 
 void Read_Semester(School_Year* &sYear_Head)
 {
-    ifstream Semseter_Input;
-    Semseter_Input.open("./CSV_File/Year_Semester.csv");
+    fstream Semseter_Input;
+    Semseter_Input.open("CSV_File/Year_Semester.csv",ios::in);
 
     //Declare
-    string Line = "";
     School_Year* sYear_Cur = nullptr;
     School_Year::Semester* Semseter_Head = nullptr;
     School_Year::Semester* Semseter_Cur = nullptr;
@@ -152,19 +154,22 @@ void Read_Semester(School_Year* &sYear_Head)
     bool Check_Term_Mark = false;
     bool Check_Subject = false;
     bool Check_Subjet_Mark = false;
+    
     do
     {
+        string Line = "";
+        if (Semseter_Input.eof()) break;
         getline(Semseter_Input,Line);
 
-        if (Line == "") break;
+        //if (Line == "") break; 
 
-        char* Input_Line = new char [Line.size()];
+        char* Input_Line = new char [10000];
+        char* To_read = new char [10000];
         const char* denim = ",";
 
         strcpy(Input_Line,Line.c_str());
-        Input_Line = strtok(Input_Line,denim);
-        string s_Line = Input_Line;
-        if (Check_Term_info || Check_Term_Mark || Check_Subject || Check_Subjet_Mark) strcpy(Input_Line,Line.c_str());
+        string s_Line = strtok(Input_Line,denim);
+        if (Check_Term_info == true || Check_Term_Mark == true || Check_Subject == true || Check_Subjet_Mark == true)strcpy(To_read,Line.c_str());
 
         if (s_Line == "Semester For Year")
         {
@@ -175,11 +180,9 @@ void Read_Semester(School_Year* &sYear_Head)
             Check_Subject = false;
             Check_Subjet_Mark = false;
             
-            delete [] Input_Line;
             continue;
-
         }
-        else if (s_Line == "Semester info")
+        if (s_Line == "Semester info")
                 {
                     Semseter_Head = sYear_Cur -> yearSemesterHead;
                     //Semseter_Cur = Semseter_Head;
@@ -188,11 +191,11 @@ void Read_Semester(School_Year* &sYear_Head)
                     Check_Term_Mark = false;
                     Check_Subject = false;
                     Check_Subjet_Mark = false;
-                    delete [] Input_Line;
+                    
                     continue;
 
                 }
-        else  if (s_Line == "Sv_Semester_Mark")
+        if (s_Line == "Sv_Semester_Mark")
                 {
                     Term_Mark_Head = Semseter_Cur -> yearSemesterStudent_listMarkHead;
                     //Term_Mark_Cur = Term_Mark_Head;
@@ -201,11 +204,11 @@ void Read_Semester(School_Year* &sYear_Head)
                     Check_Term_Mark = true;
                     Check_Subject = false;
                     Check_Subjet_Mark = false;
-                    delete [] Input_Line;
+                    
                     continue;
                 }
 
-        else  if (s_Line == "Subject")
+        if (s_Line == "Subject")
                 {
                     Subject_Head = Semseter_Cur -> yearSemesterSubjectHead;
                     //Subject_Cur = Subject_Head;
@@ -214,10 +217,11 @@ void Read_Semester(School_Year* &sYear_Head)
                     Check_Term_Mark = false;
                     Check_Subject = true;
                     Check_Subjet_Mark = false;
-                    delete [] Input_Line;
+                    
                     continue;
                 }
-        else  if (s_Line == "Subject_Mark")
+
+        if (s_Line == "Subject_Mark")
                 {
                     Subject_Mark_Head = Subject_Cur -> yearSemesterSubStudent_ListHead;
                     //Subject_Mark_Cur = Subject_Mark_Head;
@@ -226,22 +230,23 @@ void Read_Semester(School_Year* &sYear_Head)
                     Check_Term_Mark = false;
                     Check_Subject = false;
                     Check_Subjet_Mark = true;
-                    delete [] Input_Line;
+                    
                     continue;
                 }
-        else if (Check_Term_info)
+        if (Check_Term_info)
                 {
                     Semseter_Cur = Semseter_Head;
                     if (Semseter_Head == nullptr)
                     {
                         Semseter_Head = new School_Year::Semester;
-
-                        Semseter_Head -> Term = atoi (strtok(Input_Line,denim));
+                        string temp = strtok(To_read,denim);
+                        Semseter_Head -> Term = atoi (temp.c_str());
                         Semseter_Head -> start_Date = strtok(NULL,denim);
                         Semseter_Head -> end_Date = strtok(NULL,denim);
 
                         sYear_Cur -> yearSemesterHead = Semseter_Head;
-                        delete [] Input_Line;
+                        Semseter_Cur = Semseter_Head;
+                        
                         continue;
                     }
 
@@ -250,12 +255,12 @@ void Read_Semester(School_Year* &sYear_Head)
                     Semseter_Cur -> Next -> Prev = Semseter_Cur;
                     Semseter_Cur = Semseter_Cur -> Next;
 
-                    Semseter_Cur -> Term = atoi (strtok(Input_Line,denim));
+                    Semseter_Cur -> Term = atoi (strtok(To_read,denim));
                     Semseter_Cur -> start_Date = strtok(NULL,denim);
                     Semseter_Cur -> end_Date = strtok(NULL,denim);
                     
-                    delete [] Input_Line;
-                    continue;
+                    
+                    
                 }
         else if (Check_Term_Mark)
                 {
@@ -264,7 +269,7 @@ void Read_Semester(School_Year* &sYear_Head)
                     {
                         Term_Mark_Head = new School_Year::Semester::Student_listMark;
                         
-                        Term_Mark_Head -> no = atoi (strtok(Input_Line,denim));
+                        Term_Mark_Head -> no = atoi (strtok(To_read,denim));
                         Term_Mark_Head -> no = 1;
                         Term_Mark_Head -> idStudent = atoi (strtok(NULL,denim));
                         Term_Mark_Head -> fullName = strtok(NULL,denim);
@@ -273,8 +278,8 @@ void Read_Semester(School_Year* &sYear_Head)
                         Term_Mark_Head -> averageMark = atof(strtok(NULL,denim));
                     
                         Semseter_Cur -> yearSemesterStudent_listMarkHead = Term_Mark_Head;
-
-                        delete [] Input_Line;
+                        Term_Mark_Cur = Term_Mark_Head;
+                        
                         continue;
                     }
 
@@ -283,7 +288,7 @@ void Read_Semester(School_Year* &sYear_Head)
                     Term_Mark_Cur -> Next -> Prev = Term_Mark_Cur;
                     Term_Mark_Cur = Term_Mark_Cur -> Next;
 
-                    Term_Mark_Cur -> no = atoi (strtok(Input_Line,denim));
+                    Term_Mark_Cur -> no = atoi (strtok(To_read,denim));
                     Term_Mark_Cur -> no = Term_Mark_Cur -> Prev -> no + 1;
                     Term_Mark_Cur -> idStudent = atoi (strtok(NULL,denim));
                     Term_Mark_Cur -> fullName = strtok(NULL,denim);
@@ -291,8 +296,8 @@ void Read_Semester(School_Year* &sYear_Head)
                     Term_Mark_Cur -> GPA = atof(strtok(NULL,denim));
                     Term_Mark_Cur -> averageMark = atof(strtok(NULL,denim));
 
-                    delete [] Input_Line;
-                    continue;
+                    
+                    
                 }
         else if (Check_Subject)
                 {
@@ -301,7 +306,7 @@ void Read_Semester(School_Year* &sYear_Head)
                     {
                         Subject_Head = new School_Year::Semester::Subject;
                         
-                        Subject_Head -> name_Subject = strtok(Input_Line,denim);
+                        Subject_Head -> name_Subject = strtok(To_read,denim);
                         Subject_Head -> id_Subject = strtok(NULL,denim);
                         Subject_Head -> startDate = strtok(NULL,denim);
                         Subject_Head -> endDate = strtok(NULL,denim);
@@ -314,9 +319,9 @@ void Read_Semester(School_Year* &sYear_Head)
                         Subject_Head -> maximumRegrister = atoi (strtok(NULL,denim));
                     
                         Semseter_Cur -> yearSemesterSubjectHead = Subject_Head;
-                        
+                        Subject_Cur = Subject_Head;
 
-                        delete [] Input_Line;
+                        
                         continue;
                     }
 
@@ -325,7 +330,7 @@ void Read_Semester(School_Year* &sYear_Head)
                     Subject_Cur -> Next -> Prev = Subject_Cur;
                     Subject_Cur = Subject_Cur -> Next;
 
-                    Subject_Cur -> name_Subject = strtok(Input_Line,denim);
+                    Subject_Cur -> name_Subject = strtok(To_read,denim);
                     Subject_Cur -> id_Subject = strtok(NULL,denim);
                     Subject_Cur -> startDate = strtok(NULL,denim);
                     Subject_Cur -> endDate = strtok(NULL,denim);
@@ -337,8 +342,7 @@ void Read_Semester(School_Year* &sYear_Head)
                     Subject_Cur -> number_Of_Credit = atoi (strtok(NULL,denim));
                     Subject_Cur -> maximumRegrister = atoi (strtok(NULL,denim));
                     
-                    delete [] Input_Line;
-                    continue;
+                    
                 }
         else if (Check_Subjet_Mark)
                 {
@@ -347,7 +351,7 @@ void Read_Semester(School_Year* &sYear_Head)
                     {
                         Subject_Mark_Head = new School_Year::Semester::Subject::Student_listMark;
                         
-                        Subject_Mark_Head -> no = atoi(strtok(Input_Line,denim));
+                        Subject_Mark_Head -> no = atoi(strtok(To_read,denim));
                         Subject_Mark_Head -> no = 1;
                         Subject_Mark_Head -> idStudent = atoi( strtok(NULL,denim));
                         Subject_Mark_Head -> FullName = strtok(NULL,denim);
@@ -357,8 +361,8 @@ void Read_Semester(School_Year* &sYear_Head)
                         Subject_Mark_Head -> totalMark = atof (strtok(NULL,denim));
                     
                         Subject_Cur -> yearSemesterSubStudent_ListHead = Subject_Mark_Head;
+                        Subject_Mark_Cur = Subject_Mark_Head;
                         
-                        delete [] Input_Line;
                         continue;
                     }
 
@@ -367,7 +371,7 @@ void Read_Semester(School_Year* &sYear_Head)
                     Subject_Mark_Cur -> Next -> Prev = Subject_Mark_Cur;
                     Subject_Mark_Cur = Subject_Mark_Cur -> Next;
 
-                    Subject_Mark_Cur -> no = atoi(strtok(Input_Line,denim));
+                    Subject_Mark_Cur -> no = atoi(strtok(To_read,denim));
                     Subject_Mark_Cur -> no = Subject_Mark_Cur -> Prev -> no + 1;
                     Subject_Mark_Cur -> idStudent = atoi( strtok(NULL,denim));
                     Subject_Mark_Cur -> FullName = strtok(NULL,denim);
@@ -376,11 +380,10 @@ void Read_Semester(School_Year* &sYear_Head)
                     Subject_Mark_Cur -> otherMark = atof (strtok(NULL,denim));
                     Subject_Mark_Cur -> totalMark = atof (strtok(NULL,denim));
 
-                    delete [] Input_Line;
-                    continue;
+                    
                 }
 
-    } while (!Semseter_Input.eof());
+    } while (true);
     
     Semseter_Input.close();
 }
@@ -392,7 +395,4 @@ void Read_Data_From_File(School_Year* &sYear_Head)
 
     Read_Class(sYear_Head);
 
-    Read_Semester(sYear_Head);
-
-    return ;
 }
