@@ -10,7 +10,7 @@ int main() {
     bool loggedInAsAdmin = false;
 
 beginAuthentication:
-    system("cls");
+    system("CLS");
     int choice = loginOption();
 
     cin.clear();
