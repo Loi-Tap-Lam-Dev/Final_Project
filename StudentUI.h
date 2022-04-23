@@ -119,7 +119,7 @@ startCourseMenu:
     int choice;
     cout << "\t\tAvailable operations:\n";
     cout << "\t\t   1: View student list in a course\n";
-    cout << "\t\t   2: View your courses\n";
+    cout << "\t\t   2: View my courses\n";
     cout << "\t\t   3: View scoreboard\n";
     cout << "\t\t   4: Give up and quit\n\n";
     cout << "Your choice: ";
@@ -164,38 +164,71 @@ startCourseMenu:
             goto startCourseMenu;
         }
 
-        case 3: {
-            string findCourseID;
+        case 2: {
+            string findStudentID;
 
             cin.clear();
             cin.ignore(1000, '\n');
-            cout << "Enter course ID to view from: ";
-            getline(cin, findCourseID);
+            cout << "Enter your ID: ";
+            getline(cin, findStudentID);
 
             // Find the course
             School_Year::Semester::Subject *findCourse;
+            School_Year::Semester::Subject::Student_listMark *findStudent;
 
-            bool courseFound = false;
+            // Reuses the function Show_Subject_Table from Model_Menu.cpp
+            cout<<"| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student|"<<endl;
             while (currentYear != NULL) {
                 if (currentYear->yearSemesterHead != NULL) {
                     findCourse = currentYear->yearSemesterHead->yearSemesterSubjectHead;
 
                     while (findCourse != NULL) {
-                        if (findCourse->id_Subject == findCourseID) {
-                            Show_ScoreBoard(findCourse->yearSemesterSubStudent_ListHead);
-                            courseFound = true;
+                        findStudent = findCourse->yearSemesterSubStudent_ListHead;
 
-                            break;
+                        while (findStudent != NULL) {
+                            if (findStudent->idStudent == stoi(findStudentID)) {
+                                
+                                cout<<"| "<<findCourse -> id_Subject<<"\t\t| "<<findCourse -> name_Subject<<"\t\t| ";
+
+                                //Teacher Name
+                                if ((findCourse -> teacher_Name).size() > 14) cout<<findCourse -> teacher_Name<<"\t| ";
+                                else cout<<findCourse -> teacher_Name<<"\t\t| ";
+                                
+                                //Start date, Endate
+                                cout<<findCourse -> startDate<<"\t| "<<findCourse -> endDate<<"\t| "<<findCourse -> day_Of_Session_1<<"\t\t| ";
+
+                                if (findCourse -> at_Time_1 == "S3" ) cout<<"13:30 - 15:29\t| ";
+                                if (findCourse -> at_Time_1 == "S4" ) cout<<"15:30 - 17:29\t| ";
+                                if (findCourse -> at_Time_1 == "S1" ) cout<<"7:30 - 9:29\t| ";
+                                if (findCourse -> at_Time_1 == "S2" ) cout<<"9:30 - 11:29\t| ";
+
+                                cout<<findCourse -> day_Of_Session_2<<"\t\t| ";
+
+                                if (findCourse -> at_Time_2 == "S3" ) cout<<"13:30 - 15:29\t| ";
+                                if (findCourse -> at_Time_2 == "S4" ) cout<<"15:30 - 17:29\t| ";
+                                if (findCourse -> at_Time_2 == "S1" ) cout<<"7:30 - 9:29\t| ";
+                                if (findCourse -> at_Time_2 == "S2" ) cout<<"9:30 - 11:29\t| ";
+
+                                cout<<findCourse -> number_Of_Credit<<"\t\t\t| "<<findCourse -> maximumRegrister<<" \t\t|"<<endl;
+                            }
+
+                            findStudent = findStudent->Next;
                         }
 
                         findCourse = findCourse->Next;
                     }
                 }
 
-                if (courseFound) break;
-
                 currentYear = currentYear->Next;
             }
+
+            system("pause");
+
+            goto startCourseMenu;
+        }
+
+        case 3: {
+            forStudent_ToView_ScoreBoard_Of_A_Semester(sYear_Head);
             
             system("pause");
 

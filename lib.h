@@ -21,8 +21,6 @@ fstream finp, fout;
 
 // User profile structure (for students)
 struct Profile {
-    int No;
-    
     string studentID;
     string firstName, lastName;
     string gender;

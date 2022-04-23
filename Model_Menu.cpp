@@ -4429,6 +4429,27 @@ void Primal_Menu(School_Year* &sYear_Head, string loginUsername)
                 }
 
                 appendAccount(studentUsername, studentPass, 2);
+
+                cout << "Account has been created! Please finish the profile:\n";
+
+                Profile newProfile;
+
+                cout << "Student ID: ";
+                getline(cin, newProfile.studentID);
+                cout << "First name: ";
+                getline(cin, newProfile.firstName);
+                cout << "Last name: ";
+                getline(cin, newProfile.lastName);
+                cout << "Gender: ";
+                getline(cin, newProfile.gender);
+                cout << "Date of Birth (DoB): ";
+                getline(cin, newProfile.DoB);
+                cout << "Social ID: ";
+                getline(cin, newProfile.socialID);
+
+                AppendStudentProfile(newProfile);
+
+                break;
             }
 
             case 5:

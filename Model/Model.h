@@ -156,12 +156,25 @@ void appendAccount(string newUsername, string newPassword, int mode) {
     updateFile << newUsername << " " << newPassword << endl;
 }
 
+void AppendStudentProfile(Profile studentProfile) {
+    fstream saveData;
+    saveData.open("./CSV_File/StudentProfile.csv", ios::app);
+
+    saveData << studentProfile.studentID << ",";
+    saveData << studentProfile.firstName << ",";
+    saveData << studentProfile.lastName << ",";
+    saveData << studentProfile.gender << ",";
+    saveData << studentProfile.DoB << ",";
+    saveData << studentProfile.socialID << endl;
+
+    saveData.close();
+}
+
 bool LoadStudentProfile(string username, Profile &studentProfile) {
     fstream studentFile;
-    studentFile.open("./CSV_File/Student_Info.csv", ios::in);
+    studentFile.open("./CSV_File/StudentProfile.csv", ios::in);
 
     string fileString;
-    getline(studentFile, fileString);
 
     while (!studentFile.eof()) {
         getline(studentFile, fileString);
@@ -170,9 +183,7 @@ bool LoadStudentProfile(string username, Profile &studentProfile) {
         char *input = new char [ fileString.size() ];
         strcpy(input,fileString.c_str());
 
-        studentProfile.No = atoi(strtok(input, ","));
-
-        studentProfile.studentID = strtok(NULL, ",");
+        studentProfile.studentID = strtok(input, ",");
         studentProfile.firstName = strtok(NULL, ",");
         studentProfile.lastName = strtok(NULL, ",");
         studentProfile.gender = strtok(NULL, ",");
