@@ -4720,3 +4720,8 @@ void update_registration_status(School_Year* sYear_Head, string userLoginname) {
     }
     fclose(status);
 }
+
+
+void Enroll_Menu() {
+    cout<<"enroll lmao"
+}
