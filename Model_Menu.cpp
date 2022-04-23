@@ -1203,7 +1203,7 @@ void View_Classes(string user_School_Year,School_Year::Year_Class* &Classes_Head
             Show_Sv_Table(user_Choosed_Class, Sv_Head);
         }
 
-        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
+        cout<<"          Menu Functions To Control Student List Elements In A Class"<<endl;
         cout<<"             1: View Info Student In Class: "<<user_Choosed_Class<<endl;
         cout<<"             2: Create Student List For: "<<user_Choosed_Class<<endl;
         cout<<"             3: Adjust Student List In: "<<user_Choosed_Class<<endl;
@@ -2356,7 +2356,7 @@ void View_Semester(string user_School_Year,School_Year::Semester* &Semester_Head
             Show_Subject_Table(to_string(user_Choose_Semester),Course_Head);
         }
 
-        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
+        cout<<"           Menu Functions To Control Course Elements In A Chosen Semester"<<endl;
         cout<<"             1: View Info Course In Semester: "<<user_Choose_Semester<<endl;
         cout<<"             2: Create Course List For Semester: "<<user_Choose_Semester<<endl;
         cout<<"             3: Adjust Course List In Semester: "<<user_Choose_Semester<<endl;
@@ -2806,7 +2806,7 @@ void View_Year(School_Year* &sYear_Head)
             Show_Semester_Table(user_choosed_Year,Semester_Head);
         }
 
-        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
+        cout<<"           Menu Functions To Control Classes/Semesters Elements"<<endl;
         cout<<"             1: View Info Classes in School-Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
         cout<<"             2: Create 1st Year Classes For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
         cout<<"             3: Adjust A Class In School - Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
@@ -3192,7 +3192,7 @@ void Menu_School_Year(School_Year* &sYear_Head)
             Show_Year_Table(sYear_Head);
         }
 
-        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
+        cout<<"         Menu Functions To Control School-Year Elements"<<endl;
         cout<<"             1: View info of a School - Year"<<endl;
         cout<<"             2: Create New School - Year"<<endl;
         cout<<"             3: Adjust A School - Year"<<endl;
@@ -4102,7 +4102,7 @@ void Adjust_Student_Result(School_Year* sYear_Head)
         system("CLS");
         Show_Specific_StuResult(Score_Head,Score_Cur);
 
-        cout<<"What do you want to change?"<<endl;
+        cout<<" What do you want to change?"<<endl;
         cout<<"     1: Mid-Term Mark."<<endl;
         cout<<"     2: Final-Mark."<<endl;
         cout<<"     3: Other Mark."<<endl;
@@ -4313,7 +4313,7 @@ void Menu_ScoreBoard(School_Year* sYear_Head)
     {
         system("CLS");
         cout<<endl<<endl;
-        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
+        cout<<"            Menu Functions To Control In/Outcome Data Of Students"<<endl;
         cout<<"             1: Export A List Of Student In a Course To Teacher"<<endl;
         cout<<"             2: Import ScoreBoard Of a Course For Staff"<<endl;
         cout<<"             3: View The ScoreBoard Of A Course"<<endl;
@@ -4385,7 +4385,7 @@ void Primal_Menu(School_Year* &sYear_Head)
         {
             Show_Year_Table(sYear_Head);
         }
-        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
+        cout<<"         Wellcome To Course Registration (Staff Functions)"<<endl;
         cout<<"             1: Create/Adjust Element Of Moodle"<<endl;
         cout<<"             2: Import/Export ScoreBoard "<<endl;
         cout<<"             3: Update Registration Status\n";
