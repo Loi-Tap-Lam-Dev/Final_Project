@@ -4691,15 +4691,15 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
 void update_registration_status(School_Year* sYear_Head, string userLoginname) {
     FILE *status;
     int res_status;
-    if(registration_status()) {
-        cout<<"Course Registration is OPEN, do you want to CLOSE it?\n";
-        if(YOrN()==0) {
-            status = fopen("Registration Status.txt", "a");
+    status = fopen("Registration Status.txt", "a");
             fscanf(status, "%d", &res_status);
+    if(res_status == 1) {
+        cout<<"Course Registration is OPEN, do you want to CLOSE it?\n";
+        if(YOrN()==0) {      
             res_status = 0;
-            fclose(status);
         }
         else{
+            fclose(status);
             cout<<"     Going back.\n";
             sleep_until(system_clock::now() + seconds(1));
             Primal_Menu(sYear_Head,userLoginname);
@@ -4708,16 +4708,15 @@ void update_registration_status(School_Year* sYear_Head, string userLoginname) {
     else {
         cout<<"Course Registration is CLOSED, do you want to OPEN it?\n";
         if(YOrN()==0) {
-            status = fopen("Registration Status.txt", "a");
-            fscanf(status, "%d", &res_status);
             res_status = 1;
-            fclose(status);
         }
         else
         {
+            fclose(status);
             cout<<"     Going back.\n";
             sleep_until(system_clock::now() + seconds(1));
             Primal_Menu(sYear_Head,userLoginname);
         }
     }
+    fclose(status);
 }
