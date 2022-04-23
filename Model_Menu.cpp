@@ -23,7 +23,7 @@ bool registration_status() {
     return res_status;
 }
 
-void update_registration_status(School_Year* sYear_Head);
+void update_registration_status(School_Year* sYear_Head, string userLoginname);
 
 int Check_Num_Semester(School_Year::Semester* Semester_Head)
 {
@@ -371,18 +371,18 @@ void Show_Semester_Table(string user_School_Year,School_Year::Semester* Semester
                
                 case 1:
                 {
-                    cout<<Semester_Cur -> Term<<" (Fall)\t| "<<Semester_Cur -> start_Date<<"\t\t| "<<Semester_Cur -> end_Date<<"\t\t|";
+                    cout<<Semester_Cur -> Term<<" (Fall)\t| "<<Semester_Cur -> start_Date<<"\t| "<<Semester_Cur -> end_Date<<"\t|";
                     break;
                 }
 
                 case 2:
                 {
-                    cout<<Semester_Cur -> Term<<" (Summer)\t| "<<Semester_Cur -> start_Date<<"\t\t| "<<Semester_Cur -> end_Date<<"\t\t|";
+                    cout<<Semester_Cur -> Term<<" (Summer)\t| "<<Semester_Cur -> start_Date<<"\t| "<<Semester_Cur -> end_Date<<"\t|";
                     break;
                 }
                 
                 default:
-                    cout<<Semester_Cur -> Term<<" (Autumn)\t| "<<Semester_Cur -> start_Date<<"\t\t| "<<Semester_Cur -> end_Date<<"\t\t|";
+                    cout<<Semester_Cur -> Term<<" (Autumn)\t| "<<Semester_Cur -> start_Date<<"\t| "<<Semester_Cur -> end_Date<<"\t|";
                     break;
                 }
                 
@@ -4413,7 +4413,7 @@ void Primal_Menu(School_Year* &sYear_Head, string loginUsername)
             }
             case 3:
             {
-                update_registration_status(sYear_Head);
+                update_registration_status(sYear_Head, loginUsername);
                 continue;
                 break;
             }
@@ -4618,7 +4618,7 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
 }
 
 
-void update_registration_status(School_Year* sYear_Head) {
+void update_registration_status(School_Year* sYear_Head, string userLoginname) {
     FILE *status;
     int res_status;
     if(registration_status()) {
@@ -4632,7 +4632,7 @@ void update_registration_status(School_Year* sYear_Head) {
         else{
             cout<<"     Going back.\n";
             sleep_until(system_clock::now() + seconds(1));
-            Primal_Menu(sYear_Head);
+            Primal_Menu(sYear_Head,userLoginname);
         }
     }
     else {
@@ -4647,7 +4647,7 @@ void update_registration_status(School_Year* sYear_Head) {
         {
             cout<<"     Going back.\n";
             sleep_until(system_clock::now() + seconds(1));
-            Primal_Menu(sYear_Head);
+            Primal_Menu(sYear_Head,userLoginname);
         }
     }
 }

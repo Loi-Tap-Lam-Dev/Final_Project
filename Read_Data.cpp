@@ -51,7 +51,7 @@ void Read_Class(School_Year* &sYear_Head)
         getline(Class_Input,Line);
 
         //if (Input_Line != nullptr)  delete [] Input_Line;
-        Input_Line = new char [Line.size()];
+        Input_Line = new char [10000];
         const char* denim = ",";
 
         strcpy(Input_Line,Line.c_str());
