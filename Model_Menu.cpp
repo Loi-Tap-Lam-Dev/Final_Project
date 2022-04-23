@@ -4,6 +4,27 @@
 //Noted: Try to make orderd linked list
 
 //Check is there enough 3 term of Semester
+
+int YOrN() {
+    cout<<"0. Yes\n";
+    cout<<"1. No\n";
+    cout<<"Press a key to continue\n";
+    int choice;
+    cin>>choice;
+    return choice;
+}
+
+bool registration_status() {
+    FILE *status;
+    int res_status;
+    status = fopen("Registration Status.txt", "r");
+    fscanf(status, "%d", &res_status);
+    fclose(status);
+    return res_status;
+}
+
+void update_registration_status(School_Year* sYear_Head);
+
 int Check_Num_Semester(School_Year::Semester* Semester_Head)
 {
     int count = 0;
@@ -1455,6 +1476,11 @@ void Adjust_Classes(School_Year* &sYear_Cur,School_Year::Year_Class* &Classes_He
     string user_Choose_Class = "";
         
         if (!Check_Ignore) cin.ignore();
+        
+        if (Classes_Head != nullptr)
+        {
+            Show_Classes_Table(sYear_Cur -> year,Classes_Head);
+        }
     do
     {
         //Menu of User choice about School-Year they want to view
@@ -1481,6 +1507,7 @@ void Adjust_Classes(School_Year* &sYear_Cur,School_Year::Year_Class* &Classes_He
     cout<<"\n";
     School_Year::Year_Class* Class_Cur = find_Classes(Classes_Head,user_Choose_Class);
 
+    string user_Another_Class;
     do
     {
         //Menu of User choice about School-Year they want to view
@@ -1488,27 +1515,27 @@ void Adjust_Classes(School_Year* &sYear_Cur,School_Year::Year_Class* &Classes_He
             cout<<"Note: If you dont want to change pls Enter 'N' "<<endl;
             cout<<"Enter answer: ";
 
-            getline(cin,user_Choose_Class);
+            getline(cin,user_Another_Class);
 
-        if (user_Choose_Class == "N") return;
+        if (user_Another_Class == "N") return;
 
         //Check if the data is corrected
-        if (user_Choose_Class.substr(0,2) != sYear_Cur -> year . substr(2,2)) return ;
+        if (user_Another_Class.substr(0,2) != sYear_Cur -> year . substr(2,2)) return ;
 
 
         //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
-        if (!Check_Classes_Duplicated(Classes_Head,user_Choose_Class)) 
+        if (!Check_Classes_Duplicated(Classes_Head,user_Another_Class)) 
         {
-            cout<<"Your input Class: "<<user_Choose_Class<<" is Incorrect. Please try again."<<endl;
+            cout<<"Your input Class: "<<user_Another_Class<<" is Incorrect. Please try again."<<endl;
             
             //Enter any key to continue and go back to  "Showing_School_Year"
             system("pause");
             cout<<"\n";
             Check_Ignore = true;
         }
-    } while (!Check_Classes_Duplicated(Classes_Head,user_Choose_Class));
+    } while (!Check_Classes_Duplicated(Classes_Head,user_Another_Class));
 
-    Class_Cur -> nameClass = user_Choose_Class;
+    Class_Cur -> nameClass = user_Another_Class;
 
     cout<<"\n";
     cout<<"Change Success";
@@ -4351,7 +4378,7 @@ void Menu_ScoreBoard(School_Year* sYear_Head)
 void Primal_Menu(School_Year* &sYear_Head, string loginUsername)
 {
     int user_Choose = 0;
-    while (user_Choose != 6)
+    while (user_Choose != 4)
     {
         system("CLS");
         if (sYear_Head != nullptr)
@@ -4361,10 +4388,8 @@ void Primal_Menu(School_Year* &sYear_Head, string loginUsername)
         cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
         cout<<"             1: Create/Adjust Element Of Moodle"<<endl;
         cout<<"             2: Import/Export ScoreBoard "<<endl;
-        cout<<"             3: Change password"<<endl;
-        cout<<"             4: Register a student account"<<endl;
-        cout<<"             5: Register a staff account"<<endl;
-        cout<<"             6: Back"<<endl;
+        cout<<"             3: Update Registration Status\n";
+        cout<<"             4: Back"<<endl;
         cout<<"             Your choice: "; 
         cin>>user_Choose;
         cout<<endl;
@@ -4386,74 +4411,12 @@ void Primal_Menu(School_Year* &sYear_Head, string loginUsername)
                 continue;
                 break;
             }
-
-            case 3: 
+            case 3:
             {
-                string newPass, retypePass;
-                cout << "\nEnter new password: ";
-                newPass = encryptPasswordInput();
-                cout << "Retype new password: ";
-                retypePass = encryptPasswordInput();
-
-                while (!requestPassword(newPass, retypePass)) {
-                    cout << "Please re-enter!\n";
-                    cout << "Enter new password: ";
-                    newPass = encryptPasswordInput();
-                    cout << "Retype new password: ";
-                    retypePass = encryptPasswordInput();
-                }
-
-                changePassword(loginUsername, newPass, 1);
-
+                update_registration_status(sYear_Head);
+                continue;
                 break;
             }
-
-            case 4:
-            {
-                string studentUsername, studentPass, studentPassRetype;
-                cout << "Enter student username: ";
-                cin.ignore(1000, '\n');
-                getline(cin, studentUsername);
-                
-                cout << "\nEnter password: ";
-                studentPass = encryptPasswordInput();
-                cout << "Retype password: ";
-                studentPassRetype = encryptPasswordInput();
-
-                while (!requestPassword(studentPass, studentPassRetype)) {
-                    cout << "Please re-enter!\n";
-                    cout << "Enter password: ";
-                    studentPass = encryptPasswordInput();
-                    cout << "Retype password: ";
-                    studentPassRetype = encryptPasswordInput();
-                }
-
-                appendAccount(studentUsername, studentPass, 2);
-            }
-
-            case 5:
-            {
-                string staffUsername, staffPass, staffPassRetype;
-                cout << "Enter staff username: ";
-                cin.ignore(1000, '\n');
-                getline(cin, staffUsername);
-                
-                cout << "\nEnter password: ";
-                staffPass = encryptPasswordInput();
-                cout << "Retype password: ";
-                staffPassRetype = encryptPasswordInput();
-
-                while (!requestPassword(staffPass, staffPassRetype)) {
-                    cout << "Please re-enter!\n";
-                    cout << "Enter password: ";
-                    staffPass = encryptPasswordInput();
-                    cout << "Retype password: ";
-                    staffPassRetype = encryptPasswordInput();
-                }
-
-                appendAccount(staffUsername, staffPass, 1);
-            }
-
             default:
                 system("pause");
                 break;
@@ -4652,4 +4615,39 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
     cout<<"Ending Menu ViewScoreBoard Student"<<endl;
 
     return ;
+}
+
+
+void update_registration_status(School_Year* sYear_Head) {
+    FILE *status;
+    int res_status;
+    if(registration_status()) {
+        cout<<"Course Registration is OPEN, do you want to CLOSE it?\n";
+        if(YOrN()==0) {
+            status = fopen("Registration Status.txt", "a");
+            fscanf(status, "%d", &res_status);
+            res_status = 0;
+            fclose(status);
+        }
+        else{
+            cout<<"     Going back.\n";
+            sleep_until(system_clock::now() + seconds(1));
+            Primal_Menu(sYear_Head);
+        }
+    }
+    else {
+        cout<<"Course Registration is CLOSED, do you want to OPEN it?\n";
+        if(YOrN()==0) {
+            status = fopen("Registration Status.txt", "a");
+            fscanf(status, "%d", &res_status);
+            res_status = 1;
+            fclose(status);
+        }
+        else
+        {
+            cout<<"     Going back.\n";
+            sleep_until(system_clock::now() + seconds(1));
+            Primal_Menu(sYear_Head);
+        }
+    }
 }

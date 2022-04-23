@@ -27,7 +27,5 @@ fstream finp, fout;
 #include "View\viewLogin.h"
 #include "Model\Model.h"
 #include "Model_Menu.cpp"
+#include "Print_Data_New.cpp"
 #include "Read_Data.cpp"
-#include "Print_Data.cpp"
-
-#include "StudentUI.h"
