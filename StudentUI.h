@@ -330,3 +330,81 @@ startMainMenu:
 
     return ;
 }
+
+void PrintMainStudentMenu2(School_Year *&sYear_Head, string loginUsername, Profile loginProfile)
+{
+startMainMenu:
+    int user_Choose = 0;
+    
+    system("CLS");
+    if (sYear_Head != nullptr)
+    {
+        Show_Year_Table(sYear_Head);
+    }
+
+    cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
+    cout<<"             1: View class"<<endl;
+    cout<<"             2: View courses"<<endl;
+    cout<<"             3: Change password"<<endl;
+    cout<<"             4: View profile"<<endl;
+    cout<<"             5: Course Registration is OPEN, you can now ENROLL\n";
+    cout<<"             6: Log out"<<endl;
+    cout<<"             Your choice: "; 
+    cin>>user_Choose;
+    cout<<endl;
+
+    //Better use switch
+    switch (user_Choose)  {
+        case 1: {
+            ClassListMenu(sYear_Head);
+            goto startMainMenu;
+        }
+
+        case 2: {
+            CourseListMenu(sYear_Head);
+            goto startMainMenu;
+        }
+
+        case 3: {
+            string newPass, retypePass;
+            cout << "\nEnter new password: ";
+            newPass = encryptPasswordInput();
+            cout << "Retype: ";
+            retypePass = encryptPasswordInput();
+
+            while (!requestPassword(newPass, retypePass)) {
+                cout << "Please re-enter!\n";
+                cout << "Enter new password: ";
+                newPass = encryptPasswordInput();
+                cout << "Retype new password: ";
+                retypePass = encryptPasswordInput();
+            }
+
+            changePassword(loginUsername, newPass, 2);
+
+            goto startMainMenu;
+        }
+
+        case 4: {
+            PrintProfile(loginProfile);
+            
+            goto startMainMenu;
+        }
+        case 5: {
+            Enroll_Menu();
+            break;
+        }
+
+        case 6: {
+            cout << "Logging out...\n";
+            break;
+        }
+
+        default: 
+            goto startMainMenu;
+    }
+
+    system("pause");
+
+    return ;
+}
