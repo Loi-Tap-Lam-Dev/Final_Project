@@ -43,11 +43,12 @@ beginAuthentication:
             break;
         }
         case 3: {
-            cout<<"Thank you!\n";
-
             PrintData(sYear_Head);
 
             Delete_School_Year(sYear_Head);
+            
+            cout << "All data have been successfully saved!\n";
+            cout << "Thank you! You can now safely close the application.\n";
 
             return 0;
         }
@@ -67,7 +68,6 @@ beginAuthentication:
         // Menu for staff
         Primal_Menu(sYear_Head);
 
-        goto beginAuthentication;
     }
     else {
         Profile studentProfile;
@@ -86,12 +86,13 @@ beginAuthentication:
         Sleep(3000);
 
         PrintMainStudentMenu(sYear_Head, account.username, studentProfile);
-        
-        goto beginAuthentication;
     }
 
-    // Delete Data
-    // Delete_School_Year(sYear_Head);
+    // Save and resets runtime data after every sections
+    PrintData(sYear_Head);
+    Delete_School_Year(sYear_Head);
+
+    goto beginAuthentication;
 
     return 0;
 }

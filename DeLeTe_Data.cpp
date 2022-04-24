@@ -163,7 +163,7 @@ void Delete_Element_Of_Year(School_Year* &sYear_Cur)
     return;
 }
 
-void Delete_School_Year(School_Year* sYear_Head)
+void Delete_School_Year(School_Year* &sYear_Head)
 {
     while (sYear_Head != nullptr)
     {

@@ -5,10 +5,12 @@ void Read_Year(School_Year* &sYear_Head)
 {
     ifstream year_Input;
     year_Input.open("CSV_File/Year.csv");
+
+    string Line;
+    getline(year_Input,Line); //Skip one    
+    
     while (!year_Input.eof())
     {
-            string Line;
-            getline(year_Input,Line); //Skip one    
             getline(year_Input,Line);
 
             School_Year* sYear_Cur = sYear_Head;

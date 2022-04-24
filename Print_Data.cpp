@@ -2,6 +2,8 @@
 
 void PrintData(School_Year*yearHead)
 {
+    if (yearHead == NULL) return;      // Prevents accidentally wiping the data
+
     ofstream PrintYear,PrintYearClass,PrintYearSemester;
     string tmp=""",""";
 
