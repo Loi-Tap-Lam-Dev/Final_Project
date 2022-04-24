@@ -24,7 +24,7 @@ void PrintData(School_Year*yearHead)
     for(School_Year*year_cur=yearHead;year_cur!=nullptr;year_cur=year_cur->Next)
     {
         PrintYearClass<<"Classes For Year"+tmp+year_cur->year<<endl;
-        for(School_Year::Year_Class*year_class_cur=yearHead->yearCLassHead;year_class_cur!=nullptr;year_class_cur=year_class_cur->Next)
+        for(School_Year::Year_Class*year_class_cur=year_cur->yearCLassHead;year_class_cur!=nullptr;year_class_cur=year_class_cur->Next)
         {
             PrintYearClass<<"Class"+tmp+year_class_cur->nameClass<<endl;
             PrintYearClass<<"No"+tmp+" Student_ID"+tmp+" SocialID"+tmp+" FirstName"+tmp+" LastName"+tmp+" Gender"+tmp+" Dateofbirth"<<endl;
@@ -44,7 +44,7 @@ void PrintData(School_Year*yearHead)
     for(School_Year*year_cur=yearHead;year_cur!=nullptr;year_cur=year_cur->Next)
     {
         PrintYearSemester<<"Semester For Year"+tmp+year_cur->year+tmp<<endl;
-        for(School_Year::Semester*year_semester_cur=yearHead->yearSemesterHead;year_semester_cur!=nullptr;year_semester_cur=year_semester_cur->Next)
+        for(School_Year::Semester*year_semester_cur=year_cur->yearSemesterHead;year_semester_cur!=nullptr;year_semester_cur=year_semester_cur->Next)
         {
             PrintYearSemester<<"Semester info"+tmp+"Term"+tmp+" Start Date"+tmp+" End Date"+tmp<<endl;
             PrintYearSemester<<year_semester_cur->Term<<tmp+year_semester_cur->start_Date+tmp+year_semester_cur->end_Date+tmp<<endl;
