@@ -28,7 +28,7 @@ void PrintData(School_Year*yearHead)
             PrintYearClass<<"No"+tmp+" Student_ID"+tmp+" SocialID"+tmp+" FirstName"+tmp+" LastName"+tmp+" Gender"+tmp+" Dateofbirth"<<endl;
             for(School_Year::Year_Class::SV_List*year_class_sv_cur=year_class_cur->yearClassSV_ListHead;year_class_sv_cur!=nullptr;year_class_sv_cur=year_class_sv_cur->Next)
             {
-                if(year_cur->Next==nullptr)
+                if(year_class_cur -> Next == nullptr && year_cur -> Next == nullptr)
                 PrintYearClass<<year_class_sv_cur->no<<tmp<<year_class_sv_cur->idStudent<<tmp<<year_class_sv_cur->socialID<<tmp+year_class_sv_cur->firstName+tmp+year_class_sv_cur->lastName+tmp+year_class_sv_cur->gender+tmp+year_class_sv_cur->dateOfBirth;
                 else
                 PrintYearClass<<year_class_sv_cur->no<<tmp<<year_class_sv_cur->idStudent<<tmp<<year_class_sv_cur->socialID<<tmp+year_class_sv_cur->firstName+tmp+year_class_sv_cur->lastName+tmp+year_class_sv_cur->gender+tmp+year_class_sv_cur->dateOfBirth<<endl;
