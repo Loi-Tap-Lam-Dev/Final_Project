@@ -994,7 +994,7 @@ void Adjust_Sv_List(School_Year::Year_Class* Class_Cur, School_Year::Year_Class:
             case 2:
             {
                 cout<<"What do you want to change Social ID, from "<<Sv_Cur -> socialID<<" to?"<<endl;
-                cout<<"Enter Day of Session 1 in week: ";
+                cout<<"Enter Social ID: ";
                 cin>>Temp_Sv -> socialID;
                 cin.ignore();
 

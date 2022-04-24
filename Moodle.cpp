@@ -90,8 +90,8 @@ beginAuthentication:
         goto beginAuthentication;
     }
 
-    //Delete Data
-    Delete_School_Year(sYear_Head);
+    // Delete Data
+    // Delete_School_Year(sYear_Head);
 
     return 0;
 }
