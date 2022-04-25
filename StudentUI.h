@@ -152,8 +152,6 @@ startCourseMenu:
                     findCourse = findSemester->yearSemesterSubjectHead;
 
                     while (findCourse != NULL) {
-                        cout << findCourse->id_Subject << " " << findCourseID << endl;
-
                         if (findCourse->id_Subject == findCourseID) {
                             Show_ScoreBoard(findCourse->yearSemesterSubStudent_ListHead);
                             courseFound = true;
