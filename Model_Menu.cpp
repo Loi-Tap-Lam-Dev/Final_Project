@@ -407,7 +407,10 @@ void Show_Subject_Table(string user_Semester,School_Year::Semester::Subject* Sub
     
     while (Subject_Head != nullptr)
     {
-        cout<<"| "<<Subject_Head -> id_Subject<<"\t| "<<Subject_Head -> name_Subject<<"\t\t| ";
+        cout<<"| "<<Subject_Head -> id_Subject<<"\t| ";
+        
+        if (Subject_Head -> name_Subject.size() < 5) cout<<Subject_Head -> name_Subject<<"\t| ";
+        cout<<Subject_Head -> name_Subject<<"\t\t| ";
 
         //Teacher Name
         if ((Subject_Head -> teacher_Name).size() > 14) cout<<Subject_Head -> teacher_Name<<"\t| ";
@@ -1657,7 +1660,7 @@ void Create_Course_Manual(School_Year::Semester* &ySemester_Cur, School_Year::Se
     //Check if value is being duplicated or not?
     do
     {
-        cout<<"Your Semster: "<<ySemester_Cur -> Term<<endl;
+        cout<<endl<<"Your Semster: "<<ySemester_Cur -> Term<<endl;
 
             //Declare
             string name_Subject, id_Subject;
@@ -1721,8 +1724,8 @@ void Create_Course_Manual(School_Year::Semester* &ySemester_Cur, School_Year::Se
             Subject_Cur -> id_Subject = id_Subject;
             Subject_Cur -> name_Subject = name_Subject;
             Subject_Cur -> teacher_Name = teacher_Name;
-            Subject_Head -> startDate = startDate;
-            Subject_Head -> endDate = endDate;
+            Subject_Cur -> startDate = startDate;
+            Subject_Cur -> endDate = endDate;
             Subject_Cur -> day_Of_Session_1 = day_Of_Session_1;
             Subject_Cur -> at_Time_1 = at_Time_1;
             Subject_Cur -> day_Of_Session_2 = day_Of_Session_2;
