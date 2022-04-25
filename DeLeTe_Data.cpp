@@ -14,7 +14,7 @@ void Delete_Element_Of_Student_listMark(School_Year::Semester::Student_listMark*
     }
 }
 
-//Delete Element of Subject_Class_Student_Mark
+//Delete Element of Subject_Student_Mark
 void Delete_Element_Of_StudentList(School_Year::Semester::Subject::Student_listMark* &ClassStudent_Cur, int type)
 {
     while (ClassStudent_Cur != nullptr)

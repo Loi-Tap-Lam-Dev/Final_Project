@@ -4225,11 +4225,24 @@ void Update_Student_Result_Of_A_Semester(School_Year* sYear_Head)
             
             while (Semester_Head != nullptr)
             {
+                //Update status of mark for the semester mark
+                School_Year::Semester::Student_listMark* List_Mark_Head = Semester_Head -> yearSemesterStudent_listMarkHead;
+                
+                while (List_Mark_Head != nullptr)
+                {
+                    List_Mark_Head -> averageMark = 0;
+                    List_Mark_Head -> count_Course_Attempt = 0;
+                    List_Mark_Head -> GPA = 0;
+                    List_Mark_Head -> totalCredit = 0;
+
+                    List_Mark_Head = List_Mark_Head -> Next;
+                }
+
                 //Subject
                 School_Year::Semester::Subject* Course_Head = Semester_Head -> yearSemesterSubjectHead;
+
                 while (Course_Head != nullptr)
                 {
-
                     School_Year::Semester::Subject::Student_listMark* Student_Res_Head = Course_Head -> yearSemesterSubStudent_ListHead;
                         while (Student_Res_Head != nullptr)
                         {
@@ -4260,7 +4273,9 @@ void Update_Student_Result_Of_A_Semester(School_Year* sYear_Head)
                 while (Term_Result_Head != nullptr)
                 {
                     Term_Result_Head -> averageMark = Term_Result_Head -> averageMark / Term_Result_Head -> count_Course_Attempt; //
+
                     Term_Result_Head -> GPA = Term_Result_Head -> GPA / Term_Result_Head ->totalCredit;
+
                         //Evaluate The GPA
                         if (Term_Result_Head -> GPA >= 9.5) Term_Result_Head -> GPA = 4;
                         else
