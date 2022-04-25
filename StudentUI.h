@@ -141,14 +141,19 @@ startCourseMenu:
             getline(cin, findCourseID);
 
             // Find the course
+            School_Year::Semester *findSemester;
             School_Year::Semester::Subject *findCourse;
 
             bool courseFound = false;
             while (currentYear != NULL) {
-                if (currentYear->yearSemesterHead != NULL) {
-                    findCourse = currentYear->yearSemesterHead->yearSemesterSubjectHead;
+                findSemester = currentYear->yearSemesterHead;
+
+                while (findSemester != NULL) {
+                    findCourse = findSemester->yearSemesterSubjectHead;
 
                     while (findCourse != NULL) {
+                        cout << findCourse->id_Subject << " " << findCourseID << endl;
+
                         if (findCourse->id_Subject == findCourseID) {
                             Show_ScoreBoard(findCourse->yearSemesterSubStudent_ListHead);
                             courseFound = true;
@@ -158,6 +163,8 @@ startCourseMenu:
 
                         findCourse = findCourse->Next;
                     }
+
+                    findSemester = findSemester->Next;
                 }
 
                 if (courseFound) break;
@@ -179,14 +186,17 @@ startCourseMenu:
             getline(cin, findStudentID);
 
             // Find the course
+            School_Year::Semester *findSemester;
             School_Year::Semester::Subject *findCourse;
             School_Year::Semester::Subject::Student_listMark *findStudent;
 
             // Reuses the function Show_Subject_Table from Model_Menu.cpp
             cout<<"| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student|"<<endl;
             while (currentYear != NULL) {
-                if (currentYear->yearSemesterHead != NULL) {
-                    findCourse = currentYear->yearSemesterHead->yearSemesterSubjectHead;
+                findSemester = currentYear->yearSemesterHead;
+
+                while (findSemester != NULL) {
+                    findCourse = findSemester->yearSemesterSubjectHead;
 
                     while (findCourse != NULL) {
                         findStudent = findCourse->yearSemesterSubStudent_ListHead;
@@ -223,6 +233,8 @@ startCourseMenu:
 
                         findCourse = findCourse->Next;
                     }
+
+                    findSemester = findSemester->Next;
                 }
 
                 currentYear = currentYear->Next;
