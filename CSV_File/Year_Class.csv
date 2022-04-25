@@ -3,7 +3,11 @@ Class,21CLC05
 No, Student_ID, SocialID, FirstName, LastName, Gender, Dateofbirth
 1,21127000,26868317,Bao,Nguyen,male,99/99/1999
 2,21127001,10406725,Quoc,Cao,male,55/55/1555
-3,21127307,12312312,Huy,Tong,male,19/12/2003
+3,21127307,12312312,Huy,Nguyen,male,19/12/2003
 Class,21CLC02
 No, Student_ID, SocialID, FirstName, LastName, Gender, Dateofbirth
 1,21127000,26868317,Bao,Nguyen,male,99/99/19992
+Class,21CLC09
+No, Student_ID, SocialID, FirstName, LastName, Gender, Dateofbirth
+1,21127013,352660,Bao,Nguyen,Male,20/03/2003
+2,21127014,3526601,Tuyen,Nguyen,Male,20/03/2007

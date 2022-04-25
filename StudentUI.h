@@ -104,11 +104,17 @@ startCourseMenu:
     }
 
     School_Year *currentYear = sYear_Head;
+    School_Year::Semester *currentSemester = currentYear->yearSemesterHead;
 
     cout << "Displaying all available courses:\n";
 
     while (currentYear != NULL) {
-        Show_Subject_Table(to_string(currentYear->yearSemesterHead->Term), currentYear->yearSemesterHead->yearSemesterSubjectHead);
+        cout << "Year: " << currentYear->year << endl;
+
+        while (currentSemester != NULL) {
+            Show_Subject_Table(to_string(currentSemester->Term), currentSemester->yearSemesterSubjectHead);
+            currentSemester = currentSemester->Next;
+        }
 
         currentYear = currentYear->Next;
     }

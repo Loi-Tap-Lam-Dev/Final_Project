@@ -401,7 +401,7 @@ void Show_Semester_Table(string user_School_Year,School_Year::Semester* Semester
 //Show Subject Table
 void Show_Subject_Table(string user_Semester,School_Year::Semester::Subject* Subject_Head)
 {
-    system("CLS");
+    // system("CLS");
     cout<<"| Semester\t|"<<user_Semester<<"\t|"<<endl<<endl;
     cout<<"| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Credits\t| Max Student   |"<<endl;
     
@@ -700,7 +700,9 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
 
     fstream  finp;
 
-    finp.open("./CSV_File/Student_Info.csv", ios::in);
+    cout << "a\n";
+    finp.open("CSV_File/Student_Info.csv", ios::in);
+    cout << "open\n";
 
     if (!finp.is_open())
         {
@@ -709,15 +711,18 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
         }
     //Check if Sv_Head empty for create new at first
     
+    string line_input = "";
+    getline(finp, line_input); //Skip one line
+    
     while ( !finp.eof() )
     {
         if (Sv_Head == nullptr)
         {
             Sv_Head = new School_Year::Year_Class::SV_List;
 
-            string line_input = "";
-            getline(finp, line_input);//Skip 1 line
             getline(finp, line_input);
+
+            if (line_input == "") break;
 
             //Convert str -> char*;
             char* input = new char [ line_input.size() ];
@@ -751,9 +756,9 @@ void Create_Sv_List_Import(School_Year::Year_Class* &Class_Cur, School_Year::Yea
         }
 
         //Get Data
-        string line_input = "";
-        getline(finp, line_input); //Skip one line
         getline(finp, line_input);
+        
+        if (line_input == "") break;
 
         //Convert str -> char*;
         char* input = new char [ line_input.size() ];
