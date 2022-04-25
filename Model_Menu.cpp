@@ -4421,7 +4421,8 @@ void Primal_Menu(School_Year* &sYear_Head)
             }
 
             case 4:
-            {
+            {   
+                newStudent:
                 string studentUsername, studentPass, studentPassRetype;
                 cout << "Enter student username: ";
                 cin.ignore(1000, '\n');
@@ -4439,8 +4440,11 @@ void Primal_Menu(School_Year* &sYear_Head)
                     cout << "Retype password: ";
                     studentPassRetype = encryptPasswordInput();
                 }
+                
+                bool accountCreated = false;
+                appendAccount(studentUsername, studentPass, 2, accountCreated);
 
-                appendAccount(studentUsername, studentPass, 2);
+                if (!accountCreated) goto newStudent;
 
                 cout << "Account has been created! Please finish the profile:\n";
 
@@ -4484,7 +4488,8 @@ void Primal_Menu(School_Year* &sYear_Head)
                     staffPassRetype = encryptPasswordInput();
                 }
 
-                appendAccount(staffUsername, staffPass, 1);
+                bool accountCreated = false;
+                appendAccount(staffUsername, staffPass, 1, accountCreated);
             }
 
             default:

@@ -52,6 +52,8 @@ void Read_Class(School_Year* &sYear_Head)
         if (Class_Input.eof()) break;
         getline(Class_Input,Line);
 
+        if (Line == "") break;
+
         //if (Input_Line != nullptr)  delete [] Input_Line;
         Input_Line = new char [10000];
         const char* denim = ",";
@@ -163,7 +165,7 @@ void Read_Semester(School_Year* &sYear_Head)
         if (Semseter_Input.eof()) break;
         getline(Semseter_Input,Line);
 
-        //if (Line == "") break; 
+        if (Line == "") break; 
 
         char* Input_Line = new char [10000];
         char* To_read = new char [10000];

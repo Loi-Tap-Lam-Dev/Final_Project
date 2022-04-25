@@ -126,11 +126,14 @@ void changePassword(string username, string newPassword, int mode) {
     fileTemp.close();
 }
 
-void appendAccount(string newUsername, string newPassword, int mode) {
+void appendAccount(string newUsername, string newPassword, int mode, bool &status) {
     if (!checkAvailability(newUsername, mode)){
         cout << "Username is already taken!\n";
+        status = false;
         return;
     }
+
+    status = true;
 
     fstream updateFile;
     try {
@@ -160,12 +163,14 @@ void AppendStudentProfile(Profile studentProfile) {
     fstream saveData;
     saveData.open("./CSV_File/StudentProfile.csv", ios::app);
 
+    saveData << endl;
+
     saveData << studentProfile.studentID << ",";
     saveData << studentProfile.firstName << ",";
     saveData << studentProfile.lastName << ",";
     saveData << studentProfile.gender << ",";
     saveData << studentProfile.DoB << ",";
-    saveData << studentProfile.socialID << endl;
+    saveData << studentProfile.socialID;
 
     saveData.close();
 }
