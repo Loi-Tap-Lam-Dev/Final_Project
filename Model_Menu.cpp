@@ -409,8 +409,8 @@ void Show_Subject_Table(string user_Semester,School_Year::Semester::Subject* Sub
     {
         cout<<"| "<<Subject_Head -> id_Subject<<"\t| ";
         
-        if (Subject_Head -> name_Subject.size() < 5) cout<<Subject_Head -> name_Subject<<"\t| ";
-        cout<<Subject_Head -> name_Subject<<"\t\t| ";
+        if (Subject_Head -> name_Subject.size() < 5) cout<<Subject_Head -> name_Subject<<"\t\t| ";
+        else cout<<Subject_Head -> name_Subject<<"\t| ";
 
         //Teacher Name
         if ((Subject_Head -> teacher_Name).size() > 14) cout<<Subject_Head -> teacher_Name<<"\t| ";
