@@ -4215,7 +4215,7 @@ void Adding_Student_Whole_Term_Result(School_Year::Semester::Subject::Student_li
 }
 
 //Update Student Result To OverView Term Score
-void Update_Student_Result_Of_A_Semester(School_Year* sYear_Head)
+void Update_Student_Result_Of_A_Semester(School_Year* &sYear_Head)
 {    
     //Year
     while (sYear_Head != nullptr)
@@ -4294,6 +4294,7 @@ void Update_Student_Result_Of_A_Semester(School_Year* sYear_Head)
                                     if (Term_Result_Head -> GPA >= 4 && Term_Result_Head -> GPA <= 4.9) Term_Result_Head -> GPA = 1;
                                 else 
                                     if ( Term_Result_Head -> GPA < 4) Term_Result_Head -> GPA = 0;
+
                     Term_Result_Head = Term_Result_Head -> Next;
                 }
                 
