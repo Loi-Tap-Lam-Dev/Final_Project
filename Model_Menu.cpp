@@ -4537,6 +4537,8 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
         system("pause");
         return;
     }
+    
+    // Update_Student_Result_Of_A_Semester(sYear_Head);
 
     int user_Choose = 0;
     while (user_Choose != 3)
