@@ -1,20 +1,5 @@
 #include "lib.h"
 
-void Down_Line()
-{
-    cout<<endl<<endl;
-}
-
-void Space_1()
-{
-    cout<<"\t\t\t\t\t\t\t\t";
-}
-
-void Space_2()
-{
-    cout<<"\t\t\t\t\t";
-}
-
 int YOrN() {
     cout<<"0. Yes\n";
     cout<<"1. No\n";
@@ -310,8 +295,6 @@ void Show_Year_Table(School_Year* sYear_Head)
 {
     //Show the table full of School_Year - 👌
     system("CLS");
-    Down_Line();
-    Space_2();
     cout<<"School_Year: |    ";
     
     School_Year* sYear_Cur = sYear_Head;
@@ -331,9 +314,8 @@ void Show_Classes_Table(string user_School_Year,School_Year::Year_Class* Classes
 {
      //Show the Classes from chosen school year - 👌
         system("CLS");
-        Down_Line();
-        Space_2(); cout<<"School_Year:    |    "<<atoi(user_School_Year.c_str())<<"-"<<atoi(user_School_Year.c_str()) + 1<<"   |"<<endl;
-        Space_2(); cout<<"Classes:        |   ";
+        cout<<"School_Year:    |    "<<atoi(user_School_Year.c_str())<<"-"<<atoi(user_School_Year.c_str()) + 1<<"   |"<<endl;
+        cout<<"Classes:        |   ";
         
         School_Year::Year_Class* Classes_Cur = Classes_Head;
 
@@ -377,11 +359,9 @@ void Show_Semester_Table(string user_School_Year,School_Year::Semester* Semester
 {
      //Show the table full of School_Year - 👌
         system("CLS");
-        Down_Line();
-        Space_2();
         cout<<"| School_Year:    | "<<atoi(user_School_Year.c_str())<<"-"<<atoi(user_School_Year.c_str()) + 1<<"\t|"<<endl;
-        Space_1(); cout<<"   | Semester   | Start Date\t| End Date\t|"<<endl;
-        Space_1(); cout<<"   | ";
+        cout<<"   | Semester   | Start Date\t| End Date\t|"<<endl;
+        cout<<"   | ";
         School_Year::Semester* Semester_Cur = Semester_Head;
 
             while (Semester_Cur != nullptr)
@@ -408,8 +388,8 @@ void Show_Semester_Table(string user_School_Year,School_Year::Semester* Semester
                 
                 if (Semester_Cur -> Next != nullptr)
                 {
-                    cout<<endl; 
-                    Space_1(); cout<<"   | ";
+                    cout<<endl;
+                    cout<<"   | ";
                 }
 
                 Semester_Cur = Semester_Cur -> Next;
@@ -2778,9 +2758,9 @@ void View_Year(School_Year* &sYear_Head)
     do
     {
         //Menu of User choice about School-Year they want to view
-            Space_2(); cout<<"Which School-Year you want to view info. Ex: 2021-2022"<<endl;
-            Space_2(); cout<<"Note: If you dont want to choose any year pls Enter 'N' "<<endl;
-            Space_2(); cout<<"Enter answer: ";
+            cout<<"Which School-Year you want to view info. Ex: 2021-2022"<<endl;
+            cout<<"Note: If you dont want to choose any year pls Enter 'N' "<<endl;
+            cout<<"Enter answer: ";
 
             getline(cin,user_choosed_Year);
 
@@ -2797,7 +2777,7 @@ void View_Year(School_Year* &sYear_Head)
         //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
         if (Check_Year_Duplicated(sYear_Head,user_choosed_Year)) 
         {
-            Space_2(); cout<<"Your input school-year: "<<user_choosed_Year<<" is Incorrect. Please try again."<<endl;
+            cout<<"Your input school-year: "<<user_choosed_Year<<" is Incorrect. Please try again."<<endl;
             
             //Enter any key to continue and go back to  "Showing_School_Year"
             system("pause");
@@ -2834,17 +2814,17 @@ void View_Year(School_Year* &sYear_Head)
             Show_Semester_Table(user_choosed_Year,Semester_Head);
         }
 
-        Space_2(); cout<<"           Menu Functions To Control Classes/Semesters Elements"<<endl;
-        Space_2(); cout<<"             1: View Info Classes in School-Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
-        Space_2(); cout<<"             2: Create 1st Year Classes For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
-        Space_2(); cout<<"             3: Adjust A Class In School - Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
-        Space_2(); cout<<"             4: Delete A Class In School - Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
-        Space_2(); cout<<"             5: View Info Specific Semesters in School-Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
-        Space_2(); cout<<"             6: Create Semesters For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
-        Space_2(); cout<<"             7: Adjust Semester For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
-        Space_2(); cout<<"             8: Delete Semester For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
-        Space_2(); cout<<"             9: Back"<<endl;
-        Space_2(); cout<<"             Your choice: "; 
+        cout<<"           Menu Functions To Control Classes/Semesters Elements"<<endl;
+        cout<<"             1: View Info Classes in School-Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             2: Create 1st Year Classes For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             3: Adjust A Class In School - Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             4: Delete A Class In School - Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             5: View Info Specific Semesters in School-Year: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             6: Create Semesters For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             7: Adjust Semester For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             8: Delete Semester For: "<<atoi(user_choosed_Year.c_str())<<"-"<<atoi(user_choosed_Year.c_str()) + 1<<endl;
+        cout<<"             9: Back"<<endl;
+        cout<<"             Your choice: "; 
 
         cin>>user_Choose;
 
@@ -3220,13 +3200,13 @@ void Menu_School_Year(School_Year* &sYear_Head)
             Show_Year_Table(sYear_Head);
         }
 
-        Space_2(); cout<<"         Menu Functions To Control School-Year Elements"<<endl;
-        Space_2(); cout<<"             1: View info of a School - Year"<<endl;
-        Space_2(); cout<<"             2: Create New School - Year"<<endl;
-        Space_2(); cout<<"             3: Adjust A School - Year"<<endl;
-        Space_2(); cout<<"             4: Delete A School - Year"<<endl;
-        Space_2(); cout<<"             5: Back"<<endl;
-        Space_2(); cout<<"             Your choice: "; 
+        cout<<"         Menu Functions To Control School-Year Elements"<<endl;
+        cout<<"             1: View info of a School - Year"<<endl;
+        cout<<"             2: Create New School - Year"<<endl;
+        cout<<"             3: Adjust A School - Year"<<endl;
+        cout<<"             4: Delete A School - Year"<<endl;
+        cout<<"             5: Back"<<endl;
+        cout<<"             Your choice: "; 
         cin>>user_Choose;
         cout<<endl;
 
@@ -4429,15 +4409,14 @@ void Primal_Menu(School_Year* &sYear_Head)
         {
             Show_Year_Table(sYear_Head);
         }
-            
-        Space_1(); cout<<"         Wellcome To Course Registration (Staff Functions)"<<endl;
-        Space_1(); cout<<"             1: Create/Adjust Element Of Moodle"<<endl;
-        Space_1(); cout<<"             2: Import/Export ScoreBoard "<<endl;
-        Space_1(); cout<<"             3: Update Registration Status\n";
-        Space_1(); cout<<"             4: Register a student account"<<endl;
-        Space_1(); cout<<"             5: Register a staff account"<<endl;
-        Space_1(); cout<<"             6: Back"<<endl;
-        Space_1(); cout<<"             Your choice: "; 
+        cout<<"         Wellcome To Course Registration (Staff Functions)"<<endl;
+        cout<<"             1: Create/Adjust Element Of Moodle"<<endl;
+        cout<<"             2: Import/Export ScoreBoard "<<endl;
+        cout<<"             3: Update Registration Status\n";
+        cout<<"             4: Register a student account"<<endl;
+        cout<<"             5: Register a staff account"<<endl;
+        cout<<"             6: Back"<<endl;
+        cout<<"             Your choice: "; 
         cin>>user_Choose;
         cout<<endl;
 
@@ -4559,6 +4538,7 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
         return;
     }
     
+    // Update_Student_Result_Of_A_Semester(sYear_Head);
 
     int user_Choose = 0;
     while (user_Choose != 3)
