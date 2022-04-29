@@ -18,7 +18,33 @@ bool registration_status() {
     return res_status;
 }
 
-void update_registration_status(School_Year* sYear_Head);
+//
+void Down_2_Line()
+{
+    cout<<endl;
+    cout<<endl;
+}
+
+void Down_3_Line()
+{
+    cout<<endl;
+    cout<<endl;
+}
+
+void Space_3_Tab()
+{
+    cout<<"\t\t\t";
+}
+
+vod Space_5_Tab()
+{
+    cout<<"\t\t\t\t\t";
+}
+
+void Space_2_Tab()
+{
+    cout<<"\t\t";
+}
 
 //Check is there enough 3 term of Semester
 int Check_Num_Semester(School_Year::Semester* Semester_Head)
@@ -4718,7 +4744,7 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
     return ;
 }
 
-
+//Update the registration of status
 void update_registration_status(School_Year* sYear_Head) {
     FILE *status;
     int res_status;
