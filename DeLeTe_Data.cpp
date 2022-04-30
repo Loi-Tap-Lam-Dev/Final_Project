@@ -140,7 +140,6 @@ void Delete_Element_Of_YearClass(School_Year::Year_Class* &yClass_Cur, int type)
 
         }
     }
-    cout<<"Delete Success";
     return ;
 }
 
