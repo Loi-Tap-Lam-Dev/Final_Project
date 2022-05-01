@@ -3522,6 +3522,10 @@ void Export_List_of_Student(School_Year* &sYear_Head)
             cout<<endl;
             Show_ScoreBoard(Score_Head);
             cout<<endl;
+
+            system("pause");
+
+            return;
             //Cmt
         }
     }
