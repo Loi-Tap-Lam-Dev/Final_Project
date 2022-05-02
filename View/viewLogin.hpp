@@ -12,7 +12,7 @@
 #include <iostream>
 #include <windows.h>
 
-#include "..\lib.h"
+#include "..\Lib\lib.h"
 
 using namespace std;
 

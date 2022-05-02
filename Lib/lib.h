@@ -30,16 +30,17 @@ struct Profile {
 
 
 //Include Function file
-#include "View\DataBase.h"
-#include "DeLeTe_Data.cpp"
-#include "Model\modelLogin.hpp"
+#include "..\View\DataBase.h"
+#include "..\View\viewLogin.h"
+#include "..\Model\Model_DeLeTe_Data.h"
+#include "..\Model\modelLogin.hpp"
 
-#include "View\viewLogin.h"
+
 Account account;
-#include "Model\Model.h"
-#include "Model_Menu.cpp"
-#include "Print_Data.cpp"
-#include "Read_Data.cpp"
+#include "..\Model\Model.h"
+#include "..\Model\Model_Menu.h"
+#include "..\Model\Model_Print_Data.h"
+#include "..\Model\Model_Read_Data.h"
 // #include "Print_Data_New.cpp"
 
-#include "StudentUI.h"
+#include "..\Model\StudentUI.h"

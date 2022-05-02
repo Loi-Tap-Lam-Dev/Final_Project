@@ -1,4 +1,4 @@
-#include "lib.h"
+#include "..\Lib\lib.h"
 
 void PrintData(School_Year*yearHead)
 {

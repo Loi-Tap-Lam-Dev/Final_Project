@@ -1,5 +1,5 @@
 #pragma once
-#include "lib.h"
+#include "..\Lib\lib.h"
 
 void Read_Year(School_Year* &sYear_Head)
 {

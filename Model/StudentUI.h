@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "lib.h"
+#include "..\Lib\lib.h"
 
 using namespace std;
 
