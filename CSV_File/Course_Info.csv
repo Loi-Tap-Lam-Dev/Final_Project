@@ -1,3 +1,4 @@
 Course ID,Course Name,Teacher Name,Start Date,End Date,Day_of_Session_1,Time,Day_of_Session_2,Time,Credit,Maximum Regrister Student
-MTH00012,Discrete Math,Tong Gia Huy,20/09/2021,12/12/2021,Mon,S1,Tue,S2,15,150
-CSC00001,Intro to IT,Tiet Gia Hong,20/09/2021,10/12/2021,Fri,S3,Sat,S4,10,100
+MTH00105,Calculus 2,Tong Gia Huy,20/09/2023,12/12/2023,Mon,S1,Tue,S2,15,150
+CSC00090,DSA 2,John Lennon,20/09/2023,10/12/2023,Fri,S3,Sat,S4,10,100
+PHY00010,General Physics,Jane Doe,20/09/2023,10/12/2023,Tue,S3,Wed,S4,10,100

@@ -1973,6 +1973,11 @@ void Create_Course_Import(School_Year::Semester* &ySemester_Cur, School_Year::Se
             Space_5_Tab(); cout<<"The file is empty, Please import the data"<<endl;
             return;
         }
+
+        
+    string line_input = "";
+    getline(finp, line_input); //Skip 1 line
+
     while (!finp.eof())
     {
          //Declared
@@ -1982,8 +1987,6 @@ void Create_Course_Import(School_Year::Semester* &ySemester_Cur, School_Year::Se
         {
             Subject_Head = new School_Year::Semester::Subject;
 
-            string line_input = "";
-            getline(finp, line_input); //Skip 1 line
             getline(finp, line_input); 
 
             //Convert str -> char*;
@@ -2026,8 +2029,6 @@ void Create_Course_Import(School_Year::Semester* &ySemester_Cur, School_Year::Se
         }
 
         //Get Data
-        string line_input = "";
-        getline(finp, line_input); //Skip 1 line
         getline(finp, line_input); 
 
         //Convert str -> char*;
@@ -3739,6 +3740,10 @@ void Export_List_of_Student(School_Year* &sYear_Head)
             cout<<endl;
             Show_ScoreBoard(Score_Head);
             cout<<endl;
+
+            system("pause");
+
+            return;
             //Cmt
         }
     }

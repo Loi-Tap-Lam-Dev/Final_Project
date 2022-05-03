@@ -27,8 +27,9 @@ startWindow:
     School_Year *currentYear = sYear_Head;
     School_Year::Year_Class *currentClass = currentYear->yearCLassHead;
     
-    Space_7_Tab(); cout << "|  ";
+    // Space_7_Tab(); cout << "|  ";
     while (currentYear != NULL) {
+        Space_7_Tab(); cout << "|  ";
         currentClass = currentYear->yearCLassHead;
         while (currentClass != NULL) {
             cout << currentClass->nameClass << "  |  ";
@@ -118,6 +119,8 @@ startCourseMenu:
 
     while (currentYear != NULL) {
         Space_9_Tab(); cout << "Year: " << currentYear->year << endl;
+
+        currentSemester = currentYear->yearSemesterHead;
 
         while (currentSemester != NULL) {
             Show_Subject_Table(to_string(currentSemester->Term), currentSemester->yearSemesterSubjectHead);
