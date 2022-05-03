@@ -3550,6 +3550,7 @@ void Read_Data_For_StudentMark(School_Year::Semester::Subject* &Subject_Cur,Scho
         cout<<"Please Check Your"<<Name_File<<" File"<<endl;
         return;
     }
+
     finp.close();
 }
 
@@ -3742,7 +3743,7 @@ void Export_List_of_Student(School_Year* &sYear_Head)
             cout<<endl;
 
             system("pause");
-
+            
             return;
             //Cmt
         }
@@ -3774,6 +3775,7 @@ void Export_List_of_Student(School_Year* &sYear_Head)
     
     if (user_Choice == "Y") goto Showing_Course;
     Space_5_Tab(); system("pause");
+    fout.close();
     return;
 }
 
