@@ -9,12 +9,17 @@ using namespace std;
 void ClassListMenu(School_Year *sYear_Head) {
 startWindow:
     system("CLS");
+    
+    Down_3_Line();
+    Down_2_Line();
+    Space_7_Tab(); cout << "Displaying available classes:\n";
 
-    cout << "Displaying available classes:\n";
-
+    Space_9_Tab();
+    Heading();
     if (sYear_Head == NULL) {
-        cout << "No class available!\n";
-        system("pause");
+        
+        Space_7_Tab(); cout << "No class available!\n";
+        Space_7_Tab(); system("pause");
 
         return;
     }
@@ -22,7 +27,7 @@ startWindow:
     School_Year *currentYear = sYear_Head;
     School_Year::Year_Class *currentClass = currentYear->yearCLassHead;
     
-    cout << "|  ";
+    Space_7_Tab(); cout << "|  ";
     while (currentYear != NULL) {
         currentClass = currentYear->yearCLassHead;
         while (currentClass != NULL) {
@@ -33,17 +38,17 @@ startWindow:
         cout << endl;
         currentYear = currentYear->Next;
     }
-
+    Endding();
     currentYear = sYear_Head;
 
     // New display window
     int choice;
-    cout << "\t\tAvailable operations:\n";
-    cout << "\t\t   1: View student list in class\n";
-    cout << "\t\t   2: Give up and quit\n\n";
-    cout << "Your choice: ";
+    Space_9_Tab(); cout << "\t\tAvailable operations:\n";
+    Space_9_Tab(); cout << "\t\t   1: View student list in class\n";
+    Space_9_Tab(); cout << "\t\t   2: Give up and quit\n\n";
+    Space_11_Tab(); cout << "Your choice: ";
     cin >> choice;
-
+    
     switch (choice) {
         case 1: {
             string findClass;
@@ -51,7 +56,8 @@ startWindow:
 
             cin.clear();
             cin.ignore(1000, '\n');
-            cout << "Enter class to view from: ";
+            cout<<endl;
+            Space_9_Tab(); cout << "Enter class to view from: ";
             getline(cin, findClass);
 
             currentYear = sYear_Head;
@@ -68,22 +74,23 @@ startWindow:
             }
 
             if (targetClassHead == NULL) {
-                cout << "No class found!\n";
-                system("pause");
+                Space_9_Tab(); cout << "No class found!\n";
+                Space_9_Tab(); system("pause");
                 
                 goto startWindow;
             }
 
             Show_Sv_Table(findClass, targetClassHead->yearClassSV_ListHead);
             
-            system("pause");
+            Space_9_Tab(); system("pause");
 
             goto startWindow;
         }
         
         case 2: {
-            cout << "Good choice!\n";
-            system("pause");
+            cout<<endl;
+            Space_9_Tab(); cout << "Good choice!\n";
+            Space_9_Tab(); system("pause");
             break;
         }
         
@@ -97,8 +104,8 @@ startCourseMenu:
     system("CLS");
 
     if (sYear_Head == NULL ||  sYear_Head->yearSemesterHead == NULL || sYear_Head->yearSemesterHead->yearSemesterSubjectHead == NULL) {
-        cout << "No course available!\n";
-        system("pause");
+        Space_9_Tab(); cout << "No course available!\n";
+        Space_9_Tab(); system("pause");
 
         return;
     }
@@ -106,10 +113,11 @@ startCourseMenu:
     School_Year *currentYear = sYear_Head;
     School_Year::Semester *currentSemester = currentYear->yearSemesterHead;
 
-    cout << "Displaying all available courses:\n";
+    Down_3_Line();
+    Space_9_Tab(); cout << "Displaying all available courses:\n";
 
     while (currentYear != NULL) {
-        cout << "Year: " << currentYear->year << endl;
+        Space_9_Tab(); cout << "Year: " << currentYear->year << endl;
 
         while (currentSemester != NULL) {
             Show_Subject_Table(to_string(currentSemester->Term), currentSemester->yearSemesterSubjectHead);
@@ -123,21 +131,22 @@ startCourseMenu:
 
     // Course menu will go here
     int choice;
-    cout << "\t\tAvailable operations:\n";
-    cout << "\t\t   1: View student list in a course\n";
-    cout << "\t\t   2: View my courses\n";
-    cout << "\t\t   3: View scoreboard\n";
-    cout << "\t\t   4: Give up and quit\n\n";
-    cout << "Your choice: ";
+    Space_9_Tab(); cout << "\t\tAvailable operations:\n";
+    Space_9_Tab(); cout << "\t\t   1: View student list in a course\n";
+    Space_9_Tab(); cout << "\t\t   2: View my courses\n";
+    Space_9_Tab(); cout << "\t\t   3: View scoreboard\n";
+    Space_9_Tab(); cout << "\t\t   4: Give up and quit\n\n";
+    Space_9_Tab(); cout << "Your choice: ";
     cin >> choice;
 
+    cout<<endl;
     switch (choice) {
         case 1: {
             string findCourseID;
 
             cin.clear();
             cin.ignore(1000, '\n');
-            cout << "Enter course ID to view from: ";
+            Space_11_Tab(); cout << "Enter course ID to view from: ";
             getline(cin, findCourseID);
 
             // Find the course
@@ -170,7 +179,7 @@ startCourseMenu:
                 currentYear = currentYear->Next;
             }
 
-            system("pause");
+            Space_9_Tab(); system("pause");
 
             goto startCourseMenu;
         }
@@ -180,16 +189,17 @@ startCourseMenu:
 
             cin.clear();
             cin.ignore(1000, '\n');
-            cout << "Enter your ID: ";
+            Space_11_Tab(); cout << "Enter your ID: ";
             getline(cin, findStudentID);
 
+            cout<<endl;
             // Find the course
             School_Year::Semester *findSemester;
             School_Year::Semester::Subject *findCourse;
             School_Year::Semester::Subject::Student_listMark *findStudent;
 
             // Reuses the function Show_Subject_Table from Model_Menu.cpp
-            cout<<"| Course ID\t| Course Name\t| Teacher Name\t\t| Start Date\t| End Date\t| Session 1\t| Time\t\t| Session 2\t| Time\t\t| Number of credits\t| Maximum Student|"<<endl;
+            Space_2_Tab(); cout<<"| Course ID\t| Course Name\t\t| Teacher Name\t\t| Start Date  | End Date    | Session 1\t| Time\t\t | Session 2\t| Time\t\t | Credits\t| Max Student   |"<<endl;
             while (currentYear != NULL) {
                 findSemester = currentYear->yearSemesterHead;
 
@@ -202,28 +212,35 @@ startCourseMenu:
                         while (findStudent != NULL) {
                             if (findStudent->idStudent == stoi(findStudentID)) {
                                 
-                                cout<<"| "<<findCourse -> id_Subject<<"\t\t| "<<findCourse -> name_Subject<<"\t\t| ";
+                                Space_2_Tab(); cout<<"| "<<findCourse -> id_Subject<<"\t| ";
+        
+                                if (findCourse -> name_Subject.size() < 5) cout<<findCourse -> name_Subject<<"\t\t\t| ";
+                                else if (findCourse -> name_Subject.size() < 14) cout<<findCourse -> name_Subject<<"\t\t| ";
+                                else cout<<findCourse -> name_Subject<<"\t| ";
 
                                 //Teacher Name
                                 if ((findCourse -> teacher_Name).size() > 14) cout<<findCourse -> teacher_Name<<"\t| ";
                                 else cout<<findCourse -> teacher_Name<<"\t\t| ";
                                 
                                 //Start date, Endate
-                                cout<<findCourse -> startDate<<"\t| "<<findCourse -> endDate<<"\t| "<<findCourse -> day_Of_Session_1<<"\t\t| ";
+                                cout<<findCourse -> startDate<<"  | "<<findCourse -> endDate<<"  | ";
+                                cout<<findCourse -> day_Of_Session_1<<"\t| ";
 
-                                if (findCourse -> at_Time_1 == "S3" ) cout<<"13:30 - 15:29\t| ";
-                                if (findCourse -> at_Time_1 == "S4" ) cout<<"15:30 - 17:29\t| ";
-                                if (findCourse -> at_Time_1 == "S1" ) cout<<"7:30 - 9:29\t| ";
-                                if (findCourse -> at_Time_1 == "S2" ) cout<<"9:30 - 11:29\t| ";
+                                if (findCourse -> at_Time_1 == "S3" ) cout<<"13:30 - 15:29  | ";
+                                if (findCourse -> at_Time_1 == "S4" ) cout<<"15:30 - 17:29  | ";
+                                if (findCourse -> at_Time_1 == "S1" ) cout<<"7:30 - 9:29\t | ";
+                                if (findCourse -> at_Time_1 == "S2" ) cout<<"9:30 - 11:29\t | ";
 
+                                if (findCourse -> day_Of_Session_2.size() > 3) cout<<findCourse -> day_Of_Session_2<<"\t| ";
+                                else 
                                 cout<<findCourse -> day_Of_Session_2<<"\t\t| ";
+                                
+                                if (findCourse -> at_Time_2 == "S3" ) cout<<"13:30 - 15:29  | ";
+                                if (findCourse -> at_Time_2 == "S4" ) cout<<"15:30 - 17:29  | ";
+                                if (findCourse -> at_Time_2 == "S1" ) cout<<"7:30 - 9:29\t | ";
+                                if (findCourse -> at_Time_2 == "S2" ) cout<<"9:30 - 11:29\t | ";
 
-                                if (findCourse -> at_Time_2 == "S3" ) cout<<"13:30 - 15:29\t| ";
-                                if (findCourse -> at_Time_2 == "S4" ) cout<<"15:30 - 17:29\t| ";
-                                if (findCourse -> at_Time_2 == "S1" ) cout<<"7:30 - 9:29\t| ";
-                                if (findCourse -> at_Time_2 == "S2" ) cout<<"9:30 - 11:29\t| ";
-
-                                cout<<findCourse -> number_Of_Credit<<"\t\t\t| "<<findCourse -> maximumRegrister<<" \t\t|"<<endl;
+                                cout<<findCourse -> number_Of_Credit<<"\t\t| "<<findCourse -> maximumRegrister<<" \t\t|"<<endl;
                             }
 
                             findStudent = findStudent->Next;
@@ -238,7 +255,8 @@ startCourseMenu:
                 currentYear = currentYear->Next;
             }
 
-            system("pause");
+            cout<<endl;
+            Space_11_Tab(); system("pause");
 
             goto startCourseMenu;
         }
@@ -246,14 +264,14 @@ startCourseMenu:
         case 3: {
             forStudent_ToView_ScoreBoard_Of_A_Semester(sYear_Head);
             
-            system("pause");
+            Space_11_Tab(); system("pause");
 
             goto startCourseMenu;
         }
         
         case 4: {
-            cout << "Good choice!\n";
-            system("pause");
+            Space_11_Tab(); cout << "Good choice!\n";
+            Space_11_Tab(); system("pause");
             break;
         }
         
@@ -263,15 +281,15 @@ startCourseMenu:
 }
 
 void PrintProfile(Profile loginProfile) {
-    cout << "Your profile:\n";
+    Space_11_Tab(); cout << "Your profile:\n";
 
-    cout << "Student ID: " << loginProfile.studentID << endl;
-    cout << "Full name: " << loginProfile.firstName << " " << loginProfile.lastName << endl;
-    cout << "Gender: " << loginProfile.gender << endl;
-    cout << "Date of Birth (DoB): " << loginProfile.DoB << endl;
-    cout << "Social ID: " << loginProfile.socialID << endl;
+    Space_11_Tab(); cout << "Student ID: " << loginProfile.studentID << endl;
+    Space_11_Tab(); cout << "Full name: " << loginProfile.firstName << " " << loginProfile.lastName << endl;
+    Space_11_Tab(); cout << "Gender: " << loginProfile.gender << endl;
+    Space_11_Tab(); cout << "Date of Birth (DoB): " << loginProfile.DoB << endl;
+    Space_11_Tab(); cout << "Social ID: " << loginProfile.socialID << endl;
 
-    system("pause");
+    Space_11_Tab(); system("pause");
 }
 
 void PrintMainStudentMenu(School_Year *&sYear_Head, string loginUsername, Profile loginProfile)
@@ -285,13 +303,13 @@ startMainMenu:
         Show_Year_Table(sYear_Head);
     }
 
-    cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
-    cout<<"             1: View class"<<endl;
-    cout<<"             2: View courses"<<endl;
-    cout<<"             3: Change password"<<endl;
-    cout<<"             4: View profile"<<endl;
-    cout<<"             5: Log out"<<endl;
-    cout<<"             Your choice: "; 
+    Space_11_Tab(); cout<<"  Wellcome to course registration (Beta Ver)"<<endl;
+    Space_11_Tab(); cout<<"      1: View class"<<endl;
+    Space_11_Tab(); cout<<"      2: View courses"<<endl;
+    Space_11_Tab(); cout<<"      3: Change password"<<endl;
+    Space_11_Tab(); cout<<"      4: View profile"<<endl;
+    Space_11_Tab(); cout<<"      5: Log out"<<endl;
+    Space_11_Tab(); cout<<"      Your choice: "; 
     cin>>user_Choose;
     cout<<endl;
 
@@ -309,17 +327,23 @@ startMainMenu:
 
         case 3: {
             string newPass, retypePass;
-            cout << "\nEnter new password: ";
+            cout<<endl;
+            Space_11_Tab(); 
+            cout << "Enter new password: ";
             newPass = encryptPasswordInput();
-            cout << "Retype: ";
+            cout<<endl;
+            
+            Space_11_Tab(); cout << "Retype: ";
             retypePass = encryptPasswordInput();
-
+            cout<<endl;
             while (!requestPassword(newPass, retypePass)) {
-                cout << "Please re-enter!\n";
-                cout << "Enter new password: ";
+                Space_11_Tab(); cout << "Please re-enter!\n";
+                Space_11_Tab(); cout << "Enter new password: ";
                 newPass = encryptPasswordInput();
-                cout << "Retype new password: ";
+                cout<<endl;
+                Space_11_Tab(); cout << "Retype new password: ";
                 retypePass = encryptPasswordInput();
+                cout<<endl;
             }
 
             changePassword(loginUsername, newPass, 2);
@@ -334,7 +358,7 @@ startMainMenu:
         }
 
         case 5: {
-            cout << "Logging out...\n";
+            Space_11_Tab(); cout << "Logging out...\n";
             break;
         }
 
@@ -342,7 +366,7 @@ startMainMenu:
             goto startMainMenu;
     }
 
-    system("pause");
+    Space_11_Tab(); system("pause");
 
     return ;
 }

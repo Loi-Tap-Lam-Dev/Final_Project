@@ -63,6 +63,26 @@ void Heading()
     Down_2_Line();
     cout<<endl;
 }
+void Heading_Score()
+{
+    for (int i = 0; i <= 60; i++)
+    {
+        if (i ==  (60 / 2) ) cout<<" SCORE REPRESENTATION ";
+        cout<<"=";
+    }
+    Down_2_Line();
+    cout<<endl;
+}
+void Heading_Menu_Search()
+{
+    for (int i = 0; i <= 60; i++)
+    {
+        if (i ==  (60 / 2) ) cout<<" SCORE SEARCHING MENU ";
+        cout<<"=";
+    }
+    Down_2_Line();
+    cout<<endl;
+}
 
 void Endding()
 {
@@ -634,10 +654,14 @@ void Show_ScoreBoard(School_Year::Semester::Subject::Student_listMark* Score_hea
         system("pause");
         return;
     }
-    cout<<"\t|No\t|Student_ID\t|Full_Name\t\t|Mid-Term Mark\t|Final Mark\t|Other Mark\t|Total\t|"<<endl;
+    //Gui
+    Down_3_Line();
+    Space_9_Tab();
+    Heading_Score();
+    Space_7_Tab(); cout<<"\t|No\t|Student_ID\t|Full_Name\t\t|Mid-Term Mark\t|Final Mark\t|Other Mark\t|Total\t|"<<endl;
     while (Score_head != nullptr)
     {
-        cout<<"\t|"<<Score_head -> no<<"\t|"<<Score_head -> idStudent<<"\t|";
+        Space_7_Tab(); cout<<"\t|"<<Score_head -> no<<"\t|"<<Score_head -> idStudent<<"\t|";
          
         if (Score_head -> FullName .size() < 9) cout<<Score_head -> FullName<<"\t\t\t|";
         else if (Score_head -> FullName .size() < 14) cout<<Score_head -> FullName<<"\t\t|";
@@ -648,6 +672,7 @@ void Show_ScoreBoard(School_Year::Semester::Subject::Student_listMark* Score_hea
         Score_head = Score_head -> Next;
     }
     cout<<endl;
+    Endding();
 }
 
 //Show Specific Result 
@@ -655,16 +680,23 @@ void Show_Specific_StuResult(School_Year::Semester::Subject::Student_listMark* S
 {
     if (Score_head == nullptr)
     {
-        cout<<"Nothing to show. Please Try Again"<<endl;
-        system("pause");
+        cout<<endl;
+        Space_11_Tab(); cout<<"Nothing to show. Please Try Again"<<endl;
+        Space_11_Tab(); system("pause");
         return;
     }
+    //Gui
+    Down_2_Line();
+    Space_9_Tab();
+    Heading_Score();
+    
+    Space_7_Tab();
     cout<<"\t|No\t|Student_ID\t|Full_Name\t\t|Mid-Term Mark\t|Final Mark\t|Other Mark\t|Total\t|"<<endl;
     while (Score_head != nullptr)
     {
         if (Score_head == Score_Cur)
         {
-            cout<<"\t|"<<Score_head -> no<<"\t|"<<Score_head -> idStudent<<"\t|";
+            Space_7_Tab(); cout<<"\t|"<<Score_head -> no<<"\t|"<<Score_head -> idStudent<<"\t|";
          
             if (Score_head -> FullName .size() < 9) cout<<Score_head -> FullName<<"\t\t\t|";
             else if (Score_head -> FullName .size() < 14) cout<<Score_head -> FullName<<"\t\t|";
@@ -684,16 +716,23 @@ void Show_Specific_TermMark_Of_Student(School_Year::Semester::Student_listMark* 
 {
     if (Term_Mark == nullptr)
     {
-        cout<<"Nothing to show. Please Try Again"<<endl;
-        system("pause");
+        cout<<endl;
+        Space_11_Tab(); cout<<"Nothing to show. Please Try Again"<<endl;
+        Space_11_Tab(); system("pause");
         return;
     }
-    cout<<"\t|No\t|Student_ID\t|Full_Name\t\t|Total_Credit\t|Average_Mark\t|GPA\t|"<<endl;
+    Down_2_Line();
+    Space_9_Tab();
+    Heading_Score();
+
+    Space_7_Tab(); 
+    cout<<"\t     |No\t|Student_ID\t|Full_Name\t\t|Total_Credit\t|Average_Mark\t|GPA\t|"<<endl;
     while (Term_Mark!= nullptr)
     {
         if (Term_Mark -> idStudent == Term_Mark_Cur -> idStudent)
         {
-            cout<<"\t|"<<Term_Mark -> no<<"\t|"<<Term_Mark -> idStudent<<"\t|";
+            Space_7_Tab();
+            cout<<"\t     |"<<Term_Mark -> no<<"\t\t|"<<Term_Mark -> idStudent<<"\t|";
 
             if (Term_Mark -> fullName .size() < 9) cout<<Term_Mark -> fullName<<"\t\t|";
             else cout<<Term_Mark -> fullName<<"\t|";
@@ -4725,8 +4764,8 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
 {
     if (sYear_Head == nullptr)
     {
-        cout<<"The School Staff Hasnt Publish The ScoreBoard Yet. Please Try Again"<<endl;
-        system("pause");
+        Space_5_Tab(); cout<<"The School Staff Hasnt Publish The ScoreBoard Yet. Please Try Again"<<endl;
+        Space_5_Tab(); system("pause");
         return;
     }
     
@@ -4736,14 +4775,19 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
     while (user_Choose != 3)
     {
         system("CLS");
-        cout<<"         Wellcome to course registration (Beta Ver)"<<endl;
-        cout<<"             1: View ScoreBoard Of Each Course In A Specific Semester"<<endl;
-        cout<<"             2: View A Overall ScoreBoard In A Specific Semseter "<<endl;
-        cout<<"             3: Back"<<endl;
-        cout<<"             Your choice: "; 
+        Down_3_Line();
+        Down_2_Line();
+        Space_9_Tab();
+        Heading_Menu_Search();
+        Space_11_Tab(); cout<<"  Wellcome to course registration (Beta Ver)"<<endl;
+        Space_11_Tab(); cout<<"      1: View ScoreBoard Of Each Course In A Specific Semester"<<endl;
+        Space_11_Tab(); cout<<"      2: View A Overall ScoreBoard In A Specific Semseter "<<endl;
+        Space_11_Tab(); cout<<"      3: Back"<<endl;
+        Space_11_Tab(); cout<<"      Your choice: "; 
         cin>>user_Choose;
         cout<<endl;
 
+        Endding();
         if (user_Choose == 3) break;
         
             bool Check_Ignore = false;
@@ -4752,8 +4796,8 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
             //At first check if empty or not - ✔
             if (!Check_School_Year(sYear_Head)) 
                 {
-                    cout<<"The School-Year Are Not Being Added. Please Try Again"<<endl;
-                    system("pause");
+                    Space_11_Tab(); cout<<"The School-Year Are Not Being Added. Please Try Again"<<endl;
+                    Space_11_Tab(); system("pause");
                     return ;
                 }
                     else 
@@ -4768,9 +4812,9 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
             do
             {
                 //Menu of User choice about School-Year they want to view
-                    cout<<"Which School-Year you want to choose. Ex: 2021-2022 or 2021"<<endl;
-                    cout<<"Note: If you dont want to choose any year pls Enter 'N' "<<endl;
-                    cout<<"Enter answer: ";
+                    Space_5_Tab(); cout<<"Which School-Year you want to choose. Ex: 2021-2022 or 2021"<<endl;
+                    Space_5_Tab(); cout<<"Note: If you dont want to choose any year pls Enter 'N' "<<endl;
+                    Space_5_Tab(); cout<<"Enter answer: ";
 
                     getline(cin,user_choosed_Year);
 
@@ -4787,10 +4831,10 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
                 //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
                 if (Check_Year_Duplicated(sYear_Head,user_choosed_Year)) 
                 {
-                    cout<<"Your input school-year: "<<user_choosed_Year<<" is Incorrect. Please try again."<<endl;
+                    Space_5_Tab(); cout<<"Your input school-year: "<<user_choosed_Year<<" is Incorrect. Please try again."<<endl;
                     
                     //Enter any key to continue and go back to  "Showing_School_Year"
-                    system("pause");
+                    Space_5_Tab(); system("pause");
                     Check_Ignore = true;
                     goto Showing_School_Year;
                 }
@@ -4812,8 +4856,8 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
             Showing_Semester:
             if (Semester_Head == nullptr) 
                 {
-                    cout<<"The Semester Are Not Being Added. Please Try Again"<<endl;
-                    system("Pause");
+                    Space_11_Tab(); cout<<"The Semester Are Not Being Added. Please Try Again"<<endl;
+                    Space_11_Tab(); system("Pause");
                     return ;
                 }
                     else 
@@ -4826,9 +4870,9 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
                 if (!Check_Ignore) cin.ignore();
             do
             {
-                    cout<<"Which Semester you want to choose. Ex: 1/2/3"<<endl;
-                    cout<<"Note: If you dont want to choose any class pls Enter 'N' "<<endl;
-                    cout<<"Enter answer: ";
+                    Space_11_Tab(); cout<<"Which Semester you want to choose. Ex: 1/2/3"<<endl;
+                    Space_11_Tab(); cout<<"Note: If you dont want to choose any class pls Enter 'N' "<<endl;
+                    Space_11_Tab(); cout<<"Enter answer: ";
 
                     getline(cin,user_Choose_Temp);
 
@@ -4839,10 +4883,10 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
                 //Check if the user choosed Year is existed - True is it not Duplicated which mean the Data is Incorrect
                 if (Check_Semester_Duplicated(Semester_Head,user_Choose_Semester)) 
                 {
-                    cout<<"Your input Semester: "<<user_Choose_Semester<<" is Incorrect. Please try again."<<endl;
+                    Space_11_Tab(); cout<<"Your input Semester: "<<user_Choose_Semester<<" is Incorrect. Please try again."<<endl;
                     
                     //Enter any key to continue and go back to  "Showing_School_Year"
-                    system("pause");
+                    Space_11_Tab(); system("pause");
                     Check_Ignore = true;
                     goto Showing_Semester;
                 }
@@ -4853,7 +4897,7 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
             School_Year::Semester* Semester_Cur = find_Semester(Semester_Head,user_Choose_Semester);
             
             cout<<endl;
-            cout<<"Enter Your Student ID: ";
+            Space_11_Tab();  cout<<"Enter Your Student ID: ";
             int Student_ID;
             cin>>Student_ID;
 
@@ -4865,7 +4909,7 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
                     School_Year::Semester::Subject* Course_Head = Semester_Cur -> yearSemesterSubjectHead;
                     while (Course_Head != nullptr)
                     {
-                        cout<<"Course: "<<Course_Head -> name_Subject<<endl;
+                        Space_11_Tab(); cout<<"Course: "<<Course_Head -> name_Subject<<endl;
 
                             School_Year::Semester::Subject::Student_listMark* Res_Head = Course_Head -> yearSemesterSubStudent_ListHead;
 
@@ -4881,7 +4925,7 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
 
                         Course_Head = Course_Head -> Next;
                     } 
-                    system("pause");
+                    Space_9_Tab(); system("pause");
                     break;
                 }
             
@@ -4896,7 +4940,7 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
                     Show_Specific_TermMark_Of_Student(Res_Term_Mark_Head,Res_Term_Temp);
                     cout<<endl;
 
-                    system("pause");
+                    Space_9_Tab(); system("pause");
                     break;
                 }
 
@@ -4905,7 +4949,7 @@ void forStudent_ToView_ScoreBoard_Of_A_Semester(School_Year* sYear_Head)
             }
     }
     cout<<endl;
-    cout<<"Ending Menu ViewScoreBoard Student"<<endl;
+    Space_7_Tab(); cout<<"Ending Menu ViewScoreBoard Student"<<endl;
 
     return ;
 }

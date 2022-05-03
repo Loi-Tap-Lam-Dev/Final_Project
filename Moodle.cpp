@@ -63,6 +63,7 @@ beginAuthentication:
     Read_Data_From_File(sYear_Head);
     Read_Semester(sYear_Head);
 
+    //forStudent_ToView_ScoreBoard_Of_A_Semester(sYear_Head);
     if (loggedInAsAdmin) {
         
         // Menu for staff
