@@ -11,6 +11,56 @@
 
 using namespace std;
 
+///////////////////////////////GUI/////////////////////////////////////////
+void Login_Down_2_Line()
+{
+    cout<<endl;
+    cout<<endl;
+}
+
+void Login_Down_3_Line()
+{
+    cout<<endl;
+    cout<<endl;
+}
+
+void Login_Space_3_Tab()
+{
+    cout<<"\t\t\t";
+}
+
+void Login_Space_5_Tab()
+{
+    cout<<"\t\t\t\t\t";
+}
+
+void Login_Space_2_Tab()
+{
+    cout<<"\t\t";
+}
+
+void Login_Space_7_Tab()
+{
+    cout<<"\t\t\t\t\t\t\t";
+}
+
+void Login_Space_9_Tab()
+{
+    cout<<"\t\t\t\t\t\t\t\t\t";
+}
+
+void Login_Space_11_Tab()
+{
+    cout<<"\t\t\t\t\t\t\t\t\t\t\t";
+}
+
+void Login_Space_13_Tab()
+{
+    cout<<"\t\t\t\t\t\t\t\t\t\t\t\t\t";
+}
+///////////////////////////////GUI/////////////////////////////////////////
+
+
 // FUNCTION CURRENTLY DYING
 string encryptPasswordInput() {
     // A function that messes around with the Windows console
@@ -53,27 +103,30 @@ string encryptPasswordInput() {
 }
 
 void FORMAT(string s) {
-    cout<<"\t\t\t*********************\n\n";
-    cout<<"\t\t\t\t"<<s<<"\n\n";
-    cout<<"\t\t\t*********************\n\n";
+    
+    Login_Down_3_Line();
+    Login_Down_2_Line();    
+    Login_Space_9_Tab(); cout<<"\t\t\t*********************\n\n";
+    Login_Space_9_Tab(); cout<<"\t\t\t\t"<<s<<"\n\n";
+    Login_Space_9_Tab(); cout<<"\t\t\t*********************\n\n";
 }
 
 int loginOption() {
     FORMAT("LOGIN");
     int choice;
-    cout<<"1. Staff\n";
-    cout<<"2. Student\n";
-    cout<<"3. Exit\n\n\n";
-    cout<<"Enter your choice: ";
+    Login_Space_11_Tab(); cout<<"\t\t";  cout<<"1. Staff\n";
+    Login_Space_11_Tab(); cout<<"\t\t";  cout<<"2. Student\n";
+    Login_Space_11_Tab(); cout<<"\t\t";  cout<<"3. Exit\n\n\n";
+    Login_Space_11_Tab(); cout<<"\t";  cout<<"Enter your choice: ";
     cin>>choice;
     return choice;
 }
 
 void getCredentials(string &username, string &password) {
     // FORMAT("LOGIN");
-    cout<<"Username: ";
+    Login_Space_11_Tab(); cout<<"\t";  cout<<"Username: ";
     cin>>username;
-    cout<<"Password: ";
+    Login_Space_11_Tab(); cout<<"\t";  cout<<"Password: ";
     // cin>>password;
     password = encryptPasswordInput();
 }

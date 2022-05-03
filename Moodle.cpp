@@ -17,11 +17,11 @@ beginAuthentication:
         case 1: {
             getCredentials(account.username, account.password);
             if (loginStaff(account.username, account.password)==1) {
-                cout<<"Success!\n";
+                Space_9_Tab(); cout<<"Success!\n";
                 loggedInAsAdmin = true;
             }
             else {
-                cout<<"\nLogin failed, please check your credentials and try again!\n";
+                Space_9_Tab(); cout<<"\nLogin failed, please check your credentials and try again!\n";
                 Sleep(2000);
                 goto beginAuthentication;
             }
@@ -31,11 +31,11 @@ beginAuthentication:
         case 2: {
             getCredentials(account.username, account.password);
             if(loginStudent(account.username, account.password)==1) {
-                cout<<"Success!\n";
+                Space_9_Tab(); cout<<"Success!\n";
                 loggedInAsAdmin = false;
             }
             else {
-                cout<<"\nLogin failed, please check your credentials and try again!\n";
+                Space_9_Tab(); cout<<"\nLogin failed, please check your credentials and try again!\n";
                 Sleep(2000);
                 goto beginAuthentication;
             }
@@ -47,13 +47,13 @@ beginAuthentication:
 
             Delete_School_Year(sYear_Head);
             
-            cout << "All data have been successfully saved!\n";
-            cout << "Thank you! You can now safely close the application.\n";
+            Space_9_Tab(); cout << "All data have been successfully saved!\n";
+            Space_9_Tab(); cout << "Thank you! You can now safely close the application.\n";
 
             return 0;
         }
         default: {
-            cout<<"Invalid choice";
+            Space_9_Tab(); cout<<"Invalid choice";
             Sleep(2000);
             goto beginAuthentication;
         }
@@ -74,15 +74,15 @@ beginAuthentication:
         Profile studentProfile;
 
         if (!LoadStudentProfile(account.username, studentProfile)) {
-            cout << "Unable to load your data!\n";
-            cout << "The data is either corrupted, or your username is not found!\n";
+            Space_9_Tab(); cout << "Unable to load your data!\n";
+            Space_9_Tab(); cout << "The data is either corrupted, or your username is not found!\n";
 
             Sleep(3000);
 
             goto beginAuthentication;
         }
 
-        cout << "Account data succesfully loaded! Please wait a few seconds!\n";
+        Space_9_Tab(); cout << "Account data succesfully loaded! Please wait a few seconds!\n";
 
         Sleep(3000);
 
