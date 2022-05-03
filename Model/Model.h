@@ -25,7 +25,7 @@ bool loginStaff(string username, string password) {
     ifstream input("CredentialsSta.txt");
     while (input >> id >> pass) {
         if (username == id && password == pass) {
-            cout<<"\nLogged in\n";
+            Space_9_Tab(); cout<<"\nLogged in\n";
             input.close(); 
             return 1;
         }
@@ -39,7 +39,7 @@ bool loginStudent(string username, string password) {
     ifstream input("CredentialsStu.txt");
     while (input >> id >> pass) {
         if (username == id && password == pass) {
-            cout<<"\nLogged in\n";
+            Space_9_Tab(); cout<<"\nLogged in\n";
             input.close();
             return 1;
         }
@@ -196,7 +196,7 @@ bool LoadStudentProfile(string username, Profile &studentProfile) {
         studentProfile.socialID = strtok(NULL, ",");
 
         if (studentProfile.studentID == username) {
-            cout << "Data loaded succesfully!\n";
+            Space_9_Tab(); cout << "Data loaded succesfully!\n";
             studentFile.close();
 
             return true;
