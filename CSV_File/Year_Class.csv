@@ -22,3 +22,9 @@ No, Student_ID, SocialID, FirstName, LastName, Gender, Dateofbirth
 2,21127014,3526601,Tuyen,Nguyen,Male,20/03/2007
 3,22127309,3526123,Huy,Nguyen,Male,20/03/2004
 Classes For Year,2023
+Class,23CLC09
+No, Student_ID, SocialID, FirstName, LastName, Gender, Dateofbirth
+1,23127013,352660,Bao,Nguyen,Male,20/03/2005
+2,23127014,3526601,Tuyen,Nguyen,Male,20/03/2005
+3,23127309,3526123,Huy,Nguyen,Female,20/03/2005
+4,23127310,3526123,Bruh,Nguyen,Female,20/03/2005
